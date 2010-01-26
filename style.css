@@ -1,0 +1,61 @@
+@import url("style-main.css");
+
+body {
+	line-height: 1.15em;
+	background-color: #FED;
+}
+
+#container {
+	border: 1px solid #999;
+}
+
+a:link {
+	color: #24C;
+}
+
+a:visited {
+	color: #336;
+}
+
+p.error {
+	color:red;
+}
+div#nav {
+	margin-bottom: 1em;
+}
+div#nav ul {
+	text-align:center;
+	margin:0;
+	padding:0;
+	width:100%;
+	font-size:1.1em;
+}
+div#nav ul li {
+	display:inline;
+	list-style-type:none;
+	padding:5px 0;
+}
+div#nav ul li a {
+	padding:5px;
+	text-decoration:none;
+	border-left:1px solid gray;
+}
+div#nav ul li:first-child a {
+	border-left:none;
+}
+div#nav ul li:hover {
+	background-color:#DFC;
+}
+
+td.mimetype {
+}
+td.date {
+}
+
+.optional {
+	color: #666;
+}
+
+.optional input {
+	color: #666;
+}
