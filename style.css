@@ -17,7 +17,7 @@ a:visited {
 	color: #336;
 }
 
-p.error {
+.error {
 	color:red;
 }
 div#nav {
