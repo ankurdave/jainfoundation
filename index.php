@@ -5,7 +5,7 @@
 		$error_name = true;
 	}
 	if (isset($_GET['error_email'])) {
-		$error_password = true;
+		$error_email = true;
 	}
 	if (isset($_GET['error_phone'])) {
 		$error_phone = true;
