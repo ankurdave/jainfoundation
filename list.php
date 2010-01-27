@@ -32,6 +32,7 @@
 <div id="nav">
 	<ul>
 		<li><a href="index">Register</a></li>
+		<li><a href="list">List registrations</a></li>
 		<li><a href="export">Export registrations</a></li>
 	</ul>
 </div>
@@ -47,9 +48,9 @@
 	$phone = preg_replace('/^(\d{3})(\d{3})(\d{4})$/', '(\1) \2-\3', $phone);
 ?>
 	<tr>
-		<td><?php echo htmlentities($name) ?></td>
-		<td><?php echo htmlentities($email) ?></td>
-		<td><?php echo htmlentities($phone) ?></td>
+		<td><?php echo print_html($name) ?></td>
+		<td><?php echo print_html($email) ?></td>
+		<td><?php echo print_html($phone) ?></td>
 	</tr>
 <?php } ?>
 <?php $query->close(); ?>

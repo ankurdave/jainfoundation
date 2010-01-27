@@ -13,6 +13,8 @@
 	if (isset($_GET['error_general'])) {
 		$error_general = true;
 	}
+	
+	// TODO: have this form save your data in case of error
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
@@ -31,6 +33,7 @@
 	<ul>
 		<li><a href="index">Register</a></li>
 		<li><a href="list">List registrations</a></li>
+		<li><a href="export">Export registrations</a></li>
 	</ul>
 </div>
 
