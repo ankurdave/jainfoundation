@@ -4,7 +4,6 @@
 	$name = $_POST['name'];
 	$email = $_POST['email'];
 	$phone = preg_replace('/[^0-9]/', '', $_POST['phone']);
-	$success = addPerson($name, $email, $phone);
 	
 	if (!isset($_POST['submitted'])) {
 		header('Location:register');
@@ -23,11 +22,11 @@
 		exit;
 	}
 	
-	require_once 'lib.php';
-	
+	$success = addPerson($name, $email, $phone);	
 	if ($success) {
 		header('Location:register-success');
 	} else {
 		header('Location:register?error_general');
+		exit;
 	}
 ?>
