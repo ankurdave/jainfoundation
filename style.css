@@ -66,4 +66,5 @@ form h2 {
 
 .required {
 	color: red;
+	font-weight: bold;
 }

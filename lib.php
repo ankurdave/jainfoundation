@@ -33,4 +33,20 @@ function print_html($string) {
 function csv_encode($string) {
 	return '"' . str_replace('"', '""', $string) . '"';
 }
+
+// Checks for an error associated with the given field, and sets the appropriate variables
+function get_error_style($field) {
+	if (isset($_GET["error_$field"])) {
+		return ' class="error" ';
+	} else {
+		return '';
+	}
+}
+function get_error_text($field, $text = "(required)") {
+	if (isset($_GET["error_$field"])) {
+		return $text;
+	} else {
+		return '';
+	}
+}
 ?>

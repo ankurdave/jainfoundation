@@ -26,29 +26,32 @@
 <form action="abstract-submit" method="post">
 	<h2>Presenting/First Author</h2>
 	<table>
-		<tr>
+		<tr <?php echo get_error_style('firstname') ?>>
 			<td class="required">*</td>
 			<td><label for="firstname">First name</label></td>
-			<td><input type="text" name="firstname" id="firstname" <?php if (isset($_GET['error_firstname'])) { ?> class="error" <?php } ?>/></td>
+			<td><input type="text" name="firstname" id="firstname" />
+				<?php echo get_error_text('firstname') ?></td>
 		</tr>
 		
-		<tr>
+		<tr <?php echo get_error_style('middlename') ?>>
 			<td></td>
 			<td><label for="middlename">Middle initial</label></td>
-			<td><input type="text" name="middlename" id="middlename" <?php if (isset($_GET['error_middlename'])) { ?> class="error" <?php } ?>/></td>
+			<td><input type="text" name="middlename" id="middlename" />
+				<?php echo get_error_text('middlename') ?></td>
 		</tr>
 		
-		<tr>
+		<tr <?php echo get_error_style('lastname') ?>>
 			<td class="required">*</td>
 			<td><label for="lastname">Last name</label></td>
-			<td><input type="text" name="lastname" id="lastname" <?php if (isset($_GET['error_lastname'])) { ?> class="error" <?php } ?>/></td>
+			<td><input type="text" name="lastname" id="lastname" />
+				<?php echo get_error_text('lastname') ?></td>
 		</tr>
 		
-		<tr>
+		<tr <?php echo get_error_style('degree') ?>>
 			<td class="required">*</td>
 			<td><label for="degree">Degree</label></td>
-			<td><input type="text" name="degree" id="degree" <?php if (isset($_GET['error_degree'])) { ?> class="error" <?php } ?>/>
-				(MD, PhD, etc.)</td>
+			<td><input type="text" name="degree" id="degree" />
+				(MD, PhD, etc.<?php echo get_error_text('degree', '; required') ?>)</td>
 		</tr>
 	</table>
 	
