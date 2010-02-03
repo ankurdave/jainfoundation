@@ -60,18 +60,10 @@ td.date {
 	color: #666;
 }
 
-input#firstname {
-	width: 8em;
-}
-input#middlename {
-	width: 4em;
-}
-input#lastname {
-	width: 12em;
-}
-input#degree {
-	width: 12em;
+form h2 {
+	font-size: 1.2em;
 }
 
-input.required {
-	background-color
+.required {
+	color: red;
+}
