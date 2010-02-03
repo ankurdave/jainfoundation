@@ -9,6 +9,20 @@
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
 <link rel="stylesheet" href="style.css">
 
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="jquery.validate.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#abstract-form").validate({
+			rules: {
+				firstname: { required: true },
+				lastname: { required: true },
+				degree: { required: true },
+			},
+		});
+	});
+</script>
+
 <title>Submit an Abstract &ndash; Jain Foundation</title>
 </head>
 
@@ -23,7 +37,7 @@
 	<p class="error">Something bad happened!</p>
 <?php } ?>
 
-<form action="abstract-submit" method="post">
+<form action="abstract-submit" method="post" id="abstract-form">
 	<h2>Presenting/First Author</h2>
 	<table>
 		<tr <?php echo get_error_style('firstname') ?>>
