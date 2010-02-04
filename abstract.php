@@ -31,6 +31,13 @@
 						return $("#author_status").val() == "postdoc";
 					},
 				},
+				picture: { required: true },
+				
+				affiliation_1: { required: true },
+				author_1_firstname: { required: true },
+				author_1_lastname: { required: true },
+				author_1_affiliation: { required: true },
+				
 				abstract_category: { required: true },
 				abstract_category_other: {
 					required: function(element) {
@@ -38,6 +45,9 @@
 					},
 				},
 				presentation_type: { required: true },
+				
+				abstract_title: { required: true },
+				abstract_body: { required: true },
 			},
 		});
 	});
@@ -75,11 +85,13 @@
 
 <h2>Abstract Submission</h2>
 
+<p>Please fill out the form below and submit it no later than May ??, 2010. You will be informed whether your abstract has been accepted for a poster or oral presentation by May ??, 2010.</p>
+
 <?php if (isset($_GET['error_general'])) { ?>
 	<p class="error">Something bad happened!</p>
 <?php } ?>
 
-<form action="abstract-submit" method="post" id="abstract-form">
+<form action="abstract-submit" method="post" id="abstract-form" enctype="multipart/form-data">
 	<h3>Presenting/First Author</h3>
 	<table>
 		<?php print_text_field('firstname', 'First Name') ?>
@@ -117,11 +129,91 @@
 					}
 				}).change();
 			</script>
+		<?php print_upload_field('picture', 'Picture') ?>
+	</table>
+	
+	<h3>All Authors</h3>
+	
+	<p>Enter all affiliations associated with the authors, one per line, in the following format: Department, Institution, City, State/Province, Country.<br />
+	<em>Example:</em> Department of Neurology, Univ. of Washington, Seattle, WA, USA</p>
+	<table>
+		<?php
+			print_text_field("affiliation_1", "Affiliation #1");
+		?>
+		
+		<script type="text/javascript">
+			// Updates #affiliation_1 by joining the values of these elements with a comma
+			// Note: this always overwrites #affiliation_1 when these elements are changed!
+			var updatePrimaryAffiliation = function() {
+				var elements = [ "department", "institution", "city", "state_province", "country" ];
+				elements = $.map(elements, function(elem, index) {
+					if ($("#" + elem).val()) {
+						return $("#" + elem).val();
+					} else {
+						return null; // Ignore the element if it's empty
+					}
+				});
+				$("#affiliation_1").val(elements.join(", "));
+			}
+			
+			$("#department").change(updatePrimaryAffiliation);
+			$("#institution").change(updatePrimaryAffiliation);
+			$("#city").change(updatePrimaryAffiliation);
+			$("#state_province").change(updatePrimaryAffiliation);
+			$("#country").change(updatePrimaryAffiliation);
+		</script>
+		
+		<?php
+			for ($i = 2; $i <= 8; $i++) {
+				print_text_field("affiliation_$i", "Affiliation #$i", '', null);
+			}
+		?>
+	</table>
+	
+	<p>Enter the information for all authors.<br />
+	The person listed as the first author <strong>must</strong> be presenting the abstract.
+	Please use the affiliation numbers above to indicate each author's affiliation(s).</p>
+	<table class="multitext">
+		<th>
+			<td>First Name (<span class="required">*</span>)</td>
+			<td>Middle Initial</td>
+			<td>Last Name (<span class="required">*</span>)</td>
+			<td>Affiliation (<span class="required">*</span>)</td>
+		</th>
+		
+		<?php
+			print_multi_text_field("author_1", "Author #1", array(
+				"_firstname" => true,
+				"_middlename" => false,
+				"_lastname" => true,
+				"_affiliation" => true,
+			));
+		?>
+		
+		<script type="text/javascript">
+			// Update #author_1_* with the information above
+			// Note: this always overwrites #author_1_* when these elements are changed!
+			
+			$("#firstname").change(function() { $("#author_1_firstname").val($("#firstname").val()) });
+			$("#middlename").change(function() { $("#author_1_middlename").val($("#middlename").val()) });
+			$("#lastname").change(function() { $("#author_1_lastname").val($("#lastname").val()) });
+		</script>
+		
+		<?php
+			for ($i = 2; $i <= 8; $i++) {
+				print_multi_text_field("author_$i", "Author #$i", array(
+					"_firstname" => false,
+					"_middlename" => false,
+					"_lastname" => false,
+					"_affiliation" => false,
+				));
+			}
+		?>
 	</table>
 	
 	<h3>Abstract Information</h3>
 	
-	<p>Please select the best category for the topic of your abstract.  If your abstract is outside one of the listed categories, please choose "other" and list an alternative category.</p>
+	<p>Select the best category for the topic of your abstract.  If your abstract is outside one of the listed categories, choose "other" and list an alternative category.</p>
 	
 	<table>
 		<?php
@@ -137,7 +229,7 @@
 				'other' => 'Other',
 			));
 		?>
-		<?php print_text_field('abstract_category_other', 'Other abstract category') ?>
+		<?php print_text_field('abstract_category_other', 'Other abstract category', '(if other)') ?>
 			<script type="text/javascript">
 				// Whenever abstract_category changes, show or hide abstract_category_other
 				$("#abstract_category").change(function () {
@@ -151,7 +243,7 @@
 			</script>
 	</table>
 	
-	<p>Please select whether you would prefer an oral or poster presentation.  However, please note that the decision regarding the type of presentation is at the complete discretion of the Jain Foundation.</p>
+	<p>Select whether you would prefer an oral or poster presentation. However, please note that the decision regarding the type of presentation is at the complete discretion of the Jain Foundation.</p>
 	
 	<table>
 		<?php
@@ -163,8 +255,25 @@
 		?>
 	</table>
 	
+	<h3>Abstract</h3>
 	
-	<p><input type="submit" name="submitted" value="Submit"></p>
+	<p>Enter the title of your abstract in initial caps, except for capitalized abbreviations (e.g., DNA) and simple words (e.g., "a," "to," "the"). Please do not use special characters&mdash;spell out all Greek letters (e.g., "alpha," "beta").<br />
+	<em>Example:</em> "Role of Muscle Stem Cells in the Progression and Treatment of Dysferlinopathy"</p>
+	
+	<table>
+		<?php print_text_field('abstract_title', 'Abstract Title') ?>
+	</table>
+	
+	<p>Please <strong>do not</strong> enter the abstract title again in the body of the abstract.<br />
+	Please limit the body of your abstract to no more than ???? characters.<br />
+	Please do not use special characters&mdash;spell out all Greek letters (e.g., "alpha," "beta").</p>
+	
+	<?php print_textarea_field('abstract_body', 'Abstract') ?>
+	
+	<p>
+		<input type="submit" name="preview" value="Preview">
+		<input type="submit" name="submit" value="Submit">
+	</p>
 </form>
 
 

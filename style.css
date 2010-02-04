@@ -68,3 +68,20 @@ form h2 {
 	color: red;
 	font-weight: bold;
 }
+
+form textarea {
+	font-family: sans-serif;
+	width: 100%;
+}
+
+table.multitext td.label {
+	white-space: nowrap;
+}
+
+table.multitext {
+	border-spacing: 0.2em;
+}
+
+table.multitext input {
+	width: 10em;
+}

@@ -62,6 +62,53 @@ function get_error_text($field, $text = "(required)") {
 	}
 }
 
+// Prints a textarea field.
+// Note that no HTML escaping is done. Do it yourself.
+function print_textarea_field($field, $label, $instructions = '', $required = '(required)') {
+	$classError = isset($_GET["error_$field"]) ? ' class="error"' : '';
+	?>
+	<table>
+		<tr<?php echo $classError?>>
+			<?php
+			if (!is_null($required)) {
+			?>
+				<td class="required">*</td>
+			<?php
+			} else {
+			?>
+				<td></td>
+			<?php
+			}
+			?>
+			<td><label for="<?php echo $field ?>"><?php echo $label ?></label></td>
+		</tr>
+	</table>
+	<p><?php echo $instructions ?></p>
+	<textarea name="<?php echo $field ?>" id="<?php echo $field ?>" rows="24" cols="80"></textarea><br />
+	</p>
+	<?php
+}
+
+// Prints multiple text fields
+function print_multi_text_field($fieldset_basename, $fieldset_label, $fields) {
+	?>
+	<tr>
+		<td class="label"><?php echo $fieldset_label ?></td>
+	<?php
+	foreach (array_keys($fields) as $field_ext) {
+		$field_full = $fieldset_basename . $field_ext;
+		$classError = isset($_GET["error_$field_full"]) ? ' class="error"' : '';
+	?>
+		<td<?php echo $classError ?>>
+			<input type="text" name="<?php echo $field_full ?>" id="<?php echo $field_full ?>" />
+		</td>
+	<?php
+	}
+	?>
+	</tr>
+	<?php
+}
+
 // Prints a generic form field.
 // Note that no HTML escaping is done. Do it yourself.
 function print_field($field, $label, $inputElem, $instructions = '', $required = '(required)') {
@@ -90,6 +137,16 @@ function print_field($field, $label, $inputElem, $instructions = '', $required =
 		<?php echo $instructions ?>
 	</tr>
 	<?php
+}
+
+// Prints a text form field.
+// Note that no HTML escaping is done. Do it yourself.
+function print_upload_field($field, $label, $instructions = '', $required = '(required)') {
+	$inputElem = <<<EOD
+<input type="file" name="$field" id="$field" />
+EOD;
+
+	print_field($field, $label, $inputElem, $instructions, $required);
 }
 
 // Prints a text form field.
