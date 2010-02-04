@@ -19,7 +19,8 @@
 	
 //	$success = addAbstract($name, $email, $phone);	
 //	if ($success) {
-		header('Location:$success_location');
+		//header("Location:$success_location");
+		print_r($_POST);
 //	} else {
 //		header('Location:register?error_general');
 //		exit;

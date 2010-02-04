@@ -24,6 +24,18 @@ function addPerson($name, $email, $phone) {
 	return $success;
 }
 
+function addAbstract($firstname, $middlename, $lastname, $degree) {
+	static $db = null;
+	if ($db == null) $db = connectToDB();
+	
+	// Store the data in the DB
+	static $query = null;
+	if ($query == null) $query = $db->prepare('INSERT INTO abstract (firstname, middlename, lastname, degree) VALUES (?, ?, ?, ?)');
+	$query->bind_param('ssss', $firstname, $middlename, $lastname, $degree);
+	$success = $query->execute();
+	return $success;
+}
+
 // Does the job of htmlentities(), except with UTF-8 support
 function print_html($string) {
 	return htmlentities($string, ENT_COMPAT, 'UTF-8');
@@ -48,5 +60,64 @@ function get_error_text($field, $text = "(required)") {
 	} else {
 		return '';
 	}
+}
+
+// Prints a generic form field.
+// Note that no HTML escaping is done. Do it yourself.
+function print_field($field, $label, $inputElem, $instructions = '', $required = '(required)') {
+	$classError = isset($_GET["error_$field"]) ? ' class="error"' : '';
+	?>
+	<tr<?php echo $classError?>>
+	<?php
+	if (!is_null($required)) {
+	?>
+		<td class="required">*</td>
+	<?php
+	} else {
+	?>
+		<td></td>
+	<?php
+	}
+	?>
+	<td><label for="<?php echo $field ?>"><?php echo $label ?></label></td>
+	<td>
+		<?php echo $inputElem ?>
+		<?php
+		if (isset($_GET["error_$field"]) && !is_null($required)) {
+			echo $required;
+		}
+		?>
+		<?php echo $instructions ?>
+	</tr>
+	<?php
+}
+
+// Prints a text form field.
+// Note that no HTML escaping is done. Do it yourself.
+function print_text_field($field, $label, $instructions = '', $required = '(required)') {
+	$inputElem = <<<EOD
+<input type="text" name="$field" id="$field" />
+EOD;
+
+	print_field($field, $label, $inputElem, $instructions, $required);
+}
+
+// Prints a select form field (a dropdown). $options should be an associative array of option_value => option_label.
+// Note that no HTML escaping is done. Do it yourself.
+function print_select_field($field, $label, $options, $instructions = '', $required = '(required)') {
+	$optionsElems = join("\n", array_map('convertOptionToHTML', array_keys($options), array_values($options)));
+	$inputElem = <<<EOD
+<select name="$field" id="$field">
+	$optionsElems
+</select>
+EOD;
+
+	print_field($field, $label, $inputElem, $instructions, $required);
+}
+
+function convertOptionToHTML($option_value, $option_label) {
+	return <<<EOD
+<option value="$option_value">$option_label</option>
+EOD;
 }
 ?>
