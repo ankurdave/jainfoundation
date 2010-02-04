@@ -10,13 +10,7 @@
 <div id="container">
 <h1>Registration Form Demo &ndash; Jain Foundation</h1>
 
-<div id="nav">
-	<ul>
-		<li><a href="index">Register</a></li>
-		<li><a href="list">List registrations</a></li>
-		<li><a href="export">Export registrations</a></li>
-	</ul>
-</div>
+<?php include 'menu.inc.php' ?>
 
 <p>You were registered. <a href="list">See who else registered.</a></p>
 

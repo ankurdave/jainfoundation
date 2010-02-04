@@ -3,6 +3,7 @@
 		<li><a href="index">Register</a></li>
 		<li><a href="list">List registrations</a></li>
 		<li><a href="export">Export registrations</a></li>
+		<li><a href="abstract">Submit an abstract</a></li>
 	</ul>
 </div>
 
