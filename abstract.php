@@ -9,6 +9,7 @@
 
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="jquery.validate.js"></script>
+<script type="text/javascript" src="jquery.autogrowinput.js"></script>
 <script type="text/javascript">
 	// Set up form validation
 	$(document).ready(function() {
@@ -67,6 +68,11 @@
 	$("#abstract_category").change(function () {
 		$("#abstract_category_other").valid();
 	});
+
+	// Make all text input fields autogrow
+	$(document).ready(function () {
+		$("input[type='text']").autoGrowInput();
+	});
 </script>
 
 <title>Submit an Abstract &ndash; Jain Foundation</title>
@@ -91,7 +97,7 @@
 	<p class="error">Something bad happened!</p>
 <?php } ?>
 
-<form action="abstract-submit" method="post" id="abstract-form" enctype="multipart/form-data">
+<form action="abstract-submit" method="post" id="abstract-form" enctype="multipart/form-data" encoding="multipart/form-data">
 	<h3>Presenting/First Author</h3>
 	<table>
 		<?php print_text_field('firstname', 'First Name') ?>
@@ -271,8 +277,8 @@
 	<?php print_textarea_field('abstract_body', 'Abstract') ?>
 	
 	<p>
-		<input type="submit" name="preview" value="Preview">
-		<input type="submit" name="submit" value="Submit">
+		<input type="submit" name="action" value="Preview">
+		<input type="submit" name="action" value="Submit">
 	</p>
 </form>
 
