@@ -156,11 +156,11 @@
 				$("#affiliation_1").val(elements.join(", "));
 			}
 			
-			$("#department").change(updatePrimaryAffiliation);
-			$("#institution").change(updatePrimaryAffiliation);
-			$("#city").change(updatePrimaryAffiliation);
-			$("#state_province").change(updatePrimaryAffiliation);
-			$("#country").change(updatePrimaryAffiliation);
+			$("#department").bind($.browser.msie ? 'propertychange' : 'change', updatePrimaryAffiliation);
+			$("#institution").bind($.browser.msie ? 'propertychange' : 'change', updatePrimaryAffiliation);
+			$("#city").bind($.browser.msie ? 'propertychange' : 'change', updatePrimaryAffiliation);
+			$("#state_province").bind($.browser.msie ? 'propertychange' : 'change', updatePrimaryAffiliation);
+			$("#country").bind($.browser.msie ? 'propertychange' : 'change', updatePrimaryAffiliation);
 		</script>
 		
 		<?php
@@ -194,9 +194,9 @@
 			// Update #author_1_* with the information above
 			// Note: this always overwrites #author_1_* when these elements are changed!
 			
-			$("#firstname").change(function() { $("#author_1_firstname").val($("#firstname").val()) });
-			$("#middlename").change(function() { $("#author_1_middlename").val($("#middlename").val()) });
-			$("#lastname").change(function() { $("#author_1_lastname").val($("#lastname").val()) });
+			$("#firstname").bind($.browser.msie ? 'propertychange' : 'change', function() { $("#author_1_firstname").val($("#firstname").val()) });
+			$("#middlename").bind($.browser.msie ? 'propertychange' : 'change', function() { $("#author_1_middlename").val($("#middlename").val()) });
+			$("#lastname").bind($.browser.msie ? 'propertychange' : 'change', function() { $("#author_1_lastname").val($("#lastname").val()) });
 		</script>
 		
 		<?php
@@ -232,7 +232,7 @@
 		<?php print_text_field('abstract_category_other', 'Other abstract category', '(if other)') ?>
 			<script type="text/javascript">
 				// Whenever abstract_category changes, show or hide abstract_category_other
-				$("#abstract_category").change(function () {
+				$("#abstract_category").bind($.browser.msie ? 'propertychange' : 'change', function () {
 					// The use of .closest("tr") is a bit of a hack -- what if we switch to non-table-based layouts?
 					if ($("#abstract_category").val() == "other") {
 						$("#abstract_category_other").closest("tr").css("display", "");
