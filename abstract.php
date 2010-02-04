@@ -29,7 +29,7 @@
 				degree_year: {
 					required: function(element) {
 						return $("#author_status").val() == "postdoc";
-					},
+					}
 				},
 				picture: { required: true },
 				
@@ -42,20 +42,20 @@
 				abstract_category_other: {
 					required: function(element) {
 						return $("#abstract_category").val() == "other";
-					},
+					}
 				},
 				presentation_type: { required: true },
 				
 				abstract_title: { required: true },
-				abstract_body: { required: true },
-			},
+				abstract_body: { required: true }
+			}
 		});
 	});
 	
 	// Set the custom validator messages
 	$.extend($.validator.messages, {
 	  required: " (required) ",
-	  email: " (must be a valid email address) ",
+	  email: " (must be a valid email address) "
 	});
 	
 	// Whenever author_status changes, rerun the degree_year required check
