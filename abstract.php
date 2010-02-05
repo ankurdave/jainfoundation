@@ -309,7 +309,6 @@
 	
 	<p>
 		<input type="submit" name="action" value="Preview">
-		<input type="submit" name="action" value="Submit">
 	</p>
 </form>
 

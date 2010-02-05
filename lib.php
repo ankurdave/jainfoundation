@@ -12,28 +12,74 @@ function connectToDB() {
 	return $db;
 }
 
-function addPerson($name, $email, $phone) {
-	static $db = null;
-	if ($db == null) $db = connectToDB();
+function addAbstract($data) {
+	$db = connectToDB();
+	
+	// Create the auth key
+	$data['auth_key'] = uniqid('', true); // TODO: use a real uuid for more security
+	
+	// Build the list of columns
+	$column_names = explode(', ', 'id, auth_key, picture_mimetype, picture_data, firstname, middlename, lastname, degree, department, institution, street_address, city, state_province, zip_postal_code, country, phone, fax, email, author_status, degree_year, abstract_category, abstract_category_other, presentation_type, abstract_title, abstract_body');
+	
+	$affiliations = array();
+	for ($i = 1; $i <= 8; $i++) {
+		$affiliations[] = "affiliation_$i";
+	}
+	
+	$authors = array();
+	for ($i = 1; $i <= 8; $i++) {
+		$authors[] = "author_{$i}_firstname";
+		$authors[] = "author_{$i}_middlename";
+		$authors[] = "author_{$i}_lastname";
+		$authors[] = "author_{$i}_affiliation";
+	}
+	
+	$columns = array_merge($column_names, $affiliations, $authors); // note: make sure $column_names comes first, so that id is the first one and $param_types matches up
+	$columns_string = join(', ', $columns);
+	
+	// Generate the "?, ?, ..." for the VALUES clause
+	$column_placeholders = join(', ', array_fill(0, count($columns), '?'));
+	
+	// Generate the 'issss...' for bind_param type argument
+	// The beginning 'i' is for the id
+	$param_types = 'i' . str_repeat('s', count($columns) - 1);
+	
+	// Get the next row id
+	$result = $db->query("SELECT MAX(id) FROM abstract");
+	list($prevId) = $result->fetch_array();
+	$data['id'] = $prevId + 1;
+	$result->free();
 	
 	// Store the data in the DB
-	static $query = null;
-	if ($query == null) $query = $db->prepare('INSERT INTO person (name, email, phone) VALUES (?, ?, ?)');
-	$query->bind_param('sss', $name, $email, $phone);
+	// TODO: see ibfilestore for how to pass the picture efficiently
+	$query = $db->prepare("INSERT INTO abstract ($columns_string) VALUES ($column_placeholders)");
+	call_user_func_array(array(&$query, 'bind_param'), array_merge(array($param_types), assoc_array_slice($columns, $data)));
 	$success = $query->execute();
-	return $success;
+	
+	// Return the row data
+	if ($success) {
+		return assoc_array_filter(array('id', 'auth_key'), $data);
+	} else {
+		return $success;
+	}
 }
 
-function addAbstract($firstname, $middlename, $lastname, $degree) {
-	static $db = null;
-	if ($db == null) $db = connectToDB();
-	
-	// Store the data in the DB
-	static $query = null;
-	if ($query == null) $query = $db->prepare('INSERT INTO abstract (firstname, middlename, lastname, degree) VALUES (?, ?, ?, ?)');
-	$query->bind_param('ssss', $firstname, $middlename, $lastname, $degree);
-	$success = $query->execute();
-	return $success;
+// Looks up each key in $keys in the assoc array $array, then returns an array of the corresponding values in the same order as $keys.
+function assoc_array_slice($keys, $array) {
+	$values = array();
+	foreach ($keys as $key) {
+		$values[] = $array[$key];
+	}
+	return $values;
+}
+
+// Looks up each key in $keys in the assoc array $array, then returns an assoc array with only the desired key => value pairs.
+function assoc_array_filter($keys, $array) {
+	$values = array();
+	foreach ($keys as $key) {
+		$values[$key] = $array[$key];
+	}
+	return $values;
 }
 
 // Does the job of htmlentities(), except with UTF-8 support
@@ -47,6 +93,7 @@ function csv_encode($string) {
 }
 
 // Checks for an error associated with the given field, and sets the appropriate variables
+// TODO: make print_*_field() actually use these functions
 function get_error_style($field) {
 	if (isset($_GET["error_$field"])) {
 		return ' class="error" ';
@@ -109,7 +156,7 @@ function print_multi_text_field($fieldset_basename, $fieldset_label, $fields) {
 	<?php
 }
 
-// Prints a generic form field.
+// Prints a generic form field. If $required is null, it means it's optional; otherwise the value of $required is the error message when the user leaves the field blank.
 // Note that no HTML escaping is done. Do it yourself.
 function print_field($field, $label, $inputElem, $instructions = '', $required = '(required)') {
 	$classError = isset($_GET["error_$field"]) ? ' class="error"' : '';
