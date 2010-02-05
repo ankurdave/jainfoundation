@@ -93,17 +93,17 @@
 		$("#lastname").val("Doe").change();
 		$("#degree").val("PhD");
 		$("#department").val("Computer Science and Engineering Department");
-		$("#institution").val("University of Washington").change(); // Update the affiliation
+		$("#institution").val("University of Washington");
 		$("#street_address").val("1234 Example Ln.");
 		$("#city").val("Seattle");
 		$("#state_province").val("Washington");
 		$("#zip_postal_code").val("98001");
-		$("#country").val("United States");
+		$("#country").val("United States").change(); // Update the affiliation
 		$("#phone").val("(206) 555-1212");
 		$("#fax").val("(206) 123-4567");
 		$("#email").val("johndoe@example.com");
 		$("#author_status").val("undergrad_student");
-		$("#affiliation_2").val("School of Computer Science, Carnegie Mellon University, Pittsburgh, PA 12345");
+		$("#affiliation_2").val("School of Computer Science, Carnegie Mellon University, Pittsburgh, Pennsylvania, United States");
 		$("#author_1_affiliation").val("1");
 		$("#author_2_firstname").val("Joe");
 		$("#author_2_middlename").val("D.");
