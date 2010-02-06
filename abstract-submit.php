@@ -13,15 +13,24 @@
 		$_POST['picture'] = $_FILES['picture']['name'];
 	}
 	
+	// Check if we're updating or adding a new record
+	if (isset($_GET['id']) && isset($_GET['auth_key'])) {
+		$data_auth['id'] = $_GET['id'];
+		$data_auth['auth_key'] = $_GET['auth_key'];
+		$update = true;
+	} else if (isset($_COOKIE['id']) && isset($_COOKIE['auth_key'])) {
+		$data_auth['id'] = $_COOKIE['id'];
+		$data_auth['auth_key'] = $_COOKIE['auth_key'];
+		$update = true;
+	} else {
+		$update = false;
+	}
+
 	// Add the data to the DB
 	// This is before validation so that if there's an error, the user won't lose the data
-	if (isset($_GET['id']) && isset($_GET['auth_key'])) {
-		$submit = true;
-		
-		updateAbstract($_POST, $_GET['id'], $_GET['auth_key']);
+	if ($update) {
+		addAbstract($_POST, $data_auth['id'], $data_auth['auth_key']);
 	} else {
-		$preview = true;
-		
 		$data_auth = addAbstract($_POST);
 		
 		// Set cookies with id and auth_key so that if the user clicks the back button, he won't lose his data
@@ -41,15 +50,15 @@
 	}
 	// TODO: do conditional validation
 	
-	if ($preview) {
+//	if ($preview) {
 		// Show the abstract
 		header("Location:$show_location?$data_auth_query_string");
-	} else {
-		// Clear the id and auth_key cookies, because now the user has submitted his abstract already
-		setcookie('id', '', time() - 3600);
-		setcookie('auth_key', '', time() - 3600);
-		
-		// Show a thank-you page
-		header("Location: $thankyou_location?$data_auth_query_string");
-	}
+#	} else {
+#		// Clear the id and auth_key cookies, because now the user has submitted his abstract already
+#		setcookie('id', '', time() - 3600);
+#		setcookie('auth_key', '', time() - 3600);
+#		
+#		// Show a thank-you page
+#		header("Location: $thankyou_location?$data_auth_query_string");
+#	}
 ?>

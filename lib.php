@@ -12,11 +12,34 @@ function connectToDB() {
 	return $db;
 }
 
-function addAbstract($data) {
+// If called with one argument (an assoc array of the data), adds a new abstract in the DB. If called with three arguments, updates a previous abstract.
+function addAbstract($data, $id = null, $auth_key = null) {
 	$db = connectToDB();
 	
-	// Create the auth key
-	$data['auth_key'] = uniqid('', true); // TODO: use a real uuid for more security
+	$update = !is_null($id) && !is_null($auth_key);
+	
+	if ($update) {
+		// Use the given id and auth key
+		$data['id'] = $id;
+		$data['auth_key'] = $auth_key;
+		
+		// Check if the id and auth key are actually valid
+		$query = $db->prepare("SELECT id FROM abstract WHERE id=? AND auth_key=?");
+		$query->bind_param('is', $id, $auth_key);
+		$query->execute();
+		$query->store_result();
+		if ($query->num_rows() < 1) {
+			return false;
+		}
+	} else {
+		// Create a new id and auth key
+		$result = $db->query("SELECT MAX(id) FROM abstract");
+		list($prevId) = $result->fetch_array();
+		$data['id'] = $prevId + 1;
+		$result->free();
+		
+		$data['auth_key'] = uniqid('', true); // TODO: use a real uuid for more security
+	}
 	
 	// Set up the picture data for uploading
 	$data['picture_data'] = null;
@@ -37,8 +60,11 @@ function addAbstract($data) {
 		$authors[] = "author_{$i}_affiliation";
 	}
 	
-	$columns = array_merge($column_names, $affiliations, $authors); // note: make sure $column_names comes first, so that id is the first one and $param_types matches up
+	$columns = array_merge($column_names, $affiliations, $authors);
 	$columns_string = join(', ', $columns);
+	
+	$columns_update = array_map('make_column_update_sql', $columns); // for the ON DUPLICATE KEY UPDATE clause
+	$columns_update_string = join(', ', $columns_update);
 	
 	// Generate the "?, ?, ..." for the VALUES clause
 	$column_placeholders = join(', ', array_fill(0, count($columns), '?'));
@@ -56,15 +82,8 @@ function addAbstract($data) {
 		$param_types .= $type;
 	}
 	
-	// Get the next row id
-	$result = $db->query("SELECT MAX(id) FROM abstract");
-	list($prevId) = $result->fetch_array();
-	$data['id'] = $prevId + 1;
-	$result->free();
-	
 	// Store the data in the DB
-	// TODO: see ibfilestore for how to pass the picture efficiently
-	$query = $db->prepare("INSERT INTO abstract ($columns_string) VALUES ($column_placeholders)");
+	$query = $db->prepare("INSERT INTO abstract ($columns_string) VALUES ($column_placeholders) ON DUPLICATE KEY UPDATE $columns_update_string");
 	call_user_func_array(array(&$query, 'bind_param'), array_merge(array($param_types), assoc_array_slice($columns, $data)));
 	
 	// Store the picture to the DB
@@ -86,6 +105,11 @@ function addAbstract($data) {
 		return $success;
 	}
 }
+
+// Converts a column name into the piece of SQL that should go in the ON DUPLICATE KEY UPDATE clause
+function make_column_update_sql($col) {
+	return "$col=VALUES($col)";
+};
 
 // Returns an assoc array with the abstract data from the DB, or null if it doesn't exist.
 function getAbstract($id, $auth_key) {
