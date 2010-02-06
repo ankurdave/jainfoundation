@@ -145,7 +145,7 @@
 <?php } ?>
 
 <?php
-	if ($data) {
+	if (isset($data['id'])) {
 		$data_auth_query_string = "?id=" . $data['id'] . "&auth_key=" . $data['auth_key'];
 	} else {
 		$data_auth_query_string = '';
