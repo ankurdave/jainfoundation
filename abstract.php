@@ -166,7 +166,9 @@
 					}
 				}).change();
 			</script>
-		<?php print_upload_field('picture', 'Picture') ?>
+		
+		<input type="hidden" name="MAX_FILE_SIZE" value="1000000" />
+		<?php print_upload_field('picture', 'Picture', '(max 1 MB)') ?>
 	</table>
 	
 	<h3>All Authors</h3>

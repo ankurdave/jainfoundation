@@ -4,9 +4,15 @@
 	$form_location = 'abstract';
 	$show_location = 'abstract-show';
 	
-	// TODO: if the user uploaded a picture, pass that to {add,update}Abstract
+	// Process the uploaded picture
+	// If it's not a valid file, the $_POST variables won't be set, and an error will occur in the validation stage below
+	if (is_uploaded_file($_FILES['picture']['tmp_name'])) {
+		$_POST['picture_filename'] = $_FILES['picture']['tmp_name'];
+		$_POST['picture_mimetype'] = $_FILES['picture']['type'];
+	}
 	
 	// Add the data to the DB
+	// This is before validation so that if there's an error, the user won't lose the data
 	if (isset($_GET['id']) && isset($_GET['auth_key'])) {
 		updateAbstract($_POST, $_GET['id'], $_GET['auth_key']);
 	} else {

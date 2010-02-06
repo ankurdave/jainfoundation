@@ -16,11 +16,54 @@
 	// Output a Word document with HTML in it
 	// See http://stackoverflow.com/questions/124959/create-word-document-using-php-in-linux#answer-125009
 	header("Content-Type: application/vnd.ms-word");
-	header("Content-Disposition: attachment; filename=abstract-" . $_GET['id'] . ".doc"); // note: inserting the ID without escaping is OK because, if it was an HTML injection, it wouldn't have existed in the DB
+	header("Content-Disposition: attachment; filename=abstract-" . $data['id'] . ".doc");
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<style type="text/css">
+	@page {
+		margin: 1in;
+	}
+	body {
+		font-family: Helvetica, Arial, sans-serif;
+		font-size: 9pt;
+		background: white;
+		color: black;
+		line-height: 115%;
+	}
+	.author {
+		font-size: 11pt;
+		font-weight: bold;
+		color: #000080;
+	}
+	.affiliation_1 {
+		font-style: italic;
+	}
+	.email a {
+		color: black;
+		text-decoration: none;
+	}
+	.abstract_title {
+		font-size: 9pt;
+		font-weight: bold;
+		color: black;
+	}
+	.authors, .affiliations {
+		font-size: 8pt;
+	}
+	.picture {
+		float: left;
+		width: 1.5in;
+		margin-right: 0.13in;
+	}
+	.abstract_body p {
+		margin: 0;
+		margin-bottom: 0.14in;
+	}
+</style>
+
 <title><?php echo $data['abstract_title'] ?> &ndash; <?php echo $data['firstname'] ?> <?php echo $data['middlename'] ?> <?php echo $data['lastname'] ?>, <?php echo $data['degree'] ?></title>
 <body>
 
@@ -30,9 +73,12 @@
 
 <p class="email"><a href="mailto:<?php echo urlencode($data_raw['email']) ?>"><?php echo $data['email'] ?></a></p>
 
+<img src="http://<?php echo $_SERVER['HTTP_HOST'], preg_replace('~/[^/]+$~', '', $_SERVER['PHP_SELF']), "/abstract-image?id=" . $data['id'] . "&auth_key=" . $data['auth_key'] ?>" class="picture" align="left" />
+
 <h2 class="abstract_title"><?php echo $data['abstract_title'] ?></h2>
 
-<p class="authors">
+<p>
+<span class="authors">
 <?php
 	// Get the parallel arrays with keys matching author_*_{firstname,middlename,lastname,affiliation} and reindex them with array_values() so they can be traversed with a for loop
 	$authors_firstname = array_values(preg_grep('/^author_\d+_firstname$/', array_keys($data)));
@@ -52,9 +98,9 @@
 	}
 	print join(', ', $authors);
 ?>
-</p>
-
-<p class="affiliations">
+</span>
+<br />
+<span class="affiliations">
 <?php
 	// Get the array with keys matching affiliation_* and reindex it with array_values() so it can be traversed with a for loop
 	$affiliations = array_values(preg_grep('/^affiliation_\d+$/', array_keys($data)));
@@ -69,13 +115,16 @@
 	}
 	print join('; ', $affiliations_out);
 ?>
+</span>
 </p>
 
-<p class="abstract_body">
+<div class="abstract_body">
+<p>
 <?php
-	print str_replace("\n\n", "</p><p>", $data['abstract_body']);
+	print preg_replace('/(\\r?\\n){2,}/', "</p><p>", $data['abstract_body']);
 ?>
 </p>
+</div>
 
 </body>
 </html>

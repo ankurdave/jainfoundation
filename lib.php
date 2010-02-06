@@ -18,6 +18,9 @@ function addAbstract($data) {
 	// Create the auth key
 	$data['auth_key'] = uniqid('', true); // TODO: use a real uuid for more security
 	
+	// Set up the picture data for uploading
+	$data['picture_data'] = null;
+	
 	// Build the list of columns
 	$column_names = explode(', ', 'id, auth_key, picture_mimetype, picture_data, firstname, middlename, lastname, degree, department, institution, street_address, city, state_province, zip_postal_code, country, phone, fax, email, author_status, degree_year, abstract_category, abstract_category_other, presentation_type, abstract_title, abstract_body');
 	
@@ -40,9 +43,18 @@ function addAbstract($data) {
 	// Generate the "?, ?, ..." for the VALUES clause
 	$column_placeholders = join(', ', array_fill(0, count($columns), '?'));
 	
-	// Generate the 'issss...' for bind_param type argument
-	// The beginning 'i' is for the id
-	$param_types = 'i' . str_repeat('s', count($columns) - 1);
+	// Generate the bind_param type argument
+	$param_types = '';
+	foreach ($columns as $col) {
+		if ($col == 'id') {
+			$type = 'i';
+		} else if ($col == 'picture_data') {
+			$type = 'b';
+		} else {
+			$type = 's';
+		}
+		$param_types .= $type;
+	}
 	
 	// Get the next row id
 	$result = $db->query("SELECT MAX(id) FROM abstract");
@@ -54,6 +66,17 @@ function addAbstract($data) {
 	// TODO: see ibfilestore for how to pass the picture efficiently
 	$query = $db->prepare("INSERT INTO abstract ($columns_string) VALUES ($column_placeholders)");
 	call_user_func_array(array(&$query, 'bind_param'), array_merge(array($param_types), assoc_array_slice($columns, $data)));
+	
+	// Store the picture to the DB
+	$filehandle = @fopen($data['picture_filename'], 'r');
+	if ($filehandle) {
+		$picture_data_col_number = array_search('picture_data', $columns);
+		while (!feof($filehandle)) {
+			$query->send_long_data($picture_data_col_number, fread($filehandle, 8192));
+		}
+		fclose($filehandle);
+	}
+	
 	$success = $query->execute();
 	
 	// Return the row data
