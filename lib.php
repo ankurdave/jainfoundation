@@ -68,7 +68,7 @@ function addAbstract($data) {
 	call_user_func_array(array(&$query, 'bind_param'), array_merge(array($param_types), assoc_array_slice($columns, $data)));
 	
 	// Store the picture to the DB
-	$filehandle = @fopen($data['picture_filename'], 'r');
+	$filehandle = @fopen($data['picture_tmpname'], 'r');
 	if ($filehandle) {
 		$picture_data_col_number = array_search('picture_data', $columns);
 		while (!feof($filehandle)) {
@@ -145,7 +145,7 @@ function get_error_text($field, $text = "(required)") {
 
 // Prints a textarea field.
 // Note that no HTML escaping is done. Do it yourself.
-function print_textarea_field($field, $label, $instructions = '', $required = '(required)') {
+function print_textarea_field(&$data, $field, $label, $instructions = '', $required = '(required)') {
 	$classError = isset($_GET["error_$field"]) ? ' class="error"' : '';
 	?>
 	<table>
@@ -165,13 +165,13 @@ function print_textarea_field($field, $label, $instructions = '', $required = '(
 		</tr>
 	</table>
 	<p><?php echo $instructions ?></p>
-	<textarea name="<?php echo $field ?>" id="<?php echo $field ?>" rows="24" cols="80"></textarea><br />
+	<textarea name="<?php echo $field ?>" id="<?php echo $field ?>" rows="24" cols="80"><?php echo $data[$field] ?></textarea><br />
 	</p>
 	<?php
 }
 
 // Prints multiple text fields
-function print_multi_text_field($fieldset_basename, $fieldset_label, $fields) {
+function print_multi_text_field(&$data, $fieldset_basename, $fieldset_label, $fields) {
 	?>
 	<tr>
 		<td class="label"><?php echo $fieldset_label ?></td>
@@ -181,7 +181,7 @@ function print_multi_text_field($fieldset_basename, $fieldset_label, $fields) {
 		$classError = isset($_GET["error_$field_full"]) ? ' class="error"' : '';
 	?>
 		<td<?php echo $classError ?>>
-			<input type="text" name="<?php echo $field_full ?>" id="<?php echo $field_full ?>" />
+			<input type="text" name="<?php echo $field_full ?>" id="<?php echo $field_full ?>" value="<?php echo $data[$field_full] ?>" />
 		</td>
 	<?php
 	}
@@ -232,9 +232,9 @@ EOD;
 
 // Prints a text form field.
 // Note that no HTML escaping is done. Do it yourself.
-function print_text_field($field, $label, $instructions = '', $required = '(required)') {
+function print_text_field(&$data, $field, $label, $instructions = '', $required = '(required)') {
 	$inputElem = <<<EOD
-<input type="text" name="$field" id="$field" />
+<input type="text" name="$field" id="$field" value="$data[$field]" />
 EOD;
 
 	print_field($field, $label, $inputElem, $instructions, $required);
@@ -242,8 +242,12 @@ EOD;
 
 // Prints a select form field (a dropdown). $options should be an associative array of option_value => option_label.
 // Note that no HTML escaping is done. Do it yourself.
-function print_select_field($field, $label, $options, $instructions = '', $required = '(required)') {
-	$optionsElems = join("\n", array_map('convertOptionToHTML', array_keys($options), array_values($options)));
+function print_select_field(&$data, $field, $label, $options, $instructions = '', $required = '(required)') {
+	$optionsElems_array = array();
+	foreach ($options as $option_value => $option_label) {
+		$optionsElems_array[] = convertOptiontoHTML($option_value, $option_label, $data[$field]);
+	}
+	$optionsElems = join("\n", $optionsElems_array);
 	$inputElem = <<<EOD
 <select name="$field" id="$field">
 	$optionsElems
@@ -253,9 +257,14 @@ EOD;
 	print_field($field, $label, $inputElem, $instructions, $required);
 }
 
-function convertOptionToHTML($option_value, $option_label) {
+function convertOptionToHTML($option_value, $option_label, $selected_value) {
+	if ($option_value == $selected_value) {
+		$selected = 'selected="selected"';
+	} else {
+		$selected = '';
+	}
 	return <<<EOD
-<option value="$option_value">$option_label</option>
+<option value="$option_value" $selected>$option_label</option>
 EOD;
 }
 ?>

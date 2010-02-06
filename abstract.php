@@ -1,5 +1,17 @@
 <?php
 	require 'lib.php';
+	
+	if (isset($_GET['id']) && isset($_GET['auth_key'])) {
+		$data = getAbstract($_GET['id'], $_GET['auth_key']);
+	} else if (isset($_COOKIE['id']) && isset($_COOKIE['auth_key'])) {
+		$data = getAbstract($_COOKIE['id'], $_COOKIE['auth_key']);
+	}
+	
+	// Escape all data fields before printing
+	if ($data) {
+		$data_raw = $data;
+		$data = array_map('htmlentities', $data);
+	}
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
@@ -128,25 +140,32 @@
 	<p class="error">Something bad happened!</p>
 <?php } ?>
 
-<form action="abstract-submit" method="post" id="abstract-form" enctype="multipart/form-data" encoding="multipart/form-data">
+<?php
+	if ($data) {
+		$data_auth_query_string = "?id=" . $data['id'] . "&auth_key=" . $data['auth_key'];
+	} else {
+		$data_auth_query_string = '';
+	}
+?>
+<form action="abstract-submit<?php echo $data_auth_query_string ?>" method="post" id="abstract-form" enctype="multipart/form-data" encoding="multipart/form-data">
 	<h3>Presenting/First Author</h3>
 	<table>
-		<?php print_text_field('firstname', 'First Name') ?>
-		<?php print_text_field('middlename', 'Middle Initial', '', null) ?>
-		<?php print_text_field('lastname', 'Last Name') ?>
-		<?php print_text_field('degree', 'Degree', '(MD, PhD, etc.)') ?>
-		<?php print_text_field('department', 'Department', '', null) ?>
-		<?php print_text_field('institution', 'Institution') ?>
-		<?php print_text_field('street_address', 'Street Address') ?>
-		<?php print_text_field('city', 'City') ?>
-		<?php print_text_field('state_province', 'State/Province') ?>
-		<?php print_text_field('zip_postal_code', 'Zip/Postal Code') ?>
-		<?php print_text_field('country', 'Country') ?>
-		<?php print_text_field('phone', 'Phone Number') ?>
-		<?php print_text_field('fax', 'Fax Number', '', null) ?>
-		<?php print_text_field('email', 'Email') ?>
+		<?php print_text_field($data, 'firstname', 'First Name') ?>
+		<?php print_text_field($data, 'middlename', 'Middle Initial', '', null) ?>
+		<?php print_text_field($data, 'lastname', 'Last Name') ?>
+		<?php print_text_field($data, 'degree', 'Degree', '(MD, PhD, etc.)') ?>
+		<?php print_text_field($data, 'department', 'Department', '', null) ?>
+		<?php print_text_field($data, 'institution', 'Institution') ?>
+		<?php print_text_field($data, 'street_address', 'Street Address') ?>
+		<?php print_text_field($data, 'city', 'City') ?>
+		<?php print_text_field($data, 'state_province', 'State/Province') ?>
+		<?php print_text_field($data, 'zip_postal_code', 'Zip/Postal Code') ?>
+		<?php print_text_field($data, 'country', 'Country') ?>
+		<?php print_text_field($data, 'phone', 'Phone Number') ?>
+		<?php print_text_field($data, 'fax', 'Fax Number', '', null) ?>
+		<?php print_text_field($data, 'email', 'Email') ?>
 		<?php
-			print_select_field('author_status', 'Author Status', array(
+			print_select_field($data, 'author_status', 'Author Status', array(
 				'' => '',
 				'faculty_researcher' => 'Faculty/Researcher',
 				'postdoc' => 'Postdoc',
@@ -154,7 +173,7 @@
 				'undergrad_student' => 'Undergraduate Student',
 			));
 		?>
-		<?php print_text_field('degree_year', 'Degree Year', '(if postdoc)') ?>
+		<?php print_text_field($data, 'degree_year', 'Degree Year', '(if postdoc)') ?>
 			<script type="text/javascript">
 				// Whenever author_status changes, show or hide degree_year
 				$("#author_status").change(function () {
@@ -177,7 +196,7 @@
 	<em>Example:</em> Department of Neurology, Univ. of Washington, Seattle, WA, USA</p>
 	<table>
 		<?php
-			print_text_field("affiliation_1", "Affiliation #1");
+			print_text_field($data, "affiliation_1", "Affiliation #1");
 		?>
 		
 		<script type="text/javascript">
@@ -204,7 +223,7 @@
 		
 		<?php
 			for ($i = 2; $i <= 8; $i++) {
-				print_text_field("affiliation_$i", "Affiliation #$i", '', null);
+				print_text_field(&$data, "affiliation_$i", "Affiliation #$i", '', null);
 			}
 		?>
 	</table>
@@ -221,7 +240,7 @@
 		</th>
 		
 		<?php
-			print_multi_text_field("author_1", "Author #1", array(
+			print_multi_text_field($data, "author_1", "Author #1", array(
 				"_firstname" => true,
 				"_middlename" => false,
 				"_lastname" => true,
@@ -240,7 +259,7 @@
 		
 		<?php
 			for ($i = 2; $i <= 8; $i++) {
-				print_multi_text_field("author_$i", "Author #$i", array(
+				print_multi_text_field($data, "author_$i", "Author #$i", array(
 					"_firstname" => false,
 					"_middlename" => false,
 					"_lastname" => false,
@@ -256,7 +275,7 @@
 	
 	<table>
 		<?php
-			print_select_field('abstract_category', 'Abstract Category', array(
+			print_select_field($data, 'abstract_category', 'Abstract Category', array(
 				'' => '',
 				'stem_cell' => 'Stem cell',
 				'gene_therapy' => 'Gene therapy',
@@ -268,7 +287,7 @@
 				'other' => 'Other',
 			));
 		?>
-		<?php print_text_field('abstract_category_other', 'Other abstract category', '(if other)') ?>
+		<?php print_text_field($data, 'abstract_category_other', 'Other abstract category', '(if other)') ?>
 			<script type="text/javascript">
 				// Whenever abstract_category changes, show or hide abstract_category_other
 				$("#abstract_category").bind($.browser.msie ? 'propertychange' : 'change', function () {
@@ -286,7 +305,7 @@
 	
 	<table>
 		<?php
-			print_select_field('presentation_type', 'Desired Type of Presentation', array(
+			print_select_field($data, 'presentation_type', 'Desired Type of Presentation', array(
 				'' => '',
 				'oral' => 'Oral',
 				'poster' => 'Poster',
@@ -300,14 +319,14 @@
 	<em>Example:</em> "Role of Muscle Stem Cells in the Progression and Treatment of Dysferlinopathy"</p>
 	
 	<table>
-		<?php print_text_field('abstract_title', 'Abstract Title') ?>
+		<?php print_text_field($data, 'abstract_title', 'Abstract Title') ?>
 	</table>
 	
 	<p>Please <strong>do not</strong> enter the abstract title again in the body of the abstract.<br />
 	Please limit the body of your abstract to no more than ???? characters.<br />
 	Please do not use special characters&mdash;spell out all Greek letters (e.g., "alpha," "beta").</p>
 	
-	<?php print_textarea_field('abstract_body', 'Abstract') ?>
+	<?php print_textarea_field($data, 'abstract_body', 'Abstract') ?>
 	
 	<p>
 		<input type="submit" name="action" value="Preview">
