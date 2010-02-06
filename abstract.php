@@ -1,6 +1,10 @@
 <?php
 	require 'lib.php';
 	
+	// Default values
+	$data = array('author_1_affiliation' => '1');
+	
+	// Populate the fields with the saved values
 	if (isset($_GET['id'])) {
 		$data = getAbstract($_GET['id']);
 	} else if (isset($_COOKIE['id'])) {

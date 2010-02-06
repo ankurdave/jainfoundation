@@ -31,6 +31,7 @@
 
 	// Add the data to the DB
 	// This is before validation so that if there's an error, the user won't lose the data
+	// TODO: get the return value of addAbstract and redirect with error if it's false
 	if ($update) {
 		addAbstract($_POST, $data_auth['id'], $data_auth['auth_key']);
 	} else {
