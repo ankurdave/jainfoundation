@@ -1,51 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-<style type="text/css">
-	@page {
-		margin: 1in;
-	}
-	body {
-		font-family: Helvetica, Arial, sans-serif;
-		font-size: 9pt;
-		background: white;
-		color: black;
-		line-height: 115%;
-	}
-	.author {
-		font-size: 11pt;
-		font-weight: bold;
-		color: #000080;
-	}
-	.affiliation_1 {
-		font-style: italic;
-	}
-	.email a {
-		color: black;
-		text-decoration: none;
-	}
-	.abstract_title {
-		font-size: 9pt;
-		font-weight: bold;
-		color: black;
-	}
-	.authors, .affiliations {
-		font-size: 8pt;
-	}
-	.picture {
-		float: left;
-		width: 1.5in;
-		margin-right: 0.13in;
-	}
-	.abstract_body p {
-		margin: 0;
-		margin-bottom: 0.14in;
-	}
-</style>
-
-<title><?php echo $data['abstract_title'] ?> &ndash; <?php echo $data['firstname'] ?> <?php echo $data['middlename'] ?> <?php echo $data['lastname'] ?>, <?php echo $data['degree'] ?></title>
-<body>
+<div class="abstract">
 
 <h1 class="author"><?php echo $data['firstname'] ?> <?php echo $data['middlename'] ?> <?php echo $data['lastname'] ?>, <?php echo $data['degree'] ?></h1>
 
@@ -53,7 +6,7 @@
 
 <p class="email"><a href="mailto:<?php echo urlencode($data_raw['email']) ?>"><?php echo $data['email'] ?></a></p>
 
-<img src="http://<?php echo $_SERVER['HTTP_HOST'], preg_replace('~/[^/]+$~', '', $_SERVER['PHP_SELF']), "/abstract-image?id=" . $data['id'] . "&auth_key=" . $data['auth_key'] ?>" class="picture" align="left" />
+<img src="http://<?php echo $_SERVER['HTTP_HOST'], preg_replace('~/[^/]+$~', '', $_SERVER['PHP_SELF']), "/abstract-image?id=" . $data['id'] ?>" class="picture" width="144" align="left" />
 
 <h2 class="abstract_title"><?php echo $data['abstract_title'] ?></h2>
 
@@ -106,5 +59,6 @@
 </p>
 </div>
 
-</body>
-</html>
+<br class="pagebreak" />
+
+</div>

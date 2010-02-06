@@ -23,5 +23,7 @@
 	header("Content-Type: application/vnd.ms-word");
 	header("Content-Disposition: attachment; filename=abstract-" . $data['id'] . ".doc");
 	
-	include 'abstract-show-template.inc.php';
+	include 'abstract-show-template-head.inc.php';
+	include 'abstract-show-template-body.inc.php';
+	include 'abstract-show-template-foot.inc.php';
 ?>
