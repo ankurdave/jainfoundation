@@ -14,7 +14,7 @@
 	// Escape all data fields before printing
 	if ($data) {
 		$data_raw = $data;
-		$data = array_map('htmlentities', $data);
+		$data = array_map('print_html', $data);
 	}
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">

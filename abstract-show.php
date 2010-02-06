@@ -16,7 +16,7 @@
 	
 	// Escape all data fields before printing
 	$data_raw = $data;
-	$data = array_map('htmlentities', $data);
+	$data = array_map('print_html', $data);
 	
 	// Output a Word document with HTML in it
 	// See http://stackoverflow.com/questions/124959/create-word-document-using-php-in-linux#answer-125009
