@@ -4,6 +4,7 @@
 		<li><a href="list">List registrations</a></li>
 		<li><a href="export">Export registrations</a></li>
 		<li><a href="abstract">Submit an abstract</a></li>
+		<li><a href="abstract-show-all">Export abstracts</a></li>
 	</ul>
 </div>
 
