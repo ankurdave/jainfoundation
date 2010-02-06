@@ -6,7 +6,7 @@
 	
 	// Process the uploaded picture
 	// If it's not a valid file, the $_POST variables won't be set, and an error will occur in the validation stage below
-	if (is_uploaded_file($_FILES['picture']['tmp_name'])) {
+	if (is_uploaded_file($_FILES['picture']['tmp_name']) && $_FILES['picture']['size'] <= 1000000) {
 		$_POST['picture_filename'] = $_FILES['picture']['tmp_name'];
 		$_POST['picture_mimetype'] = $_FILES['picture']['type'];
 	}
@@ -22,7 +22,7 @@
 	
 	// Validate the data and redirect to the form if it's wrong
 	// First check if the required fields are there
-	$required = explode(' ', 'firstname lastname degree institution street_address city state_province zip_postal_code country phone email author_status affiliation_1 author_1_firstname author_1_lastname author_1_affiliation abstract_category presentation_type abstract_title abstract_body');
+	$required = explode(' ', 'firstname lastname degree institution street_address city state_province zip_postal_code country phone email author_status picture_filename affiliation_1 author_1_firstname author_1_lastname author_1_affiliation abstract_category presentation_type abstract_title abstract_body');
 	foreach ($required as $field) {
 		if (empty($_POST[$field])) {
 			header("Location: $form_location?$data_auth_query_string&error_$field");
