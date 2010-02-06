@@ -11,7 +11,7 @@
 	while ($data = $result->fetch_assoc()) {
 		// Escape all data fields before printing
 		$data_raw = $data;
-		$data = array_map('htmlentities', $data);
+		$data = array_map('print_html', $data);
 	
 		include 'abstract-show-template-body.inc.php';
 	}
