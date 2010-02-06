@@ -1,10 +1,10 @@
 <?php
 	require 'lib.php';
 	
-	if (isset($_GET['id']) && isset($_GET['auth_key'])) {
-		$data = getAbstract($_GET['id'], $_GET['auth_key']);
-	} else if (isset($_COOKIE['id']) && isset($_COOKIE['auth_key'])) {
-		$data = getAbstract($_COOKIE['id'], $_COOKIE['auth_key']);
+	if (isset($_GET['id'])) {
+		$data = getAbstract($_GET['id']);
+	} else if (isset($_COOKIE['id'])) {
+		$data = getAbstract($_COOKIE['id']);
 	}
 	
 	// Escape all data fields before printing
@@ -330,6 +330,7 @@
 	
 	<p>
 		<input type="submit" name="action" value="Preview">
+		<input type="submit" name="action" value="Submit">
 	</p>
 </form>
 

@@ -3,7 +3,7 @@
 	
 	$form_location = 'abstract';
 	
-	$data = getAbstract($_GET['id'], $_GET['auth_key']);
+	$data = getAbstract($_GET['id']);
 	if (!$data) {
 		header("Location: $form_location");
 		exit;

@@ -12,7 +12,7 @@ function connectToDB() {
 	return $db;
 }
 
-// If called with one argument (an assoc array of the data), adds a new abstract in the DB. If called with three arguments, updates a previous abstract.
+// Adds/updates an abstract in the DB. Updates if given $id and $auth_key; adds otherwise.
 function addAbstract($data, $id = null, $auth_key = null) {
 	$db = connectToDB();
 	
@@ -112,13 +112,12 @@ function make_column_update_sql($col) {
 };
 
 // Returns an assoc array with the abstract data from the DB, or null if it doesn't exist.
-function getAbstract($id, $auth_key) {
+function getAbstract($id) {
 	$db = connectToDB();
 	
 	$id_escaped = $db->real_escape_string($id);
-	$auth_key_escaped = $db->real_escape_string($auth_key);
 	
-	$result = $db->query("SELECT * FROM abstract WHERE id='$id_escaped' && auth_key='$auth_key_escaped'");
+	$result = $db->query("SELECT * FROM abstract WHERE id='$id_escaped'");
 	return $result->fetch_assoc();
 }
 

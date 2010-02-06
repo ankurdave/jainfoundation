@@ -5,6 +5,9 @@
 	$show_location = 'abstract-show';
 	$thankyou_location = 'abstract-success';
 	
+	// Check the desired action -- preview or submit
+	$submit = ($_POST['action'] == 'Submit');
+	
 	// Process the uploaded picture
 	// If it's not a valid file, the $_POST variables won't be set, and an error will occur in the validation stage below
 	if (is_uploaded_file($_FILES['picture']['tmp_name']) && $_FILES['picture']['size'] <= 1000000) {
@@ -50,15 +53,15 @@
 	}
 	// TODO: do conditional validation
 	
-//	if ($preview) {
+	if ($submit) {
+		// Clear the id and auth_key cookies, because now the user has submitted his abstract already. However, note that the user can still edit the abstract by going to the appropriate URL. This may not be the desired behavior... but it's the easiest thing, and it's probably not a big deal -- the auth_key would still be required to edit.
+		setcookie('id', '', time() - 3600);
+		setcookie('auth_key', '', time() - 3600);
+		
+		// Show a thank-you page
+		header("Location: $thankyou_location?$data_auth_query_string");
+	} else {
 		// Show the abstract
 		header("Location:$show_location?$data_auth_query_string");
-#	} else {
-#		// Clear the id and auth_key cookies, because now the user has submitted his abstract already
-#		setcookie('id', '', time() - 3600);
-#		setcookie('auth_key', '', time() - 3600);
-#		
-#		// Show a thank-you page
-#		header("Location: $thankyou_location?$data_auth_query_string");
-#	}
+	}
 ?>
