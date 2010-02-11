@@ -16,86 +16,9 @@
 		$data_raw = $data;
 		$data = array_map('print_html', $data);
 	}
+	
+	printHeader(array('title' => 'Submit an Abstract', 'scripts' => array('js/jquery.js', 'js/jquery.validate.js', 'js/jquery.autogrowinput.js', 'js/abstract.js')));
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
-<link rel="stylesheet" href="style.css">
-
-<script type="text/javascript" src="jquery.js"></script>
-<script type="text/javascript" src="jquery.validate.js"></script>
-<script type="text/javascript" src="jquery.autogrowinput.js"></script>
-<script type="text/javascript">
-	// Set up form validation
-	$(document).ready(function() {
-		$("#abstract-form").validate({
-			rules: {
-				firstname: { required: true },
-				lastname: { required: true },
-				degree: { required: true },
-				institution: { required: true },
-				street_address: { required: true },
-				city: { required: true },
-				state_province: { required: true },
-				zip_postal_code: { required: true },
-				country: { required: true },
-				phone: { required: true },
-				email: { required: true, email: true },
-				author_status: { required: true },
-				degree_year: {
-					required: function(element) {
-						return $("#author_status").val() == "postdoc";
-					}
-				},
-				picture: { required: true },
-				
-				affiliation_1: { required: true },
-				author_1_firstname: { required: true },
-				author_1_lastname: { required: true },
-				author_1_affiliation: { required: true },
-				
-				abstract_category: { required: true },
-				abstract_category_other: {
-					required: function(element) {
-						return $("#abstract_category").val() == "other";
-					}
-				},
-				presentation_type: { required: true },
-				
-				abstract_title: { required: true },
-				abstract_body: { required: true }
-			}
-		});
-	});
-	
-	// Set the custom validator messages
-	$.extend($.validator.messages, {
-	  required: " (required) ",
-	  email: " (must be a valid email address) "
-	});
-	
-	// Whenever author_status changes, rerun the degree_year required check
-	$("#author_status").change(function () {
-		$("#degree_year").valid();
-	});
-	
-	// Whenever abstract_category changes, rerun the abstract_category_other required check
-	$("#abstract_category").change(function () {
-		$("#abstract_category_other").valid();
-	});
-
-	// Make all text input fields autogrow
-	$(document).ready(function () {
-		$("input[type='text']").autoGrowInput();
-	});
-</script>
-
-<title>Submit an Abstract &ndash; Jain Foundation</title>
-</head>
-
-<body>
-<div id="container">
 
 <h1>Submit an Abstract</h1>
 
@@ -151,7 +74,7 @@
 		$data_auth_query_string = '';
 	}
 ?>
-<form action="abstract-submit<?php echo $data_auth_query_string ?>" method="post" id="abstract-form" enctype="multipart/form-data" encoding="multipart/form-data">
+<form action="abstract-submit.php<?php echo $data_auth_query_string ?>" method="post" id="abstract-form" enctype="multipart/form-data" encoding="multipart/form-data">
 	<h3>Presenting/First Author</h3>
 	<table>
 		<?php print_text_field($data, 'firstname', 'First Name') ?>
@@ -340,7 +263,6 @@
 	</p>
 </form>
 
-
-</div>
-</body>
-</html>
+<?php
+	printFooter();
+?>

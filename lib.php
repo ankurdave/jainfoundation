@@ -2,6 +2,8 @@
 
 include('config.php');
 
+include 'includes/header-footer.inc.php';
+
 function connectToDB() {
 	global $Config;
 	$db = new mysqli($Config['DB']['Host'], $Config['DB']['User'], $Config['DB']['Password'], $Config['DB']['Database']);
@@ -141,7 +143,11 @@ function assoc_array_filter($keys, $array) {
 
 // Does the job of htmlentities(), except with UTF-8 support
 function print_html($string) {
-	return htmlentities($string, ENT_COMPAT, 'UTF-8');
+	if (!is_array($string)) {
+		return htmlentities($string, ENT_COMPAT, 'UTF-8');
+	} else {
+		return array_map('print_html', $string); // recurse for arrays
+	}
 }
 
 // Encodes a CSV field by adding surrounding quotes, and escaping the quote marks within it
