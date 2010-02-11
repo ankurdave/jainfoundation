@@ -194,7 +194,8 @@ function print_textarea_field(&$data, $field, $label, $instructions = '', $requi
 		</tr>
 	</table>
 	<p><?php echo $instructions ?></p>
-	<textarea name="<?php echo $field ?>" id="<?php echo $field ?>" rows="24" cols="80"><?php echo $data[$field] ?></textarea><br />
+	<p>
+	<textarea name="<?php echo $field ?>" id="<?php echo $field ?>" rows="24" cols="80"><?php echo $data[$field] ?></textarea>
 	</p>
 	<?php
 }

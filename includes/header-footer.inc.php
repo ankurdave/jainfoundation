@@ -1,6 +1,6 @@
 <?php
 	include_once 'lib.php';
-	
+
 	// Prints the standard page header. Handles escaping for you.
 	// $args_raw should be an assoc array.
 	function printHeader($args_raw = array()) {
@@ -11,6 +11,13 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" href="style.css" type="text/css" />
+	<style type="text/css">
+	<?php if (isset($args['page_nav_id'])) { ?>
+		#<?php echo $args['page_nav_id'] ?> img {
+			visibility: hidden;
+		}
+	<?php } ?>
+	</style>
 	<?php
 		if (is_array($args['scripts'])) {
 			foreach ($args['scripts'] as $script) {
@@ -46,7 +53,7 @@
 		</li>
 	</ul>
 	<div id="logo">
-		<img src="images/logo_jain.gif" /><img src="images/logo_jain2.gif" />
+		<img src="images/logo_jain.gif" alt="Jain Foundation" /><img src="images/logo_jain2.gif" alt="Orchestrating a cure for LGMD2B/Miyoshi - Speed. Focus. Discover." />
 	</div>
 </div>
 

@@ -95,12 +95,12 @@
 	The person listed as the first author <strong>must</strong> be presenting the abstract.
 	Please use the affiliation numbers above to indicate each author's affiliation(s).</p>
 	<table class="multitext">
-		<th>
-			<td>First Name (<span class="required">*</span>)</td>
-			<td>Middle Initial</td>
-			<td>Last Name (<span class="required">*</span>)</td>
-			<td>Affiliation (<span class="required">*</span>)</td>
-		</th>
+		<tr>
+			<th>First Name (<span class="required">*</span>)</th>
+			<th>Middle Initial</th>
+			<th>Last Name (<span class="required">*</span>)</th>
+			<th>Affiliation (<span class="required">*</span>)</th>
+		</tr>
 		
 		<?php
 			print_multi_text_field($data, "author_1", "Author #1", array(
