@@ -25,35 +25,6 @@
 <?php include 'menu.inc.php' ?>
 
 <input type="button" id="sample_values" value="Fill sample values" />
-<script type="text/javascript">
-	$("#sample_values").click(function() {
-		$("#firstname").val("John").change(); // Update the author info
-		$("#middlename").val("Q.").change();
-		$("#lastname").val("Doe").change();
-		$("#degree").val("PhD");
-		$("#department").val("Computer Science and Engineering Department");
-		$("#institution").val("University of Washington");
-		$("#street_address").val("1234 Example Ln.");
-		$("#city").val("Seattle");
-		$("#state_province").val("Washington");
-		$("#zip_postal_code").val("98001");
-		$("#country").val("United States").change(); // Update the affiliation
-		$("#phone").val("(206) 555-1212");
-		$("#fax").val("(206) 123-4567");
-		$("#email").val("johndoe@example.com");
-		$("#author_status").val("undergrad_student");
-		$("#affiliation_2").val("School of Computer Science, Carnegie Mellon University, Pittsburgh, Pennsylvania, United States");
-		$("#author_1_affiliation").val("1");
-		$("#author_2_firstname").val("Joe");
-		$("#author_2_middlename").val("D.");
-		$("#author_2_lastname").val("Bloggs");
-		$("#author_2_affiliation").val("2");
-		$("#abstract_category").val("stem_cell");
-		$("#presentation_type").val("oral");
-		$("#abstract_title").val("Optimizing Boggle Boards: An Evaluation of Parallelizable Techniques");
-		$("#abstract_body").val("This paper's objective is to find efficient, parallelizable techniques of solving global optimization problems. To do this, it uses the specific problem of optimizing the score of a Boggle board.\n\nGlobal optimization problems deal with maximizing or minimizing a given function. This has many practical applications, including maximizing profit or performance, or minimizing raw materials or cost.\n\nParallelization is splitting up an algorithm across many different processors in a way that allows many pieces of work to run simultaneously. As parallel hardware increases in popularity and decreases in cost, algorithms should be parallelizable to maximize efficiency.\n\nBoggle is a board game in which lettered cubes are shaken onto a 4-by-4 grid. The objective is to find words spelled by paths through the grid. The function to maximize is the sum of the scores of all possible words in the board.\n\nIn this paper, the performance of two algorithms for global optimization is investigated: hill climbing and genetic algorithms. Genetic algorithms, which model evolution to find the fittest solutions, are found to be more efficient because they are non-greedy. In addition, a modified genetic algorithm called the coarse-grained distributed genetic algorithm (DGA) is investigated. This algorithm can take advantage of multiple computers, running several semi-independent copies of the algorithm in parallel to provide extra genetic diversity and better performance. The success of the coarse-grained DGA shows that global optimization problems can benefit significantly from parallelization.\n\nInvestigating these genetic algorithms revealed several modifications that are beneficial to global optimization. These modifications solve the problem of premature convergence (a loss of genetic diversity). Several techniques to solve this problem are investigated, notably incest prevention and migration control, revealing a very significant performance increase.");
-	});
-</script>
 
 <h2>Call for Abstract</h2>
 
@@ -101,18 +72,6 @@
 			));
 		?>
 		<?php print_text_field($data, 'degree_year', 'Degree Year', '(if postdoc)') ?>
-			<script type="text/javascript">
-				// Whenever author_status changes, show or hide degree_year
-				$("#author_status").change(function () {
-					// The use of .closest("tr") is a bit of a hack -- what if we switch to non-table-based layouts?
-					if ($("#author_status").val() == "postdoc") {
-						$("#degree_year").closest("tr").css("display", "");
-					} else {
-						$("#degree_year").closest("tr").css("display", "none");
-					}
-				}).change();
-			</script>
-		
 		<input type="hidden" name="MAX_FILE_SIZE" value="1000000" />
 		<?php print_upload_field('picture', 'Picture', '(max 1 MB)') ?>
 	</table>
@@ -125,29 +84,6 @@
 		<?php
 			print_text_field($data, "affiliation_1", "Affiliation #1");
 		?>
-		
-		<script type="text/javascript">
-			// Updates #affiliation_1 by joining the values of these elements with a comma
-			// Note: this always overwrites #affiliation_1 when these elements are changed!
-			var updatePrimaryAffiliation = function() {
-				var elements = [ "department", "institution", "city", "state_province", "country" ];
-				elements = $.map(elements, function(elem, index) {
-					if ($("#" + elem).val()) {
-						return $("#" + elem).val();
-					} else {
-						return null; // Ignore the element if it's empty
-					}
-				});
-				$("#affiliation_1").val(elements.join(", "));
-			}
-			
-			$("#department").bind($.browser.msie ? 'propertychange' : 'change', updatePrimaryAffiliation);
-			$("#institution").bind($.browser.msie ? 'propertychange' : 'change', updatePrimaryAffiliation);
-			$("#city").bind($.browser.msie ? 'propertychange' : 'change', updatePrimaryAffiliation);
-			$("#state_province").bind($.browser.msie ? 'propertychange' : 'change', updatePrimaryAffiliation);
-			$("#country").bind($.browser.msie ? 'propertychange' : 'change', updatePrimaryAffiliation);
-		</script>
-		
 		<?php
 			for ($i = 2; $i <= 8; $i++) {
 				print_text_field(&$data, "affiliation_$i", "Affiliation #$i", '', null);
@@ -174,16 +110,6 @@
 				"_affiliation" => true,
 			));
 		?>
-		
-		<script type="text/javascript">
-			// Update #author_1_* with the information above
-			// Note: this always overwrites #author_1_* when these elements are changed!
-			
-			$("#firstname").bind($.browser.msie ? 'propertychange' : 'change', function() { $("#author_1_firstname").val($("#firstname").val()) });
-			$("#middlename").bind($.browser.msie ? 'propertychange' : 'change', function() { $("#author_1_middlename").val($("#middlename").val()) });
-			$("#lastname").bind($.browser.msie ? 'propertychange' : 'change', function() { $("#author_1_lastname").val($("#lastname").val()) });
-		</script>
-		
 		<?php
 			for ($i = 2; $i <= 8; $i++) {
 				print_multi_text_field($data, "author_$i", "Author #$i", array(
@@ -215,17 +141,6 @@
 			));
 		?>
 		<?php print_text_field($data, 'abstract_category_other', 'Other abstract category', '(if other)') ?>
-			<script type="text/javascript">
-				// Whenever abstract_category changes, show or hide abstract_category_other
-				$("#abstract_category").bind($.browser.msie ? 'propertychange' : 'change', function () {
-					// The use of .closest("tr") is a bit of a hack -- what if we switch to non-table-based layouts?
-					if ($("#abstract_category").val() == "other") {
-						$("#abstract_category_other").closest("tr").css("display", "");
-					} else {
-						$("#abstract_category_other").closest("tr").css("display", "none");
-					}
-				}).change();
-			</script>
 	</table>
 	
 	<p>Select whether you would prefer an oral or poster presentation. However, please note that the decision regarding the type of presentation is at the complete discretion of the Jain Foundation.</p>
