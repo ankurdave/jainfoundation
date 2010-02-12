@@ -2,7 +2,7 @@
 
 include('config.php');
 
-include 'includes/header-footer.inc.php';
+include 'header-footer.inc.php';
 
 function connectToDB() {
 	global $Config;

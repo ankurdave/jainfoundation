@@ -1,5 +1,5 @@
 <?php
-	include 'lib.php';
+	include 'includes/lib.php';
 	
 	printHeader(array('title' => 'Layout Demo'));
 ?>

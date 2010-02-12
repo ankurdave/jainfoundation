@@ -1,5 +1,5 @@
 <?php
-	require 'lib.php';
+	require 'includes/lib.php';
 	
 	$db = connectToDB();
 	

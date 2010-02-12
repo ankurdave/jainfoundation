@@ -1,5 +1,5 @@
 <?php
-	require 'lib.php';
+	require 'includes/lib.php';
 	
 	$form_location = 'abstract';
 	$show_location = 'abstract-show';

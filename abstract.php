@@ -1,5 +1,5 @@
 <?php
-	require 'lib.php';
+	require 'includes/lib.php';
 	
 	// Default values
 	$data = array('author_1_affiliation' => '1');

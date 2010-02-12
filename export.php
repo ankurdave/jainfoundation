@@ -1,5 +1,5 @@
 <?php
-	require 'lib.php';
+	require 'includes/lib.php';
 	include 'lib/PHPExcel.php';
 	include 'lib/PHPExcel/Writer/Excel2007.php';
 	include 'lib/PHPExcel/IOFactory.php';

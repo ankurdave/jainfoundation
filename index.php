@@ -1,5 +1,5 @@
 <?php
-	require 'lib.php';
+	require 'includes/lib.php';
 	
 	if (isset($_GET['error_name'])) {
 		$error_name = true;
