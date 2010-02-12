@@ -35,23 +35,25 @@
 <div id="page_wrapper">
 
 <div id="header">
-	<ul id="top_nav">
-		<li id="button_home">
-			<a href="index.php">
-				<img src="images/button_home2.gif" alt="Home" />
-			</a>
-		</li>
-		<li id="button_about">
-			<a href="about.php">
-				<img src="images/button_about.gif" alt="About Us" />
-			</a>
-		</li>
-		<li id="button_contact">
-			<a href="contact.php">
-				<img src="images/button_contact2.gif" alt="Contact Us" />
-			</a>
-		</li>
-	</ul>
+	<div id="top_nav_wrapper">
+		<ul id="top_nav">
+			<li id="button_home" style="background: url(images/button_home2_roll.gif) no-repeat">
+				<a href="index.php">
+					<img src="images/button_home2.gif" alt="Home" />
+				</a>
+			</li>
+			<li id="button_about" style="background: url(images/button_about_roll.gif) no-repeat">
+				<a href="about.php">
+					<img src="images/button_about.gif" alt="About Us" />
+				</a>
+			</li>
+			<li id="button_contact" style="background: url(images/button_contact2_roll.gif) no-repeat">
+				<a href="contact.php">
+					<img src="images/button_contact2.gif" alt="Contact Us" />
+				</a>
+			</li>
+		</ul>
+	</div>
 	<div id="logo">
 		<img src="images/logo_jain.gif" alt="Jain Foundation" /><img src="images/logo_jain2.gif" alt="Orchestrating a cure for LGMD2B/Miyoshi - Speed. Focus. Discover." />
 	</div>

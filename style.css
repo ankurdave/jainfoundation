@@ -20,27 +20,32 @@ body {
 }
 
 /* Header */
-#top_nav {
-	margin: 0;
-	padding: 0;
-	text-align: right;
+#top_nav_wrapper {
 	width: 100%;
-	font-size: 13px;
 
 	border-top: 4px solid #64a430;
 	background: url(images/bg_topNav.gif) no-repeat;
 	height: 36px;
 }
-
-#top_nav li {
-	display: inline;
-	list-style-type: none;
+#top_nav {
 	margin: 0;
 	padding: 0;
+	float: right; /* move the entire list to the right-hand side */
+}
+
+#top_nav li {
+	display: block; 
+	float: left; /* within the list, the elements must float so the height can be set *and* display:block can be there */
+	list-style-type: none;
+	height: 36px;
 }
 
 #top_nav li a {
-	color: white;
+	display: block; /* make the link as large as the image */
+	
+	/* for the alt text */
+	font-size: 13px;
+	color: gray;
 	text-decoration: none;
 }
 
@@ -48,15 +53,23 @@ body {
 	border: none;
 }
 
+#top_nav li:hover img {
+	visibility: hidden; /* enable image replacement on hover -- see http://www.webcredible.co.uk/user-friendly-resources/css/rollover-buttons.shtml */
+}
+
 #logo {
 	height: 97px;
 	white-space: nowrap; /* keep the two logo images together as one */
+	
+	border-left: 1px solid #a88b59;
+	border-right: 1px solid #a88b59;
 }
 
 /* Body: sidebar + content */
 #body {
-	background: url(images/bg_dot.gif) top right repeat-y, url(images/bg_dot.gif) top left repeat-y, url(images/body-columns.png) repeat-y; /* make it look like #sidebar continues all the way down */
-	padding: 0 1px; /* make room for the borders in the background image */
+	background: url(images/body-columns.png) repeat-y; /* make it look like #sidebar continues all the way down */
+	border-left: 1px solid #a88b59;
+	border-right: 1px solid #a88b59;
 	overflow: hidden; /* encompass both columns */
 }
 
@@ -91,7 +104,8 @@ body {
 }
 
 #side_nav li a {
-	color: green;
+	display: block;
+	color: green; /* for the alt text */
 	text-decoration: none;
 }
 
@@ -179,8 +193,10 @@ body {
 	line-height: 14px;
 	border-bottom: 4px solid #64a430;
 	
-	background: url(images/bg_dot.gif) top right repeat-y, url(images/bg_dot.gif) top left repeat-y, #fdffc6;
-	padding: 0 5px; /* make room for the borders in the background image */
+	background-color: #fdffc6;
+	border-left: 1px solid #a88b59;
+	border-right: 1px solid #a88b59;
+	padding: 0 5px;
 }
 #footer a {
 	color: black;
