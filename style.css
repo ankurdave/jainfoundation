@@ -278,13 +278,12 @@ table.multitext input {
 #page_nav {
 	text-align: center; /* center the alt text inside each nav item */
 	list-style-type: none;
-	height: 4em;
+	height: 3em;
 }
 
 #page_nav li {
 	display: block;
 	float: left;
-	background-color: #feffd7;
 	width: 8em;
 	height: 100%;
 	border: 1px solid gray; /* for debugging */
@@ -296,7 +295,10 @@ table.multitext input {
 	height: 100%;
 	
 	/* for the alt text */
+	font-family: Helvetica, Arial, sans-serif;
 	font-size: 11px;
 	text-decoration: none;
 	color: #890000;
+	background-color: #feffd7;
+	font-weight: bold;
 }
