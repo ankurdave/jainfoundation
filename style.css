@@ -271,22 +271,25 @@ table.multitext input {
 
 /* Page nav */
 #page_nav_wrapper {
+	display: table;
+	border-spacing: 1em;
 	width: 100%;
 	text-align: center; /* center the nav bar on the page */
 }
 
 #page_nav {
+	display: table-row; /* make all items the same height */
+	
 	text-align: center; /* center the alt text inside each nav item */
 	list-style-type: none;
-	height: 4em;
 }
 
 #page_nav li {
-	display: block;
-	float: left;
+	display: table-cell; /* allow vertical-align */
+	vertical-align: middle;
+	
 	background-color: #feffd7;
 	width: 8em;
-	height: 100%;
 	border: 1px solid gray; /* for debugging */
 	margin: 0 5px;
 }
