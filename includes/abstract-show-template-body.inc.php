@@ -6,7 +6,7 @@
 
 <p class="email"><a href="mailto:<?php echo urlencode($data_raw['email']) ?>"><?php echo $data['email'] ?></a></p>
 
-<img src="http://<?php echo $_SERVER['HTTP_HOST'], preg_replace('~/[^/]+$~', '', $_SERVER['PHP_SELF']), "/abstract-image?id=" . $data['id'] ?>" class="picture" width="144" align="left" />
+<img src="http://<?php echo $_SERVER['HTTP_HOST'], preg_replace('~/[^/]+$~', '', $_SERVER['PHP_SELF']), "/abstract-image.php?id=" . $data['id'] ?>" class="picture" width="144" align="left" />
 
 <h2 class="abstract_title"><?php echo $data['abstract_title'] ?></h2>
 

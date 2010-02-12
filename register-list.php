@@ -12,7 +12,7 @@
 
 <h1>Registration Form Demo</h1>
 
-<?php include 'menu.inc.php' ?>
+<?php include 'includes/menu.inc.php' ?>
 
 <table>
 	<tr>

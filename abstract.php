@@ -22,7 +22,7 @@
 
 <h1>Submit an Abstract</h1>
 
-<?php include 'menu.inc.php' ?>
+<?php include 'includes/menu.inc.php' ?>
 
 <input type="button" id="sample_values" value="Fill sample values" />
 

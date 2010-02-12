@@ -1,7 +1,7 @@
 <?php
 	require 'includes/lib.php';
 	
-	$form_location = 'abstract';
+	$form_location = 'abstract.php';
 	
 	if (isset($_GET['id'])) {
 		$data = getAbstract($_GET['id']);

@@ -1,9 +1,9 @@
 <?php
 	require 'includes/lib.php';
 	
-	$form_location = 'abstract';
-	$show_location = 'abstract-show';
-	$thankyou_location = 'abstract-success';
+	$form_location = 'abstract.php';
+	$show_location = 'abstract-show.php';
+	$thankyou_location = 'abstract-success.php';
 	
 	// Check the desired action -- preview or submit
 	$submit = ($_POST['action'] == 'Submit');
