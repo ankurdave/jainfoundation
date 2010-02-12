@@ -14,6 +14,18 @@ function connectToDB() {
 	return $db;
 }
 
+function addPerson($name, $email, $phone) {
+	static $db = null;
+	if ($db == null) $db = connectToDB();
+	
+	// Store the data in the DB
+	static $query = null;
+	if ($query == null) $query = $db->prepare('INSERT INTO person (name, email, phone) VALUES (?, ?, ?)');
+	$query->bind_param('sss', $name, $email, $phone);
+	$success = $query->execute();
+	return $success;
+}
+
 // Adds/updates an abstract in the DB. Updates if given $id and $auth_key; adds otherwise.
 function addAbstract($data, $id = null, $auth_key = null) {
 	$db = connectToDB();
