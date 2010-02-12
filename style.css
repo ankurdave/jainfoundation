@@ -31,17 +31,19 @@ body {
 	margin: 0;
 	padding: 0;
 	float: right; /* move the entire list to the right-hand side */
+	height: 100%;
 }
 
 #top_nav li {
 	display: block; 
 	float: left; /* within the list, the elements must float so the height can be set *and* display:block can be there */
 	list-style-type: none;
-	height: 36px;
+	height: 100%;
 }
 
 #top_nav li a {
 	display: block; /* make the link as large as the image */
+	height: 100%;
 	
 	/* for the alt text */
 	font-size: 13px;
@@ -267,3 +269,34 @@ table.multitext input {
 	width: 90%; /* make input boxes in the table fit */
 }
 
+/* Page nav */
+#page_nav_wrapper {
+	width: 100%;
+	text-align: center; /* center the nav bar on the page */
+}
+
+#page_nav {
+	text-align: center; /* center the alt text inside each nav item */
+	list-style-type: none;
+	height: 4em;
+}
+
+#page_nav li {
+	display: block;
+	float: left;
+	background-color: #feffd7;
+	width: 8em;
+	height: 100%;
+	border: 1px solid gray; /* for debugging */
+	margin: 0 5px;
+}
+
+#page_nav li a {
+	display: block;
+	height: 100%;
+	
+	/* for the alt text */
+	font-size: 11px;
+	text-decoration: none;
+	color: #890000;
+}

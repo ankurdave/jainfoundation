@@ -54,7 +54,7 @@
 			</li>
 		</ul>
 	</div>
-	<div id="logo">
+	<div id="logo" style="clear:both">
 		<img src="images/logo_jain.gif" alt="Jain Foundation" /><img src="images/logo_jain2.gif" alt="Orchestrating a cure for LGMD2B/Miyoshi - Speed. Focus. Discover." />
 	</div>
 </div>
