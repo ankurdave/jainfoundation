@@ -250,11 +250,10 @@ h2, h3 {
 	font-weight: bold;
 }
 
-.error {
+td.error {
 	color: red;
 }
 input.error, .error input {
-	color: inherit;
 	background-color: red;
 }
 
