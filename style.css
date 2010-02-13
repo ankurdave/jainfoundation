@@ -250,11 +250,11 @@ h2, h3 {
 	font-weight: bold;
 }
 
-td.error {
+td.error, label.error {
 	color: red;
 }
-input.error, .error input {
-	background-color: red;
+input.error, .error input, textarea.error {
+	background-color: #F99;
 }
 
 form textarea {

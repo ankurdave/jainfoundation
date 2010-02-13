@@ -33,21 +33,25 @@ function wordCount(element) {
 // Create the maxWords validation method
 $.validator.addMethod("maxWords", function(value, element, wordLimit) {
 	var count = wordCount($(element));
+
+	// Show the user the count
+	// This is an ugly optimization -- it should be in its own function, bound separately to each field that requires it, but that would mean we count the words twice. An unfortunate side effect of this optimization is that maxWords can only be used on one element.
+	$("#word_count_text").css('display', 'block');
 	$("#word_count").html(count);
+	
+	// Check if the count is within limits
 	return count <= wordLimit;
 }, $.validator.format(" (word limit: {0} words) "));
 
+// Whenever author_status changes, rerun the degree_year required check
 $(document).ready(function() {
-	// Whenever author_status changes, rerun the degree_year required check
-	$("#author_status").change(function () {
+	$("#author_status").bind($.browser.msie ? 'propertychange' : 'change', function () {
 		$("#degree_year").valid();
 	});
 });
-
+// Whenever author_status changes, show or hide degree_year
 $(document).ready(function() {
-	// Whenever author_status changes, show or hide degree_year
-	$("#author_status").change(function () {
-		// The use of .closest("tr") is a bit of a hack -- what if we switch to non-table-based layouts?
+	$("#author_status").bind($.browser.msie ? 'propertychange' : 'change', function () {
 		if ($("#author_status").val() == "postdoc") {
 			$("#degree_year").closest("tr").css("display", "");
 		} else {
@@ -56,25 +60,30 @@ $(document).ready(function() {
 	}).change();
 });
 
+// Whenever abstract_category changes, rerun the abstract_category_other required check
 $(document).ready(function() {
-	// Whenever abstract_category changes, rerun the abstract_category_other required check
-	$("#abstract_category").change(function () {
+	$("#abstract_category").bind($.browser.msie ? 'propertychange' : 'change', function () {
 		$("#abstract_category_other").valid();
 	});
 });
 
+// Update #author_1_* with the primary author information
+// Note: this always overwrites #author_1_* when these elements are changed!
 $(document).ready(function() {
-	// Update #author_1_* with the primary author information
-	// Note: this always overwrites #author_1_* when these elements are changed!
-	$("#firstname").bind($.browser.msie ? 'propertychange' : 'change', function() { $("#author_1_firstname").val($("#firstname").val()); });
-	$("#middlename").bind($.browser.msie ? 'propertychange' : 'change', function() { $("#author_1_middlename").val($("#middlename").val()); });
-	$("#lastname").bind($.browser.msie ? 'propertychange' : 'change', function() { $("#author_1_lastname").val($("#lastname").val()); });
+	$("#firstname").bind($.browser.msie ? 'propertychange' : 'change', function() {
+		$("#author_1_firstname").val($("#firstname").val());
+	});
+	$("#middlename").bind($.browser.msie ? 'propertychange' : 'change', function() {
+		$("#author_1_middlename").val($("#middlename").val());
+	});
+	$("#lastname").bind($.browser.msie ? 'propertychange' : 'change', function() {
+		$("#author_1_lastname").val($("#lastname").val());
+	});
 });
 
+// Whenever abstract_category changes, show or hide abstract_category_other
 $(document).ready(function() {
-	// Whenever abstract_category changes, show or hide abstract_category_other
 	$("#abstract_category").bind($.browser.msie ? 'propertychange' : 'change', function () {
-		// The use of .closest("tr") is a bit of a hack -- what if we switch to non-table-based layouts?
 		if ($("#abstract_category").val() == "other") {
 			$("#abstract_category_other").closest("tr").css("display", "");
 		} else {
@@ -82,7 +91,6 @@ $(document).ready(function() {
 		}
 	}).change();
 });
-
 
 // Make all text input fields autogrow
 $(document).ready(function () {
@@ -102,7 +110,7 @@ $(document).ready(function() {
 		$("#city").val("Seattle");
 		$("#state_province").val("Washington");
 		$("#zip_postal_code").val("98001");
-		$("#country").val("United States").change(); // Update the affiliation
+		$("#country").val("United States");
 		$("#phone").val("(206) 555-1212");
 		$("#fax").val("(206) 123-4567");
 		$("#email").val("johndoe@example.com");
