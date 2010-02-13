@@ -11,6 +11,9 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" href="style.css" type="text/css" />
+	<!--[if IE 6]>
+		<link rel="stylesheet" href="style-ie6.css" type="text/css" />
+	<![endif]-->
 	<style type="text/css">
 	<?php if (isset($args['page_nav_id'])) { ?>
 		#<?php echo $args['page_nav_id'] ?> img {

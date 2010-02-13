@@ -1,0 +1,22 @@
+/* Otherwise nav items are stacked on the left */
+#top_nav_wrapper {
+	text-align: right;
+}
+#top_nav {
+	float: none;
+	width: 210px;
+}
+#top_nav li {
+	width: 1px;
+}
+
+/* Otherwise content is below sidebar */
+#content {
+	padding-left: 0px;
+}
+
+/* Otherwise submit button is on next line */
+#search #search_box {
+	width: 139px;
+	float: none; /* otherwise IE crashes: http://support.microsoft.com/kb/925418/ */
+}
