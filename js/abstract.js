@@ -22,7 +22,8 @@ $(document).ready(function() {
 // Set the custom validator messages
 $.extend($.validator.messages, {
 	required: " (required) ",
-	email: " (must be a valid email address) "
+	email: " (must be a valid email address) ",
+	accept: " (must be a PNG or JPEG image) "
 });
 
 // Returns the word count of a jQuery form element
