@@ -3,4 +3,4 @@ config.php
 *~
 
 syntax: regexp
-^#.*#$
+^\#.*\#$

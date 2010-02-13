@@ -5,10 +5,10 @@ $(document).ready(function() {
 			firstname: { required: true },
 			lastname: { required: true },
 			degree: { required: true },
+			department: {},
 			institution: { required: true },
 			street_address: { required: true },
 			city: { required: true },
-			state_province: { required: true },
 			zip_postal_code: { required: true },
 			country: { required: true },
 			phone: { required: true },
@@ -19,13 +19,14 @@ $(document).ready(function() {
 					return $("#author_status").val() == "postdoc";
 				}
 			},
-			picture: { required: true },
-			
+			picture: { required: true, accept: "png,jpe?g" },
+
 			affiliation_1: { required: true },
 			author_1_firstname: { required: true },
 			author_1_lastname: { required: true },
-			author_1_affiliation: { required: true },
-			
+			author_1_affiliation: { required: true, affiliationCheck },
+			author_
+
 			abstract_category: { required: true },
 			abstract_category_other: {
 				required: function(element) {
@@ -33,18 +34,30 @@ $(document).ready(function() {
 				}
 			},
 			presentation_type: { required: true },
-			
+
 			abstract_title: { required: true },
-			abstract_body: { required: true }
+			abstract_body: { required: true, maxWords: 250 }
 		}
 	});
 });
 
 // Set the custom validator messages
 $.extend($.validator.messages, {
-  required: " (required) ",
-  email: " (must be a valid email address) "
+	required: " (required) ",
+	email: " (must be a valid email address) "
 });
+
+// Returns the word count of a jQuery form element
+function wordCount(element) {
+	return element.val().split(/\W+/).length;
+}
+
+// Create the maxWords validation method
+$.validator.addMethod("maxWords", function(value, element, wordLimit) {
+	var count = wordCount($(element));
+	$("#word_count").html(count);
+	return count <= wordLimit;
+}, $.validator.format(" (word limit: {0} words) "));
 
 $(document).ready(function() {
 	// Whenever author_status changes, rerun the degree_year required check
@@ -53,7 +66,7 @@ $(document).ready(function() {
 	});
 });
 
-$(document).ready(function() {	
+$(document).ready(function() {
 	// Whenever author_status changes, show or hide degree_year
 	$("#author_status").change(function () {
 		// The use of .closest("tr") is a bit of a hack -- what if we switch to non-table-based layouts?
@@ -73,32 +86,11 @@ $(document).ready(function() {
 });
 
 $(document).ready(function() {
-	// Updates #affiliation_1 by joining the values of these elements with a comma
-	// Note: this always overwrites #affiliation_1 when these elements are changed!
-	var updatePrimaryAffiliation = function() {
-		var elements = [ "department", "institution", "city", "state_province", "country" ];
-		elements = $.map(elements, function(elem, index) {
-			if ($("#" + elem).val()) {
-				return $("#" + elem).val();
-			} else {
-				return null; // Ignore the element if it's empty
-			}
-		});
-		$("#affiliation_1").val(elements.join(", "));
-	}
-	$("#department").bind($.browser.msie ? 'propertychange' : 'change', updatePrimaryAffiliation);
-	$("#institution").bind($.browser.msie ? 'propertychange' : 'change', updatePrimaryAffiliation);
-	$("#city").bind($.browser.msie ? 'propertychange' : 'change', updatePrimaryAffiliation);
-	$("#state_province").bind($.browser.msie ? 'propertychange' : 'change', updatePrimaryAffiliation);
-	$("#country").bind($.browser.msie ? 'propertychange' : 'change', updatePrimaryAffiliation);
-});
-	
-$(document).ready(function() {
 	// Update #author_1_* with the primary author information
 	// Note: this always overwrites #author_1_* when these elements are changed!
-	$("#firstname").bind($.browser.msie ? 'propertychange' : 'change', function() { $("#author_1_firstname").val($("#firstname").val()) });
-	$("#middlename").bind($.browser.msie ? 'propertychange' : 'change', function() { $("#author_1_middlename").val($("#middlename").val()) });
-	$("#lastname").bind($.browser.msie ? 'propertychange' : 'change', function() { $("#author_1_lastname").val($("#lastname").val()) });
+	$("#firstname").bind($.browser.msie ? 'propertychange' : 'change', function() { $("#author_1_firstname").val($("#firstname").val()); });
+	$("#middlename").bind($.browser.msie ? 'propertychange' : 'change', function() { $("#author_1_middlename").val($("#middlename").val()); });
+	$("#lastname").bind($.browser.msie ? 'propertychange' : 'change', function() { $("#author_1_lastname").val($("#lastname").val()); });
 });
 
 $(document).ready(function() {

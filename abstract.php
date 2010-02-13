@@ -56,7 +56,7 @@
 		<?php print_text_field($data, 'institution', 'Institution') ?>
 		<?php print_text_field($data, 'street_address', 'Street Address') ?>
 		<?php print_text_field($data, 'city', 'City') ?>
-		<?php print_text_field($data, 'state_province', 'State/Province') ?>
+		<?php print_text_field($data, 'state_province', 'State/Province', '', null) ?>
 		<?php print_text_field($data, 'zip_postal_code', 'Zip/Postal Code') ?>
 		<?php print_text_field($data, 'country', 'Country') ?>
 		<?php print_text_field($data, 'phone', 'Phone Number') ?>
@@ -73,7 +73,7 @@
 		?>
 		<?php print_text_field($data, 'degree_year', 'Degree Year', '(if postdoc)') ?>
 		<input type="hidden" name="MAX_FILE_SIZE" value="1000000" />
-		<?php print_upload_field('picture', 'Picture', '(max 1 MB)') ?>
+		<?php print_upload_field('picture', 'Picture', isset($_GET['error_picture_size']) ? '<span class="error">(max 1 MB)</span>' : '(max 1 MB)') ?>
 	</table>
 	
 	<h3>All Authors</h3>
@@ -96,6 +96,7 @@
 	Please use the affiliation numbers above to indicate each author's affiliation(s).</p>
 	<table class="multitext">
 		<tr>
+			<th></th>
 			<th>First Name (<span class="required">*</span>)</th>
 			<th>Middle Initial</th>
 			<th>Last Name (<span class="required">*</span>)</th>
@@ -171,6 +172,8 @@
 	Please do not use special characters&mdash;spell out all Greek letters (e.g., "alpha," "beta").</p>
 	
 	<?php print_textarea_field($data, 'abstract_body', 'Abstract') ?>
+
+	<div>(current word count: <span id="word_count">0</span>)</div>
 	
 	<p>
 		<input type="submit" name="action" value="Preview">
