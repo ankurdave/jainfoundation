@@ -245,13 +245,17 @@ h2, h3 {
 }
 
 /* Forms */
-.required {
+.required_indicator {
 	color: red;
 	font-weight: bold;
 }
 
 .error {
 	color: red;
+}
+input.error, .error input {
+	color: inherit;
+	background-color: red;
 }
 
 form textarea {

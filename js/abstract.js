@@ -2,41 +2,19 @@
 $(document).ready(function() {
 	$("#abstract-form").validate({
 		rules: {
-			firstname: { required: true },
-			lastname: { required: true },
-			degree: { required: true },
-			department: {},
-			institution: { required: true },
-			street_address: { required: true },
-			city: { required: true },
-			zip_postal_code: { required: true },
-			country: { required: true },
-			phone: { required: true },
-			email: { required: true, email: true },
-			author_status: { required: true },
+			email: { email: true },
 			degree_year: {
 				required: function(element) {
 					return $("#author_status").val() == "postdoc";
 				}
 			},
-			picture: { required: true, accept: "png,jpe?g" },
-
-			affiliation_1: { required: true },
-			author_1_firstname: { required: true },
-			author_1_lastname: { required: true },
-			author_1_affiliation: { required: true, affiliationCheck },
-			author_
-
-			abstract_category: { required: true },
+			picture: { accept: "png,jpe?g" },
 			abstract_category_other: {
 				required: function(element) {
 					return $("#abstract_category").val() == "other";
 				}
 			},
-			presentation_type: { required: true },
-
-			abstract_title: { required: true },
-			abstract_body: { required: true, maxWords: 250 }
+			abstract_body: { maxWords: 250 }
 		}
 	});
 });

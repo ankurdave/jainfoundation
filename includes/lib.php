@@ -184,122 +184,111 @@ function get_error_text($field, $text = "(required)") {
 	}
 }
 
-// Prints a textarea field.
-// Note that no HTML escaping is done. Do it yourself.
-function print_textarea_field(&$data, $field, $label, $instructions = '', $required = '(required)') {
-	$classError = isset($_GET["error_$field"]) ? ' class="error"' : '';
-	?>
-	<table>
-		<tr<?php echo $classError?>>
-			<?php
-			if (!is_null($required)) {
-			?>
-				<td class="required">*</td>
-			<?php
-			} else {
-			?>
-				<td></td>
-			<?php
-			}
-			?>
-			<td><label for="<?php echo $field ?>"><?php echo $label ?></label></td>
-		</tr>
-	</table>
-	<p><?php echo $instructions ?></p>
-	<p>
-	<textarea name="<?php echo $field ?>" id="<?php echo $field ?>" rows="24" cols="80"><?php echo $data[$field] ?></textarea>
-	</p>
-	<?php
-}
-
-// Prints multiple text fields
-function print_multi_text_field(&$data, $fieldset_basename, $fieldset_label, $fields) {
-	?>
-	<tr>
-		<td class="label"><?php echo $fieldset_label ?></td>
-	<?php
-	foreach (array_keys($fields) as $field_ext) {
-		$field_full = $fieldset_basename . $field_ext;
-		$classError = isset($_GET["error_$field_full"]) ? ' class="error"' : '';
-	?>
-		<td<?php echo $classError ?>>
-			<input type="text" name="<?php echo $field_full ?>" id="<?php echo $field_full ?>" value="<?php echo $data[$field_full] ?>" />
-		</td>
-	<?php
-	}
-	?>
-	</tr>
-	<?php
-}
-
-// Prints a generic form field. If $required is null, it means it's optional; otherwise the value of $required is the error message when the user leaves the field blank.
-// Note that no HTML escaping is done. Do it yourself.
-function print_field($field, $label, $inputElem, $instructions = '', $required = '(required)') {
-	$classError = isset($_GET["error_$field"]) ? ' class="error"' : '';
-	?>
-	<tr<?php echo $classError?>>
-	<?php
-	if (!is_null($required)) {
-	?>
-		<td class="required">*</td>
-	<?php
-	} else {
-	?>
+/**
+ * Prints a generic form field in an HTML table row.
+ * 
+ * @param string $id the field id
+ * @param array $options an assoc array with the following optional fields:
+ * instructions -- string (may contain HTML)
+ * required -- boolean
+ * label -- string (may contain HTML)
+ * value -- assoc array containing ($id => 'field value')
+ */
+function print_field($id, $element_html, $options = array()) {
+?>
+	<?php if (isset($_GET["error_$id"])) { ?>
+		<tr class="error">
+	<?php } else { ?>
+		<tr>
+	<?php } ?>
+	
+	<?php if ($options['required']) { ?>
+		<td class="required_indicator">*</td>
+	<?php } else { ?>
 		<td></td>
-	<?php
-	}
-	?>
-	<td><label for="<?php echo $field ?>"><?php echo $label ?></label></td>
+	<?php } ?>
+
+	<td><label for="<?php echo htmlentities($id) ?>"><?php echo $options['label'] ?></label></td>
+	
 	<td>
-		<?php echo $inputElem ?>
-		<?php
-		if (isset($_GET["error_$field"]) && !is_null($required)) {
-			echo $required;
-		}
-		?>
-		<?php echo $instructions ?>
+		<?php echo $element_html ?>
+		<?php echo $options['instructions'] ?>
+	</td>
+	
 	</tr>
-	<?php
+<?php
 }
 
-// Prints a text form field.
-// Note that no HTML escaping is done. Do it yourself.
-function print_upload_field($field, $label, $instructions = '', $required = '(required)') {
-	$inputElem = <<<EOD
-<input type="file" name="$field" id="$field" />
+/**
+ * Prints a file form field.
+ * 
+ * @param string $id the field id
+ * @param array $options an assoc array with the field options in print_field()
+ */
+function print_upload_field($id, $options = array()) {
+	$id_esc = htmlentities($id);
+	$required_html = $options['required'] ? 'class="required"' : '';
+	
+	$element_html = <<<EOD
+<input type="file" name="$id_esc" id="$id_esc" $required_html />
 EOD;
 
-	print_field($field, $label, $inputElem, $instructions, $required);
+	print_field($id, $element_html, $options);
 }
 
-// Prints a text form field.
-// Note that no HTML escaping is done. Do it yourself.
-function print_text_field(&$data, $field, $label, $instructions = '', $required = '(required)') {
-	$inputElem = <<<EOD
-<input type="text" name="$field" id="$field" value="$data[$field]" />
+/**
+ * Prints a text form field.
+ * 
+ * @param string $id the field id
+ * @param array $options an assoc array with the field options in print_field()
+ */
+function print_text_field($id, $options = array()) {
+	$id_esc = htmlentities($id);
+	$value_esc = print_html($options['value'][$id]);
+	$required_html = $options['required'] ? 'class="required"' : '';
+	
+	$element_html = <<<EOD
+<input type="text" name="$id_esc" id="$id_esc" value="$value_esc" $required_html />
 EOD;
 
-	print_field($field, $label, $inputElem, $instructions, $required);
+	print_field($id, $element_html, $options);
 }
 
-// Prints a select form field (a dropdown). $options should be an associative array of option_value => option_label.
-// Note that no HTML escaping is done. Do it yourself.
-function print_select_field(&$data, $field, $label, $options, $instructions = '', $required = '(required)') {
-	$optionsElems_array = array();
-	foreach ($options as $option_value => $option_label) {
-		$optionsElems_array[] = convertOptiontoHTML($option_value, $option_label, $data[$field]);
+/**
+ * Prints a select form field (a dropdown).
+ * 
+ * @param string $id the field id
+ * @param array $options an assoc array with the field options in print_field(), plus:
+ * 'options' => array('option_value' => 'option_label')
+ */
+function print_select_field($id, $options = array()) {
+	$id_esc = htmlentities($id);
+	$required_html = $options['required'] ? 'class="required"' : '';
+	
+	$options_array = array();
+	foreach ($options['options'] as $option_value => $option_label) {
+		$options_array[] = convertOptiontoHTML($option_value, $option_label, $options['value'][$id] == $option_value);
 	}
-	$optionsElems = join("\n", $optionsElems_array);
-	$inputElem = <<<EOD
-<select name="$field" id="$field">
-	$optionsElems
+	$options_html = join("\n", $options_array);
+	
+	$element_html = <<<EOD
+<select name="$id_esc" id="$id_esc" $required_html>
+	$options_html
 </select>
 EOD;
 
-	print_field($field, $label, $inputElem, $instructions, $required);
+	print_field($id, $element_html, $options);
 }
 
-function convertOptionToHTML($option_value, $option_label, $selected_value) {
+/**
+ * Creates an HTML option in a select form field.
+ * Intended for use by print_select_field()
+ * 
+ * @param string $option_value the value, or id, of the option
+ * @param string $option_label the user-visible label for the option
+ * @param boolean $selected whether or not this is the default option
+ */
+function convertOptionToHTML($option_value, $option_label, $selected_value = false) {
 	if ($option_value == $selected_value) {
 		$selected = 'selected="selected"';
 	} else {
@@ -309,4 +298,87 @@ function convertOptionToHTML($option_value, $option_label, $selected_value) {
 <option value="$option_value" $selected>$option_label</option>
 EOD;
 }
+
+/**
+ * Prints an HTML textarea form field.
+ * 
+ * @param string $id the field id
+ * @param array $options an assoc array with the following optional fields:
+ * instructions -- string
+ * required -- boolean
+ * label -- string
+ * value -- assoc array containing ($id => 'field value')
+ */function print_textarea_field($id, $options = array()) {
+?>
+	<table>
+	<?php if (isset($_GET["error_$id"])) { ?>
+		<tr class="error">
+	<?php } else { ?>
+		<tr>
+	<?php } ?>
+
+	<?php if ($options['required']) { ?>
+		<td class="required_indicator">*</td>
+	<?php } else { ?>
+		<td></td>
+	<?php } ?>
+
+	<td><label for="<?php echo htmlentities($id) ?>"><?php echo $options['label'] ?></label></td>
+	
+	</tr>
+	</table>
+
+	<p><?php echo htmlentities($options['instructions']) ?></p>
+
+	<p>
+		<textarea
+			name="<?php echo htmlentities($id) ?>"
+			id="<?php echo htmlentities($id) ?>"
+			rows="24" cols="80"
+		><?php echo print_html($options['value'][$id]) ?></textarea>
+	</p>
+<?php
+}
+
+/**
+ * Prints multiple text fields in an HTML table row.
+ * 
+ * @param array $id_prefix the field id stem that will be concatenated with each of the field ids in $fields
+ * @param array $fields an assoc array containing ($id_suffix => $required), where $required is a boolean
+ * @param array $options an assoc array with the following optional fields:
+ * label -- string
+ * value -- assoc array containing ($id => 'field value')
+ */
+function print_multi_text_field($id_prefix, $fields, $options = array()) {
+?>
+	<tr>
+	<td class="label"><?php echo htmlentities($options['label']) ?></td>
+
+	<?php
+		foreach (array_keys($fields) as $id_suffix) {
+			$id = $id_prefix . $id_suffix;
+	?>
+		<?php if (isset($_GET["error_$id"])) { ?>
+			<td class="error">
+		<?php } else { ?>
+			<td>
+		<?php } ?>
+
+		<input type="text"
+			name="<?php echo htmlentities($id) ?>"
+			id="<?php echo htmlentities($id) ?>"
+			value="<?php echo print_html($options['value'][$id]) ?>"
+			<?php if ($fields[$id_suffix]) { ?>
+				class="required"
+			<?php } ?>
+		/>
+
+		</td>
+	<?php } ?>
+	
+	</tr>
+<?php
+}
+
+
 ?>
