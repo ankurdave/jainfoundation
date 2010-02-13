@@ -13,6 +13,12 @@
 		color: black;
 		line-height: 115%;
 	}
+	p, h1 {
+		margin: 0;
+	}
+	h2 {
+		margin: 0.1in 0;
+	}
 	.pagebreak {
 		page-break-before: always;
 	}
@@ -39,12 +45,13 @@
 	.picture {
 		float: left;
 		width: 1.5in;
-		margin-right: 0.13in;
+		margin: 0.13in;
+		margin-left: 0;
 	}
 	.abstract_body p {
-		margin: 0;
-		margin-bottom: 0.14in;
+		margin: 0.05in 0;
 	}
+
 </style>
 
 <title>Abstracts &ndash; Jain Foundation</title>
