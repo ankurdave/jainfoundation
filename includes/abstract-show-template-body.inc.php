@@ -1,12 +1,12 @@
 <div class="abstract">
 
-<h1 class="author" style="margin:0in"><?php echo $data['firstname'] ?> <?php echo $data['middlename'] ?> <?php echo $data['lastname'] ?>, <?php echo $data['degree'] ?></h1>
+<h1 class="author"><?php echo $data['firstname'] ?> <?php echo $data['middlename'] ?> <?php echo $data['lastname'] ?>, <?php echo $data['degree'] ?></h1>
 <p style="margin:0in">
 	<span class="affiliation_1"><?php echo $data['affiliation_1'] ?></span><br>
 	<span class="email"><a href="mailto:<?php echo urlencode($data_raw['email']) ?>"><?php echo $data['email'] ?></a></span>
 </p>
 
-<p>&nbsp;</p>
+<p style="margin:0">&nbsp;</p>
 
 <img src="http://<?php echo $_SERVER['HTTP_HOST'], preg_replace('~/[^/]+$~', '', $_SERVER['PHP_SELF']), "/abstract-image.php?id=" . $data['id'] ?>" class="picture" width="144" align="left" hspace="13" vspace="13" />
 
