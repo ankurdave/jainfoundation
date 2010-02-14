@@ -123,6 +123,7 @@
 					'postdoc' => 'Postdoc',
 					'grad_student' => 'Graduate Student',
 					'undergrad_student' => 'Undergraduate Student',
+					'other' => 'Other',
 				),
 				'value' => $values,
 			));
@@ -130,6 +131,12 @@
 				'label' => 'Degree Year',
 				'required' => false, // only required if author_status is postdoc -- see validation function in js/abstract.js
 				'instructions' => '(if postdoc)',
+				'value' => $values,
+			));
+			print_text_field('author_status_other', array(
+				'label' => 'Other Author Status',
+				'required' => false, // only required if author_status is other -- see validation function in js/abstract.js
+				'instructions' => '(if other)',
 				'value' => $values,
 			));
 		?>

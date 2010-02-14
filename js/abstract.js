@@ -1,11 +1,13 @@
-// Set up form validation
+// === FORM VALIDATION RULES ===================================================
 $(document).ready(function() {
 	$("#abstract-form").validate({
 		rules: {
 			degree_year: {
-				required: function(element) {
-					return $("#author_status").val() == "postdoc";
-				}
+				fieldEq: [ "author_status", "postdoc" ]
+			},
+			
+			author_status_other: {
+				fieldEq: [ "author_status", "other" ]
 			},
 			
 			picture: {
@@ -13,9 +15,7 @@ $(document).ready(function() {
 			},
 			
 			abstract_category_other: {
-				required: function(element) {
-					return $("#abstract_category").val() == "other";
-				}
+				fieldEq: [ "abstract_category", "other" ]
 			},
 			
 			abstract_body: {
@@ -33,11 +33,22 @@ $.extend($.validator.messages, {
 });
 
 // Returns the word count of a jQuery form element
+// Utility function for maxWords validation method below
 function wordCount(element) {
 	return element.val().split(/\W+/).length;
 }
 
-// Create the maxWords validation method
+// === FORM VALIDATION METHODS =================================================
+// fieldEq: Field is required if another field {0} is equal to a value {1}
+$.validator.addMethod("fieldEq", function(value, element, params) {
+	if ($("#" + params[0]).val() == params[1]) {
+		return value;
+	} else {
+		return true;
+	}
+}, $.validator.messages.required);
+
+// maxWords: Field can have at most {0} words
 $.validator.addMethod("maxWords", function(value, element, wordLimit) {
 	var count = wordCount($(element));
 
@@ -50,12 +61,7 @@ $.validator.addMethod("maxWords", function(value, element, wordLimit) {
 	return count <= wordLimit;
 }, $.validator.format("word limit: {0} words"));
 
-// For affiliation references, allow only numbers and comma
-$(document).ready(function() {
-	$(".affiliation_reference").numeric({allow: ","});
-});
-
-// Validate affiliation references
+// affiliation_reference: For each number (comma-separated) in field, #affiliation_N must be filled
 $.validator.addMethod("affiliation_reference", function(value, element) {
 	if (!value) {
 		return true;
@@ -70,14 +76,13 @@ $.validator.addMethod("affiliation_reference", function(value, element) {
 	return true;
 }, "a referenced affiliation is empty");
 
-// Whenever author_status changes, rerun the degree_year required check
+// === FORM FIELD LINKAGES =====================================================
+// author_status and degree_year
 $(document).ready(function() {
 	$("#author_status").change(function () {
 		$("#degree_year").valid();
 	});
 });
-
-// Whenever author_status changes, show or hide degree_year
 $(document).ready(function() {
 	$("#author_status").change(function () {
 		if ($("#author_status").val() == "postdoc") {
@@ -88,15 +93,39 @@ $(document).ready(function() {
 	}).change();
 });
 
-// Whenever abstract_category changes, rerun the abstract_category_other required check
+// author_status and author_status_other
+$(document).ready(function() {
+	$("#author_status").change(function () {
+		$("#author_status_other").valid();
+	});
+});
+$(document).ready(function() {
+	$("#author_status").change(function () {
+		if ($("#author_status").val() == "other") {
+			$("#author_status_other").closest("tr").css("display", "");
+		} else {
+			$("#author_status_other").closest("tr").css("display", "none");
+		}
+	}).change();
+});
+
+// abstract_category and abstract_category_other
 $(document).ready(function() {
 	$("#abstract_category").change(function () {
 		$("#abstract_category_other").valid();
 	});
 });
+$(document).ready(function() {
+	$("#abstract_category").change(function () {
+		if ($("#abstract_category").val() == "other") {
+			$("#abstract_category_other").closest("tr").css("display", "");
+		} else {
+			$("#abstract_category_other").closest("tr").css("display", "none");
+		}
+	}).change();
+});
 
-// Update #author_1_* with the primary author information
-// Note: this always overwrites #author_1_* when these elements are changed!
+// *name and author_1_*name
 $(document).ready(function() {
 	$("#firstname").change(function() {
 		$("#author_1_firstname").val($("#firstname").val());
@@ -109,20 +138,16 @@ $(document).ready(function() {
 	});
 });
 
-// Whenever abstract_category changes, show or hide abstract_category_other
+// === OTHER ===================================================================
+
+// For affiliation references, allow only numbers and comma
 $(document).ready(function() {
-	$("#abstract_category").change(function () {
-		if ($("#abstract_category").val() == "other") {
-			$("#abstract_category_other").closest("tr").css("display", "");
-		} else {
-			$("#abstract_category_other").closest("tr").css("display", "none");
-		}
-	}).change();
+	$(".affiliation_reference").numeric({allow: ","});
 });
 
 // Make text input fields autogrow, unless they're in a multi-field table
 $(document).ready(function () {
-	$("table[class!=multitext] input[type='text']").autoGrowInput();
+	$("table[class!='multitext'] input[type='text']").autoGrowInput();
 });
 
 // Set up the Fill Sample Values button
