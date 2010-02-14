@@ -174,9 +174,9 @@
 		<tr>
 			<th></th>
 			<th>First Name (<span class="required_indicator">*</span>)</th>
-			<th>M.I.</th>
+			<th>Middle Initial</th>
 			<th>Last Name (<span class="required_indicator">*</span>)</th>
-			<th>Affil. (<span class="required_indicator">*</span>)</th>
+			<th>Affiliation (<span class="required_indicator">*</span>)</th>
 		</tr>
 		
 		<?php
@@ -190,9 +190,6 @@
 				array(
 					'label' => "Author #$i",
 					'class' => array(
-						'_firstname' => array('author_firstname'),
-						'_middlename' => array('author_middlename'),
-						'_lastname' => array('author_lastname'),
 						'_affiliation' => array('affiliation_reference'),
 					),
 					'value' => $values,

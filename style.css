@@ -300,21 +300,15 @@ form textarea {
 }
 
 table.multitext {
-	width: 100%;
 	border-spacing: 0.2em;
 }
 table.multitext th {
 	white-space: nowrap;
 	font-weight: normal;
 }
-table.multitext .author_firstname,
-table.multitext .author_lastname {
+table.multitext input {
 	width: 97%;
 
-}
-table.multitext .affiliation_reference,
-table.multitext .author_middlename {
-	width: 3em;
 }
 table.multitext label.error {
 	float: none;
