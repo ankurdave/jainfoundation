@@ -14,7 +14,7 @@
 		$values = getAbstract($_COOKIE['id']);
 	}
 	
-	printHeader(array('title' => 'Submit an Abstract', 'scripts' => array('js/jquery.js', 'js/jquery.validate.js', 'js/jquery.autogrowinput.js', 'js/abstract.js')));
+	printHeader(array('title' => 'Submit an Abstract', 'scripts' => array('js/jquery.js', 'js/jquery.validate.js', 'js/jquery.autogrowinput.js', 'js/jquery.alphanumeric.js', 'js/abstract.js')));
 ?>
 
 <h1>Submit an Abstract</h1>
@@ -162,7 +162,7 @@
 	
 	<p>Enter the information for all authors.<br />
 	The person listed as the first author <strong>must</strong> be presenting the abstract.
-	Please use the affiliation numbers above to indicate each author's affiliation(s).</p>
+	Please use the affiliation numbers above, separated by commas, to indicate each author's affiliation(s).</p>
 	<table class="multitext">
 		<tr>
 			<th></th>
@@ -244,7 +244,7 @@
 	
 	<p><em>Notice:</em> It is the author's sole responsibility to abide by standard regulations for animal care and use, as well as to use of human subjects. All named authors share this responsibility and agree with the submitted text.
 	
-	<p>Enter the title of your abstract in initial caps, except for capitalized abbreviations (e.g., DNA) and simple words (e.g., "a," "to," "the"). Please do not use special characters&mdash;spell out all Greek letters (e.g., "alpha," "beta").<br />
+	<p>Enter the title of your abstract in initial caps, except for capitalized abbreviations (e.g., DNA) and simple words (e.g., "a," "to," "the").<br />
 	<em>Example:</em> "Role of Muscle Stem Cells in the Progression and Treatment of Dysferlinopathy"</p>
 	
 	<table>
@@ -258,8 +258,7 @@
 	</table>
 	
 	<p>Please <strong>do not</strong> enter the abstract title again in the body of the abstract.<br />
-	Please limit the body of your abstract to no more than ???? characters.<br />
-	Please do not use special characters&mdash;spell out all Greek letters (e.g., "alpha," "beta").</p>
+	Please limit the body of your abstract to no more than ???? characters.</p>
 	
 	<?php
 		print_textarea_field('abstract_body', array(

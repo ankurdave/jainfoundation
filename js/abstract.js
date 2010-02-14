@@ -50,6 +50,11 @@ $.validator.addMethod("maxWords", function(value, element, wordLimit) {
 	return count <= wordLimit;
 }, $.validator.format("word limit: {0} words"));
 
+// For affiliation references, allow only numbers and comma
+$(document).ready(function() {
+	$(".affiliation_reference").numeric({allow: ","});
+});
+
 // Validate affiliation references
 $.validator.addMethod("affiliation_reference", function(value, element) {
 	if (!value) {
