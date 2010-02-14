@@ -275,7 +275,7 @@
 		));
 	?>
 
-	<div id="word_count_text" class="hoveringLabel" style="display:none">current word count: <span id="word_count">0</span> words</div>
+	<div id="word_count_text" class="hoveringLabel" style="display:none">word count: <span id="word_count">0</span> words</div>
 	
 	<p>
 		<input type="submit" name="action" value="Preview">
