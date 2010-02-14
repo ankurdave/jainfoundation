@@ -300,6 +300,7 @@ form textarea {
 }
 
 table.multitext {
+	width: 100%;
 	border-spacing: 0.2em;
 }
 table.multitext th {
