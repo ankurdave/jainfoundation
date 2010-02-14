@@ -267,6 +267,10 @@ input.error, .error input, textarea.error {
 	border: 2px solid red;
 }
 
+tr.error {
+	color: red;
+}
+
 label.error, .hoveringLabel {
 	float: right;
 	margin: 0 10px 0 5px;
