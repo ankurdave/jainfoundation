@@ -33,9 +33,9 @@
 	// This is before validation so that if there's an error, the user won't lose the data
 	// TODO: get the return value of addAbstract and redirect with error if it's false
 	if ($update) {
-		addAbstract($_POST, $data_auth['id'], $data_auth['auth_key']);
+		addAbstract($_POST, $submit, $data_auth['id'], $data_auth['auth_key']);
 	} else {
-		$data_auth = addAbstract($_POST);
+		$data_auth = addAbstract($_POST, $submit);
 		
 		// Set cookies with id and auth_key so that if the user clicks the back button, he won't lose his data
 		setcookie('id', $data_auth['id']);

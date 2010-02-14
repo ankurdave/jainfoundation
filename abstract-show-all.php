@@ -7,7 +7,7 @@
 	include 'includes/abstract-show-template-head.inc.php';
 	
 	$db = connectToDB();
-	$result = $db->query("SELECT * FROM abstract");
+	$result = $db->query("SELECT * FROM abstract WHERE final=TRUE");
 	while ($data = $result->fetch_assoc()) {
 		// Escape all data fields before printing
 		$data_raw = $data;

@@ -26,12 +26,19 @@ function addPerson($name, $email, $phone) {
 	return $success;
 }
 
-// Adds/updates an abstract in the DB. Updates if given $id and $auth_key; adds otherwise.
-function addAbstract($data, $id = null, $auth_key = null) {
+/*
+ * Adds/updates an abstract in the DB.
+ * @param array $data an assoc array with ('column' => 'value')
+ * @param boolean $final whether or not to mark the row as final and submitted in the DB
+ * @param string $id the ID of an already-existing column. Will insert a new column if null
+ * @param string $auth_key the auth key of an already-existing column. Will insert a new column if null
+ */
+function addAbstract($data, $final = false, $id = null, $auth_key = null) {
 	$db = connectToDB();
 	
-	$update = !is_null($id) && !is_null($auth_key);
+	$data['final'] = $final;
 	
+	$update = !is_null($id) && !is_null($auth_key);
 	if ($update) {
 		// Use the given id and auth key
 		$data['id'] = $id;
@@ -59,7 +66,7 @@ function addAbstract($data, $id = null, $auth_key = null) {
 	$data['picture_data'] = null;
 	
 	// Build the list of columns
-	$column_names = explode(', ', 'id, auth_key, picture_mimetype, picture_data, firstname, middlename, lastname, degree, department, institution, street_address, city, state_province, zip_postal_code, country, phone, fax, email, author_status, degree_year, abstract_category, abstract_category_other, presentation_type, abstract_title, abstract_body');
+	$column_names = explode(', ', 'id, auth_key, picture_mimetype, picture_data, firstname, middlename, lastname, degree, department, institution, street_address, city, state_province, zip_postal_code, country, phone, fax, email, author_status, author_status_other, degree_year, abstract_category, abstract_category_other, presentation_type, abstract_title, abstract_body, final');
 	
 	$affiliations = array();
 	for ($i = 1; $i <= 8; $i++) {
@@ -86,7 +93,7 @@ function addAbstract($data, $id = null, $auth_key = null) {
 	// Generate the bind_param type argument
 	$param_types = '';
 	foreach ($columns as $col) {
-		if ($col == 'id') {
+		if ($col == 'id' || $col == 'final') {
 			$type = 'i';
 		} else if ($col == 'picture_data') {
 			$type = 'b';
@@ -97,7 +104,9 @@ function addAbstract($data, $id = null, $auth_key = null) {
 	}
 	
 	// Store the data in the DB
+	echo "INSERT INTO abstract ($columns_string) VALUES ($column_placeholders) ON DUPLICATE KEY UPDATE $columns_update_string";
 	$query = $db->prepare("INSERT INTO abstract ($columns_string) VALUES ($column_placeholders) ON DUPLICATE KEY UPDATE $columns_update_string");
+	echo $db->error;
 	call_user_func_array(array(&$query, 'bind_param'), array_merge(array($param_types), assoc_array_slice($columns, $data)));
 	
 	// Store the picture to the DB
