@@ -2,28 +2,34 @@
 $(document).ready(function() {
 	$("#abstract-form").validate({
 		rules: {
-			email: { email: true },
 			degree_year: {
 				required: function(element) {
 					return $("#author_status").val() == "postdoc";
 				}
 			},
-			picture: { accept: "png,jpe?g" },
+			
+			picture: {
+				accept: "png,jpe?g"
+			},
+			
 			abstract_category_other: {
 				required: function(element) {
 					return $("#abstract_category").val() == "other";
 				}
 			},
-			abstract_body: { maxWords: 250 }
+			
+			abstract_body: {
+				maxWords: 250
+			}
 		}
 	});
 });
 
 // Set the custom validator messages
 $.extend($.validator.messages, {
-	required: " (required) ",
-	email: " (must be a valid email address) ",
-	accept: " (must be a PNG or JPEG image) "
+	required: "required",
+	email: "must be a valid email address",
+	accept: "must be a PNG or JPEG image"
 });
 
 // Returns the word count of a jQuery form element
@@ -42,17 +48,33 @@ $.validator.addMethod("maxWords", function(value, element, wordLimit) {
 	
 	// Check if the count is within limits
 	return count <= wordLimit;
-}, $.validator.format(" (word limit: {0} words) "));
+}, $.validator.format("word limit: {0} words"));
+
+// Validate affiliation references
+$.validator.addMethod("affiliation_reference", function(value, element) {
+	if (!value) {
+		return true;
+	}
+	
+	var affiliations = value.split(/,/);
+	for (var i in affiliations) {
+		if (!$("#affiliation_" + affiliations[i]).val()) {
+			return false;
+		}
+	}
+	return true;
+}, "a referenced affiliation is empty");
 
 // Whenever author_status changes, rerun the degree_year required check
 $(document).ready(function() {
-	$("#author_status").bind($.browser.msie ? 'propertychange' : 'change', function () {
+	$("#author_status").change(function () {
 		$("#degree_year").valid();
 	});
 });
+
 // Whenever author_status changes, show or hide degree_year
 $(document).ready(function() {
-	$("#author_status").bind($.browser.msie ? 'propertychange' : 'change', function () {
+	$("#author_status").change(function () {
 		if ($("#author_status").val() == "postdoc") {
 			$("#degree_year").closest("tr").css("display", "");
 		} else {
@@ -63,7 +85,7 @@ $(document).ready(function() {
 
 // Whenever abstract_category changes, rerun the abstract_category_other required check
 $(document).ready(function() {
-	$("#abstract_category").bind($.browser.msie ? 'propertychange' : 'change', function () {
+	$("#abstract_category").change(function () {
 		$("#abstract_category_other").valid();
 	});
 });
@@ -71,20 +93,20 @@ $(document).ready(function() {
 // Update #author_1_* with the primary author information
 // Note: this always overwrites #author_1_* when these elements are changed!
 $(document).ready(function() {
-	$("#firstname").bind($.browser.msie ? 'propertychange' : 'change', function() {
+	$("#firstname").change(function() {
 		$("#author_1_firstname").val($("#firstname").val());
 	});
-	$("#middlename").bind($.browser.msie ? 'propertychange' : 'change', function() {
+	$("#middlename").change(function() {
 		$("#author_1_middlename").val($("#middlename").val());
 	});
-	$("#lastname").bind($.browser.msie ? 'propertychange' : 'change', function() {
+	$("#lastname").change(function() {
 		$("#author_1_lastname").val($("#lastname").val());
 	});
 });
 
 // Whenever abstract_category changes, show or hide abstract_category_other
 $(document).ready(function() {
-	$("#abstract_category").bind($.browser.msie ? 'propertychange' : 'change', function () {
+	$("#abstract_category").change(function () {
 		if ($("#abstract_category").val() == "other") {
 			$("#abstract_category_other").closest("tr").css("display", "");
 		} else {
@@ -93,9 +115,9 @@ $(document).ready(function() {
 	}).change();
 });
 
-// Make all text input fields autogrow
+// Make text input fields autogrow, unless they're in a multi-field table
 $(document).ready(function () {
-	$("input[type='text']").autoGrowInput();
+	$("table[class!=multitext] input[type='text']").autoGrowInput();
 });
 
 // Set up the Fill Sample Values button

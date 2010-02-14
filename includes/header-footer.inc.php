@@ -11,6 +11,9 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" href="style.css" type="text/css" />
+	<!--[if IE]>
+		<link rel="stylesheet" href="style-ie.css" type="text/css" />
+	<![endif]-->
 	<!--[if IE 6]>
 		<link rel="stylesheet" href="style-ie6.css" type="text/css" />
 	<![endif]-->

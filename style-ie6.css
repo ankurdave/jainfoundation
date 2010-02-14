@@ -20,3 +20,8 @@
 	width: 139px;
 	float: none; /* otherwise IE crashes: http://support.microsoft.com/kb/925418/ */
 }
+
+/* IE6 doesn't support :hover, but at least we can make it easier to see what's underneath */
+table.multitext label.error {
+	filter: alpha(opacity=50);
+}

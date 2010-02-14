@@ -263,11 +263,21 @@ h2, h3 {
 	font-weight: bold;
 }
 
-td.error, label.error {
-	color: red;
-}
 input.error, .error input, textarea.error {
-	background-color: #F99;
+	border: 2px solid red;
+}
+
+label.error, .hoveringLabel {
+	float: right;
+	margin: 0 10px 0 5px;
+	padding: 2px 4px;
+	background-color: black; /* make it opaque */
+	color: white;
+	
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-box-shadow: black 2px 2px 5px;
+	-webkit-box-shadow: black 2px 2px 5px;
 }
 
 form textarea {
@@ -283,6 +293,16 @@ table.multitext td.label {
 }
 table.multitext input {
 	width: 90%; /* make input boxes in the table fit */
+}
+table.multitext label.error {
+	float: none;
+	position: absolute; /* make error messages not affect table layout */
+}
+table.multitext label.error {	
+	opacity: 0.8;
+}
+table.multitext label.error:hover {
+	opacity: 0.1;
 }
 
 /* Page nav */

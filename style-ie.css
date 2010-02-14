@@ -1,0 +1,12 @@
+label.error, .hoveringLabel {
+	float: none; /* otherwise they show up on the next line */
+}
+
+table.multitext label.error {
+	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+	filter: alpha(opacity=80);
+}
+table.multitext label.error:hover {
+	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=10)";
+	filter: alpha(opacity=10);
+}

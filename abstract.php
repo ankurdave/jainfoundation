@@ -111,6 +111,7 @@
 			print_text_field('email', array(
 				'label' => 'Email',
 				'required' => true,
+				'class' => array('email'),
 				'value' => $values,
 			));
 			print_select_field('author_status', array(
@@ -181,6 +182,9 @@
 				),
 				array(
 					'label' => "Author #$i",
+					'class' => array(
+						'_affiliation' => array('affiliation_reference'),
+					),
 					'value' => $values,
 				));
 			}
@@ -265,7 +269,7 @@
 		));
 	?>
 
-	<div id="word_count_text" style="display:none">(current word count: <span id="word_count">0</span> words)</div>
+	<div id="word_count_text" class="hoveringLabel" style="display:none">current word count: <span id="word_count">0</span> words</div>
 	
 	<p>
 		<input type="submit" name="action" value="Preview">

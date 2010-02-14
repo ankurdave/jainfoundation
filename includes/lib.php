@@ -193,6 +193,7 @@ function get_error_text($field, $text = "(required)") {
  * required -- boolean
  * label -- string (may contain HTML)
  * value -- assoc array containing ($id => 'field value')
+ * class -- array containing other classes to apply to the element
  */
 function print_field($id, $element_html, $options = array()) {
 ?>
@@ -212,7 +213,9 @@ function print_field($id, $element_html, $options = array()) {
 	
 	<td>
 		<?php echo $element_html ?>
-		<?php echo $options['instructions'] ?>
+		<label for="<?php echo htmlentities($id) ?>">
+			<?php echo $options['instructions'] ?>
+		</label>
 	</td>
 	
 	</tr>
@@ -227,13 +230,37 @@ function print_field($id, $element_html, $options = array()) {
  */
 function print_upload_field($id, $options = array()) {
 	$id_esc = htmlentities($id);
-	$required_html = $options['required'] ? 'class="required"' : '';
+	$classes_html = build_class_attribute($options['required'], $options['class']);
 	
 	$element_html = <<<EOD
-<input type="file" name="$id_esc" id="$id_esc" $required_html />
+<input type="file" name="$id_esc" id="$id_esc" $classes_html />
 EOD;
 
 	print_field($id, $element_html, $options);
+}
+
+/**
+ * Creates the class attribute for a form field.
+ * Internal function intended for use by print_*_field()
+ * 
+ * @param boolean $required whether or not the 'required' class should be included
+ * @param array $extra_classes an array of extra classes to apply
+ */
+function build_class_attribute($required, $extra_classes) {
+	// Prepare the options
+	// This allows people to pass in undefined for $classes (instead of an empty array) if they want it to be empty
+	if (!is_array($extra_classes)) {
+		$extra_classes = array();
+	}
+	
+	// Build the class string
+	$classes = array();
+	if ($required) {
+		$classes[] = 'required';
+	}
+	$classes = array_merge($classes, array_map('htmlentities', $extra_classes));
+	$classes_html = 'class="' . join(' ', $classes) . '"';
+	return $classes_html;
 }
 
 /**
@@ -245,10 +272,10 @@ EOD;
 function print_text_field($id, $options = array()) {
 	$id_esc = htmlentities($id);
 	$value_esc = print_html($options['value'][$id]);
-	$required_html = $options['required'] ? 'class="required"' : '';
+	$classes_html = build_class_attribute($options['required'], $options['class']);
 	
 	$element_html = <<<EOD
-<input type="text" name="$id_esc" id="$id_esc" value="$value_esc" $required_html />
+<input type="text" name="$id_esc" id="$id_esc" value="$value_esc" $classes_html />
 EOD;
 
 	print_field($id, $element_html, $options);
@@ -263,7 +290,7 @@ EOD;
  */
 function print_select_field($id, $options = array()) {
 	$id_esc = htmlentities($id);
-	$required_html = $options['required'] ? 'class="required"' : '';
+	$classes_html = build_class_attribute($options['required'], $options['class']);
 	
 	$options_array = array();
 	foreach ($options['options'] as $option_value => $option_label) {
@@ -272,7 +299,7 @@ function print_select_field($id, $options = array()) {
 	$options_html = join("\n", $options_array);
 	
 	$element_html = <<<EOD
-<select name="$id_esc" id="$id_esc" $required_html>
+<select name="$id_esc" id="$id_esc" $classes_html>
 	$options_html
 </select>
 EOD;
@@ -282,7 +309,7 @@ EOD;
 
 /**
  * Creates an HTML option in a select form field.
- * Intended for use by print_select_field()
+ * Internal function intended for use by print_select_field()
  * 
  * @param string $option_value the value, or id, of the option
  * @param string $option_label the user-visible label for the option
@@ -308,7 +335,10 @@ EOD;
  * required -- boolean
  * label -- string
  * value -- assoc array containing ($id => 'field value')
- */function print_textarea_field($id, $options = array()) {
+ * class -- array containing other classes to apply to the element
+ */
+function print_textarea_field($id, $options = array()) {
+	$classes_html = build_class_attribute($options['required'], $options['class']);
 ?>
 	<table>
 	<?php if (isset($_GET["error_$id"])) { ?>
@@ -330,13 +360,12 @@ EOD;
 
 	<p><?php echo htmlentities($options['instructions']) ?></p>
 
-	<p>
-		<textarea
-			name="<?php echo htmlentities($id) ?>"
-			id="<?php echo htmlentities($id) ?>"
-			rows="24" cols="80"
-		><?php echo print_html($options['value'][$id]) ?></textarea>
-	</p>
+	<textarea
+		name="<?php echo htmlentities($id) ?>"
+		id="<?php echo htmlentities($id) ?>"
+		rows="24" cols="80"
+		<?php echo $classes_html ?>
+	><?php echo print_html($options['value'][$id]) ?></textarea>
 <?php
 }
 
@@ -348,6 +377,7 @@ EOD;
  * @param array $options an assoc array with the following optional fields:
  * label -- string
  * value -- assoc array containing ($id => 'field value')
+ * class -- assoc array containing ($id_suffix => array('class1', 'class2', ...)
  */
 function print_multi_text_field($id_prefix, $fields, $options = array()) {
 ?>
@@ -357,6 +387,7 @@ function print_multi_text_field($id_prefix, $fields, $options = array()) {
 	<?php
 		foreach (array_keys($fields) as $id_suffix) {
 			$id = $id_prefix . $id_suffix;
+			$classes_html = build_class_attribute($fields[$id_suffix], $options['class'][$id_suffix]);
 	?>
 		<?php if (isset($_GET["error_$id"])) { ?>
 			<td class="error">
@@ -368,9 +399,7 @@ function print_multi_text_field($id_prefix, $fields, $options = array()) {
 			name="<?php echo htmlentities($id) ?>"
 			id="<?php echo htmlentities($id) ?>"
 			value="<?php echo print_html($options['value'][$id]) ?>"
-			<?php if ($fields[$id_suffix]) { ?>
-				class="required"
-			<?php } ?>
+			<?php echo $classes_html ?>
 		/>
 
 		</td>
