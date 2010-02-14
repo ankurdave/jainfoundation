@@ -17,7 +17,7 @@
 		margin: 0;
 	}
 	h2 {
-		margin: 0.1in 0;
+		margin: 0 0.1in;
 	}
 	.pagebreak {
 		page-break-before: always;
