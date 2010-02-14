@@ -272,8 +272,11 @@ table td.input input, table td.input select {
 table label {
 	white-space: nowrap; /* to avoid getting crushed by width:100% */
 }
+table.multitext label.error {
+	white-space: inherit; /* it's floating anyway, so it won't get crushed */
+}
 
-input.error, .error input, textarea.error {
+input.error, .error input, select.error, .error select, textarea.error {
 	border: 2px solid red;
 }
 
