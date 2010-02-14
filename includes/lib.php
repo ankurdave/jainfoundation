@@ -218,8 +218,10 @@ function print_field($id, $element_html, $options = array()) {
 
 	<td><label for="<?php echo htmlentities($id) ?>"><?php echo $options['label'] ?></label></td>
 	
-	<td>
+	<td class="input">
 		<?php echo $element_html ?>
+	</td>
+	<td>
 		<label for="<?php echo htmlentities($id) ?>">
 			<?php echo $options['instructions'] ?>
 		</label>
@@ -389,7 +391,7 @@ function print_textarea_field($id, $options = array()) {
 function print_multi_text_field($id_prefix, $fields, $options = array()) {
 ?>
 	<tr>
-	<td class="label"><?php echo htmlentities($options['label']) ?></td>
+	<th class="label"><?php echo htmlentities($options['label']) ?></th>
 
 	<?php
 		foreach (array_keys($fields) as $id_suffix) {

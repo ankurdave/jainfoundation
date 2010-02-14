@@ -21,6 +21,14 @@ $(document).ready(function() {
 			abstract_body: {
 				maxWords: 250
 			}
+		},
+		errorPlacement: function(error, element) {
+			// If we're in a table, but not a multi-text one, then put the error in the next cell. Otherwise do the default action.
+			if (element.closest("table") && !element.closest("table").hasClass("multitext")) {
+				error.appendTo(element.parent().next());
+			} else {
+				error.insertAfter(element);
+			}
 		}
 	});
 });
@@ -128,11 +136,6 @@ $(document).ready(function() {
 // For affiliation references, allow only numbers and comma
 $(document).ready(function() {
 	$(".affiliation_reference").numeric({allow: ","});
-});
-
-// Make text input fields autogrow, unless they're in a multi-field table
-$(document).ready(function () {
-	$("table[class!='multitext'] input[type='text']").autoGrowInput();
 });
 
 // Set up the Fill Sample Values button

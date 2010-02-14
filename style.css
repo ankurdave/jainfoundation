@@ -263,6 +263,16 @@ h2, h3 {
 	font-weight: bold;
 }
 
+table td.input {
+	width: 100%;
+}
+table td.input input, table td.input select {
+	width: 97%; /* not 100% because of borders */
+}
+table label {
+	white-space: nowrap; /* to avoid getting crushed by width:100% */
+}
+
 input.error, .error input, textarea.error {
 	border: 2px solid red;
 }
@@ -290,13 +300,21 @@ form textarea {
 }
 
 table.multitext {
+	width: 100%;
 	border-spacing: 0.2em;
 }
-table.multitext td.label {
+table.multitext th {
 	white-space: nowrap;
+	font-weight: normal;
 }
-table.multitext input {
-	width: 90%; /* make input boxes in the table fit */
+table.multitext .author_firstname,
+table.multitext .author_lastname {
+	width: 97%;
+
+}
+table.multitext .affiliation_reference,
+table.multitext .author_middlename {
+	width: 3em;
 }
 table.multitext label.error {
 	float: none;
