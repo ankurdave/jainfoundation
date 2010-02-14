@@ -104,9 +104,7 @@ function addAbstract($data, $final = false, $id = null, $auth_key = null) {
 	}
 	
 	// Store the data in the DB
-	echo "INSERT INTO abstract ($columns_string) VALUES ($column_placeholders) ON DUPLICATE KEY UPDATE $columns_update_string";
 	$query = $db->prepare("INSERT INTO abstract ($columns_string) VALUES ($column_placeholders) ON DUPLICATE KEY UPDATE $columns_update_string");
-	echo $db->error;
 	call_user_func_array(array(&$query, 'bind_param'), array_merge(array($param_types), assoc_array_slice($columns, $data)));
 	
 	// Store the picture to the DB
