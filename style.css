@@ -233,10 +233,6 @@ a:visited {
 	color: #336;
 }
 
-p {
-	margin: 0.5em 0;
-}
-
 h1 {
 	font-size: 1.5em;
 	color: #3D7610;
@@ -250,11 +246,24 @@ h3 {
 	color: #900;
 }
 
+p {
+	margin: 0.5em 0;
+}
 h1 { 
 	margin: 0 0 1em 0;
 }
 h2, h3 {
 	margin: 1em 0 0.7em 0;
+}
+
+.subtitle {
+	color: #3D7610;
+	font-size: 1.3em;
+	font-weight: bold;
+	text-align: center;
+}
+.subtitle .sponsor {
+	font-size: 80%;
 }
 
 /* Forms */
@@ -335,6 +344,7 @@ table.multitext label.error:hover {
 	text-align: center; /* center the alt text inside each nav item */
 	list-style-type: none;
 	height: 3em;
+	padding: 0;
 }
 
 #page_nav li {
@@ -358,3 +368,4 @@ table.multitext label.error:hover {
 	background-color: #feffd7;
 	font-weight: bold;
 }
+

@@ -17,3 +17,4 @@ php_value file_uploads On
 php_value upload_max_filesize 1M
 php_value post_max_size 2M
 
+php_value include_path ".:includes:../includes"
