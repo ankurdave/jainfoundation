@@ -1,15 +1,10 @@
 <?php
 	include 'lib.php';
 	
-	printHeader(array('title' => 'Conference 2009 | Location'));
+	printHeader(array('title' => 'Conference 2010 | Location and Accommodations', 'page_nav_id' => 'location'));
 ?>
 
-<h1 style="text-align:center">Third Annual Dysferlin Conference</h1>
-<div class="subtitle">
-	<p class="date">June 2&ndash;5, 2009</p>
-	<p class="location">Boston, MA</p>
-	<p class="sponsor">Sponsored by the Jain Foundation, Inc.</p>
-</div>
+<?php include 'conference-title.inc.php' ?>
 
 <?php include 'includes/menu.inc.php' ?>
 

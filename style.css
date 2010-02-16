@@ -369,3 +369,21 @@ table.multitext label.error:hover {
 	font-weight: bold;
 }
 
+/* Schedule */
+
+h2.day {
+	color: black;
+}
+
+h3.time {
+	color: #008000;
+}
+
+.talk .title {
+	display: block;
+	font-style: italic;
+}
+
+.talk .people {
+	display: block;
+}

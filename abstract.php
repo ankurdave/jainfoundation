@@ -14,10 +14,10 @@
 		$values = getAbstract($_COOKIE['id']);
 	}
 	
-	printHeader(array('title' => 'Submit an Abstract', 'scripts' => array('js/jquery.js', 'js/jquery.validate.js', 'js/jquery.autogrowinput.js', 'js/jquery.alphanumeric.js', 'js/abstract.js')));
+	printHeader(array('title' => 'Conference 2010 | Abstract Submission', 'scripts' => array('js/jquery.js', 'js/jquery.validate.js', 'js/jquery.autogrowinput.js', 'js/jquery.alphanumeric.js', 'js/abstract.js',), 'page_nav_id' => 'abstract'));
 ?>
 
-<h1>Submit an Abstract</h1>
+<?php include 'conference-title.inc.php' ?>
 
 <?php include 'includes/menu.inc.php' ?>
 

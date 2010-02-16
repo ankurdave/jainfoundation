@@ -16,12 +16,14 @@
 	
 	// TODO: have this form save your data in case of error
 	
-	printHeader(array('title' => 'Register'));
+	printHeader(array('title' => 'Conference 2010 | Registration', 'page_nav_id' => 'register'));
 ?>
 
-<h1>Register</h1>
+<?php include 'conference-title.inc.php' ?>
 
 <?php include 'includes/menu.inc.php' ?>
+
+<h2>Registration</h2>
 
 <?php if ($error_general) { ?><p class="error">Something bad happened!</p><?php } ?>
 
