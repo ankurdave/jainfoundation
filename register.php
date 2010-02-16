@@ -1,22 +1,19 @@
 <?php
 	require 'includes/lib.php';
 	
-	if (isset($_GET['error_name'])) {
-		$error_name = true;
-	}
-	if (isset($_GET['error_email'])) {
-		$error_email = true;
-	}
-	if (isset($_GET['error_phone'])) {
-		$error_phone = true;
-	}
-	if (isset($_GET['error_general'])) {
-		$error_general = true;
+	$submit_location = 'register-submit.php';
+	
+	// Default values
+	$values = array();
+	
+	// Populate the fields with the saved values
+	if (isset($_GET['id'])) {
+		$values = getRegistrant($_GET['id']);
+	} else if (isset($_COOKIE['id'])) {
+		$values = getRegistrant($_COOKIE['id']);
 	}
 	
-	// TODO: have this form save your data in case of error
-	
-	printHeader(array('title' => 'Conference 2010 | Registration', 'page_nav_id' => 'register'));
+	printHeader(array('title' => 'Conference 2010 | Registration', 'scripts' => array('js/jquery.js', 'js/jquery.validate.js', 'js/register.js',), 'page_nav_id' => 'register'));
 ?>
 
 <?php include 'conference-title.inc.php' ?>
@@ -25,28 +22,294 @@
 
 <h2>Registration</h2>
 
-<?php if ($error_general) { ?><p class="error">Something bad happened!</p><?php } ?>
-
-<form action="register-submit.php" method="post">
+<?php
+	if (isset($values['id'])) {
+		$data_auth_query_string = "?id=" . $values['id'] . "&auth_key=" . $values['auth_key'];
+	} else {
+		$data_auth_query_string = '';
+	}
+?>
+<form action="<?php echo $submit_location . $data_auth_query_string ?>" method="post" id="register-form">
+	<h3>Personal Information</h3>
 	<table>
-		<tr>
-			<td>Name:</td>
-			<td><input type="text" name="name"/></td>
-			<td<?php if ($error_name) { ?> class="error" <?php } ?>>(required)</td>
-		</tr>
-		<tr>
-			<td>Email address:</td>
-			<td><input type="text" name="email"/></td>
-			<td<?php if ($error_email) { ?> class="error" <?php } ?>>(required)</td>
-		</tr>
-		<tr>
-			<td>Phone number:</td>
-			<td><input type="text" name="phone"/></td>
-			<td <?php if ($error_phone) { ?> class="error" <?php } ?>>(must have 10 digits)</td>
-		</tr>
+		<?php
+			print_text_field('firstname', array(
+				'label' => 'First Name',
+				'required' => true,
+				'value' => $values,
+			));
+			print_text_field('lastname', array(
+				'label' => 'Last Name',
+				'required' => true,
+				'value' => $values,
+			));
+			print_select_field('degree', array(
+				'label' => 'Degree',
+				'required' => true,
+				'options' => array(
+					'' => '',
+					'none' => 'None',
+					'md' => 'MD',
+					'phd' => 'PhD',
+					'other' => 'Other',
+				),
+				'value' => $values,
+			));
+			print_text_field('degree_other', array(
+				'label' => 'Other Degree',
+				'required' => false, // only required if degree is other
+				'value' => $values,
+			));
+			print_select_field('position', array(
+				'label' => 'Position Title',
+				'required' => false,
+				'options' => array(
+					'' => '',
+					'faculty_researcher' => 'Faculty/Researcher',
+					'postdoc' => 'Postdoc',
+					'grad_student' => 'Graduate Student',
+					'other' => 'Other',
+				),
+				'value' => $values,
+			));
+			print_text_field('position_other', array(
+				'label' => 'Other Position Title',
+				'required' => false, // only required if position is other
+				'value' => $values,
+			));
+			print_text_field('institution', array(
+				'label' => 'Institution',
+				'required' => true,
+				'value' => $values,
+			));
+			print_select_field('institution_profile', array(
+				'label' => 'Institution Profile',
+				'required' => true,
+				'options' => array(
+					'' => '',
+					'academic' => 'Academic',
+					'industry_corporate' => 'Industry/Corporate',
+					'government' => 'Government',
+					'other' => 'Other',
+				),
+				'value' => $values,
+			));
+			print_text_field('institution_profile_other', array(
+				'label' => 'Other Institution Profile',
+				'required' => false, // only required if institution_profile is other
+				'value' => $values,
+			));
+			print_text_field('department', array(
+				'label' => 'Department',
+				'required' => false,
+				'value' => $values,
+			));
+			print_text_field('street_address', array(
+				'label' => 'Address',
+				'required' => true,
+				'value' => $values,
+			));
+			print_text_field('city', array(
+				'label' => 'City',
+				'required' => false,
+				'value' => $values,
+			));
+			print_text_field('state_province', array(
+				'label' => 'State/Province',
+				'required' => false,
+				'value' => $values,
+			));
+			print_text_field('zip_postal_code', array(
+				'label' => 'Zip/Postal Code',
+				'required' => false,
+				'value' => $values,
+			));
+			print_text_field('country', array(
+				'label' => 'Country',
+				'required' => false,
+				'value' => $values,
+			));
+			print_text_field('email', array(
+				'label' => 'Email',
+				'required' => true,
+				'class' => array('email'),
+				'value' => $values,
+			));
+			print_text_field('phone', array(
+				'label' => 'Phone Number',
+				'required' => true,
+				'value' => $values,
+			));
+			print_text_field('fax', array(
+				'label' => 'Fax',
+				'required' => false,
+				'value' => $values,
+			));
+		?>
+	</table>
+	<p>Are you planning to submit an abstract for oral or poster presentation?</p>
+	<table>
+		<?php
+			print_radio_field('submitting_abstract', array(
+				'label' => 'Submitting Abstract',
+				'required' => true,
+				'options' => array(
+					'yes' => 'Yes',
+					'no' => 'No',
+				),
+				'value' => $values,
+			));
+		?>
 	</table>
 	
-	<p><input type="submit" name="submitted" value="Submit"></p>
+	<h3>Registration Information</h3>
+	<p>Are you a local attendee?</p>
+	<table>
+		<?php
+			print_radio_field('local_attendee', array(
+				'label' => 'Local Attendee',
+				'required' => false,
+				'options' => array(
+					'yes' => 'Yes',
+					'no' => 'No',
+				'value' => $values,
+			));
+		?>
+	</table>
+	<p>Will you need parking at the hotel?</p>
+	<table>
+		<?php
+			print_radio_field('hotel_parking', array(
+				'label' => 'Hotel Parking',
+				'required' => false,
+				'options' => array(
+					'yes' => 'Yes',
+					'no' => 'No',
+				),
+				'value' => $values,
+			));
+		?>
+	</table>
+	<p>Please indicate which days you will be in attendance.</p>
+	<table>
+		<?php
+			print_radio_field('attendance_day1', array(
+				'label' => 'Saturday, Sept 11',
+				'required' => false,
+				'options' => array(
+					'yes' => 'Yes',
+					'no' => 'No',
+					'unknown' => "Don't know",
+				),
+				'value' => $values,
+			));
+			print_radio_field('attendance_day2', array(
+				'label' => 'Sunday, Sept 12',
+				'required' => false,
+				'options' => array(
+					'yes' => 'Yes',
+					'no' => 'No',
+					'unknown' => "Don't know",
+				),
+				'value' => $values,
+			));
+			print_radio_field('attendance_day3', array(
+				'label' => 'Monday, Sept 13',
+				'required' => false,
+				'options' => array(
+					'yes' => 'Yes',
+					'no' => 'No',
+					'unknown' => "Don't know",
+				),
+				'value' => $values,
+			));
+			print_radio_field('attendance_day4', array(
+				'label' => 'Tuesday, Sept 14',
+				'required' => false,
+				'options' => array(
+					'yes' => 'Yes',
+					'no' => 'No',
+					'unknown' => "Don't know",
+				),
+				'value' => $values,
+			));
+		?>
+	</table>
+	<p>Please indicate which meals you will be attending.</p>
+	<table>
+		<?php
+			print_radio_field('meals_day2_breakfast', array(
+				'label' => 'Sunday, Sept 12 &ndash; Breakfast',
+				'required' => false,
+				'options' => array(
+					'yes' => 'Yes',
+					'no' => 'No',
+					'unknown' => "Don't know",
+				),
+				'value' => $values,
+			));
+			print_radio_field('meals_day2_lunch', array(
+				'label' => 'Sunday, Sept 12 &ndash; Lunch',
+				'required' => false,
+				'options' => array(
+					'yes' => 'Yes',
+					'no' => 'No',
+					'unknown' => "Don't know",
+				),
+				'value' => $values,
+			));
+			print_radio_field('meals_day3_breakfast', array(
+				'label' => 'Monday, Sept 13 &ndash; Breakfast',
+				'required' => false,
+				'options' => array(
+					'yes' => 'Yes',
+					'no' => 'No',
+					'unknown' => "Don't know",
+				),
+				'value' => $values,
+			));
+			print_radio_field('meals_day3_lunch', array(
+				'label' => 'Monday, Sept 13 &ndash; Lunch',
+				'required' => false,
+				'options' => array(
+					'yes' => 'Yes',
+					'no' => 'No',
+					'unknown' => "Don't know",
+				),
+				'value' => $values,
+			));
+			print_radio_field('meals_day4_breakfast', array(
+				'label' => 'Tuesday, Sept 14 &ndash; Breakfast',
+				'required' => false,
+				'options' => array(
+					'yes' => 'Yes',
+					'no' => 'No',
+					'unknown' => "Don't know",
+				),
+				'value' => $values,
+			));
+			print_radio_field('meals_day4_lunch', array(
+				'label' => 'Tuesday, Sept 14 &ndash; Lunch',
+				'required' => false,
+				'options' => array(
+					'yes' => 'Yes',
+					'no' => 'No',
+					'unknown' => "Don't know",
+				),
+				'value' => $values,
+			));
+		?>
+	</table>
+	<table>
+		<?php
+			print_text_field('meals_gala_dinner_numguests', array(
+				'label' => 'Evening of Sept ?? &ndash; Gala Dinner &ndash; Number of Guests',
+				'required' => false,
+				'value' => $values,
+			));
+		?>
+	</table>
+	<p>(Note there is a $50/guest charge for the gala dinner that is required at time of registration.  This charge is non-refundable if not canceled by July ??, 2010)</p>
 </form>
 
 <?php
