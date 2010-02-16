@@ -19,8 +19,8 @@
 	<![endif]-->
 	<style type="text/css">
 	<?php if (isset($args['page_nav_id'])) { ?>
-		#<?php echo $args['page_nav_id'] ?> a {
-			background-color: white !important;
+		li#<?php echo $args['page_nav_id'] ?> a {
+			background-color: white;
 		}
 	<?php } ?>
 	</style>

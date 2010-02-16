@@ -337,23 +337,24 @@ table.multitext label.error:hover {
 /* Page nav */
 #page_nav_wrapper {
 	width: 100%;
-	text-align: center; /* center the nav bar on the page */
 }
 
 #page_nav {
 	text-align: center; /* center the alt text inside each nav item */
 	list-style-type: none;
 	height: 3em;
+	margin: 1em 0;
 	padding: 0;
 }
 
 #page_nav li {
 	display: block;
 	float: left;
-	width: 8em;
+	width: 100px; /* 5 will fit in 560px (assuming 5px margins, 0px padding, and 1px border) */
 	height: 100%;
-	border: 1px solid gray; /* for debugging */
+	border: 1px solid #CCC;
 	margin: 0 5px;
+	padding: 0px;
 }
 
 #page_nav li a {
