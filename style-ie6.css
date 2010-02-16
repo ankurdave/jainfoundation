@@ -15,6 +15,11 @@
 	padding-left: 0px;
 }
 
+/* Otherwise the nav items are too wide and wrap to the next line */
+#page_nav li {
+	width: 98px; /* 5 will fit in 560px (assuming 5px margins, 0px padding, and 1px border) */
+}
+
 /* Otherwise submit button is on next line */
 #search #search_box {
 	width: 139px;
