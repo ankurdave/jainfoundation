@@ -430,7 +430,7 @@
 	</ul>
 	
 	<p>
-		<input type="submit" name="action" value="Submit">
+		<input type="submit" name="action" value="Submit" />
 	</p>			
 </form>
 
