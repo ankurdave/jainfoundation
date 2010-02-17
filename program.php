@@ -1,7 +1,7 @@
 <?php
 	include 'lib.php';
 	
-	printHeader(array('title' => 'Conference 2009 | Meeting Agenda', 'page_nav_id' => 'program'));
+	printHeader(array('title' => 'Conference 2009 | Scientific Program', 'page_nav_id' => 'program'));
 ?>
 
 <?php include 'conference-title.inc.php' ?>
