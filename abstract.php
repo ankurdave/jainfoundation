@@ -39,6 +39,8 @@
 	}
 ?>
 <form action="<?php echo $submit_location . $data_auth_query_string ?>" method="post" id="abstract-form" enctype="multipart/form-data" encoding="multipart/form-data">
+	<p><input type="hidden" name="MAX_FILE_SIZE" value="1000000" /></p>
+	
 	<h3>Presenting/First Author</h3>
 	<table>
 		<?php
@@ -140,7 +142,6 @@
 				'value' => $values,
 			));
 		?>
-		<input type="hidden" name="MAX_FILE_SIZE" value="1000000" />
 		<?php
 			print_upload_field('picture', array(
 				'label' => 'Picture',

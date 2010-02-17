@@ -477,12 +477,12 @@ function print_textarea_field($id, $options = array()) {
 
 	<p><?php echo htmlentities($options['instructions']) ?></p>
 
-	<textarea
+	<p><textarea
 		name="<?php echo htmlentities($id) ?>"
 		id="<?php echo htmlentities($id) ?>"
 		rows="24" cols="80"
 		<?php echo $classes_html ?>
-	><?php echo print_html($options['value'][$id]) ?></textarea>
+	><?php echo print_html($options['value'][$id]) ?></textarea></p>
 <?php
 }
 

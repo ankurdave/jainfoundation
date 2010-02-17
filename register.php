@@ -31,8 +31,8 @@
 	}
 ?>
 <form action="<?php echo $submit_location . $data_auth_query_string ?>" method="post" id="register-form">
-	<input type="button" id="sample_values" value="Fill sample values" />
-
+	<p><input type="button" id="sample_values" value="Fill sample values" /></p>
+	
 	<h3>Personal Information</h3>
 	<table>
 		<?php
@@ -425,7 +425,7 @@
 	
 	<p>Payment options:</p>
 	<ul>
-		<li>Mail in Check made out to the "Jain Foundation Inc": (must be <strong>received</strong> within 20 days of registration or applicant will be unregistered)</il>
+		<li>Mail in Check made out to the "Jain Foundation Inc": (must be <strong>received</strong> within 20 days of registration or applicant will be unregistered)</li>
 		<li>Credit card: PayPal</li>
 	</ul>
 	
