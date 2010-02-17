@@ -91,7 +91,7 @@ CREATE TABLE `abstract` (
   `final` tinyint(1) DEFAULT NULL,
   `author_status_other` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=33 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -109,6 +109,56 @@ CREATE TABLE `person` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `registrant`
+--
+
+DROP TABLE IF EXISTS `registrant`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `registrant` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `auth_key` varchar(255) DEFAULT NULL,
+  `firstname` varchar(255) DEFAULT NULL,
+  `lastname` varchar(255) DEFAULT NULL,
+  `degree` varchar(255) DEFAULT NULL,
+  `degree_other` varchar(255) DEFAULT NULL,
+  `position` varchar(255) DEFAULT NULL,
+  `position_other` varchar(255) DEFAULT NULL,
+  `institution` varchar(255) DEFAULT NULL,
+  `institution_profile` varchar(255) DEFAULT NULL,
+  `institution_profile_other` varchar(255) DEFAULT NULL,
+  `department` varchar(255) DEFAULT NULL,
+  `street_address` varchar(255) DEFAULT NULL,
+  `city` varchar(255) DEFAULT NULL,
+  `state_province` varchar(255) DEFAULT NULL,
+  `zip_postal_code` varchar(255) DEFAULT NULL,
+  `country` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `phone` varchar(255) DEFAULT NULL,
+  `fax` varchar(255) DEFAULT NULL,
+  `submitting_abstract` varchar(255) DEFAULT NULL,
+  `local_attendee` varchar(255) DEFAULT NULL,
+  `hotel_parking` varchar(255) DEFAULT NULL,
+  `attendance_day1` varchar(255) DEFAULT NULL,
+  `attendance_day2` varchar(255) DEFAULT NULL,
+  `attendance_day3` varchar(255) DEFAULT NULL,
+  `attendance_day4` varchar(255) DEFAULT NULL,
+  `meals_day2_breakfast` varchar(255) DEFAULT NULL,
+  `meals_day2_lunch` varchar(255) DEFAULT NULL,
+  `meals_day3_breakfast` varchar(255) DEFAULT NULL,
+  `meals_day3_lunch` varchar(255) DEFAULT NULL,
+  `meals_day4_breakfast` varchar(255) DEFAULT NULL,
+  `meals_day4_lunch` varchar(255) DEFAULT NULL,
+  `meals_gala_dinner_numguests` varchar(255) DEFAULT NULL,
+  `share_room` varchar(255) DEFAULT NULL,
+  `gender` varchar(255) DEFAULT NULL,
+  `arrival_date` varchar(255) DEFAULT NULL,
+  `departure_date` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -119,4 +169,4 @@ CREATE TABLE `person` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2010-02-13 22:41:53
+-- Dump completed on 2010-02-16 20:58:55

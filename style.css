@@ -275,7 +275,9 @@ h2, h3 {
 table td.input {
 	width: 100%;
 }
-table td.input input, table td.input select {
+table td.input input[type="text"],
+table td.input input[type="file"],
+table td.input select {
 	width: 97%; /* not 100% because of borders */
 }
 table label {

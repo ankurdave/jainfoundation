@@ -14,16 +14,74 @@ function connectToDB() {
 	return $db;
 }
 
-function addPerson($name, $email, $phone) {
-	static $db = null;
-	if ($db == null) $db = connectToDB();
+/*
+ * Adds/updates a registrant in the DB.
+ * @param array $data an assoc array with ('column' => 'value')
+ * @param string $id the ID of an already-existing column. Will insert a new column if null
+ * @param string $auth_key the auth key of an already-existing column. Will insert a new column if null
+ */
+function addRegistrant($data, $id = null, $auth_key = null) {
+	$db = connectToDB();
+	
+	$data['final'] = $final;
+	
+	$update = !is_null($id) && !is_null($auth_key);
+	if ($update) {
+		// Use the given id and auth key
+		$data['id'] = $id;
+		$data['auth_key'] = $auth_key;
+		
+		// Check if the id and auth key are actually valid
+		$query = $db->prepare("SELECT id FROM registrant WHERE id=? AND auth_key=?");
+		$query->bind_param('is', $id, $auth_key);
+		$query->execute();
+		$query->store_result();
+		if ($query->num_rows() < 1) {
+			return false;
+		}
+	} else {
+		// Create a new id and auth key
+		$result = $db->query("SELECT MAX(id) FROM registrant");
+		list($prevId) = $result->fetch_array();
+		$data['id'] = $prevId + 1;
+		$result->free();
+		
+		$data['auth_key'] = uniqid('', true); // TODO: use a real uuid for more security
+	}
+	
+	// Build the list of columns
+	$columns = explode(' ', 'id auth_key firstname lastname degree degree_other position position_other institution institution_profile institution_profile_other department street_address city state_province zip_postal_code country email phone fax submitting_abstract local_attendee hotel_parking attendance_day1 attendance_day2 attendance_day3 attendance_day4 meals_day2_breakfast meals_day2_lunch meals_day3_breakfast meals_day3_lunch meals_day4_breakfast meals_day4_lunch meals_gala_dinner_numguests share_room gender arrival_date departure_date');
+	$columns_string = join(', ', $columns);
+	
+	$columns_update = array_map('make_column_update_sql', $columns); // for the ON DUPLICATE KEY UPDATE clause
+	$columns_update_string = join(', ', $columns_update);
+	
+	// Generate the "?, ?, ..." for the VALUES clause
+	$column_placeholders = join(', ', array_fill(0, count($columns), '?'));
+	
+	// Generate the bind_param type argument
+	$param_types = '';
+	foreach ($columns as $col) {
+		if ($col == 'id') {
+			$type = 'i';
+		} else {
+			$type = 's';
+		}
+		$param_types .= $type;
+	}
 	
 	// Store the data in the DB
-	static $query = null;
-	if ($query == null) $query = $db->prepare('INSERT INTO person (name, email, phone) VALUES (?, ?, ?)');
-	$query->bind_param('sss', $name, $email, $phone);
+	$query = $db->prepare("INSERT INTO registrant ($columns_string) VALUES ($column_placeholders) ON DUPLICATE KEY UPDATE $columns_update_string");
+	call_user_func_array(array(&$query, 'bind_param'), array_merge(array($param_types), assoc_array_slice($columns, $data)));
+	
 	$success = $query->execute();
-	return $success;
+	
+	// Return the auth data
+	if ($success) {
+		return assoc_array_filter(array('id', 'auth_key'), $data);
+	} else {
+		return $success;
+	}
 }
 
 /*
@@ -324,14 +382,64 @@ EOD;
  * @param string $option_label the user-visible label for the option
  * @param boolean $selected whether or not this is the default option
  */
-function convertOptionToHTML($option_value, $option_label, $selected_value = false) {
-	if ($option_value == $selected_value) {
-		$selected = 'selected="selected"';
+function convertOptionToHTML($option_value, $option_label, $selected = false) {
+	if ($selected) {
+		$selected_html = 'selected="selected"';
 	} else {
-		$selected = '';
+		$selected_html = '';
 	}
 	return <<<EOD
-<option value="$option_value" $selected>$option_label</option>
+<option value="$option_value" $selected_html>$option_label</option>
+EOD;
+}
+
+/**
+ * Prints a set of radio buttons.
+ * 
+ * @param string $id the field id
+ * @param array $options an assoc array with the field options in print_field(), plus:
+ * 'options' => array('option_value' => 'option_label')
+ */
+function print_radio_field($id, $options = array()) {
+	$id_esc = htmlentities($id);
+	$classes_html = build_class_attribute($options['required'], $options['class']);
+	
+	$options_array = array();
+	foreach ($options['options'] as $option_value => $option_label) {
+		$options_array[] = convertOptiontoHTMLRadio($id_esc, $option_value, $option_label, $classes_html, $options['value'][$id] == $option_value);
+	}
+	$options_html = join("\n", $options_array);
+	
+	$element_html = <<<EOD
+<div id="$id_esc" $classes_html>
+	$options_html
+</div>
+EOD;
+
+	print_field($id, $element_html, $options);
+}
+
+/**
+ * Creates an HTML option in a select form field.
+ * Internal function intended for use by print_select_field()
+ * 
+ * @param string $id_esc the html-escaped name of the radio button set
+ * @param string $option_value the value, or id, of the option
+ * @param string $option_label the user-visible label for the option
+ * @param string $classes_html the html attribute for the classes to apply to the radio button
+ * @param boolean $selected whether or not this is the default option
+ */
+function convertOptionToHTMLRadio($id_esc, $option_value, $option_label, $classes_html, $selected = false) {
+	if ($selected) {
+		$selected_html = 'selected="selected"';
+	} else {
+		$selected_html = '';
+	}
+	return <<<EOD
+<label>
+	<input type="radio" name="$id_esc" value="$option_value" $classes_html $selected />
+	$option_label
+</label>
 EOD;
 }
 

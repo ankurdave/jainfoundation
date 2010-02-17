@@ -1,4 +1,5 @@
 <?php
+//	error_reporting(E_ALL);
 	require 'includes/lib.php';
 	
 	$submit_location = 'register-submit.php';
@@ -9,8 +10,8 @@
 	// Populate the fields with the saved values
 	if (isset($_GET['id'])) {
 		$values = getRegistrant($_GET['id']);
-	} else if (isset($_COOKIE['id'])) {
-		$values = getRegistrant($_COOKIE['id']);
+	} else if (isset($_COOKIE['register_id'])) {
+		$values = getRegistrant($_COOKIE['register_id']);
 	}
 	
 	printHeader(array('title' => 'Conference 2010 | Registration', 'scripts' => array('js/jquery.js', 'js/jquery.validate.js', 'js/register.js',), 'page_nav_id' => 'register'));
@@ -30,6 +31,8 @@
 	}
 ?>
 <form action="<?php echo $submit_location . $data_auth_query_string ?>" method="post" id="register-form">
+	<input type="button" id="sample_values" value="Fill sample values" />
+
 	<h3>Personal Information</h3>
 	<table>
 		<?php
@@ -172,6 +175,7 @@
 				'options' => array(
 					'yes' => 'Yes',
 					'no' => 'No',
+				),
 				'value' => $values,
 			));
 		?>
@@ -310,6 +314,124 @@
 		?>
 	</table>
 	<p>(Note there is a $50/guest charge for the gala dinner that is required at time of registration.  This charge is non-refundable if not canceled by July ??, 2010)</p>
+	
+	<h3>Hotel Reservations</h3>
+	<p>Do you want to share a room?</p>
+	<table>
+		<?php
+			print_radio_field('share_room', array(
+				'label' => 'Share a Room',
+				'required' => false,
+				'options' => array(
+					'yes' => 'Yes',
+					'no' => 'No',
+				),
+				'value' => $values,
+			));
+		?>
+	</table>
+	<div id="share_room_yes">
+		<p>If yes, <strong>do not</strong> book a hotel room. The Jain Foundation will match you up with a compatible roommate and book the room for you. Pleas answer the following questions to help with the matching.</p>
+		<table>
+			<?php
+				print_radio_field('gender', array(
+					'label' => 'Gender',
+					'required' => false,
+					'options' => array(
+						'male' => 'Male',
+						'female' => 'Female',
+					),
+					'value' => $values,
+				));
+				print_select_field('arrival_date', array(
+					'label' => 'Arrival Date',
+					'required' => false, // only required if share_room is yes
+					'options' => array(
+						'' => '',
+						'2010-09-08' => 'Wednesday, Sept 8',
+						'2010-09-09' => 'Thursday, Sept 9',
+						'2010-09-10' => 'Friday, Sept 10',
+						'2010-09-11' => 'Saturday, Sept 11',
+						'2010-09-12' => 'Sunday, Sept 12',
+					),
+					'value' => $values,
+				));
+				print_select_field('departure_date', array(
+					'label' => 'Departure Date',
+					'required' => false, // only required if share_room is yes
+					'options' => array(
+						'' => '',
+						'2010-09-12' => 'Sunday, Sept 12',
+						'2010-09-13' => 'Monday, Sept 13',
+						'2010-09-14' => 'Tuesday, Sept 14',
+						'2010-09-15' => 'Wednesday, Sept 15',
+						'2010-09-16' => 'Thursday, Sept 16',
+					),
+					'value' => $values,
+				));
+			?>
+		</table>
+	</div>
+	<div id="share_room_no">
+		<p>If no, follow this link.</p>
+	</div>
+	
+	<h3>Payment</h3>
+	<p>Instructions regarding payment and reimbursement.</p>
+	<?php
+		$now = time();
+	?>
+	<p>
+		The date is <?php echo date('F j, Y', $now) ?>.
+		<?php if ($now < strtotime('June 16, 2010')) { ?>
+			Early registration is open.
+	</p>
+			<ul>
+				<li id="cost_researcher">Researcher: $200 USD</li>
+				<li id="cost_postdoc">Post-Doc: $150 USD</li>
+			</ul>
+			
+			<script type="text/javascript">
+				var researcher_fee = 200;
+				var postdoc_fee = 150;
+				var other_fee = 200;
+			</script>
+		<?php } else if ($now < strtotime('July 16, 2010')) { ?>
+			Regular registration is open.
+	</p>
+			<ul>
+				<li id="cost_researcher">Researcher: $250 USD</li>
+				<li id="cost_postdoc">Post-Doc: $200 USD</li>
+			</ul>
+			
+			<script type="text/javascript">
+				var researcher_fee = 250;
+				var postdoc_fee = 200;
+				var other_fee = 250;
+			</script>
+		<?php } else { ?>
+			Registration is closed. No late or onsite registration is available.
+	</p>
+		<?php } ?>
+	
+	<p>
+		<input type="button" id="calculate_fee" value="Calculate Price" />
+	</p>
+	<p id="price" style="display:none">
+		Base fee: $<span id="base_fee">0</span> USD<br />
+		Gala dinner guest charge: $<span id="gala_dinner_guest_fee">0</span> USD<br />
+		<strong>Total price: $<span id="total_fee">0</span> USD</strong>
+	</p>
+	
+	<p>Payment options:</p>
+	<ul>
+		<li>Mail in Check made out to the "Jain Foundation Inc": (must be <strong>received</strong> within 20 days of registration or applicant will be unregistered)</il>
+		<li>Credit card: PayPal</li>
+	</ul>
+	
+	<p>
+		<input type="submit" name="action" value="Submit">
+	</p>			
 </form>
 
 <?php
