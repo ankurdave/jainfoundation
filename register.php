@@ -14,7 +14,7 @@
 		$values = getRegistrant($_COOKIE['register_id']);
 	}
 	
-	printHeader(array('title' => 'Conference 2010 | Registration', 'scripts' => array('js/jquery.js', 'js/jquery.validate.js', 'js/register.js',), 'page_nav_id' => 'register'));
+	printHeader(array('title' => 'Conference 2010 | Registration', 'scripts' => array('js/jquery.validate.js', 'js/register.js',), 'page_nav_id' => 'register'));
 ?>
 
 <?php include 'conference-title.inc.php' ?>

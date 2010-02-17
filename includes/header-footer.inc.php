@@ -11,6 +11,12 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" href="style.css" type="text/css" />
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$("#sidebar a").attr("target", "_blank");
+		});
+	</script>
 	<!--[if IE]>
 		<link rel="stylesheet" href="style-ie.css" type="text/css" />
 	<![endif]-->
