@@ -250,7 +250,7 @@
 	
 	<h3>Abstract</h3>
 	
-	<p><em>Notice:</em> It is the author's sole responsibility to abide by standard regulations for animal care and use, as well as to use of human subjects. All named authors share this responsibility and agree with the submitted text.
+	<p><em>Notice:</em> It is the author's sole responsibility to abide by standard regulations for animal care and use, as well as to use of human subjects. All named authors share this responsibility and agree with the submitted text.</p>
 	
 	<p>Enter the title of your abstract in initial caps, except for capitalized abbreviations (e.g., DNA) and simple words (e.g., "a," "to," "the").<br />
 	<em>Example:</em> "Role of Muscle Stem Cells in the Progression and Treatment of Dysferlinopathy"</p>
@@ -279,8 +279,8 @@
 	<div id="word_count_text" class="hoveringLabel" style="display:none">word count: <span id="word_count">0</span> words</div>
 	
 	<p>
-		<input type="submit" name="action" value="Preview">
-		<input type="submit" name="action" value="Submit">
+		<input type="submit" name="action" value="Preview" />
+		<input type="submit" name="action" value="Submit" />
 	</p>
 </form>
 
