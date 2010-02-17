@@ -1,46 +1,28 @@
 <?php
 	require 'includes/lib.php';
-	include 'lib/PHPExcel.php';
-	include 'lib/PHPExcel/Writer/Excel2007.php';
-	include 'lib/PHPExcel/IOFactory.php';
 	
 	$db = connectToDB();
+	$result = $db->query('SELECT * FROM registrant');
 	
-	$query = $db->prepare('SELECT name, email, phone FROM person');
-	$query->execute();
-	$query->bind_result($name, $email, $phone);
-	
-	header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-	header('Content-Disposition: attachment; filename=registrations.xlsx');
-	
-	$objPHPExcel = new PHPExcel();
-	$objPHPExcel->getProperties()->setTitle("Jain Foundation registrants");
-	$objPHPExcel->setActiveSheetIndex(0);
-	
-	$row = 1;
-	
-	// Print headers
-	$objPHPExcel->getActiveSheet()->SetCellValueByColumnAndRow(0, $row, "Name");
-	$objPHPExcel->getActiveSheet()->SetCellValueByColumnAndRow(1, $row, "Email");
-	$objPHPExcel->getActiveSheet()->SetCellValueByColumnAndRow(2, $row, "Phone");
-	$objPHPExcel->getActiveSheet()->getStyle('A1:C1')->getFont()->setBold(true);
-	$row++;
-	
-	// Print data
-	while ($query->fetch()) {
-		// This assumes the phone is stored as 10 pure digits. TODO: validate it.
-		$phone = preg_replace('/^(\d{3})(\d{3})(\d{4})$/', '(\1) \2-\3', $phone);
-		
-		// Format the data into the spreadsheet
-		$objPHPExcel->getActiveSheet()->SetCellValueByColumnAndRow(0, $row, $name);
-		$objPHPExcel->getActiveSheet()->SetCellValueByColumnAndRow(1, $row, $email);
-		$objPHPExcel->getActiveSheet()->SetCellValueByColumnAndRow(2, $row, $phone);
+	header("Content-Type: text/csv");	header("Content-Disposition: attachment; filename=registrants.csv");
+	// IE has a bug that breaks downloads from SSL sites with the no-cache header set (see http://support.microsoft.com/kb/812935). So we must clear the caching header.
+	header('Pragma:');
 
-		$row++;
-	}
-	$query->close();
+	print xlsBegin();
 	
-	// Send the spreadsheet to the browser
-	$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
-	$objWriter->save('php://output');
+	$fields = $result->fetch_fields();
+	$field_names = array();
+	foreach ($fields as $field) {
+		if ($field->name != 'auth_key') {
+			$field_names[] = $field->name;
+		}
+	}
+	print xlsWriteRow($field_names);
+	
+	while ($data = $result->fetch_assoc()) {
+		unset($data['auth_key']); // don't print auth_key for security
+		print xlsWriteRow(array_values($data));
+	}
+
+	$result->free();
 ?>

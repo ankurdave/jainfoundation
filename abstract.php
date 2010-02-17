@@ -60,7 +60,7 @@
 			print_text_field('degree', array(
 				'label' => 'Degree',
 				'required' => true,
-				'instructions' => '(MD, PhD, etc.)',
+				'instructions' => '(BS, MD, PhD, etc.)',
 				'value' => $values,
 			));
 			print_text_field('department', array(
