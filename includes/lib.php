@@ -200,6 +200,19 @@ function getAbstract($id) {
 	return $result->fetch_assoc();
 }
 
+/**
+ * Returns an assoc array with the registrant data from the DB, or null if it doesn't exist.
+ */
+function getRegistrant($id, $auth_key) {
+	$db = connectToDB();
+	
+	$id_escaped = $db->real_escape_string($id);
+	$auth_key_escaped = $db->real_escape_string($auth_key);
+	
+	$result = $db->query("SELECT * FROM abstract WHERE id='$id_escaped' AND auth_key='$auth_key_escaped'");
+	return $result->fetch_assoc();
+}
+
 // Looks up each key in $keys in the assoc array $array, then returns an array of the corresponding values in the same order as $keys.
 function assoc_array_slice($keys, $array) {
 	$values = array();

@@ -22,8 +22,8 @@ Fax: 1-617-867-6104</p>
 <p>Conference attendees should fly into Boston via Logan International airport (BOS).  Transportation to and from the airport is available by taxi or airport shuttle (see below).  Please note that the Jain Foundation will only reimburse the cost of the airport shuttle.  Use of a taxi will be at the individual attendee’s expense.  Rental cars are available at the airport and can be arranged by the attendee at his/her own expense.  Please note that the overnight parking fee at the Hilton Back Bay is $37/night and will not be covered by the Jain Foundation.</p>
 
 <ul>
-	<li>Ultimate Livery (888-439-4391 or <a href="www.ultimatelivery.com">www.ultimatelivery.com</a>) - $14/one-way – reserve in advance by calling or going to the web page – payment by credit card</li>
-	<li>Easy Transportation (617-869-7760 or <a href="www.easytransportationinc.com">www.easytransportationinc.com</a>) &ndash; $15/one way – reserve in advance by calling or going to the web page – payment by credit card.  Group rate of $13 per person/one way available for parties of 3 or more.</li>
+	<li>Ultimate Livery (888-439-4391 or <a href="http://www.ultimatelivery.com">www.ultimatelivery.com</a>) - $14/one-way – reserve in advance by calling or going to the web page – payment by credit card</li>
+	<li>Easy Transportation (617-869-7760 or <a href="http://www.easytransportationinc.com">www.easytransportationinc.com</a>) &ndash; $15/one way – reserve in advance by calling or going to the web page – payment by credit card.  Group rate of $13 per person/one way available for parties of 3 or more.</li>
 	<li>Day and Knight Transportation (617-771-2497) - $14.50/one way; $25/roundtrip – reserve in advance by calling – payment by credit card.  Group rate of $10 per person/one way available for parties of 5 or more.</li>
 </ul>
 

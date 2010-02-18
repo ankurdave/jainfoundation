@@ -8,10 +8,10 @@
 	$values = array();
 	
 	// Populate the fields with the saved values
-	if (isset($_GET['id'])) {
-		$values = getRegistrant($_GET['id']);
-	} else if (isset($_COOKIE['register_id'])) {
-		$values = getRegistrant($_COOKIE['register_id']);
+	if (isset($_GET['id']) && isset($_GET['auth_key'])) {
+		$values = getRegistrant($_GET['id'], $_GET['auth_key']);
+	} else if (isset($_COOKIE['register_id']) && isset($_COOKIE['register_auth_key'])) {
+		$values = getRegistrant($_COOKIE['register_id'], $_COOKIE['register_auth_key']);
 	}
 	
 	printHeader(array('title' => 'Conference 2010 | Registration', 'scripts' => array('js/jquery.validate.js', 'js/register.js',), 'page_nav_id' => 'register'));
