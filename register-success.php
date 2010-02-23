@@ -1,10 +1,10 @@
 <?php
 	include 'includes/lib.php';
 	
-	printHeader(array('title' => 'Register'));
+	printHeader(array('title' => 'Conference 2010 | Registration', 'page_nav_id' => 'register'));
 ?>
 
-<h1>Registration Form Demo &ndash; Jain Foundation</h1>
+<?php include 'conference-title.inc.php' ?>
 
 <?php include 'includes/menu.inc.php' ?>
 

@@ -184,6 +184,7 @@ $(document).ready(function() {
 		$("#phone").val("(206) 555-1212");
 		$("#fax").val("(206) 123-4567");
 		selectRadio('submitting_abstract', 'yes');
+		$("#abstract_title").val("Optimizing Boggle Boards");
 		selectRadio('local_attendee', 'no');
 		selectRadio('hotel_parking', 'yes');
 		selectRadio('attendance_day1', 'yes');
@@ -204,6 +205,7 @@ $(document).ready(function() {
 		selectRadio('gender', 'male');
 		$("#arrival_date").val('2010-09-11');
 		$("#departure_date").val('2010-09-14');
+		selectRadio('payment_type', 'check');
 	});
 });
 
