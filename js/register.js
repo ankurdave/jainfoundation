@@ -184,7 +184,7 @@ $(document).ready(function() {
 		$("#phone").val("(206) 555-1212");
 		$("#fax").val("(206) 123-4567");
 		selectRadio('submitting_abstract', 'yes');
-		selectRadio('local_attendee', 'yes');
+		selectRadio('local_attendee', 'no');
 		selectRadio('hotel_parking', 'yes');
 		selectRadio('attendance_day1', 'yes');
 		selectRadio('attendance_day2', 'yes');
@@ -197,6 +197,8 @@ $(document).ready(function() {
 		selectRadio('meals_day4_breakfast', 'yes');
 		selectRadio('meals_day4_lunch', 'unknown');
 		selectRadio('meals_day1_breakfast', 'unknown');
+		selectRadio('meals_gala_dinner', 'yes');
+		selectRadio('meals_gala_dinner_guests', 'yes');
 		$("#meals_gala_dinner_numguests").val('1');
 		selectRadio('share_room', 'yes').change();
 		selectRadio('gender', 'male');

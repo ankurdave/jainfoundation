@@ -139,6 +139,7 @@ CREATE TABLE `registrant` (
   `phone` varchar(255) DEFAULT NULL,
   `fax` varchar(255) DEFAULT NULL,
   `submitting_abstract` varchar(255) DEFAULT NULL,
+  `abstract_title` varchar(255) DEFAULT NULL,
   `local_attendee` varchar(255) DEFAULT NULL,
   `hotel_parking` varchar(255) DEFAULT NULL,
   `attendance_day1` varchar(255) DEFAULT NULL,
@@ -151,13 +152,17 @@ CREATE TABLE `registrant` (
   `meals_day3_lunch` varchar(255) DEFAULT NULL,
   `meals_day4_breakfast` varchar(255) DEFAULT NULL,
   `meals_day4_lunch` varchar(255) DEFAULT NULL,
+  `meals_gala_dinner` varchar(255) DEFAULT NULL,
+  `meals_gala_dinner_guests` varchar(255) DEFAULT NULL,
   `meals_gala_dinner_numguests` varchar(255) DEFAULT NULL,
   `share_room` varchar(255) DEFAULT NULL,
   `gender` varchar(255) DEFAULT NULL,
   `arrival_date` varchar(255) DEFAULT NULL,
   `departure_date` varchar(255) DEFAULT NULL,
+  `payment_type` varchar(255) DEFAULT NULL,
+  `total_fee` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -169,4 +174,4 @@ CREATE TABLE `registrant` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2010-02-16 20:58:55
+-- Dump completed on 2010-02-22 19:30:53
