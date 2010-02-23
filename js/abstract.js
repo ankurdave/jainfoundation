@@ -25,7 +25,7 @@ $(document).ready(function() {
 		errorPlacement: function(error, element) {
 			// If we're in a table, but not a multi-text one, then put the error in the next cell. Otherwise do the default action.
 			if (element.closest("table") && !element.closest("table").hasClass("multitext")) {
-				error.appendTo(element.parent().next());
+				error.appendTo(element.closest("td").next("td"));
 			} else {
 				error.insertAfter(element);
 			}
