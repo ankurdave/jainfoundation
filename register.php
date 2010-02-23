@@ -71,6 +71,7 @@
 					'faculty_researcher' => 'Faculty/Researcher',
 					'postdoc' => 'Postdoc',
 					'grad_student' => 'Graduate Student',
+					'undergrad_student' => 'Undergraduate Student',
 					'other' => 'Other',
 				),
 				'value' => $values,
@@ -150,7 +151,7 @@
 			));
 		?>
 	</table>
-	<p>Are you planning to submit an abstract for oral or poster presentation?</p>
+	<p>Have you or are you planning to submit an abstract for oral or poster presentation?</p>
 	<table>
 		<?php
 			print_radio_field('submitting_abstract', array(
@@ -164,6 +165,19 @@
 			));
 		?>
 	</table>
+	<div id="submitting_abstract_yes">
+		<p>If yes, what is the title of your abstract?</p>
+		<table>
+			<?php
+				print_text_field('abstract_title', array(
+					'label' => 'Abstract Title',
+					'required' => false,
+					'instructions' => '(if yes)',
+					'value' => $values,
+				));
+			?>
+		</table>
+	</div>
 	
 	<h3>Registration Information</h3>
 	<p>Are you a local attendee?</p>
@@ -387,12 +401,11 @@
 			Early registration is open.
 	</p>
 			<ul>
-				<li id="cost_researcher">Researcher: $200 USD</li>
-				<li id="cost_postdoc">Post-Doc: $150 USD</li>
+				<li id="cost_postdoc">Post-doc/student: $150 USD</li>
+				<li id="cost_other">Other: $200 USD</li>
 			</ul>
 			
 			<script type="text/javascript">
-				var researcher_fee = 200;
 				var postdoc_fee = 150;
 				var other_fee = 200;
 			</script>
@@ -400,12 +413,11 @@
 			Regular registration is open.
 	</p>
 			<ul>
-				<li id="cost_researcher">Researcher: $250 USD</li>
-				<li id="cost_postdoc">Post-Doc: $200 USD</li>
+				<li id="cost_postdoc">Post-doc/student: $200 USD</li>
+				<li id="cost_other">Other: $250 USD</li>
 			</ul>
 			
 			<script type="text/javascript">
-				var researcher_fee = 250;
 				var postdoc_fee = 200;
 				var other_fee = 250;
 			</script>
@@ -423,11 +435,26 @@
 		<strong>Total price: $<span id="total_fee">0</span> USD</strong>
 	</p>
 	
-	<p>Payment options:</p>
-	<ul>
-		<li>Mail in Check made out to the "Jain Foundation Inc": (must be <strong>received</strong> within 20 days of registration or applicant will be unregistered)</li>
-		<li>Credit card: PayPal</li>
-	</ul>
+	<p>Will you be paying by check or credit card?</p>
+	<table>
+		<?php
+			print_radio_field('payment_type', array(
+				'label' => 'Payment Type',
+				'required' => true,
+				'options' => array(
+					'check' => 'Check',
+					'credit_card' => 'Credit Card',
+				),
+				'value' => $values,
+			));
+		?>
+	</table>
+	<div id="payment_type_check">
+		<p>If check, please mail a check made out to the "Jain Foundation Inc": (must be <strong>received</strong> within 20 days of registration or applicant will be unregistered).</p>
+	</div>
+	<div id="payment_type_credit_card">
+		<p>If credit card, please <a href="#">pay through PayPal</a>.</p>
+	</div>
 	
 	<p>
 		<input type="submit" name="action" value="Submit" />

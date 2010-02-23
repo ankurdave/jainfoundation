@@ -5,19 +5,19 @@ $(document).ready(function() {
 			degree_other: {
 				fieldEq: [ "degree", "other" ]
 			},
-			
+
 			position_other: {
 				fieldEq: [ "position", "other" ]
 			},
-			
+
 			institution_profile_other: {
 				fieldEq: [ "institution_profile", "other" ]
 			},
-			
+
 			arrival_date: {
 				fieldChecked: "#share_room input[type=radio][value='yes']"
 			},
-			
+
 			departure_date: {
 				fieldChecked: "#share_room input[type=radio][value='yes']"
 			}
@@ -25,7 +25,7 @@ $(document).ready(function() {
 		errorPlacement: function(error, element) {
 			// If we're in a table, but not a multi-text one, then put the error in the next cell. Otherwise do the default action.
 			if (element.closest("table") && !element.closest("table").hasClass("multitext")) {
-				error.appendTo(element.parent().next());
+				error.appendTo(element.closest("td").next("td"));
 			} else {
 				error.insertAfter(element);
 			}
@@ -69,7 +69,7 @@ $.validator.addMethod("maxWords", function(value, element, wordLimit) {
 	// This is an ugly optimization -- it should be in its own function, bound separately to each field that requires it, but that would mean we count the words twice. An unfortunate side effect of this optimization is that maxWords can only be used on one element.
 	$("#word_count_text").css('display', 'block');
 	$("#word_count").html(count);
-	
+
 	// Check if the count is within limits
 	return count <= wordLimit;
 }, $.validator.format("word limit: {0} words"));
@@ -79,7 +79,7 @@ $.validator.addMethod("affiliation_reference", function(value, element) {
 	if (!value) {
 		return true;
 	}
-	
+
 	var affiliations = value.split(/,/);
 	for (var i in affiliations) {
 		if (!$("#affiliation_" + affiliations[i]).val()) {
@@ -114,11 +114,18 @@ function showElementWhenFieldEq(sourceField, value, element) {
 	});
 }
 
-function showElementWhenRadioChecked(sourceField, elementChecked, elementUnchecked) {
+function showElementWhenRadioChecked(sourceField, element) {
 	$(document).ready(function() {
 		$(sourceField).change(function() {
-			$(elementChecked).css("display", $(this).attr('checked') ? "" : "none");
-			$(elementUnchecked).css("display", $(this).attr('checked') ? "none" : "");
+			$(element).css("display", $(this).attr('checked') ? "" : "none");
+		});
+	});
+}
+
+function hideElementWhenRadioChecked(sourceField, element) {
+	$(document).ready(function() {
+		$(sourceField).change(function() {
+			$(element).css("display", $(this).attr('checked') ? "none" : "");
 		});
 	});
 }
@@ -126,9 +133,22 @@ function showElementWhenRadioChecked(sourceField, elementChecked, elementUncheck
 showFieldWhenFieldEq("#degree", "other", "#degree_other");
 showFieldWhenFieldEq("#position", "other", "#position_other");
 showFieldWhenFieldEq("#institution_profile", "other", "#institution_profile_other");
-showElementWhenRadioChecked("#share_room input[type=radio][value='yes']", "#share_room_yes", "#share_room_no");
-showElementWhenRadioChecked("#share_room input[type=radio][value='no']", "#share_room_no", "#share_room_yes");
-showElementWhenFieldEq
+
+// #share_room
+showElementWhenRadioChecked("#share_room input[type=radio][value='yes']", "#share_room_yes");
+hideElementWhenRadioChecked("#share_room input[type=radio][value='yes']", "#share_room_no");
+showElementWhenRadioChecked("#share_room input[type=radio][value='no']", "#share_room_no");
+hideElementWhenRadioChecked("#share_room input[type=radio][value='no']", "#share_room_yes");
+
+// #submitting_abstract
+showElementWhenRadioChecked("#submitting_abstract input[type=radio][value='yes']", "#submitting_abstract_yes");
+hideElementWhenRadioChecked("#submitting_abstract input[type=radio][value='no']", "#submitting_abstract_yes");
+
+// #payment_type
+showElementWhenRadioChecked("#payment_type input[type=radio][value='check']", "#payment_type_check");
+hideElementWhenRadioChecked("#payment_type input[type=radio][value='check']", "#payment_type_credit_card");
+showElementWhenRadioChecked("#payment_type input[type=radio][value='credit_card']", "#payment_type_credit_card");
+hideElementWhenRadioChecked("#payment_type input[type=radio][value='credit_card']", "#payment_type_check");
 
 // === OTHER ===================================================================
 
@@ -176,20 +196,20 @@ $(document).ready(function() {
 	});
 });
 
+// Set up the Calculate Price button
 $(document).ready(function() {
 	$("#calculate_fee").click(function() {
 		var base_fee = 0;
 		switch ($("#position").val()) {
-			case "faculty_researcher":
-				base_fee = researcher_fee;
-				break;
 			case "postdoc":
+			case "grad_student":
+			case "undergrad_student":
 				base_fee = postdoc_fee;
 				break;
 			default:
 				base_fee = other_fee;
 		}
-		
+
 		var gala_dinner_guest_fee = 0;
 		if (!isNaN(parseInt($("#meals_gala_dinner_numguests").val()))) {
 			gala_dinner_guest_fee = 50 * parseInt($("#meals_gala_dinner_numguests").val());
@@ -200,7 +220,7 @@ $(document).ready(function() {
 		$("#base_fee").html(base_fee);
 		$("#gala_dinner_guest_fee").html(gala_dinner_guest_fee);
 		$("#total_fee").html(total_fee);
-		
+
 		$("#price").css("display", "");
 	});
 });

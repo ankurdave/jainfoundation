@@ -8,7 +8,7 @@
 
 <?php include 'includes/menu.inc.php' ?>
 
-<p>You were registered. <a href="register-list.php">See who else registered.</a></p>
+<p>Thank you for registering.</p>
 
 <?php
 	printFooter();
