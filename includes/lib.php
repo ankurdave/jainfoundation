@@ -77,7 +77,7 @@ function addRegistrant($data, $id = null, $auth_key = null) {
 
 	
 	// Build the list of columns
-	$columns = explode(' ', 'id auth_key firstname lastname degree degree_other position position_other institution institution_profile institution_profile_other department street_address city state_province zip_postal_code country email phone fax submitting_abstract abstract_title local_attendee hotel_parking attendance_day1 attendance_day2 attendance_day3 attendance_day4 meals_day2_breakfast meals_day2_lunch meals_day3_breakfast meals_day3_lunch meals_day4_breakfast meals_day4_lunch meals_gala_dinner_numguests share_room gender arrival_date departure_date payment_type total_fee');
+	$columns = explode(' ', 'id auth_key firstname lastname degree degree_other position position_other institution institution_profile institution_profile_other department street_address city state_province zip_postal_code country email phone fax submitting_abstract abstract_title local_attendee hotel_parking attendance_day1 attendance_day2 attendance_day3 attendance_day4 meals_day2_breakfast meals_day2_lunch meals_day3_breakfast meals_day3_lunch meals_day4_breakfast meals_day4_lunch meals_gala_dinner meals_gala_dinner_guests meals_gala_dinner_numguests share_room gender arrival_date departure_date payment_type total_fee');
 	$columns_string = join(', ', $columns);
 	
 	$columns_update = array_map('make_column_update_sql', $columns); // for the ON DUPLICATE KEY UPDATE clause

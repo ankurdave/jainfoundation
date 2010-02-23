@@ -54,6 +54,7 @@
 					'none' => 'None',
 					'md' => 'MD',
 					'phd' => 'PhD',
+					'bs' => 'BS',
 					'other' => 'Other',
 				),
 				'value' => $values,
@@ -81,6 +82,11 @@
 				'required' => false, // only required if position is other
 				'value' => $values,
 			));
+			print_text_field('department', array(
+				'label' => 'Department',
+				'required' => false,
+				'value' => $values,
+			));
 			print_text_field('institution', array(
 				'label' => 'Institution',
 				'required' => true,
@@ -103,19 +109,14 @@
 				'required' => false, // only required if institution_profile is other
 				'value' => $values,
 			));
-			print_text_field('department', array(
-				'label' => 'Department',
-				'required' => false,
-				'value' => $values,
-			));
 			print_text_field('street_address', array(
-				'label' => 'Address',
+				'label' => 'Street Address',
 				'required' => true,
 				'value' => $values,
 			));
 			print_text_field('city', array(
 				'label' => 'City',
-				'required' => false,
+				'required' => true,
 				'value' => $values,
 			));
 			print_text_field('state_province', array(
@@ -125,12 +126,12 @@
 			));
 			print_text_field('zip_postal_code', array(
 				'label' => 'Zip/Postal Code',
-				'required' => false,
+				'required' => true,
 				'value' => $values,
 			));
 			print_text_field('country', array(
 				'label' => 'Country',
-				'required' => false,
+				'required' => true,
 				'value' => $values,
 			));
 			print_text_field('email', array(
@@ -185,7 +186,7 @@
 		<?php
 			print_radio_field('local_attendee', array(
 				'label' => 'Local Attendee',
-				'required' => false,
+				'required' => true,
 				'options' => array(
 					'yes' => 'Yes',
 					'no' => 'No',
@@ -199,7 +200,7 @@
 		<?php
 			print_radio_field('hotel_parking', array(
 				'label' => 'Hotel Parking',
-				'required' => false,
+				'required' => true,
 				'options' => array(
 					'yes' => 'Yes',
 					'no' => 'No',
@@ -213,7 +214,7 @@
 		<?php
 			print_radio_field('attendance_day1', array(
 				'label' => 'Saturday, Sept 11',
-				'required' => false,
+				'required' => true,
 				'options' => array(
 					'yes' => 'Yes',
 					'no' => 'No',
@@ -223,7 +224,7 @@
 			));
 			print_radio_field('attendance_day2', array(
 				'label' => 'Sunday, Sept 12',
-				'required' => false,
+				'required' => true,
 				'options' => array(
 					'yes' => 'Yes',
 					'no' => 'No',
@@ -233,7 +234,7 @@
 			));
 			print_radio_field('attendance_day3', array(
 				'label' => 'Monday, Sept 13',
-				'required' => false,
+				'required' => true,
 				'options' => array(
 					'yes' => 'Yes',
 					'no' => 'No',
@@ -243,7 +244,7 @@
 			));
 			print_radio_field('attendance_day4', array(
 				'label' => 'Tuesday, Sept 14',
-				'required' => false,
+				'required' => true,
 				'options' => array(
 					'yes' => 'Yes',
 					'no' => 'No',
@@ -258,7 +259,7 @@
 		<?php
 			print_radio_field('meals_day2_breakfast', array(
 				'label' => 'Sunday, Sept 12 &ndash; Breakfast',
-				'required' => false,
+				'required' => true,
 				'options' => array(
 					'yes' => 'Yes',
 					'no' => 'No',
@@ -268,7 +269,7 @@
 			));
 			print_radio_field('meals_day2_lunch', array(
 				'label' => 'Sunday, Sept 12 &ndash; Lunch',
-				'required' => false,
+				'required' => true,
 				'options' => array(
 					'yes' => 'Yes',
 					'no' => 'No',
@@ -278,7 +279,7 @@
 			));
 			print_radio_field('meals_day3_breakfast', array(
 				'label' => 'Monday, Sept 13 &ndash; Breakfast',
-				'required' => false,
+				'required' => true,
 				'options' => array(
 					'yes' => 'Yes',
 					'no' => 'No',
@@ -288,7 +289,7 @@
 			));
 			print_radio_field('meals_day3_lunch', array(
 				'label' => 'Monday, Sept 13 &ndash; Lunch',
-				'required' => false,
+				'required' => true,
 				'options' => array(
 					'yes' => 'Yes',
 					'no' => 'No',
@@ -298,7 +299,7 @@
 			));
 			print_radio_field('meals_day4_breakfast', array(
 				'label' => 'Tuesday, Sept 14 &ndash; Breakfast',
-				'required' => false,
+				'required' => true,
 				'options' => array(
 					'yes' => 'Yes',
 					'no' => 'No',
@@ -308,6 +309,31 @@
 			));
 			print_radio_field('meals_day4_lunch', array(
 				'label' => 'Tuesday, Sept 14 &ndash; Lunch',
+				'required' => true,
+				'options' => array(
+					'yes' => 'Yes',
+					'no' => 'No',
+					'unknown' => "Don't know",
+				),
+				'value' => $values,
+			));
+			print_radio_field('meals_gala_dinner', array(
+				'label' => 'Evening of Sept ?? &ndash; Gala Dinner',
+				'required' => true,
+				'options' => array(
+					'yes' => 'Yes',
+					'no' => 'No',
+					'unknown' => "Don't know",
+				),
+				'value' => $values,
+			));
+		?>
+	</table>
+	<p>Will you be bringing guests to the Gala?</p>
+	<table>
+		<?php
+			print_radio_field('meals_gala_dinner_guests', array(
+				'label' => 'Gala Dinner &ndash; Guests',
 				'required' => false,
 				'options' => array(
 					'yes' => 'Yes',
@@ -318,17 +344,20 @@
 			));
 		?>
 	</table>
-	<table>
-		<?php
-			print_text_field('meals_gala_dinner_numguests', array(
-				'label' => 'Evening of Sept ?? &ndash; Gala Dinner &ndash; Number of Guests',
-				'required' => false,
-				'value' => $values,
-			));
-		?>
-	</table>
+	<div id="meals_gala_dinner_guests_yes">
+		<table>
+			<?php
+				print_text_field('meals_gala_dinner_numguests', array(
+					'label' => 'Evening of Sept ?? &ndash; Gala Dinner &ndash; Number of Guests',
+					'required' => false,
+					'value' => $values,
+				));
+			?>
+		</table>
+	</div>
 	<p>(Note there is a $50/guest charge for the gala dinner that is required at time of registration.  This charge is non-refundable if not canceled by July ??, 2010)</p>
 	
+	<div id="local_attendee_no">
 	<h3>Hotel Reservations</h3>
 	<p>Do you want to share a room?</p>
 	<table>
@@ -388,6 +417,7 @@
 	</div>
 	<div id="share_room_no">
 		<p>If no, follow this link.</p>
+	</div>
 	</div>
 	
 	<h3>Payment</h3>

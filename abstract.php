@@ -65,6 +65,31 @@
 				'instructions' => '(BS, MD, PhD, etc.)',
 				'value' => $values,
 			));
+			print_select_field('author_status', array(
+				'label' => 'Author Status',
+				'required' => true,
+				'options' => array(
+					'' => '',
+					'faculty_researcher' => 'Faculty/Researcher',
+					'postdoc' => 'Postdoc',
+					'grad_student' => 'Graduate Student',
+					'undergrad_student' => 'Undergraduate Student',
+					'other' => 'Other',
+				),
+				'value' => $values,
+			));
+			print_text_field('author_status_other', array(
+				'label' => 'Other Author Status',
+				'required' => false, // only required if author_status is other -- see validation function in js/abstract.js
+				'instructions' => '(if other)',
+				'value' => $values,
+			));
+			print_text_field('degree_year', array(
+				'label' => 'Degree Year',
+				'required' => false, // only required if author_status is postdoc -- see validation function in js/abstract.js
+				'instructions' => '(if postdoc)',
+				'value' => $values,
+			));
 			print_text_field('department', array(
 				'label' => 'Department',
 				'required' => false,
@@ -100,6 +125,12 @@
 				'required' => true,
 				'value' => $values,
 			));
+			print_text_field('email', array(
+				'label' => 'Email',
+				'required' => true,
+				'class' => array('email'),
+				'value' => $values,
+			));
 			print_text_field('phone', array(
 				'label' => 'Phone Number',
 				'required' => true,
@@ -108,37 +139,6 @@
 			print_text_field('fax', array(
 				'label' => 'Fax Number',
 				'required' => false,
-				'value' => $values,
-			));
-			print_text_field('email', array(
-				'label' => 'Email',
-				'required' => true,
-				'class' => array('email'),
-				'value' => $values,
-			));
-			print_select_field('author_status', array(
-				'label' => 'Author Status',
-				'required' => true,
-				'options' => array(
-					'' => '',
-					'faculty_researcher' => 'Faculty/Researcher',
-					'postdoc' => 'Postdoc',
-					'grad_student' => 'Graduate Student',
-					'undergrad_student' => 'Undergraduate Student',
-					'other' => 'Other',
-				),
-				'value' => $values,
-			));
-			print_text_field('degree_year', array(
-				'label' => 'Degree Year',
-				'required' => false, // only required if author_status is postdoc -- see validation function in js/abstract.js
-				'instructions' => '(if postdoc)',
-				'value' => $values,
-			));
-			print_text_field('author_status_other', array(
-				'label' => 'Other Author Status',
-				'required' => false, // only required if author_status is other -- see validation function in js/abstract.js
-				'instructions' => '(if other)',
 				'value' => $values,
 			));
 		?>

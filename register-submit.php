@@ -33,7 +33,7 @@
 	
 	// Validate the data and redirect to the form if it's wrong
 	// First check if the required fields are there
-	$required = explode(' ', 'firstname lastname degree institution institution_profile street_address email phone submitting_abstract payment_type');
+	$required = explode(' ', 'firstname lastname degree institution institution_profile street_address city zip_postal_code country email phone submitting_abstract payment_type');
 	foreach ($required as $field) {
 		if (empty($_POST[$field])) {
 			header("Location: $form_location?$data_auth_query_string&error_$field#$field"); # no need to escape $field, because it is completely specified in $required above

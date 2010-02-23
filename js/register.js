@@ -134,6 +134,15 @@ showFieldWhenFieldEq("#degree", "other", "#degree_other");
 showFieldWhenFieldEq("#position", "other", "#position_other");
 showFieldWhenFieldEq("#institution_profile", "other", "#institution_profile_other");
 
+// #local_attendee
+showElementWhenRadioChecked("#local_attendee input[type=radio][value='no']", "#local_attendee_no");
+hideElementWhenRadioChecked("#local_attendee input[type=radio][value='yes']", "#local_attendee_no");
+
+// #gala_dinner_guests
+hideElementWhenRadioChecked("#meals_gala_dinner_guests input[type=radio][value='no']", "#meals_gala_dinner_guests_yes");
+showElementWhenRadioChecked("#meals_gala_dinner_guests input[type=radio][value='yes']", "#meals_gala_dinner_guests_yes");
+showElementWhenRadioChecked("#meals_gala_dinner_guests input[type=radio][value='unknown']", "#meals_gala_dinner_guests_yes");
+
 // #share_room
 showElementWhenRadioChecked("#share_room input[type=radio][value='yes']", "#share_room_yes");
 hideElementWhenRadioChecked("#share_room input[type=radio][value='yes']", "#share_room_no");
