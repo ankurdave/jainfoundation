@@ -348,7 +348,7 @@
 		<table>
 			<?php
 				print_text_field('meals_gala_dinner_numguests', array(
-					'label' => 'Evening of Sept ?? &ndash; Gala Dinner &ndash; Number of Guests',
+					'label' => 'Gala Dinner &ndash; Number of Guests',
 					'required' => false,
 					'value' => $values,
 				));
