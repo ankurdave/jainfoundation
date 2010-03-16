@@ -266,6 +266,16 @@ h2, h3 {
 	font-size: 80%;
 }
 
+p.intext {
+	float: left;
+	margin: 1em 1em 1em 0;
+	width: 50%;
+}
+
+p.intext img {
+	width: 100%;
+}
+
 /* Forms */
 .required_indicator {
 	color: red;
