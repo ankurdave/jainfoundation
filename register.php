@@ -23,6 +23,12 @@
 
 <h2>Registration</h2>
 
+<p>For questions and concerns please contact Angela Salerno at <a href="mailto:asalerno@jain-foundation.org">asalerno@jain-foundation.org.</a></p>
+
+<p>The Fourth Annual Dysferlin Conference is a scientific meeting for researchers and clinicians working on dysferlin.  Attendance is limited.  Therefore, all registrations must be approved by the Jain Foundation. You will be notified within a week of your registration whether you have been approved.  Preference will be given to those who are giving oral or poster presentations. If you are not approved your registration fee will be refunded to you.</p>
+
+
+
 <?php
 	if (isset($values['id'])) {
 		$data_auth_query_string = "?id=" . $values['id'] . "&auth_key=" . $values['auth_key'];
@@ -66,7 +72,7 @@
 			));
 			print_select_field('position', array(
 				'label' => 'Position Title',
-				'required' => false,
+				'required' => true,
 				'options' => array(
 					'' => '',
 					'faculty_researcher' => 'Faculty/Researcher',
@@ -173,7 +179,6 @@
 				print_text_field('abstract_title', array(
 					'label' => 'Abstract Title',
 					'required' => false,
-					'instructions' => '(if yes)',
 					'value' => $values,
 				));
 			?>
@@ -218,7 +223,6 @@
 				'options' => array(
 					'yes' => 'Yes',
 					'no' => 'No',
-					'unknown' => "Don't know",
 				),
 				'value' => $values,
 			));
@@ -228,7 +232,6 @@
 				'options' => array(
 					'yes' => 'Yes',
 					'no' => 'No',
-					'unknown' => "Don't know",
 				),
 				'value' => $values,
 			));
@@ -238,7 +241,6 @@
 				'options' => array(
 					'yes' => 'Yes',
 					'no' => 'No',
-					'unknown' => "Don't know",
 				),
 				'value' => $values,
 			));
@@ -248,7 +250,6 @@
 				'options' => array(
 					'yes' => 'Yes',
 					'no' => 'No',
-					'unknown' => "Don't know",
 				),
 				'value' => $values,
 			));
@@ -263,7 +264,6 @@
 				'options' => array(
 					'yes' => 'Yes',
 					'no' => 'No',
-					'unknown' => "Don't know",
 				),
 				'value' => $values,
 			));
@@ -273,17 +273,36 @@
 				'options' => array(
 					'yes' => 'Yes',
 					'no' => 'No',
-					'unknown' => "Don't know",
 				),
 				'value' => $values,
 			));
+		?>
+	</table>
+	<div id="meals_day2_lunch_yes">
+		<p>Please choose one of the following entrees.</p>
+		<table>
+		<?php
+			print_radio_field('meals_day2_lunch_entree', array(
+				'label' => 'Sunday, Sept 12 &ndash; Lunch &ndash; Entree',
+				'required' => false,
+				'options' => array(
+					'chicken' => 'Chicken',
+					'fish' => 'Fish',
+					'vegetarian' => 'Vegetarian',
+				),
+				'value' => $values,
+			));
+		?>
+		</table>
+	</div>
+	<table>
+		<?php
 			print_radio_field('meals_day3_breakfast', array(
 				'label' => 'Monday, Sept 13 &ndash; Breakfast',
 				'required' => true,
 				'options' => array(
 					'yes' => 'Yes',
 					'no' => 'No',
-					'unknown' => "Don't know",
 				),
 				'value' => $values,
 			));
@@ -293,7 +312,6 @@
 				'options' => array(
 					'yes' => 'Yes',
 					'no' => 'No',
-					'unknown' => "Don't know",
 				),
 				'value' => $values,
 			));
@@ -303,7 +321,6 @@
 				'options' => array(
 					'yes' => 'Yes',
 					'no' => 'No',
-					'unknown' => "Don't know",
 				),
 				'value' => $values,
 			));
@@ -313,7 +330,6 @@
 				'options' => array(
 					'yes' => 'Yes',
 					'no' => 'No',
-					'unknown' => "Don't know",
 				),
 				'value' => $values,
 			));
@@ -323,7 +339,6 @@
 				'options' => array(
 					'yes' => 'Yes',
 					'no' => 'No',
-					'unknown' => "Don't know",
 				),
 				'value' => $values,
 			));
@@ -338,7 +353,6 @@
 				'options' => array(
 					'yes' => 'Yes',
 					'no' => 'No',
-					'unknown' => "Don't know",
 				),
 				'value' => $values,
 			));

@@ -20,6 +20,10 @@ $(document).ready(function() {
 
 			departure_date: {
 				fieldChecked: "#share_room input[type=radio][value='yes']"
+			},
+			
+			meals_day2_lunch_entree: {
+				fieldChecket: "#meals_day2_lunch input[type=radio][value='yes']"
 			}
 		},
 		errorPlacement: function(error, element) {
@@ -158,6 +162,11 @@ showElementWhenRadioChecked("#payment_type input[type=radio][value='check']", "#
 hideElementWhenRadioChecked("#payment_type input[type=radio][value='check']", "#payment_type_credit_card");
 showElementWhenRadioChecked("#payment_type input[type=radio][value='credit_card']", "#payment_type_credit_card");
 hideElementWhenRadioChecked("#payment_type input[type=radio][value='credit_card']", "#payment_type_check");
+
+// #meals_day2_lunch
+showElementWhenRadioChecked("#meals_day2_lunch input[type=radio][value='yes']", "#meals_day2_lunch_yes");
+hideElementWhenRadioChecked("#meals_day2_lunch input[type=radio][value='no']", "#meals_day2_lunch_yes");
+
 
 // === OTHER ===================================================================
 
