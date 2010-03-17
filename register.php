@@ -490,35 +490,35 @@
 		?>
 		</table>
 	</div>
-	<div id="have_promo_code_no">
+	<div id="promo_code_not_valid">
 	<?php
 		$now = time();
 	?>
 	<p>
 		The date is <?php echo date('F j, Y', $now) ?>.
-		<?php if ($now < strtotime('June 16, 2010')) { ?>
+		<?php if ($now <= strtotime('June 4, 2010')) { ?>
 			Early registration is open.
 	</p>
 			<ul>
 				<li id="cost_postdoc">Post-doc/student: $150 USD</li>
-				<li id="cost_other">Other: $200 USD</li>
-			</ul>
-			
-			<script type="text/javascript">
-				var postdoc_fee = 150;
-				var other_fee = 200;
-			</script>
-		<?php } else if ($now < strtotime('July 16, 2010')) { ?>
-			Regular registration is open.
-	</p>
-			<ul>
-				<li id="cost_postdoc">Post-doc/student: $200 USD</li>
 				<li id="cost_other">Other: $250 USD</li>
 			</ul>
 			
 			<script type="text/javascript">
-				var postdoc_fee = 200;
+				var postdoc_fee = 150;
 				var other_fee = 250;
+			</script>
+		<?php } else if ($now <= strtotime('July 23, 2010')) { ?>
+			Early registration is closed. Late registration is open.
+	</p>
+			<ul>
+				<li id="cost_postdoc">Post-doc/student: $250 USD</li>
+				<li id="cost_other">Other: $350 USD</li>
+			</ul>
+			
+			<script type="text/javascript">
+				var postdoc_fee = 250;
+				var other_fee = 350;
 			</script>
 		<?php } else { ?>
 			Registration is closed. No late or onsite registration is available.
@@ -549,12 +549,44 @@
 		?>
 	</table>
 	<div id="payment_type_check">
-		<p>If check, please mail a check made out to the "Jain Foundation Inc": (must be <strong>received</strong> within 20 days of registration or applicant will be unregistered).</p>
+		<p>Please mail a check made out to the "Jain Foundation Inc" to the following address:</p>
+		
+		<p>
+			Jain Foundation<br />
+			2310 130th Ave NE<br />
+			Suite B101<br />
+			Bellevue, WA 98005
+		</p>
+		
+		<p>The check must be <strong>received</strong> within 20 days of registration or applicant will be unregistered.</p>
 	</div>
 	<div id="payment_type_credit_card">
-		<p>If credit card, please <a href="#">pay through PayPal</a>.</p>
+		<p>Please <a href="#">pay through PayPal</a>.</p>
+		
+		<p>The PayPal receipt must be received within 20 days of registration or applicant will be unregistered. The receipt can be sent by one of the following methods:</p>
+		
+		<ul>
+			<li>Email to Angela Salerno at <a href="mailto:asalerno@jain-foundation.org">asalerno@jain-foundation.org</a></li>
+			<li>Fax to the Jain Foundation at 425-882-1050</li>
+			<li>
+				Mailed to the Jain Foundation at:<br />
+				Jain Foundation<br />
+				2310 130th Ave NE<br />
+				<br />Suite B101
+				<br />Bellevue, WA 98005
+			</li>
 	</div>
 	</div>
+	
+	<h3>Comments</h3>
+	<p>Please use this box to indicate anything that you need to convey to the Jain Foundation regarding your registration submission.</p>
+	<?php
+		print_textarea_field('comments', array(
+			'label' => 'Comments',
+			'required' => false,
+			'value' => $values,
+		));
+	?>
 	
 	<p>
 		<input type="submit" name="action" value="Submit" />
