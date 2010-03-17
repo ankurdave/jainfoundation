@@ -23,7 +23,19 @@ $(document).ready(function() {
 			},
 			
 			meals_day2_lunch_entree: {
-				fieldChecket: "#meals_day2_lunch input[type=radio][value='yes']"
+				fieldChecked: "#meals_day2_lunch input[type=radio][value='yes']"
+			},
+			
+			meals_day3_lunch_entree: {
+				fieldChecked: "#meals_day3_lunch input[type=radio][value='yes']"
+			},
+			
+			meals_day4_lunch_entree: {
+				fieldChecked: "#meals_day4_lunch input[type=radio][value='yes']"
+			},
+			
+			meals_gala_dinner_vegetarian: {
+				fieldChecked: "#meals_gala_dinner input[type=radio][value='yes']"
 			}
 		},
 		errorPlacement: function(error, element) {
@@ -164,9 +176,20 @@ showElementWhenRadioChecked("#payment_type input[type=radio][value='credit_card'
 hideElementWhenRadioChecked("#payment_type input[type=radio][value='credit_card']", "#payment_type_check");
 
 // #meals_day2_lunch
-showElementWhenRadioChecked("#meals_day2_lunch input[type=radio][value='yes']", "#meals_day2_lunch_yes");
-hideElementWhenRadioChecked("#meals_day2_lunch input[type=radio][value='no']", "#meals_day2_lunch_yes");
+showElementWhenRadioChecked("#meals_day2_lunch input[type=radio][value='yes']", "#meals_day2_lunch_entree_container");
+hideElementWhenRadioChecked("#meals_day2_lunch input[type=radio][value='no']", "#meals_day2_lunch_entree_container");
 
+// #meals_day3_lunch
+showElementWhenRadioChecked("#meals_day3_lunch input[type=radio][value='yes']", "#meals_day3_lunch_entree_container");
+hideElementWhenRadioChecked("#meals_day3_lunch input[type=radio][value='no']", "#meals_day3_lunch_entree_container");
+
+// #meals_day4_lunch
+showElementWhenRadioChecked("#meals_day4_lunch input[type=radio][value='yes']", "#meals_day4_lunch_entree_container");
+hideElementWhenRadioChecked("#meals_day4_lunch input[type=radio][value='no']", "#meals_day4_lunch_entree_container");
+
+// #meals_gala_dinner
+showElementWhenRadioChecked("#meals_gala_dinner input[type=radio][value='yes']", "#meals_gala_dinner_yes");
+hideElementWhenRadioChecked("#meals_gala_dinner	 input[type=radio][value='no']", "#meals_gala_dinner_yes");
 
 // === OTHER ===================================================================
 

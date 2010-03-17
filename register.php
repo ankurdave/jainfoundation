@@ -276,12 +276,6 @@
 				),
 				'value' => $values,
 			));
-		?>
-	</table>
-	<div id="meals_day2_lunch_yes">
-		<p>Please choose one of the following entrees.</p>
-		<table>
-		<?php
 			print_radio_field('meals_day2_lunch_entree', array(
 				'label' => 'Sunday, Sept 12 &ndash; Lunch &ndash; Entree',
 				'required' => false,
@@ -292,11 +286,6 @@
 				),
 				'value' => $values,
 			));
-		?>
-		</table>
-	</div>
-	<table>
-		<?php
 			print_radio_field('meals_day3_breakfast', array(
 				'label' => 'Monday, Sept 13 &ndash; Breakfast',
 				'required' => true,
@@ -312,6 +301,16 @@
 				'options' => array(
 					'yes' => 'Yes',
 					'no' => 'No',
+				),
+				'value' => $values,
+			));
+			print_radio_field('meals_day3_lunch_entree', array(
+				'label' => 'Monday, Sept 13 &ndash; Lunch &ndash; Entree',
+				'required' => false,
+				'options' => array(
+					'beef' => 'Beef',
+					'fish' => 'Fish',
+					'vegetarian' => 'Vegetarian',
 				),
 				'value' => $values,
 			));
@@ -333,8 +332,17 @@
 				),
 				'value' => $values,
 			));
+			print_radio_field('meals_day4_lunch_entree', array(
+				'label' => 'Tuesday, Sept 14 &ndash; Lunch &ndash; Entree',
+				'required' => false,
+				'options' => array(
+					'chicken' => 'Chicken',
+					'vegetarian' => 'Vegetarian',
+				),
+				'value' => $values,
+			));
 			print_radio_field('meals_gala_dinner', array(
-				'label' => 'Evening of Sept ?? &ndash; Gala Dinner',
+				'label' => 'Evening of Tuesday, Sept 13 &ndash; Gala Dinner',
 				'required' => true,
 				'options' => array(
 					'yes' => 'Yes',
@@ -342,6 +350,25 @@
 				),
 				'value' => $values,
 			));
+		?>
+	</table>
+	<div id="meals_gala_dinner_yes">
+		<p>Do you require a Vegetarian option for the Gala Dinner?</p>
+		<table>
+		<?php
+			print_radio_field('meals_gala_dinner_entree', array(
+				'label' => 'Evening of Tuesday, Sept 13 &ndash; Gala Dinner &ndash; Vegetarian',
+				'required' => false,
+				'options' => array(
+								   'yes' => 'Yes',
+								   'no' => 'No',
+				),
+				'value' => $values,
+			));
+		?>
+		</table>
+	<table>
+		<?php
 		?>
 	</table>
 	<p>Will you be bringing guests to the Gala?</p>
@@ -369,7 +396,8 @@
 			?>
 		</table>
 	</div>
-	<p>(Note there is a $50/guest charge for the gala dinner that is required at time of registration.  This charge is non-refundable if not canceled by July ??, 2010)</p>
+	<p>(Note there is a $70/guest charge for the gala dinner that is required at time of registration.  This charge is non-refundable if not canceled by July 30th, 2010)</p>
+	</div>
 	
 	<div id="local_attendee_no">
 	<h3>Hotel Reservations</h3>
@@ -430,12 +458,39 @@
 		</table>
 	</div>
 	<div id="share_room_no">
-		<p>If no, follow this link.</p>
+		<p>If no, <a href="location.php" target="_blank">book your hotel room here</a>.</p>
 	</div>
 	</div>
 	
 	<h3>Payment</h3>
-	<p>Instructions regarding payment and reimbursement.</p>
+	<p>For questions and concerns regarding payment please contact Angela Salerno at <a href="mailto:asalerno@jain-foundation.org">asalerno@jain-foundation.org</a>.  If your registration is not approved your registration fee will be refunded.</p>
+	
+	<p>Do you have a promotional code?</p>
+	<table>
+	<?php
+		print_radio_field('have_promo_code', array(
+			'label' => 'Have Promotional Code',
+			'required' => true,
+			'options' => array(
+				'yes' => 'Yes',
+				'no' => 'No',
+			),
+			'value' => $values,
+		));
+	?>
+	</table>
+	<div id="have_promo_code_yes">
+		<table>
+		<?php
+			print_text_field('promo_code', array(
+				'label' => 'Promotional Code',
+				'required' => false,
+				'value' => $values,
+			));
+		?>
+		</table>
+	</div>
+	<div id="have_promo_code_no">
 	<?php
 		$now = time();
 	?>
@@ -498,6 +553,7 @@
 	</div>
 	<div id="payment_type_credit_card">
 		<p>If credit card, please <a href="#">pay through PayPal</a>.</p>
+	</div>
 	</div>
 	
 	<p>

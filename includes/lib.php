@@ -303,9 +303,9 @@ function get_error_text($field, $text = "(required)") {
 function print_field($id, $element_html, $options = array()) {
 ?>
 	<?php if (isset($_GET["error_$id"])) { ?>
-		<tr class="error">
+		<tr id="<?php echo htmlentities($id) ?>_container" class="error">
 	<?php } else { ?>
-		<tr>
+		<tr id="<?php echo htmlentities($id) ?>_container">
 	<?php } ?>
 	
 	<?php if ($options['required']) { ?>
