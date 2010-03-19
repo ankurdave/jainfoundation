@@ -139,35 +139,33 @@ $(document).ready(function() {
 });
 
 // Set up the Fill Sample Values button
-$(document).ready(function() {
-	$("#sample_values").click(function() {
-		$("#firstname").val("Ankur").change();
-		$("#middlename").val("").change();
-		$("#lastname").val("Dave").change();
-		$("#degree").val("PhD");
-		$("#department").val("Computer Science and Engineering Department");
-		$("#institution").val("University of Washington");
-		$("#street_address").val("1234 Example Ln.");
-		$("#city").val("Bellevue");
-		$("#state_province").val("Washington");
-		$("#zip_postal_code").val("98001");
-		$("#country").val("United States");
-		$("#phone").val("(206) 555-1212");
-		$("#fax").val("(206) 123-4567");
-		$("#email").val("ankurdave@gmail.com");
-		$("#author_status").val("other").change();
-		$("#author_status_other").val("High School Student");
-		$("#affiliation_1").val("Department of Computer Science and Engineering, University of Washington, Seattle, Washington, United States");
-		$("#affiliation_2").val("School of Computer Science, Carnegie Mellon University, Pittsburgh, Pennsylvania, United States");
-		$("#author_1_affiliation").val("1");
-		$("#author_2_firstname").val("Joe");
-		$("#author_2_middlename").val("D.");
-		$("#author_2_lastname").val("Bloggs");
-		$("#author_2_affiliation").val("1,2");
-		$("#abstract_category").val("other").change();
-		$("#abstract_category_other").val("Computer Science");
-		$("#presentation_type").val("oral");
-		$("#abstract_title").val("Optimizing Boggle Boards: An Evaluation of Parallelizable Techniques");
-		$("#abstract_body").val("This paper's objective is to find efficient, parallelizable techniques of solving global optimization problems. To do this, it uses the specific problem of optimizing the score of a Boggle board.\n\nGlobal optimization problems deal with maximizing or minimizing a given function. This has many practical applications, including maximizing profit or performance, or minimizing raw materials or cost.\n\nParallelization is splitting up an algorithm across many different processors in a way that allows many pieces of work to run simultaneously. As parallel hardware increases in popularity and decreases in cost, algorithms should be parallelizable to maximize efficiency.\n\nBoggle is a board game in which lettered cubes are shaken onto a 4-by-4 grid. The objective is to find words spelled by paths through the grid. The function to maximize is the sum of the scores of all possible words in the board.\n\nIn this paper, the performance of two algorithms for global optimization is investigated: hill climbing and genetic algorithms. Genetic algorithms, which model evolution to find the fittest solutions, are found to be more efficient because they are non-greedy. In addition, a modified genetic algorithm called the coarse-grained distributed genetic algorithm (DGA) is investigated. This algorithm can take advantage of multiple computers, running several semi-independent copies of the algorithm in parallel to provide extra genetic diversity and better performance. The success of the coarse-grained DGA shows that global optimization problems can benefit significantly from parallelization.");
-	});
-});
+function fillSampleValues() {
+	$("#firstname").val("Ankur").change();
+	$("#middlename").val("").change();
+	$("#lastname").val("Dave").change();
+	$("#degree").val("PhD");
+	$("#department").val("Computer Science and Engineering Department");
+	$("#institution").val("University of Washington");
+	$("#street_address").val("1234 Example Ln.");
+	$("#city").val("Bellevue");
+	$("#state_province").val("Washington");
+	$("#zip_postal_code").val("98001");
+	$("#country").val("United States");
+	$("#phone").val("(206) 555-1212");
+	$("#fax").val("(206) 123-4567");
+	$("#email").val("ankurdave@gmail.com");
+	$("#author_status").val("other").change();
+	$("#author_status_other").val("High School Student");
+	$("#affiliation_1").val("Department of Computer Science and Engineering, University of Washington, Seattle, Washington, United States");
+	$("#affiliation_2").val("School of Computer Science, Carnegie Mellon University, Pittsburgh, Pennsylvania, United States");
+	$("#author_1_affiliation").val("1");
+	$("#author_2_firstname").val("Joe");
+	$("#author_2_middlename").val("D.");
+	$("#author_2_lastname").val("Bloggs");
+	$("#author_2_affiliation").val("1,2");
+	$("#abstract_category").val("other").change();
+	$("#abstract_category_other").val("Computer Science");
+	$("#presentation_type").val("oral");
+	$("#abstract_title").val("Optimizing Boggle Boards: An Evaluation of Parallelizable Techniques");
+	$("#abstract_body").val("This paper's objective is to find efficient, parallelizable techniques of solving global optimization problems. To do this, it uses the specific problem of optimizing the score of a Boggle board.\n\nGlobal optimization problems deal with maximizing or minimizing a given function. This has many practical applications, including maximizing profit or performance, or minimizing raw materials or cost.\n\nParallelization is splitting up an algorithm across many different processors in a way that allows many pieces of work to run simultaneously. As parallel hardware increases in popularity and decreases in cost, algorithms should be parallelizable to maximize efficiency.\n\nBoggle is a board game in which lettered cubes are shaken onto a 4-by-4 grid. The objective is to find words spelled by paths through the grid. The function to maximize is the sum of the scores of all possible words in the board.\n\nIn this paper, the performance of two algorithms for global optimization is investigated: hill climbing and genetic algorithms. Genetic algorithms, which model evolution to find the fittest solutions, are found to be more efficient because they are non-greedy. In addition, a modified genetic algorithm called the coarse-grained distributed genetic algorithm (DGA) is investigated. This algorithm can take advantage of multiple computers, running several semi-independent copies of the algorithm in parallel to provide extra genetic diversity and better performance. The success of the coarse-grained DGA shows that global optimization problems can benefit significantly from parallelization.");
+}

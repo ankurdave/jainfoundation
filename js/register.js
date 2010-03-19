@@ -189,7 +189,7 @@ hideElementWhenRadioChecked("#meals_day4_lunch input[type=radio][value='no']", "
 
 // #meals_gala_dinner
 showElementWhenRadioChecked("#meals_gala_dinner input[type=radio][value='yes']", "#meals_gala_dinner_yes");
-hideElementWhenRadioChecked("#meals_gala_dinner	 input[type=radio][value='no']", "#meals_gala_dinner_yes");
+hideElementWhenRadioChecked("#meals_gala_dinner input[type=radio][value='no']", "#meals_gala_dinner_yes");
 
 // #have_promo_code
 showElementWhenRadioChecked("#have_promo_code input[type=radio][value='yes']", "#have_promo_code_yes");
@@ -202,49 +202,47 @@ hideElementWhenRadioChecked("#have_promo_code input[type=radio][value='no']", "#
 function selectRadio(element_id, value) {
 	return $("#" + element_id + " input:radio[value='" + value + "']").attr('checked', 'checked');
 }
-$(document).ready(function() {
-	$("#sample_values").click(function() {
-		$("#firstname").val("Ankur");
-		$("#lastname").val("Dave");
-		$("#degree").val("phd");
-		$("#position").val("other").change();
-		$("#position_other").val("High School Student");
-		$("#institution").val("University of Washington");
-		$("#institution_profile").val("academic");
-		$("#department").val("Computer Science and Engineering Department");
-		$("#street_address").val("1234 Example Ln.");
-		$("#city").val("Bellevue");
-		$("#state_province").val("Washington");
-		$("#zip_postal_code").val("98001");
-		$("#country").val("United States");
-		$("#email").val("ankurdave@gmail.com");
-		$("#phone").val("(206) 555-1212");
-		$("#fax").val("(206) 123-4567");
-		selectRadio('submitting_abstract', 'yes');
-		$("#abstract_title").val("Optimizing Boggle Boards");
-		selectRadio('local_attendee', 'no');
-		selectRadio('hotel_parking', 'yes');
-		selectRadio('attendance_day1', 'yes');
-		selectRadio('attendance_day2', 'yes');
-		selectRadio('attendance_day3', 'unknown');
-		selectRadio('attendance_day4', 'no');
-		selectRadio('meals_day2_breakfast', 'no');
-		selectRadio('meals_day2_lunch', 'yes');
-		selectRadio('meals_day3_breakfast', 'yes');
-		selectRadio('meals_day3_lunch', 'yes');
-		selectRadio('meals_day4_breakfast', 'yes');
-		selectRadio('meals_day4_lunch', 'unknown');
-		selectRadio('meals_day1_breakfast', 'unknown');
-		selectRadio('meals_gala_dinner', 'yes');
-		selectRadio('meals_gala_dinner_guests', 'yes');
-		$("#meals_gala_dinner_numguests").val('1');
-		selectRadio('share_room', 'yes').change();
-		selectRadio('gender', 'male');
-		$("#arrival_date").val('2010-09-11');
-		$("#departure_date").val('2010-09-14');
-		selectRadio('payment_type', 'check');
-	});
-});
+function fillSampleValues() {
+	$("#firstname").val("Ankur");
+	$("#lastname").val("Dave");
+	$("#degree").val("phd");
+	$("#position").val("other").change();
+	$("#position_other").val("High School Student");
+	$("#institution").val("University of Washington");
+	$("#institution_profile").val("academic");
+	$("#department").val("Computer Science and Engineering Department");
+	$("#street_address").val("1234 Example Ln.");
+	$("#city").val("Bellevue");
+	$("#state_province").val("Washington");
+	$("#zip_postal_code").val("98001");
+	$("#country").val("United States");
+	$("#email").val("ankurdave@gmail.com");
+	$("#phone").val("(206) 555-1212");
+	$("#fax").val("(206) 123-4567");
+	selectRadio('submitting_abstract', 'yes');
+	$("#abstract_title").val("Optimizing Boggle Boards");
+	selectRadio('local_attendee', 'no');
+	selectRadio('hotel_parking', 'yes');
+	selectRadio('attendance_day1', 'yes');
+	selectRadio('attendance_day2', 'yes');
+	selectRadio('attendance_day3', 'unknown');
+	selectRadio('attendance_day4', 'no');
+	selectRadio('meals_day2_breakfast', 'no');
+	selectRadio('meals_day2_lunch', 'yes');
+	selectRadio('meals_day3_breakfast', 'yes');
+	selectRadio('meals_day3_lunch', 'yes');
+	selectRadio('meals_day4_breakfast', 'yes');
+	selectRadio('meals_day4_lunch', 'unknown');
+	selectRadio('meals_day1_breakfast', 'unknown');
+	selectRadio('meals_gala_dinner', 'yes');
+	selectRadio('meals_gala_dinner_guests', 'yes');
+	$("#meals_gala_dinner_numguests").val('1');
+	selectRadio('share_room', 'yes').change();
+	selectRadio('gender', 'male');
+	$("#arrival_date").val('2010-09-11');
+	$("#departure_date").val('2010-09-14');
+	selectRadio('payment_type', 'check');
+}
 
 // Set up the Calculate Price button
 $(document).ready(function() {
