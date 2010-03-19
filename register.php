@@ -480,17 +480,27 @@
 	?>
 	</table>
 	<div id="have_promo_code_yes">
+		<script type="text/javascript">
+			var promo_code_valid = false;
+		</script>
 		<table>
 		<?php
 			print_text_field('promo_code', array(
 				'label' => 'Promotional Code',
+				'instructions' => '<input type="button" id="check_promo" value="Check Promotional Code" />',
 				'required' => false,
 				'value' => $values,
 			));
 		?>
 		</table>
 	</div>
-	<div id="promo_code_not_valid">
+	<div id="promo_code_valid" style="display:none">
+		Promotional code is valid.
+	</div>
+	<div id="promo_code_invalid" style="display:none">
+		Promotional code is not valid.
+	</div>
+	<div id="no_promo_code">
 	<?php
 		$now = time();
 	?>
@@ -524,6 +534,7 @@
 			Registration is closed. No late or onsite registration is available.
 	</p>
 		<?php } ?>
+	</div>
 	
 	<p>
 		<input type="button" id="calculate_fee" value="Calculate Price" />
@@ -569,13 +580,12 @@
 			<li>Email to Angela Salerno at <a href="mailto:asalerno@jain-foundation.org">asalerno@jain-foundation.org</a></li>
 			<li>Fax to the Jain Foundation at 425-882-1050</li>
 			<li>
-				Mailed to the Jain Foundation at:<br />
-				Jain Foundation<br />
-				2310 130th Ave NE<br />
+				Mailed to the Jain Foundation at:
+				<br />Jain Foundation
+				<br />2310 130th Ave NE
 				<br />Suite B101
 				<br />Bellevue, WA 98005
 			</li>
-	</div>
 	</div>
 	
 	<h3>Comments</h3>

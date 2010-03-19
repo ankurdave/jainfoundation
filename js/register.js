@@ -191,6 +191,11 @@ hideElementWhenRadioChecked("#meals_day4_lunch input[type=radio][value='no']", "
 showElementWhenRadioChecked("#meals_gala_dinner input[type=radio][value='yes']", "#meals_gala_dinner_yes");
 hideElementWhenRadioChecked("#meals_gala_dinner	 input[type=radio][value='no']", "#meals_gala_dinner_yes");
 
+// #have_promo_code
+showElementWhenRadioChecked("#have_promo_code input[type=radio][value='yes']", "#have_promo_code_yes");
+hideElementWhenRadioChecked("#have_promo_code input[type=radio][value='no']", "#have_promo_code_yes");
+
+
 // === OTHER ===================================================================
 
 // Set up the Fill Sample Values button
@@ -244,22 +249,27 @@ $(document).ready(function() {
 // Set up the Calculate Price button
 $(document).ready(function() {
 	$("#calculate_fee").click(function() {
+		// Calculate the base fee
 		var base_fee = 0;
-		switch ($("#position").val()) {
-			case "postdoc":
-			case "grad_student":
-			case "undergrad_student":
-				base_fee = postdoc_fee;
-				break;
-			default:
-				base_fee = other_fee;
+		if (!promo_code_valid) {
+			switch ($("#position").val()) {
+				case "postdoc":
+				case "grad_student":
+				case "undergrad_student":
+					base_fee = postdoc_fee;
+					break;
+				default:
+					base_fee = other_fee;
+			}
 		}
-
+		
+		// Calculate the Gala guest fee
 		var gala_dinner_guest_fee = 0;
 		if (!isNaN(parseInt($("#meals_gala_dinner_numguests").val()))) {
 			gala_dinner_guest_fee = 50 * parseInt($("#meals_gala_dinner_numguests").val());
 		}
 
+		// Total it up and display it
 		var total_fee = base_fee + gala_dinner_guest_fee;
 
 		$("#base_fee").html(base_fee);
@@ -267,5 +277,21 @@ $(document).ready(function() {
 		$("#total_fee").html(total_fee);
 
 		$("#price").css("display", "");
+	});
+});
+
+// Set up the Check Promotional Code button
+$(document).ready(function() {
+	$("#check_promo").click(function() {
+		// Do an Ajax request to the server to check the promo code, and show/hide elements and set variables based on the result
+		$.getJSON("check-promo.php", {
+			promoCode: $("#promo_code").val()
+		}, function(data) {
+			$("#promo_code_valid").css("display", data.valid ? "" : "none");
+			$("#promo_code_invalid").css("display", data.valid ? "none" : "");
+			$("#no_promo_code").css("display", data.valid ? "none" : "");
+			
+			promo_code_valid = data.valid;
+		});
 	});
 });
