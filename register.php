@@ -37,8 +37,6 @@
 	}
 ?>
 <form action="<?php echo $submit_location . $data_auth_query_string ?>" method="post" id="register-form">
-	<p><input type="button" id="sample_values" value="Fill sample values" /></p>
-	
 	<h3>Personal Information</h3>
 	<table>
 		<?php
