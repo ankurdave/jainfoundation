@@ -21,8 +21,6 @@
 
 <?php include 'includes/menu.inc.php' ?>
 
-<input type="button" id="sample_values" value="Fill sample values" />
-
 <p><em>For questions and concerns please contact Angela Salerno at <a href="mailto:asalerno@jain-foundation.org">asalerno@jain-foundation.org</a>.</em></p>
 
 <h2>Abstract Submission</h2>
