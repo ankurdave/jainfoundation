@@ -354,7 +354,7 @@
 		<p>Do you require a Vegetarian option for the Gala Dinner?</p>
 		<table>
 		<?php
-			print_radio_field('meals_gala_dinner_entree', array(
+			print_radio_field('meals_gala_dinner_vegetarian', array(
 				'label' => 'Evening of Tuesday, Sept 13 &ndash; Gala Dinner &ndash; Vegetarian',
 				'required' => false,
 				'options' => array(

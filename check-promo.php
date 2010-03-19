@@ -1,6 +1,6 @@
+<?php
+	include 'includes/lib.php';
+?>
 {
-	"valid":
-		<?php
-			echo strtoupper($_GET['promoCode']) == 'JF2010AS' ? "true" : "false";
-		?>
+	"valid": <?php echo promo_code_valid($_GET['promoCode']) ? "true" : "false" ?>
 }

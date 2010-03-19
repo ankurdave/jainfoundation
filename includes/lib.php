@@ -50,22 +50,24 @@ function addRegistrant($data, $id = null, $auth_key = null) {
 	}
 
 	// Calculate the total price
-	if ($now < strtotime('June 16, 2010')) {
-	  $other_fee = 200;
-	  $postdoc_fee = 150;
+	if ($now <= strtotime('June 4, 2010')) {
+		$postdoc_fee = 150;
+		$other_fee = 250;
 	} else {
-	  $other_fee = 250;
-	  $postdoc_fee = 200;
+		$postdoc_fee = 250;
+		$other_fee = 350;
 	}
 	$base_fee = 0;
-	switch ($data['position']) {
-		case "postdoc":
-		case "grad_student":
-		case "undergrad_student":
-			$base_fee = $postdoc_fee;
-			break;
-		default:
-			$base_fee = $other_fee;
+	if (!promo_code_valid($data['promo_code'])) {
+		switch ($data['position']) {
+			case "postdoc":
+			case "grad_student":
+			case "undergrad_student":
+				$base_fee = $postdoc_fee;
+				break;
+			default:
+				$base_fee = $other_fee;
+		}
 	}
 
 	$gala_dinner_guest_fee = 0;
@@ -77,7 +79,7 @@ function addRegistrant($data, $id = null, $auth_key = null) {
 
 	
 	// Build the list of columns
-	$columns = explode(' ', 'id auth_key firstname lastname degree degree_other position position_other institution institution_profile institution_profile_other department street_address city state_province zip_postal_code country email phone fax submitting_abstract abstract_title local_attendee hotel_parking attendance_day1 attendance_day2 attendance_day3 attendance_day4 meals_day2_breakfast meals_day2_lunch meals_day3_breakfast meals_day3_lunch meals_day4_breakfast meals_day4_lunch meals_gala_dinner meals_gala_dinner_guests meals_gala_dinner_numguests share_room gender arrival_date departure_date payment_type total_fee');
+	$columns = explode(' ', 'id auth_key firstname lastname degree degree_other position position_other institution institution_profile institution_profile_other department street_address city state_province zip_postal_code country email phone fax submitting_abstract abstract_title local_attendee hotel_parking attendance_day1 attendance_day2 attendance_day3 attendance_day4 meals_day2_breakfast meals_day2_lunch meals_day2_lunch_entree meals_day3_breakfast meals_day3_lunch meals_day3_lunch_entree meals_day4_breakfast meals_day4_lunch meals_day4_lunch_entree meals_gala_dinner meals_gala_dinner_vegetarian meals_gala_dinner_guests meals_gala_dinner_numguests share_room gender arrival_date departure_date have_promo_code promo_code payment_type total_fee comments');
 	$columns_string = join(', ', $columns);
 	
 	$columns_update = array_map('make_column_update_sql', $columns); // for the ON DUPLICATE KEY UPDATE clause
@@ -109,6 +111,13 @@ function addRegistrant($data, $id = null, $auth_key = null) {
 	} else {
 		return $success;
 	}
+}
+
+/*
+ * Checks if the given promotional code is valid. Not case sensitive.
+ */
+function promo_code_valid($code) {
+	return strtoupper($code) == 'JF2010AS';
 }
 
 /*
