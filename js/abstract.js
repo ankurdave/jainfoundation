@@ -19,7 +19,7 @@ $(document).ready(function() {
 			},
 			
 			abstract_body: {
-				maxWords: 250
+				maxWords: 275
 			}
 		},
 		errorPlacement: function(error, element) {

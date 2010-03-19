@@ -23,13 +23,13 @@
 
 <input type="button" id="sample_values" value="Fill sample values" />
 
-<h2>Call for Abstract</h2>
-
-<p>Instructions and approval of abstract for poster or oral presentations.</p>
+<p><em>For questions and concerns please contact Angela Salerno at <a href="mailto:asalerno@jain-foundation.org">asalerno@jain-foundation.org</a>.</em></p>
 
 <h2>Abstract Submission</h2>
 
-<p>Please fill out the form below and submit it no later than May ??, 2010. You will be informed whether your abstract has been accepted for a poster or oral presentation by May ??, 2010.</p>
+<p>This year's meeting is going to be different from past dysferlin conferences.  We plan to limit the number of talks and present more information using posters.  The sessions will focus on a few of the most pressing questions in dysferlin and will include a significant time for discussion.</p>
+
+<p>Please fill out the form below and submit it <strong>no later than June 25th, 2010</strong>. <em>You will be informed whether your abstract has been accepted by July 9th, 2010.</em></p>
 
 <?php
 	if (isset($values['id'])) {
@@ -266,7 +266,7 @@
 	</table>
 	
 	<p>Please <strong>do not</strong> enter the abstract title again in the body of the abstract.<br />
-	Please limit the body of your abstract to no more than ???? characters.</p>
+	Please enter your abstract as ONE paragraph and limit the body of your abstract to no more than 275 words.</p>
 	
 	<?php
 		print_textarea_field('abstract_body', array(
@@ -277,6 +277,16 @@
 	?>
 
 	<div id="word_count_text" class="hoveringLabel" style="display:none">word count: <span id="word_count">0</span> words</div>
+	
+	<h3>Comments</h3>
+	<p>Please use this box to indicate anything that you need to convey to the Jain Foundation regarding your abstract submission.</p>
+	<?php
+		print_textarea_field('comments', array(
+			'label' => 'Comments',
+			'required' => false,
+			'value' => $values,
+		));
+	?>
 	
 	<p>
 		<input type="submit" name="action" value="Preview" />
