@@ -95,7 +95,7 @@
 	<li>Dinner &ndash; One Gala dinner sponsored by the Jain Foundation (advanced registration required; see <a href="register.php">registration page</a> for details)</li>
 </ul>
 
-<p>Please note: Breakfast and lunch is open to conference attendees only. Guests may be brought to the Gala dinner for <strong>??</strong> dollars per person (advanced registration required; see <a href="register.php">registration page</a> for details).</p>
+<p>Please note: Breakfast and lunch is open to conference attendees only. Guests may be brought to the Gala dinner for $70 per person (advanced registration required; see <a href="register.php">registration page</a> for details).</p>
 
 <h2>Free Time</h2>
 
