@@ -10,6 +10,8 @@
 
 <h2>Location</h2>
 
+<p class="intext right" style="width:12em"><img src="images/space-needle.jpg" alt="Space Needle" /></p>
+
 <p>The conference will be held at the <a href="http://bellevue.hyatt.com/hyatt/hotels/index.jsp">Hyatt Regency Bellevue</a>.</p>
 
 <p>The hotel address is:</p>

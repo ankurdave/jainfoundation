@@ -267,13 +267,20 @@ h2, h3 {
 }
 
 p.intext {
-	float: left;
-	margin: 1em 1em 1em 0;
 	width: 50%;
 }
 
 p.intext img {
 	width: 100%;
+}
+
+p.intext, p.intext.left {
+	float: left;
+	margin: 1em 1em 1em 0em;
+}
+p.intext.right {
+	float: right;
+	margin: 1em 0em 1em 1em;
 }
 
 /* Forms */
