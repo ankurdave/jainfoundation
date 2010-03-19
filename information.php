@@ -23,9 +23,32 @@
 	Phone: (425) 462-1234
 </p>
 
-<h2>Conference Registration Dates and Fees</h2>
+<h2><a href="register.php" target="_blank">Conference Registration Dates and Fees</a></h2>
 
-<p>To be determined.</p>
+<p>Meeting Registration Fees:</p>
+
+<ul>
+	<li>Early Registration &ndash; <strong>on or before June 4, 2010</strong>:
+		<ul>
+			<li>Postdoctoral student &ndash; $150 USD</li>
+			<li>Researcher/Other &ndash; $250 USD</li>
+		</ul>
+	</li>
+	<li>Late Registration &ndash; <strong>between June 5, 2010 &ndash; July 23rd, 2010</strong>:
+		<ul>
+			<li>Postdoctoral student &ndash; $250 USD</li>
+			<li>Researcher/Other &ndash; $350 USD</li>
+		</ul>
+	</li>
+</ul>
+
+<p><strong>No registrations will be accepted after July 23rd, 2010.</strong></p>
+
+<h2><a href="abstract.php" target="_blank">Abstract Submission</a></h2>
+
+<p>This year's meeting is going to be different from past dysferlin conferences.  We plan to limit the number of talks and present more information using posters.  The sessions will focus on a few of the most pressing questions in dysferlin and will include a significant time for discussion.</p>
+
+<p>Abstracts must be submitted <strong>no later than June 25, 2010</strong>.  You will be informed by July 9, 2010 whether your abstract has been accepted.  You may select whether you prefer an oral or poster presentation.  However, the decision regarding the type of presentation is at the complete discretion of the Jain Foundation.</p>
 
 <h2>Arrival</h2>
 
@@ -50,11 +73,13 @@
 
 <h2>Hotel Charges</h2>
 
-<p>The Jain Foundation has reserved a guaranteed block of rooms for the conference for the nights of September 11, 12, and 13, 2010. In addition, if you need lodging outside of these 3 nights, the conference rate is available for 3 days pre and post the conference (September 8-17) based on room availability. The conference room rate is $142 USD/night + 14.5% tax for single or double occupancy. A third or fourth person in the room is $25 per night extra for each additional person.</p>
+<p>The Jain Foundation has reserved a guaranteed block of rooms for the conference for the nights of September 11, 12, and 13, 2010. In addition, if you need lodging outside of these 3 nights, the conference rate is available for 3 days pre and post the conference (September 8-17) based on room availability. The conference room rate for a basic King or Double is $142 USD/night + 14.4% tax for single or double occupancy. A third or fourth person in the room is $25 per night extra for each additional person.</p>
 
 <p><strong>Please note: Attendees who will be sharing a room with a roommate assigned by the Jain Foundation should not book their hotel reservations directly. Instead, please contact Ms. Angela Salerno (<a href="mailto:asalerno@jain-foundation.org">asalerno@jain-foundation.org</a>) at the Jain Foundation with your arrival and departure dates and she will pair you with a roommate, make your reservation and send you a confirmation.</strong></p>
 
-<p>Online booking instructions are coming soon.</p>
+<p><strong>Reservations must be made no later than August 20 in order to be eligible for the special Jain Foundation conference rate.</strong></p>
+
+<p>Please click on the following <a href="location.php" target="_blank">hotel reservation link</a> for instructions about how to book your room.</p>
 
 <h2>Internet Access</h2>
 
