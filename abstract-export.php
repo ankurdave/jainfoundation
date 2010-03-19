@@ -2,7 +2,7 @@
 	require 'includes/lib.php';
 	
 	$db = connectToDB();
-	$result = $db->query('SELECT id, firstname, middlename, lastname, degree, department, institution, street_address, city, state_province, zip_postal_code, country, phone, fax, email, author_status, degree_year, abstract_category, abstract_category_other, presentation_type, abstract_title FROM abstract');
+	$result = $db->query('SELECT id, firstname, middlename, lastname, degree, department, institution, street_address, city, state_province, zip_postal_code, country, phone, fax, email, author_status, degree_year, abstract_category, abstract_category_other, presentation_type, abstract_title, comments FROM abstract');
 	
 	header("Content-Type: text/csv");	header("Content-Disposition: attachment; filename=abstract-submission-info.csv");
 	// IE has a bug that breaks downloads from SSL sites with the no-cache header set (see http://support.microsoft.com/kb/812935). So we must clear the caching header.

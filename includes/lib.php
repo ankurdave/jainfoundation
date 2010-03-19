@@ -160,7 +160,7 @@ function addAbstract($data, $final = false, $id = null, $auth_key = null) {
 	$data['picture_data'] = null;
 	
 	// Build the list of columns
-	$column_names = explode(', ', 'id, auth_key, picture_mimetype, picture_data, firstname, middlename, lastname, degree, department, institution, street_address, city, state_province, zip_postal_code, country, phone, fax, email, author_status, author_status_other, degree_year, abstract_category, abstract_category_other, presentation_type, abstract_title, abstract_body, final');
+	$column_names = explode(', ', 'id, auth_key, picture_mimetype, picture_data, firstname, middlename, lastname, degree, department, institution, street_address, city, state_province, zip_postal_code, country, phone, fax, email, author_status, author_status_other, degree_year, abstract_category, abstract_category_other, presentation_type, abstract_title, abstract_body, comments, final');
 	
 	$affiliations = array();
 	for ($i = 1; $i <= 8; $i++) {
