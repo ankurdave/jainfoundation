@@ -416,7 +416,7 @@
 		?>
 	</table>
 	<div id="share_room_yes">
-		<p>If yes, <strong>do not</strong> book a hotel room. The Jain Foundation will match you up with a compatible roommate and book the room for you. Pleas answer the following questions to help with the matching.</p>
+		<p>If yes, <strong>do not</strong> book a hotel room. The Jain Foundation will match you up with a compatible roommate and book the room for you. Please answer the following questions to help with the matching.</p>
 		<table>
 			<?php
 				print_radio_field('gender', array(
