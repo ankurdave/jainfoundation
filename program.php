@@ -8,37 +8,22 @@
 
 <?php include 'includes/menu.inc.php' ?>
 
-<h2 class="day">Tuesday, June 2</h2>
+<p>This year's meeting is going to be different from past dysferlin conferences.  We plan to limit the number of talks and present more information using posters.  The sessions will focus on a few of the most pressing questions in dysferlin and will include a significant time for discussion.</p>
 
-<h3 class="time">
-	2:30 - 3:00 PM<br />
-	Introduction
-</h3>
-<p class="talk">
-	<span class="title">"Welcome to the Third Annual Dysferlin Conference"</span>
-	<span class="people">Plavi Mittal and Akshay Jain, Jain Foundation Inc</span>
-</p>
+<p>Below is the tentative meeting schedule for the Fourth Annual Dysferlin Conference.   This page will be updated as soon as more details are available.</p>
 
-<h3 class="time">
-	3:00 - 4:25 PM<br />
-	Session I: Dysferlinopathy – Mechanisms of Pathology I
-</h3>
-<p class="talk">
-	<span class="title">Introduction</span>
-	<span class="people">Douglas Albrecht, Jain Foundation Inc</span>
-</p>
-<p class="talk">
-	<span class="title">“Response of Dysferlin-Null Muscle to Injury by Lengthening Contractions: Recovery of Function, Membrane Resealing, and Inflammation” </span>
-	<span class="people">DoRobert Bloch, University of Maryland School of Medicine, Baltimore, MD</span>
-</p>
-<p class="talk">
-	<span class="title">“Developing the Hypothesis that Dysferlin is Required for Stabilizing Muscle T-tubule Connections to the Sarcolemma”</span>
-	<span class="people">John Heuser, Washington University School of Medicine, St. Louis, MO </span>
-</p>
-<p class="talk">
-	<span class="title">“In vivo Proof that Calcium Underlies Skeletal Muscle Degeneration in Muscular Dystrophy”</span>
-	<span class="people">Jeffery Molkentin, Children's Hospital of Cincinnati, University of Cincinnati, Cincinnati, OH </span>
-</p>
+<h2 class="day">Saturday, September 11th, 2010</h2>
+<h3 class="time">2 pm – 6 pm</h3>
+
+<h2 class="day">Sunday, September 12th, 2010</h2>
+<h3 class="time">8 am – 5 pm</h3>
+
+<h2 class="day">Monday, September 13th, 2010</h2>
+<h3 class="time">8 am – 5 pm</h3>
+
+<h2 class="day">Tuesday, September 14th, 2010</h2>
+<h3 class="time">8 am – 12 pm</h3>
+
 
 <?php
 	printFooter();
