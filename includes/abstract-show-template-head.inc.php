@@ -6,19 +6,20 @@
 	@page {
 		margin: 1in;
 	}
+	
 	body {
 		font-family: Helvetica, Arial, sans-serif;
 		font-size: 9pt;
 		background: white;
 		color: black;
-		line-height: 115%;
+		line-height: 100%;
 	}
-	p, h2 {
-		margin-top: 0.08in;
-		margin-bottom: 0.08in;
+	p {
+		margin: 0;
 	}
+	
 	h1.author {
-		font-size: 11pt;
+		font-size: 12pt;
 		font-weight: bold;
 		color: #000080;
 		margin: 0;
@@ -27,7 +28,8 @@
 		font-size: 9pt;
 		font-weight: bold;
 		color: black;
-		margin-top: 0in;
+		margin: 0;
+		margin-top: 9pt;
 	}
 	.pagebreak {
 		page-break-before: always;
@@ -40,15 +42,18 @@
 		text-decoration: none;
 	}
 	.authors, .affiliations {
-		font-size: 8pt;
+		font-size: 9pt;
 	}
 	.picture {
 		float: left;
-		width: 1.5in;
+		width: 100px;
 		margin-right: 0.13in;
 		margin-top: 0in;
 		margin-bottom: 0.13in;
 		margin-left: 0;
+	}
+	.abstract_body p {
+		margin-bottom: 3pt;
 	}
 
 </style>
