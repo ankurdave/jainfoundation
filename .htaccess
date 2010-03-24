@@ -1,0 +1,6 @@
+# Forbidden files/dirs
+
+<Files db.sql>
+	Order allow,deny
+	Deny from all
+</Files>
