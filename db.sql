@@ -90,8 +90,9 @@ CREATE TABLE `abstract` (
   `author_8_affiliation` varchar(255) DEFAULT NULL,
   `final` tinyint(1) DEFAULT NULL,
   `author_status_other` varchar(255) DEFAULT NULL,
+  `comments` text,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=33 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=35 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -161,8 +162,15 @@ CREATE TABLE `registrant` (
   `departure_date` varchar(255) DEFAULT NULL,
   `payment_type` varchar(255) DEFAULT NULL,
   `total_fee` int(11) DEFAULT NULL,
+  `meals_day2_lunch_entree` varchar(255) DEFAULT NULL,
+  `meals_day3_lunch_entree` varchar(255) DEFAULT NULL,
+  `meals_day4_lunch_entree` varchar(255) DEFAULT NULL,
+  `meals_gala_dinner_vegetarian` varchar(255) DEFAULT NULL,
+  `have_promo_code` varchar(255) DEFAULT NULL,
+  `promo_code` varchar(255) DEFAULT NULL,
+  `comments` text,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -174,4 +182,4 @@ CREATE TABLE `registrant` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2010-02-22 19:30:53
+-- Dump completed on 2010-03-23 20:25:03
