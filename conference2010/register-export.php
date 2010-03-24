@@ -4,7 +4,8 @@
 	$db = connectToDB();
 	$result = $db->query('SELECT * FROM registrant');
 	
-	header("Content-Type: text/csv");	header("Content-Disposition: attachment; filename=registrants.csv");
+	header("Content-Type: text/csv");
+	header("Content-Disposition: attachment; filename=registrants.csv");
 	// IE has a bug that breaks downloads from SSL sites with the no-cache header set (see http://support.microsoft.com/kb/812935). So we must clear the caching header.
 	header('Pragma:');
 
