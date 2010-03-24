@@ -17,7 +17,7 @@
 	printHeader(array('title' => 'Conference 2010 | Registration', 'scripts' => array('js/jquery.validate.js', 'js/register.js',), 'page_nav_id' => 'register'));
 ?>
 
-<?php include 'conference-title.inc.php' ?>
+<?php include 'includes/conference-title.inc.php' ?>
 
 <?php include 'includes/menu.inc.php' ?>
 

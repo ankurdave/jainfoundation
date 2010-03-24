@@ -1,10 +1,10 @@
 <?php
-	include 'lib.php';
+	include 'includes/lib.php';
 	
 	printHeader(array('title' => 'Conference 2010 | General Information', 'page_nav_id' => 'information'));
 ?>
 
-<?php include 'conference-title.inc.php' ?>
+<?php include 'includes/conference-title.inc.php' ?>
 
 <?php include 'includes/menu.inc.php' ?>
 
