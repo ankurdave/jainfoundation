@@ -96,19 +96,124 @@ CREATE TABLE `abstract` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `person`
+-- Table structure for table `admin_user`
 --
 
-DROP TABLE IF EXISTS `person`;
+DROP TABLE IF EXISTS `admin_user`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `person` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `phone` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+CREATE TABLE `admin_user` (
+  `login_id` int(11) NOT NULL AUTO_INCREMENT,
+  `logname` varchar(50) NOT NULL DEFAULT '',
+  `logpassword` varchar(50) NOT NULL DEFAULT '',
+  PRIMARY KEY (`login_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `patient`
+--
+
+DROP TABLE IF EXISTS `patient`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `patient` (
+  `patient_id` int(11) NOT NULL AUTO_INCREMENT,
+  `first_name` varchar(50) NOT NULL DEFAULT '',
+  `last_name` varchar(50) NOT NULL DEFAULT '',
+  `email` varchar(50) NOT NULL DEFAULT '',
+  `address` varchar(80) NOT NULL DEFAULT '',
+  `city_state_zip` varchar(60) NOT NULL DEFAULT '',
+  `country` varchar(50) NOT NULL DEFAULT '',
+  `phone` varchar(20) NOT NULL DEFAULT '',
+  `gender` varchar(30) NOT NULL DEFAULT '',
+  `age` int(2) NOT NULL DEFAULT '0',
+  `diagnosis_age` int(2) NOT NULL DEFAULT '0',
+  `diagnosis_examination` varchar(10) NOT NULL DEFAULT '',
+  `diagnosis_ck_level` varchar(10) NOT NULL DEFAULT '',
+  `diagnosis_ck_level_number` varchar(10) NOT NULL DEFAULT '',
+  `diagonsis_muscle_biopsy` varchar(10) NOT NULL DEFAULT '',
+  `diagnosis_blood_cell_test` varchar(10) NOT NULL DEFAULT '',
+  `diagnosis_mutational` varchar(10) NOT NULL DEFAULT '',
+  `submission_date` varchar(20) NOT NULL DEFAULT '',
+  `mom_disease` varchar(3) NOT NULL DEFAULT '',
+  `dad_disease` varchar(3) NOT NULL DEFAULT '',
+  `relatives_name1` varchar(30) NOT NULL DEFAULT '',
+  `relatives_age1` int(3) NOT NULL DEFAULT '0',
+  `relatives_lgmd2b1` varchar(3) NOT NULL DEFAULT '',
+  `relatives_name2` varchar(30) NOT NULL DEFAULT '',
+  `relatives_age2` int(3) NOT NULL DEFAULT '0',
+  `relatives_lgmd2b2` varchar(3) NOT NULL DEFAULT '',
+  `relatives_name3` varchar(30) NOT NULL DEFAULT '',
+  `relatives_age3` int(3) NOT NULL DEFAULT '0',
+  `relatives_lgmd2b3` varchar(3) NOT NULL DEFAULT '',
+  `relatives_name4` varchar(30) NOT NULL DEFAULT '',
+  `relatives_age4` int(3) NOT NULL DEFAULT '0',
+  `relatives_lgmd2b4` varchar(3) NOT NULL DEFAULT '',
+  `children_name1` varchar(30) NOT NULL DEFAULT '',
+  `children_age1` int(3) NOT NULL DEFAULT '0',
+  `children_lgmd2b1` varchar(3) NOT NULL DEFAULT '',
+  `children_name2` varchar(30) NOT NULL DEFAULT '',
+  `children_age2` int(3) NOT NULL DEFAULT '0',
+  `children_lgmd2b2` varchar(3) NOT NULL DEFAULT '',
+  `children_name3` varchar(30) NOT NULL DEFAULT '',
+  `children_age3` int(3) NOT NULL DEFAULT '0',
+  `children_lgmd2b3` varchar(3) NOT NULL DEFAULT '',
+  `children_name4` varchar(30) NOT NULL DEFAULT '',
+  `children_age4` int(3) NOT NULL DEFAULT '0',
+  `children_lgmd2b4` varchar(3) NOT NULL DEFAULT '',
+  `sibling_name1` varchar(30) NOT NULL DEFAULT '',
+  `sibling_age1` int(3) NOT NULL DEFAULT '0',
+  `sibling_lgmd2b1` varchar(3) NOT NULL DEFAULT '',
+  `sibling_name2` varchar(30) NOT NULL DEFAULT '',
+  `sibling_age2` int(3) NOT NULL DEFAULT '0',
+  `sibling_lgmd2b2` varchar(3) NOT NULL DEFAULT '',
+  `sibling_name3` varchar(30) NOT NULL DEFAULT '',
+  `sibling_age3` int(3) NOT NULL DEFAULT '0',
+  `sibling_lgmd2b3` varchar(3) NOT NULL DEFAULT '',
+  `sibling_name4` varchar(30) NOT NULL DEFAULT '',
+  `sibling_age4` int(3) NOT NULL DEFAULT '0',
+  `sibling_lgmd2b4` varchar(3) NOT NULL DEFAULT '',
+  `age_symptoms` int(11) NOT NULL DEFAULT '0',
+  `scooter` varchar(10) NOT NULL DEFAULT '',
+  `scooter_age` int(11) NOT NULL DEFAULT '0',
+  `cane` varchar(10) NOT NULL DEFAULT '',
+  `cane_age` int(11) NOT NULL DEFAULT '0',
+  `leg_braces` varchar(10) NOT NULL DEFAULT '',
+  `leg_braces_age` int(11) NOT NULL DEFAULT '0',
+  `walk_without_assistance` varchar(20) NOT NULL DEFAULT '',
+  `stand_no_support` varchar(255) NOT NULL DEFAULT '',
+  `tiptoes` varchar(3) NOT NULL DEFAULT '',
+  `tiptoes_age` int(11) NOT NULL DEFAULT '0',
+  `rising_sitting_position` varchar(3) NOT NULL DEFAULT '',
+  `rising_sitting_position_age` int(11) NOT NULL DEFAULT '0',
+  `rising_sitting_position_explained` text NOT NULL,
+  `sitting_horizontal` varchar(3) NOT NULL DEFAULT '',
+  `sitting_horizontal_age` int(11) NOT NULL DEFAULT '0',
+  `climbing_stairs` varchar(3) NOT NULL DEFAULT '',
+  `climbing_stairs_age` int(11) NOT NULL DEFAULT '0',
+  `climbing_stairs_explained` text NOT NULL,
+  `elevation` varchar(3) NOT NULL DEFAULT '',
+  `elevation_age` int(11) NOT NULL DEFAULT '0',
+  `raising_arm_above_head` varchar(3) NOT NULL DEFAULT '',
+  `raising_arm_above_head_age` int(11) NOT NULL DEFAULT '0',
+  `glass_of_water` varchar(3) NOT NULL DEFAULT '',
+  `glass_of_water_age` int(11) NOT NULL DEFAULT '0',
+  `opening_jar` varchar(3) NOT NULL DEFAULT '',
+  `opening_jar_age` int(11) NOT NULL DEFAULT '0',
+  `carrying_milk` varchar(3) NOT NULL DEFAULT '',
+  `carrying_milk_age` int(11) NOT NULL DEFAULT '0',
+  `turning_car_wheel` varchar(3) NOT NULL DEFAULT '',
+  `turning_car_wheel_age` int(11) NOT NULL DEFAULT '0',
+  `typing` varchar(3) NOT NULL DEFAULT '',
+  `typing_age` int(11) NOT NULL DEFAULT '0',
+  `respiratory_difficulties` text NOT NULL,
+  `factors_symptoms` text NOT NULL,
+  `sports` text NOT NULL,
+  `neurological` text NOT NULL,
+  `agreetoterms` tinyint(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`patient_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -182,4 +287,4 @@ CREATE TABLE `registrant` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2010-03-23 20:25:03
+-- Dump completed on 2010-03-24 18:16:02
