@@ -1,0 +1,1 @@
+&copy; 2006 Jain Foundation Inc. All Rights Reserved. Site by <a href="http://www.freshsparks.com" target="_blank" class="footer">freshSparks.com</a>&nbsp;&nbsp;
