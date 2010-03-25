@@ -2,7 +2,7 @@
 <head>
 <title>Jain Foundation Inc | Contact Us</title>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="stylesheet" href="style-old.css" type="text/css" />
 <style type="text/css">
 <!--
 .style1 {font-size: 15px}
