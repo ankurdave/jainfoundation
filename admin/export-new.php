@@ -1,4 +1,4 @@
-<?	session_start();	if(isset($_SESSION['SESSION_ID'])){		$login = true;	}else{		session_destroy();		$login=false;		include "login.php";		exit;	}?><?include('includes/mysql.php');
+<?	session_start();	if(isset($_SESSION['SESSION_ID'])){		$login = true;	}else{		session_destroy();		$login=false;		include "login.php";		exit;	}?><?include('includes/mysql.php');
 
 // See http://php.net/manual/en/function.html-entity-decode.php
 // This is necessary because html_entity_decode isn't working properly on this server (PHP 4.3.9) for some reason
@@ -33,10 +33,10 @@ function convert_mixed_to_utf8_no_linebreaks($text) {
 	$text = unhtmlentities($text);
 	return $text;
 }
-$select = "SELECT * FROM registrants order by patient_id desc";$export = mysql_query($select);$fields = mysql_num_fields($export); 
+$select = "SELECT * FROM registrants order by patient_id desc";$export = mysql_query($select);$fields = mysql_num_fields($export); 
 
 // Print the HTTP headers
-header("Content-Type: text/csv");header("Content-Disposition: attachment; filename=patient-data.csv");
+header("Content-Type: text/csv");header("Content-Disposition: attachment; filename=patient-data.csv");
 
 // IE has a bug that breaks downloads from SSL sites with the no-cache header set (see http://support.microsoft.com/kb/812935).
 // The previous developer had used the following header:
@@ -49,8 +49,8 @@ header('Pragma:');
 print xlsBegin();
 
 $header = array();
-for ($i = 0; $i < $fields; $i++) {    $header[] = mysql_field_name($export, $i);}
+for ($i = 0; $i < $fields; $i++) {    $header[] = mysql_field_name($export, $i);}
 print xlsWriteRow($header);
-while($row = mysql_fetch_row($export)) {
+while($row = mysql_fetch_row($export)) {
 	print xlsWriteRow(array_map('convert_mixed_to_utf8_no_linebreaks', $row));
-}?>
+}?>

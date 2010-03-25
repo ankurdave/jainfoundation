@@ -1,1 +1,1 @@
-<?	session_start();	if(isset($_SESSION['SESSION_ID'])){		session_destroy();		session_unregister($SESSION_ID); 		$login=false;		include "login.php";	}else{		session_destroy();		session_unregister($SESSION_ID); 		$login=false;		include "login.php";		exit;	}?>
+<?	session_start();	if(isset($_SESSION['SESSION_ID'])){		session_destroy();		session_unregister($SESSION_ID); 		$login=false;		include "login.php";	}else{		session_destroy();		session_unregister($SESSION_ID); 		$login=false;		include "login.php";		exit;	}?>
