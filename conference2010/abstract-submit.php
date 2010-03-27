@@ -5,64 +5,67 @@
 	$show_location = 'abstract-show.php';
 	$thankyou_location = 'abstract-success.php';
 	
-	// Check the desired action -- preview or submit
-	$submit = ($_POST['action'] == 'Submit');
-	
-	// Process the uploaded picture
-	// If it's not a valid file, the $_POST variables won't be set, and an error will occur in the validation stage below
-	if (is_uploaded_file($_FILES['picture']['tmp_name']) && $_FILES['picture']['size'] <= 1000000) {
-		$_POST['picture_tmpname'] = $_FILES['picture']['tmp_name'];
-		$_POST['picture_mimetype'] = $_FILES['picture']['type'];
-		$_POST['picture'] = $_FILES['picture']['name'];
-	}
-	
-	// Check if we're updating or adding a new record
+	// Load or create the DAO with id and auth_key
 	if (isset($_GET['id']) && isset($_GET['auth_key'])) {
-		$data_auth['id'] = $_GET['id'];
-		$data_auth['auth_key'] = $_GET['auth_key'];
-		$update = true;
+		$abstract = new AbstractDAO($_GET['id']);
+		$abstract->setField('auth_key', $_GET['auth_key']);
 	} else if (isset($_COOKIE['id']) && isset($_COOKIE['auth_key'])) {
-		$data_auth['id'] = $_COOKIE['id'];
-		$data_auth['auth_key'] = $_COOKIE['auth_key'];
-		$update = true;
+		$abstract = new AbstractDAO($_COOKIE['id']);
+		$abstract->setField('auth_key', $_COOKIE['auth_key']);
 	} else {
-		$update = false;
+		$abstract = new AbstractDAO();
 	}
-
-	// Add the data to the DB
+	
+	// Send the rest of the fields to the DAO
+	foreach ($_POST as $field => $val) {
+		// If any field in $_POST is not a valid abstract field, setField will ignore it
+		$abstract->setField($field, $val);
+	}
+	
+	// Send the uploaded picture to the DAO
+	// Important: This MUST come after the $_POST import, otherwise it would be possible to set a POST field called 'picture_data' to an arbitrary file system path
+	if (is_uploaded_file($_FILES['picture']['tmp_name']) && $_FILES['picture']['size'] <= 1000000) {
+		$abstract->setField('picture_data', $_FILES['picture']['tmp_name']);
+		$abstract->setField('picture_mimetype', $_FILES['picture']['type']);
+	}
+	
+	// Save the DAO
 	// This is before validation so that if there's an error, the user won't lose the data
-	// TODO: get the return value of addAbstract and redirect with error if it's false
-	if ($update) {
-		addAbstract($_POST, $submit, $data_auth['id'], $data_auth['auth_key']);
-	} else {
-		$data_auth = addAbstract($_POST, $submit);
-		
-		// Set cookies with id and auth_key so that if the user clicks the back button, he won't lose his data
-		setcookie('id', $data_auth['id']);
-		setcookie('auth_key', $data_auth['auth_key']);
+	try {
+		$abstract->save();
+	} catch (AbstractAuthException $e) {
+		header("Location: $form_location?error_auth");
+		exit;
 	}
-	$data_auth_query_string = "id=" . urlencode($data_auth['id']) . "&auth_key=" . urlencode($data_auth['auth_key']);
+	
+	// Set cookies and GET string with id and auth_key so that if the user clicks the back button, he won't lose his data
+	setcookie('id', $abstract->getField('id'));
+	setcookie('auth_key', $abstract->getField('auth_key'));
+	$data_auth_query_string = "id=" . urlencode($abstract->getField('id')) . "&auth_key=" . urlencode($abstract->getField('auth_key'));
 	
 	// Validate the data and redirect to the form if it's wrong
-	// First check if the required fields are there
-	$required = explode(' ', 'firstname lastname degree institution street_address city zip_postal_code country phone email author_status picture affiliation_1 author_1_firstname author_1_lastname author_1_affiliation abstract_category presentation_type abstract_title abstract_body');
-	foreach ($required as $field) {
-		if (empty($_POST[$field])) {
-			header("Location: $form_location?$data_auth_query_string&error_$field#$field"); # no need to escape $field, because it is completely specified in $required above
-			exit;
+	$invalidFields = $abstract->validate();
+	if (count($invalidFields) > 0) {
+		function makeFieldErrorString($field) {
+			return urlencode("error_$field");
 		}
+		
+		$invalidFieldsQueryString = join('&', array_map('makeFieldErrorString', $invalidFields));
+		
+		header("Location: $form_location?$data_auth_query_string&$invalidFieldsQueryString#" . urlencode($invalidFields[0]));
+		exit();
 	}
-	// TODO: do conditional validation
 	
-	if ($submit) {
-		// Clear the id and auth_key cookies, because now the user has submitted his abstract already. However, note that the user can still edit the abstract by going to the appropriate URL. This may not be the desired behavior... but it's the easiest thing, and it's probably not a big deal -- the auth_key would still be required to edit.
+	// Send the user to the appropriate page
+	if ($_POST['action'] == 'Submit') {
+		// Clear the id and auth_key cookies, because now the user has submitted his abstract already.
 		setcookie('id', '', time() - 3600);
 		setcookie('auth_key', '', time() - 3600);
 		
 		// Show a thank-you page
 		header("Location: $thankyou_location?$data_auth_query_string");
 	} else {
-		// Show the abstract
+		// Show the abstract preview
 		header("Location:$show_location?$data_auth_query_string");
 	}
 ?>

@@ -7,74 +7,74 @@ class AbstractDAO {
 	private $db;
 	private $data;
 	private $columnTypes = array(
-		'id' => 'i',
-		'auth_key' => 's',
-		'picture_mimetype' => 's',
-		'picture_data' => 'file',
-		'firstname' => 's',
-		'middlename' => 's',
-		'lastname' => 's',
-		'degree' => 's',
-		'department' => 's',
-		'institution' => 's',
-		'street_address' => 's',
-		'city' => 's',
-		'state_province' => 's',
-		'zip_postal_code' => 's',
-		'country' => 's',
-		'phone' => 's',
-		'fax' => 's',
-		'email' => 's',
-		'author_status' => 's',
-		'degree_year' => 's',
-		'abstract_category' => 's',
-		'abstract_category_other' => 's',
-		'presentation_type' => 's',
-		'abstract_title' => 's',
-		'abstract_body' => 's',
-		'affiliation_1' => 's',
-		'affiliation_2' => 's',
-		'affiliation_3' => 's',
-		'affiliation_4' => 's',
-		'affiliation_5' => 's',
-		'affiliation_6' => 's',
-		'affiliation_7' => 's',
-		'affiliation_8' => 's',
-		'author_1_firstname' => 's',
-		'author_1_middlename' => 's',
-		'author_1_lastname' => 's',
-		'author_1_affiliation' => 's',
-		'author_2_firstname' => 's',
-		'author_2_middlename' => 's',
-		'author_2_lastname' => 's',
-		'author_2_affiliation' => 's',
-		'author_3_firstname' => 's',
-		'author_3_middlename' => 's',
-		'author_3_lastname' => 's',
-		'author_3_affiliation' => 's',
-		'author_4_firstname' => 's',
-		'author_4_middlename' => 's',
-		'author_4_lastname' => 's',
-		'author_4_affiliation' => 's',
-		'author_5_firstname' => 's',
-		'author_5_middlename' => 's',
-		'author_5_lastname' => 's',
-		'author_5_affiliation' => 's',
-		'author_6_firstname' => 's',
-		'author_6_middlename' => 's',
-		'author_6_lastname' => 's',
-		'author_6_affiliation' => 's',
-		'author_7_firstname' => 's',
-		'author_7_middlename' => 's',
-		'author_7_lastname' => 's',
-		'author_7_affiliation' => 's',
-		'author_8_firstname' => 's',
-		'author_8_middlename' => 's',
-		'author_8_lastname' => 's',
-		'author_8_affiliation' => 's',
-		'final' => 'i',
-		'author_status_other' => 's',
-		'comments' => 's',
+		'id' => array('i', false),
+		'auth_key' => array('s', false),
+		'picture_mimetype' => array('s', false),
+		'picture_data' => array('file', false),
+		'firstname' => array('s', true),
+		'middlename' => array('s', false),
+		'lastname' => array('s', true),
+		'degree' => array('s', true),
+		'department' => array('s', false),
+		'institution' => array('s', true),
+		'street_address' => array('s', true),
+		'city' => array('s', true),
+		'state_province' => array('s', false),
+		'zip_postal_code' => array('s', true),
+		'country' => array('s', true),
+		'phone' => array('s', true),
+		'fax' => array('s', false),
+		'email' => array('s', true),
+		'author_status' => array('s', true),
+		'degree_year' => array('s', false),
+		'abstract_category' => array('s', true),
+		'abstract_category_other' => array('s', false),
+		'presentation_type' => array('s', true),
+		'abstract_title' => array('s', true),
+		'abstract_body' => array('s', true),
+		'affiliation_1' => array('s', true),
+		'affiliation_2' => array('s', false),
+		'affiliation_3' => array('s', false),
+		'affiliation_4' => array('s', false),
+		'affiliation_5' => array('s', false),
+		'affiliation_6' => array('s', false),
+		'affiliation_7' => array('s', false),
+		'affiliation_8' => array('s', false),
+		'author_1_firstname' => array('s', true),
+		'author_1_middlename' => array('s', false),
+		'author_1_lastname' => array('s', true),
+		'author_1_affiliation' => array('s', true),
+		'author_2_firstname' => array('s', false),
+		'author_2_middlename' => array('s', false),
+		'author_2_lastname' => array('s', false),
+		'author_2_affiliation' => array('s', false),
+		'author_3_firstname' => array('s', false),
+		'author_3_middlename' => array('s', false),
+		'author_3_lastname' => array('s', false),
+		'author_3_affiliation' => array('s', false),
+		'author_4_firstname' => array('s', false),
+		'author_4_middlename' => array('s', false),
+		'author_4_lastname' => array('s', false),
+		'author_4_affiliation' => array('s', false),
+		'author_5_firstname' => array('s', false),
+		'author_5_middlename' => array('s', false),
+		'author_5_lastname' => array('s', false),
+		'author_5_affiliation' => array('s', false),
+		'author_6_firstname' => array('s', false),
+		'author_6_middlename' => array('s', false),
+		'author_6_lastname' => array('s', false),
+		'author_6_affiliation' => array('s', false),
+		'author_7_firstname' => array('s', false),
+		'author_7_middlename' => array('s', false),
+		'author_7_lastname' => array('s', false),
+		'author_7_affiliation' => array('s', false),
+		'author_8_firstname' => array('s', false),
+		'author_8_middlename' => array('s', false),
+		'author_8_lastname' => array('s', false),
+		'author_8_affiliation' => array('s', false),
+		'final' => array('i', false),
+		'author_status_other' => array('s', false),
+		'comments' => array('s', false),
 	);
 	
 	/**
@@ -110,7 +110,7 @@ class AbstractDAO {
 	 * Sets the value of the field with the given name. If the field is not a valid column, does nothing.
 	 */
 	function setField($fieldName, $fieldValue) {
-		if (defined($this->columnTypes[$fieldName])) {
+		if (array_key_exists($fieldName, $this->columnTypes)) {
 			$this->data[$fieldName] = $fieldValue;
 		}
 	}
@@ -121,19 +121,49 @@ class AbstractDAO {
 	 * Throws an exception if id and auth_key are set but invalid (do not exist in the database).
 	 */
 	function save() {
+		// Check the preconditions
 		if (!$this->checkIdAuthKey()) {
-			throw new Exception('Invalid ID or auth key');
+			throw new AbstractAuthException('Invalid ID or auth key');
+		}
+		if ($this->checkFinal()) {
+			throw new AbstractAuthException('Abstract is marked as final');
 		}
 		
 		// Build the query
 		$query = new InsertUpdateQuery($this->db);
 		$query->setTable('abstract');
 		foreach ($this->data as $col => $val) {
-			$query->setColumn($col, $val, $this->columnTypes[$col]);
+			$query->setColumn($col, $val, $this->columnTypes[$col][0]);
 		}
 		
 		// Run it
 		$query->execute();
+	}
+	
+	/**
+	 * Checks whether or not the given fields are valid. Returns an array of invalid fields. This array will be empty if all fields are valid.
+	 */
+	function validate() {
+		$invalidFields = array();
+		
+		// Check if all required fields are present
+		foreach ($this->columnTypes as $colName => $colInfo) {
+			// If the column is required, make sure it's non-empty in $this->data
+			if ($colInfo[1]) {
+				if (empty($this->data[$colName])) {
+					$invalidFields[] = $colName;
+				}
+			}
+		}
+		
+		return $invalidFields;
+	}
+	
+	/**
+	 * Returns an associative array of the fields in the abstract.
+	 */
+	function getFields() {
+		return $this->data;
 	}
 
 	/**
@@ -160,6 +190,15 @@ class AbstractDAO {
 			return true;
 		}
 	}
+	
+	/**
+	 * Checks whether or not this abstract is marked as 'final' in the database.
+	 */
+	private function checkFinal() {
+		return !is_null($this->data['id']) && ($this->data['final'] == 1);
+	}
 }
+
+class AbstractAuthException extends Exception { }
 
 ?>
