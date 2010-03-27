@@ -18,7 +18,7 @@ function connectToDB() {
 // Converts a column name into the piece of SQL that should go in the ON DUPLICATE KEY UPDATE clause
 function make_column_update_sql($col) {
 	return "$col=VALUES($col)";
-};
+}
 
 /**
  * Represents a MySQLi database query that can insert a row or update an existing row.
