@@ -75,7 +75,7 @@ class InsertUpdateQuery {
 		// Run the query
 		$query->execute();
 		if ($this->db->error) {
-			throw new Exception("Error executing query: $this->db->error");
+			throw new Exception("Error executing query: " . $this->db->error);
 		}
 		
 		$query->close();

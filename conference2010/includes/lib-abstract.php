@@ -32,50 +32,12 @@ class AbstractDAO {
 		'presentation_type' => array('s', true),
 		'abstract_title' => array('s', true),
 		'abstract_body' => array('s', true),
-		'affiliation_1' => array('s', true),
-		'affiliation_2' => array('s', false),
-		'affiliation_3' => array('s', false),
-		'affiliation_4' => array('s', false),
-		'affiliation_5' => array('s', false),
-		'affiliation_6' => array('s', false),
-		'affiliation_7' => array('s', false),
-		'affiliation_8' => array('s', false),
-		'author_1_firstname' => array('s', true),
-		'author_1_middlename' => array('s', false),
-		'author_1_lastname' => array('s', true),
-		'author_1_affiliation' => array('s', true),
-		'author_2_firstname' => array('s', false),
-		'author_2_middlename' => array('s', false),
-		'author_2_lastname' => array('s', false),
-		'author_2_affiliation' => array('s', false),
-		'author_3_firstname' => array('s', false),
-		'author_3_middlename' => array('s', false),
-		'author_3_lastname' => array('s', false),
-		'author_3_affiliation' => array('s', false),
-		'author_4_firstname' => array('s', false),
-		'author_4_middlename' => array('s', false),
-		'author_4_lastname' => array('s', false),
-		'author_4_affiliation' => array('s', false),
-		'author_5_firstname' => array('s', false),
-		'author_5_middlename' => array('s', false),
-		'author_5_lastname' => array('s', false),
-		'author_5_affiliation' => array('s', false),
-		'author_6_firstname' => array('s', false),
-		'author_6_middlename' => array('s', false),
-		'author_6_lastname' => array('s', false),
-		'author_6_affiliation' => array('s', false),
-		'author_7_firstname' => array('s', false),
-		'author_7_middlename' => array('s', false),
-		'author_7_lastname' => array('s', false),
-		'author_7_affiliation' => array('s', false),
-		'author_8_firstname' => array('s', false),
-		'author_8_middlename' => array('s', false),
-		'author_8_lastname' => array('s', false),
-		'author_8_affiliation' => array('s', false),
 		'final' => array('i', false),
 		'author_status_other' => array('s', false),
 		'comments' => array('s', false),
 	);
+	private $authors = array();
+	private $affiliations = array();
 	
 	/**
 	 * Loads the existing abstract with the given ID. If $id is null, creates a new empty abstract.
@@ -96,6 +58,10 @@ class AbstractDAO {
 			unset($row['auth_key']);
 			
 			$this->data = $row;
+			
+			// Load the associated authors and affiliations
+			$this->authors = AbstractAuthorDAO::loadAssociated($this->db, $this->data['id']);
+			//$this->affiliations = AbstractAffiliationDAO::loadAssociated($this->db, $this->data['id']);
 		}
 	}
 	
@@ -115,6 +81,30 @@ class AbstractDAO {
 		}
 	}
 	
+	function addAuthor($author) {
+		$this->authors[] = $author;
+	}
+	
+	function getAuthors() {
+		return $this->authors;
+	}
+	
+	function clearAuthors() {
+		$this->authors = array();
+	}
+	
+	function addAffiliation($aff) {
+		$this->affiliations[] = $aff;
+	}
+	
+	function getAffiliations() {
+		return $this->affiliations;
+	}
+	
+	function clearAffiliations() {
+		$this->affiliations = array();
+	}
+	
 	/**
 	 * Saves the abstract to the database. Creates a new abstract if id and auth_key are set, otherwise updates the existing abstract with the given id.
 	 * 
@@ -128,6 +118,23 @@ class AbstractDAO {
 		if ($this->checkFinal()) {
 			throw new AbstractAuthException('Abstract is marked as final');
 		}
+		
+		// Clear and reinsert the authors and affiliations
+		$query = $this->db->prepare('DELETE FROM abstract_author WHERE abstract_id=?');
+		$query->bind_param('i', $this->data['id']);
+		$query->execute();
+#		$query = $this->db->prepare('DELETE FROM abstract_affiliation WHERE abstract_id=?');
+#		$query->bind_param('i', $this->data['id']);
+#		$query->execute();
+		
+		foreach ($this->authors as $author) {
+			$author->setField('abstract_id', $this->data['id']);
+			$author->save();
+		}
+#		foreach ($this->affiliations as $affiliation) {
+#			$affiliation->setField('abstract_id', $this->data['id']);
+#			$affiliation->save();
+#		}
 		
 		// Build the query
 		$query = new InsertUpdateQuery($this->db);
@@ -155,6 +162,8 @@ class AbstractDAO {
 				}
 			}
 		}
+		
+		// TODO: also check the authors and affiliations
 		
 		return $invalidFields;
 	}
@@ -200,5 +209,93 @@ class AbstractDAO {
 }
 
 class AbstractAuthException extends Exception { }
+
+class AbstractAuthorDAO {
+	private $db;
+	private $data;
+	private $columnTypes = array(
+		'id' => array('i', false),
+		'abstract_id' => array('i', true),
+		'firstname' => array('s', true),
+		'middlename' => array('s', false),
+		'lastname' => array('s', true),
+		'affiliations' => array('s', true),
+	);
+	
+	function __construct($db) {
+		$this->db = $db;
+	}
+	
+	/**
+	 * Saves the abstract author to the database. Creates a new author if id is set, otherwise updates the existing abstract with the given id.
+	 */
+	function save() {
+		// Check the preconditions
+		$this->checkId();
+		
+		// Build the query
+		$query = new InsertUpdateQuery($this->db);
+		$query->setTable('abstract_author');
+		foreach ($this->data as $col => $val) {
+			$query->setColumn($col, $val, $this->columnTypes[$col][0]);
+		}
+		
+		// Run it
+		$query->execute();
+	}
+	
+	/**
+	 * Ensures a valid id. If it is null, creates a new id.
+	 */
+	private function checkId() {
+		if (is_null($this->data['id'])) {
+			// Create a new id and auth key
+			$result = $this->db->query("SELECT MAX(id) FROM abstract_author");
+			list($prevId) = $result->fetch_array();
+			$this->data['id'] = $prevId + 1;
+			$result->free();
+		}
+	}
+	
+	/**
+	 * Gets the current value of the field with the given name.
+	 */
+	function getField($fieldName) {
+		return $this->data[$fieldName];
+	}
+	
+	/**
+	 * Sets the value of the field with the given name. If the field is not a valid column, does nothing.
+	 */
+	function setField($fieldName, $fieldValue) {
+		if (array_key_exists($fieldName, $this->columnTypes)) {
+			$this->data[$fieldName] = $fieldValue;
+		}
+	}
+	
+	/**
+	 * Returns an array of AbstractAuthorDAO that are associated with the given abstract.
+	 */
+	static function loadAssociated($db, $abstractId) {
+		$abstractIdEscaped = $db->real_escape_string($abstractId);
+		$result = $db->query("SELECT * FROM abstract_author WHERE abstract_id=$abstractIdEscaped");
+		
+		$associated = array();
+		while ($row = $result->fetch_assoc()) {
+			$dao = new AbstractAuthorDAO($db);
+			foreach ($row as $key => $val) {
+				$dao->setField($key, $val);
+			}
+			
+			$associated[] = $dao;
+		}
+		
+		return $associated;
+	}
+}
+
+class AbstractAffiliationDAO {
+
+}
 
 ?>
