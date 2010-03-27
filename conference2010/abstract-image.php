@@ -3,15 +3,17 @@
 	
 	$form_location = 'abstract.php';
 	
-	$data = getAbstract($_GET['id']);
-	if (!$data) {
+	// Load the abstract using the DAO
+	if (isset($_GET['id'])) {
+		$abstract = new AbstractDAO($_GET['id']);
+	} else {
 		header("Location: $form_location");
 		exit;
 	}
 	
 	// Output the image
-	header("Content-Type: " . $data['picture_mimetype']);
+	header("Content-Type: " . urlencode($abstract->getField('picture_mimetype')));
 	
-	echo $data['picture_data'];
+	echo $abstract->getField('picture_data');
 ?>
 
