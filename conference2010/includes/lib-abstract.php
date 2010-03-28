@@ -6,7 +6,7 @@
 class AbstractDAO {
 	private $db;
 	private $data;
-	private $columnTypes = array(
+	private static $columnTypes = array(
 		'id' => array('i', false),
 		'auth_key' => array('s', false),
 		'picture_mimetype' => array('s', false),
@@ -61,7 +61,7 @@ class AbstractDAO {
 			
 			// Load the associated authors and affiliations
 			$this->authors = AbstractAuthorDAO::loadAssociated($this->db, $this->data['id']);
-			//$this->affiliations = AbstractAffiliationDAO::loadAssociated($this->db, $this->data['id']);
+			$this->affiliations = AbstractAffiliationDAO::loadAssociated($this->db, $this->data['id']);
 		}
 	}
 	
@@ -76,7 +76,7 @@ class AbstractDAO {
 	 * Sets the value of the field with the given name. If the field is not a valid column, does nothing.
 	 */
 	function setField($fieldName, $fieldValue) {
-		if (array_key_exists($fieldName, $this->columnTypes)) {
+		if (array_key_exists($fieldName, self::$columnTypes)) {
 			$this->data[$fieldName] = $fieldValue;
 		}
 	}
@@ -123,24 +123,24 @@ class AbstractDAO {
 		$query = $this->db->prepare('DELETE FROM abstract_author WHERE abstract_id=?');
 		$query->bind_param('i', $this->data['id']);
 		$query->execute();
-#		$query = $this->db->prepare('DELETE FROM abstract_affiliation WHERE abstract_id=?');
-#		$query->bind_param('i', $this->data['id']);
-#		$query->execute();
+		$query = $this->db->prepare('DELETE FROM abstract_affiliation WHERE abstract_id=?');
+		$query->bind_param('i', $this->data['id']);
+		$query->execute();
 		
 		foreach ($this->authors as $author) {
 			$author->setField('abstract_id', $this->data['id']);
 			$author->save();
 		}
-#		foreach ($this->affiliations as $affiliation) {
-#			$affiliation->setField('abstract_id', $this->data['id']);
-#			$affiliation->save();
-#		}
+		foreach ($this->affiliations as $affiliation) {
+			$affiliation->setField('abstract_id', $this->data['id']);
+			$affiliation->save();
+		}
 		
 		// Build the query
 		$query = new InsertUpdateQuery($this->db);
 		$query->setTable('abstract');
 		foreach ($this->data as $col => $val) {
-			$query->setColumn($col, $val, $this->columnTypes[$col][0]);
+			$query->setColumn($col, $val, self::$columnTypes[$col][0]);
 		}
 		
 		// Run it
@@ -154,7 +154,7 @@ class AbstractDAO {
 		$invalidFields = array();
 		
 		// Check if all required fields are present
-		foreach ($this->columnTypes as $colName => $colInfo) {
+		foreach (self::$columnTypes as $colName => $colInfo) {
 			// If the column is required, make sure it's non-empty in $this->data
 			if ($colInfo[1]) {
 				if (empty($this->data[$colName])) {
@@ -213,7 +213,7 @@ class AbstractAuthException extends Exception { }
 class AbstractAuthorDAO {
 	private $db;
 	private $data;
-	private $columnTypes = array(
+	private static $columnTypes = array(
 		'id' => array('i', false),
 		'abstract_id' => array('i', true),
 		'firstname' => array('s', true),
@@ -237,7 +237,7 @@ class AbstractAuthorDAO {
 		$query = new InsertUpdateQuery($this->db);
 		$query->setTable('abstract_author');
 		foreach ($this->data as $col => $val) {
-			$query->setColumn($col, $val, $this->columnTypes[$col][0]);
+			$query->setColumn($col, $val, self::$columnTypes[$col][0]);
 		}
 		
 		// Run it
@@ -249,7 +249,7 @@ class AbstractAuthorDAO {
 	 */
 	private function checkId() {
 		if (is_null($this->data['id'])) {
-			// Create a new id and auth key
+			// Create a new id
 			$result = $this->db->query("SELECT MAX(id) FROM abstract_author");
 			list($prevId) = $result->fetch_array();
 			$this->data['id'] = $prevId + 1;
@@ -268,7 +268,7 @@ class AbstractAuthorDAO {
 	 * Sets the value of the field with the given name. If the field is not a valid column, does nothing.
 	 */
 	function setField($fieldName, $fieldValue) {
-		if (array_key_exists($fieldName, $this->columnTypes)) {
+		if (array_key_exists($fieldName, self::$columnTypes)) {
 			$this->data[$fieldName] = $fieldValue;
 		}
 	}
@@ -295,7 +295,84 @@ class AbstractAuthorDAO {
 }
 
 class AbstractAffiliationDAO {
-
+	private $db;
+	private $data;
+	private static $columnTypes = array(
+		'id' => array('i', false),
+		'abstract_id' => array('i', true),
+		'affiliation' => array('s', true),
+	);
+	
+	function __construct($db) {
+		$this->db = $db;
+	}
+	
+	/**
+	 * Saves the abstract affiliation to the database. Creates a new affiliation if id is set, otherwise updates the existing abstract with the given id.
+	 */
+	function save() {
+		// Check the preconditions
+		$this->checkId();
+		
+		// Build the query
+		$query = new InsertUpdateQuery($this->db);
+		$query->setTable('abstract_affiliation');
+		foreach ($this->data as $col => $val) {
+			$query->setColumn($col, $val, self::$columnTypes[$col][0]);
+		}
+		
+		// Run it
+		$query->execute();
+	}
+	
+	/**
+	 * Ensures a valid id. If it is null, creates a new id.
+	 */
+	private function checkId() {
+		if (is_null($this->data['id'])) {
+			// Create a new id
+			$result = $this->db->query("SELECT MAX(id) FROM abstract_affiliation");
+			list($prevId) = $result->fetch_array();
+			$this->data['id'] = $prevId + 1;
+			$result->free();
+		}
+	}
+	
+	/**
+	 * Gets the current value of the field with the given name.
+	 */
+	function getField($fieldName) {
+		return $this->data[$fieldName];
+	}
+	
+	/**
+	 * Sets the value of the field with the given name. If the field is not a valid column, does nothing.
+	 */
+	function setField($fieldName, $fieldValue) {
+		if (array_key_exists($fieldName, self::$columnTypes)) {
+			$this->data[$fieldName] = $fieldValue;
+		}
+	}
+	
+	/**
+	 * Returns an array of AbstractAffiliationDAO that are associated with the given abstract.
+	 */
+	static function loadAssociated($db, $abstractId) {
+		$abstractIdEscaped = $db->real_escape_string($abstractId);
+		$result = $db->query("SELECT * FROM abstract_affiliation WHERE abstract_id=$abstractIdEscaped");
+		
+		$associated = array();
+		while ($row = $result->fetch_assoc()) {
+			$dao = new AbstractAffiliationDAO($db);
+			foreach ($row as $key => $val) {
+				$dao->setField($key, $val);
+			}
+			
+			$associated[] = $dao;
+		}
+		
+		return $associated;
+	}
 }
 
 ?>

@@ -25,12 +25,14 @@ DROP TABLE IF EXISTS `abstract`;
 CREATE TABLE `abstract` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `auth_key` varchar(255) DEFAULT NULL,
-  `picture_mimetype` varchar(255) DEFAULT NULL,
-  `picture_data` mediumblob,
+  `final` tinyint(1) DEFAULT NULL,
   `firstname` varchar(255) DEFAULT NULL,
   `middlename` varchar(255) DEFAULT NULL,
   `lastname` varchar(255) DEFAULT NULL,
   `degree` varchar(255) DEFAULT NULL,
+  `author_status` varchar(255) DEFAULT NULL,
+  `author_status_other` varchar(255) DEFAULT NULL,
+  `degree_year` varchar(255) DEFAULT NULL,
   `department` varchar(255) DEFAULT NULL,
   `institution` varchar(255) DEFAULT NULL,
   `street_address` varchar(255) DEFAULT NULL,
@@ -38,61 +40,52 @@ CREATE TABLE `abstract` (
   `state_province` varchar(255) DEFAULT NULL,
   `zip_postal_code` varchar(255) DEFAULT NULL,
   `country` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
   `phone` varchar(255) DEFAULT NULL,
   `fax` varchar(255) DEFAULT NULL,
-  `email` varchar(255) DEFAULT NULL,
-  `author_status` varchar(255) DEFAULT NULL,
-  `degree_year` varchar(255) DEFAULT NULL,
+  `picture_mimetype` varchar(255) DEFAULT NULL,
+  `picture_data` mediumblob,
   `abstract_category` varchar(255) DEFAULT NULL,
   `abstract_category_other` varchar(255) DEFAULT NULL,
   `presentation_type` varchar(255) DEFAULT NULL,
   `abstract_title` varchar(255) DEFAULT NULL,
   `abstract_body` text,
-  `affiliation_1` varchar(255) DEFAULT NULL,
-  `affiliation_2` varchar(255) DEFAULT NULL,
-  `affiliation_3` varchar(255) DEFAULT NULL,
-  `affiliation_4` varchar(255) DEFAULT NULL,
-  `affiliation_5` varchar(255) DEFAULT NULL,
-  `affiliation_6` varchar(255) DEFAULT NULL,
-  `affiliation_7` varchar(255) DEFAULT NULL,
-  `affiliation_8` varchar(255) DEFAULT NULL,
-  `author_1_firstname` varchar(255) DEFAULT NULL,
-  `author_1_middlename` varchar(255) DEFAULT NULL,
-  `author_1_lastname` varchar(255) DEFAULT NULL,
-  `author_1_affiliation` varchar(255) DEFAULT NULL,
-  `author_2_firstname` varchar(255) DEFAULT NULL,
-  `author_2_middlename` varchar(255) DEFAULT NULL,
-  `author_2_lastname` varchar(255) DEFAULT NULL,
-  `author_2_affiliation` varchar(255) DEFAULT NULL,
-  `author_3_firstname` varchar(255) DEFAULT NULL,
-  `author_3_middlename` varchar(255) DEFAULT NULL,
-  `author_3_lastname` varchar(255) DEFAULT NULL,
-  `author_3_affiliation` varchar(255) DEFAULT NULL,
-  `author_4_firstname` varchar(255) DEFAULT NULL,
-  `author_4_middlename` varchar(255) DEFAULT NULL,
-  `author_4_lastname` varchar(255) DEFAULT NULL,
-  `author_4_affiliation` varchar(255) DEFAULT NULL,
-  `author_5_firstname` varchar(255) DEFAULT NULL,
-  `author_5_middlename` varchar(255) DEFAULT NULL,
-  `author_5_lastname` varchar(255) DEFAULT NULL,
-  `author_5_affiliation` varchar(255) DEFAULT NULL,
-  `author_6_firstname` varchar(255) DEFAULT NULL,
-  `author_6_middlename` varchar(255) DEFAULT NULL,
-  `author_6_lastname` varchar(255) DEFAULT NULL,
-  `author_6_affiliation` varchar(255) DEFAULT NULL,
-  `author_7_firstname` varchar(255) DEFAULT NULL,
-  `author_7_middlename` varchar(255) DEFAULT NULL,
-  `author_7_lastname` varchar(255) DEFAULT NULL,
-  `author_7_affiliation` varchar(255) DEFAULT NULL,
-  `author_8_firstname` varchar(255) DEFAULT NULL,
-  `author_8_middlename` varchar(255) DEFAULT NULL,
-  `author_8_lastname` varchar(255) DEFAULT NULL,
-  `author_8_affiliation` varchar(255) DEFAULT NULL,
-  `final` tinyint(1) DEFAULT NULL,
-  `author_status_other` varchar(255) DEFAULT NULL,
   `comments` text,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=35 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `abstract_affiliation`
+--
+
+DROP TABLE IF EXISTS `abstract_affiliation`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `abstract_affiliation` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `abstract_id` int(11) NOT NULL,
+  `affiliation` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `abstract_author`
+--
+
+DROP TABLE IF EXISTS `abstract_author`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `abstract_author` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `abstract_id` int(11) NOT NULL,
+  `firstname` varchar(255) DEFAULT NULL,
+  `middlename` varchar(255) DEFAULT NULL,
+  `lastname` varchar(255) DEFAULT NULL,
+  `affiliations` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -287,4 +280,4 @@ CREATE TABLE `registrant` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2010-03-24 18:16:02
+-- Dump completed on 2010-03-28 15:21:07
