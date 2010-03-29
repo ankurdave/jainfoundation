@@ -13,9 +13,11 @@
 	printHeader(array('title' => 'Submit an Abstract'));
 ?>
 
-<h1>Submit an Abstract</h1>
+<?php include 'includes/conference-title.inc.php' ?>
 
 <?php include 'includes/menu.inc.php' ?>
+
+<h2>Abstract Submission</h2>
 
 <p>Your abstract was successfully submitted (<a href="abstract-show.php?id=<?php echo urlencode($id) ?>">permalink</a>). Please print a copy of this page for your records.</p>
 

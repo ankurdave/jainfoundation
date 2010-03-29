@@ -8,6 +8,8 @@
 
 <?php include 'includes/menu.inc.php' ?>
 
+<h2>Hotel Reservations</h2>
+
 <p>We are excited that you will be able to attend.  If you have any questions about the reservation process, please don't hesitate to contact Angela Salerno at the Jain Foundation (<a href="mailto:asalerno@jain-foundation.org">asalerno@jain-foundation.org</a> or 425-882-1492).</p>
 
 <p class="intext"><img src="images/hotel-reservation.jpg" /></p>

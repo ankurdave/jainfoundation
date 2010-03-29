@@ -8,6 +8,8 @@
 
 <?php include 'includes/menu.inc.php' ?>
 
+<h2>Registration</h2>
+
 <p>Thank you for registering. Please print this page for your records.</p>
 
 <p>We will let you know if your registration has been approved within the next week.  If you do not hear from us within a week or have any questions please contact Angela Salerno at <a href="mailto:asalerno@jain-foundation.org">asalerno@jain-foundation.org</a>.</p>
