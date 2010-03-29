@@ -102,6 +102,23 @@
 		// Clear the id and auth_key cookies, because now the user has submitted his abstract already.
 		setcookie('id', '', time() - 3600);
 		setcookie('auth_key', '', time() - 3600);
+
+		// Send an email
+		include 'Mail.php';
+		$abstractID = urlencode($abstract->getField('id'));
+		$submitterName = print_html($abstract->getField('firstname')) . ' ' . print_html($abstract->getField('lastname'));
+		$mail = Mail::factory('smtp', $Config['ConferenceNotificationEmail']);
+		$headers = array(
+			'From' => $Config['ConferenceNotificationEmail']['from'],
+			'To' => $Config['ConferenceNotificationEmail']['to'],
+			'Subject' => "Abstract id $abstractID submitted by $submitterName",
+		);
+		$body = <<<EOT
+Abstract: {$Config['FullURL']}/conference2010/abstract-show.php?id=$abstractID
+
+Submission info: {$Config['FullURL']}/conference2010/abstract-export.php
+EOT;
+		$mail->send($Config['ConferenceNotificationEmail']['to'], $headers, $body);
 		
 		// Show a thank-you page
 		header("Location: $thankyou_location?$data_auth_query_string");
