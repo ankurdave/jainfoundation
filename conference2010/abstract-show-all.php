@@ -7,12 +7,11 @@
 	include 'includes/abstract-show-template-head.inc.php';
 	
 	$db = connectToDB();
-	$result = $db->query("SELECT * FROM abstract WHERE final=TRUE");
-	while ($data = $result->fetch_assoc()) {
-		// Escape all data fields before printing
-		$data_raw = $data;
-		$data = array_map('print_html', $data);
-	
+	$result = $db->query("SELECT id FROM abstract WHERE final=TRUE");
+	while ($row = $result->fetch_row()) {
+		global $abstract;
+		$abstract = new AbstractDAO($row[0]);
+
 		include 'includes/abstract-show-template-body.inc.php';
 	}
 	$result->free();

@@ -115,7 +115,7 @@ class AbstractDAO {
 	 * 
 	 * Throws an exception if id and auth_key are set but invalid (do not exist in the database).
 	 */
-	function save() {
+	function save($finalize = false) {
 		// Check the preconditions
 		if (!$this->checkIdAuthKey()) {
 			throw new AbstractAuthException('Invalid ID or auth key');
@@ -140,6 +140,9 @@ class AbstractDAO {
 			$affiliation->setField('abstract_id', $this->data['id']);
 			$affiliation->save();
 		}
+
+		// Set the 'final' field
+		$this->data['final'] = $finalize;
 		
 		// Build the query
 		$query = new InsertUpdateQuery($this->db);
@@ -290,7 +293,7 @@ class AbstractAuthorDAO {
 	 */
 	static function loadAssociated($db, $abstractId) {
 		$abstractIdEscaped = $db->real_escape_string($abstractId);
-		$result = $db->query("SELECT * FROM abstract_author WHERE abstract_id=$abstractIdEscaped");
+		$result = $db->query("SELECT * FROM abstract_author WHERE abstract_id=$abstractIdEscaped ORDER BY id");
 		
 		$associated = array();
 		while ($row = $result->fetch_assoc()) {
@@ -378,7 +381,7 @@ class AbstractAffiliationDAO {
 	 */
 	static function loadAssociated($db, $abstractId) {
 		$abstractIdEscaped = $db->real_escape_string($abstractId);
-		$result = $db->query("SELECT * FROM abstract_affiliation WHERE abstract_id=$abstractIdEscaped");
+		$result = $db->query("SELECT * FROM abstract_affiliation WHERE abstract_id=$abstractIdEscaped ORDER BY id");
 		
 		$associated = array();
 		while ($row = $result->fetch_assoc()) {

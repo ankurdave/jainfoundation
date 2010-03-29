@@ -1,5 +1,7 @@
 <?php
 	require 'includes/lib.php';
+
+	$db = connectToDB();
 	
 	$form_location = 'abstract.php';
 	$show_location = 'abstract-show.php';
@@ -21,6 +23,45 @@
 		// If any field in $_POST is not a valid abstract field, setField will ignore it
 		$abstract->setField($field, $val);
 	}
+
+	// Send the author and affiliation fields to the DAO
+	$authors = array();
+	foreach ($_POST as $field => $val) {
+		if (empty($val)) {
+			continue;
+		}
+		
+		if (preg_match('/^author_(\d+)_(.*)$/i', $field, $matches)) {
+			if ($authors[$matches[1]] === null) {
+				$authors[$matches[1]] = new AbstractAuthorDAO($db);
+			}
+
+			$authors[$matches[1]]->setField($matches[2], $val);
+		}
+	}
+	$abstract->clearAuthors();
+	foreach ($authors as $author) {
+		$abstract->addAuthor($author);
+	}
+
+	$affiliations = array();
+	foreach ($_POST as $field => $val) {
+		if (empty($val)) {
+			continue;
+		}
+		
+		if (preg_match('/^affiliation_(\d+)$/i', $field, $matches)) {
+			if ($affiliations[$matches[1]] === null) {
+				$affiliations[$matches[1]] = new AbstractAffiliationDAO($db);
+			}
+
+			$affiliations[$matches[1]]->setField('affiliation', $val);
+		}
+	}
+	$abstract->clearAffiliations();
+	foreach ($affiliations as $affiliation) {
+		$abstract->addAffiliation($affiliation);
+	}
 	
 	// Send the uploaded picture to the DAO
 	// Important: This MUST come after the $_POST import, otherwise it would be possible to set a POST field called 'picture_data' to an arbitrary file system path
@@ -32,7 +73,7 @@
 	// Save the DAO
 	// This is before validation so that if there's an error, the user won't lose the data
 	try {
-		$abstract->save();
+		$abstract->save($_POST['action'] == 'Submit');
 	} catch (AbstractAuthException $e) {
 		header("Location: $form_location?error_auth");
 		exit;

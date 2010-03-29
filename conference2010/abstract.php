@@ -209,10 +209,10 @@
 					'required' => ($i == 1),
 					'value' => ($i <= $numFilled) ? $authors[$i - 1]->getField('lastname') : '',
 				));
-				print_multi_text_field("author_{$i}_affiliation", array(
+				print_multi_text_field("author_{$i}_affiliations", array(
 					'required' => ($i == 1),
 					'class' => array('affiliation_reference'),
-					'value' => ($i <= $numFilled) ? $authors[$i - 1]->getField('affiliation') : '',
+					'value' => ($i <= $numFilled) ? $authors[$i - 1]->getField('affiliations') : '',
 				));
 
 				?></tr><?php
