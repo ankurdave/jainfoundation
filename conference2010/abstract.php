@@ -1,12 +1,18 @@
 <?php
 //	error_reporting(E_ALL);
 	require 'includes/lib.php';
+
+	$db = connectToDB();
 	
 	$submit_location = 'abstract-submit.php';
 	
-	// Load the saved values from the DAO, if any
 	// Set the default abstract values if they are not already set
 	$abstract = new AbstractDAO();
+	$author1 = new AbstractAuthorDAO($db);
+	$author1->setField('affiliations', '1');
+	$abstract->addAuthor($author1);
+
+	// Load the saved values from the DAO, if any
 	try {
 		if (isset($_GET['id'])) {
 			$abstract = new AbstractDAO($_GET['id']);
@@ -182,7 +188,7 @@
 			<th>First Name (<span class="required_indicator">*</span>)</th>
 			<th>Middle Initial</th>
 			<th>Last Name (<span class="required_indicator">*</span>)</th>
-			<th>Affiliation (<span class="required_indicator">*</span>)</th>
+			<th>Affiliations (<span class="required_indicator">*</span>)</th>
 		</tr>
 		
 		<?php

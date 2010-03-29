@@ -4,7 +4,7 @@
 	$form_location = 'abstract.php';
 	
 	// Load the abstract using the DAO
-	global $abstract;
+	$abstract = null;
 	if (isset($_GET['id'])) {
 		$abstract = new AbstractDAO($_GET['id']);
 	} else if (isset($_COOKIE['id'])) {
@@ -19,7 +19,7 @@
 	header("Content-Type: application/vnd.ms-word");
 	header("Content-Disposition: attachment; filename=abstract-" . urlencode($abstract->getField('id')) . ".doc");
 
-	include 'includes/abstract-show-template-head.inc.php';
-	include 'includes/abstract-show-template-body.inc.php';
-	include 'includes/abstract-show-template-foot.inc.php';
+	printAbstractHead();
+	printAbstractBody($abstract);
+	printAbstractFoot();
 ?>

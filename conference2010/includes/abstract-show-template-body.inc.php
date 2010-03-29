@@ -1,16 +1,3 @@
-<?php
-	global $abstract;
-	$authors = $abstract->getAuthors();
-	$affiliations = $abstract->getAffiliations();
-	
-	/**
-	 * Prints the specified abstract field, HTML-encoded.
-	 */
-	function f($field) {
-		global $abstract;
-		echo print_html($abstract->getField($field));
-	}
-?>
 <div class="abstract">
 
 <h1 class="author"><?php f('firstname') ?> <?php f('middlename') ?> <?php f('lastname') ?>, <?php f('degree') ?></h1>
