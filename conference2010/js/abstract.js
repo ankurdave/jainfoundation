@@ -138,6 +138,40 @@ $(document).ready(function() {
 	$(".affiliation_reference").numeric({allow: ","});
 });
 
+// Set up the Add More Affiliations button
+$(document).ready(function() {
+	$("#affiliation_more").click(function() {
+		// Calculate the current highest affiliation number
+		var n = 1;
+		for (var i = 1; true; i++) {
+			if ($("#affiliation_" + i).length == 0) {
+				n = i;
+				break;
+			}
+		}
+
+		// Add an element with that number
+		$("#affiliations tbody").append('<tr id="affiliation_' + n + '_container"><td></td><td><label for="affiliation_' + n + '">Affiliation #' + n + '</label></td><td class="input"><input type="text" id="affiliation_' + n + '" name="affiliation_' + n + '"></td><td></td></tr>');
+	});
+});
+
+// Set up the Add More Authors button
+$(document).ready(function() {
+	$("#author_more").click(function() {
+		// Calculate the current highest author number
+		var n = 1;
+		for (var i = 1; true; i++) {
+			if ($("#author_" + i).length == 0) {
+				n = i;
+				break;
+			}
+		}
+
+		// Add an element with that number
+		$("#authors tbody").append('<tr id="author_' + n + '"><th class="label">Author #' + n + '</th><td><input type="text" id="author_' + n + '_firstname" name="author_' + n + '_firstname"></td><td><input type="text" id="author_' + n + '_middlename" name="author_' + n + '_middlename"></td><td><input type="text" id="author_' + n + '_lastname" name="author_' + n + '_lastname"></td><td><input type="text" class="affiliation_reference" id="author_' + n + '_affiliation" name="author_' + n + '_affiliation"></td></tr>');
+	});
+});
+
 // Set up the Fill Sample Values button
 function fillSampleValues() {
 	$("#firstname").val("Ankur").change();

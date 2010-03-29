@@ -6,6 +6,7 @@
 class AbstractDAO {
 	private $db;
 	private $data;
+	// TODO: add default of author_1_affiliation to "1"
 	private static $columnTypes = array(
 		'id' => array('i', false),
 		'auth_key' => array('s', false),
@@ -48,6 +49,10 @@ class AbstractDAO {
 		if ($id !== null) {
 			$id_escaped = $this->db->real_escape_string($id);
 			$result = $this->db->query("SELECT * FROM abstract WHERE id='$id_escaped'");
+			if ($result->num_rows == 0) {
+				throw new AbstractAuthException("No such abstract");
+			}
+			
 			$row = $result->fetch_assoc();
 			
 			// Do not store auth_key for security
@@ -256,6 +261,13 @@ class AbstractAuthorDAO {
 			$result->free();
 		}
 	}
+
+	/**
+	 * Returns an associative array of the fields in the abstract.
+	 */
+	function getFields() {
+		return $this->data;
+	}
 	
 	/**
 	 * Gets the current value of the field with the given name.
@@ -336,6 +348,13 @@ class AbstractAffiliationDAO {
 			$this->data['id'] = $prevId + 1;
 			$result->free();
 		}
+	}
+
+	/**
+	 * Returns an associative array of the fields.
+	 */
+	function getFields() {
+		return $this->data;
 	}
 	
 	/**

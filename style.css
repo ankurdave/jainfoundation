@@ -358,6 +358,10 @@ table.multitext label.error:hover {
 	opacity: 0.1;
 }
 
+.addmore {
+	float: right;
+}
+
 /* Page nav */
 #page_nav_wrapper {
 	width: 100%;

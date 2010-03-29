@@ -25,7 +25,7 @@ function get_error_text($field, $text = "(required)") {
  * instructions -- string (may contain HTML)
  * required -- boolean
  * label -- string (may contain HTML)
- * value -- assoc array containing ($id => 'field value')
+ * value -- field value
  * class -- array containing other classes to apply to the element
  */
 function print_field($id, $element_html, $options = array()) {
@@ -106,7 +106,7 @@ function build_class_attribute($required, $extra_classes) {
  */
 function print_text_field($id, $options = array()) {
 	$id_esc = htmlentities($id);
-	$value_esc = print_html($options['value'][$id]);
+	$value_esc = print_html($options['value']);
 	$classes_html = build_class_attribute($options['required'], $options['class']);
 	
 	$element_html = <<<EOD
@@ -129,7 +129,7 @@ function print_select_field($id, $options = array()) {
 	
 	$options_array = array();
 	foreach ($options['options'] as $option_value => $option_label) {
-		$options_array[] = convertOptiontoHTML($option_value, $option_label, $options['value'][$id] == $option_value);
+		$options_array[] = convertOptiontoHTML($option_value, $option_label, $options['value'] == $option_value);
 	}
 	$options_html = join("\n", $options_array);
 	
@@ -174,7 +174,7 @@ function print_radio_field($id, $options = array()) {
 	
 	$options_array = array();
 	foreach ($options['options'] as $option_value => $option_label) {
-		$options_array[] = convertOptiontoHTMLRadio($id_esc, $option_value, $option_label, $classes_html, $options['value'][$id] == $option_value);
+		$options_array[] = convertOptiontoHTMLRadio($id_esc, $option_value, $option_label, $classes_html, $options['value'] == $option_value);
 	}
 	$options_html = join("\n", $options_array);
 	
@@ -219,7 +219,7 @@ EOD;
  * instructions -- string
  * required -- boolean
  * label -- string
- * value -- assoc array containing ($id => 'field value')
+ * value -- the field value
  * class -- array containing other classes to apply to the element
  */
 function print_textarea_field($id, $options = array()) {
@@ -250,47 +250,31 @@ function print_textarea_field($id, $options = array()) {
 		id="<?php echo htmlentities($id) ?>"
 		rows="24" cols="80"
 		<?php echo $classes_html ?>
-	><?php echo print_html($options['value'][$id]) ?></textarea></p>
+	><?php echo print_html($options['value']) ?></textarea></p>
 <?php
 }
 
 /**
- * Prints multiple text fields in an HTML table row.
+ * Prints a text field that fits in a single HTML table cell. Intended for multiple fields side-by-side.
  * 
- * @param array $id_prefix the field id stem that will be concatenated with each of the field ids in $fields
- * @param array $fields an assoc array containing ($id_suffix => $required), where $required is a boolean
- * @param array $options an assoc array with the following optional fields:
- * label -- string
- * value -- assoc array containing ($id => 'field value')
- * class -- assoc array containing ($id_suffix => array('class1', 'class2', ...)
+ * @param string $id the field id
+ * @param array $options an assoc array with the field options in print_field()
  */
-function print_multi_text_field($id_prefix, $fields, $options = array()) {
+function print_multi_text_field($id, $options = array()) {
+	$classes_html = build_class_attribute($options['required'], $options['class']);
 ?>
-	<tr>
-	<th class="label"><?php echo htmlentities($options['label']) ?></th>
-
-	<?php
-		foreach (array_keys($fields) as $id_suffix) {
-			$id = $id_prefix . $id_suffix;
-			$classes_html = build_class_attribute($fields[$id_suffix], $options['class'][$id_suffix]);
-	?>
-		<?php if (isset($_GET["error_$id"])) { ?>
-			<td class="error">
-		<?php } else { ?>
-			<td>
-		<?php } ?>
-
-		<input type="text"
-			name="<?php echo htmlentities($id) ?>"
-			id="<?php echo htmlentities($id) ?>"
-			value="<?php echo print_html($options['value'][$id]) ?>"
-			<?php echo $classes_html ?>
-		/>
-
-		</td>
+	<?php if (isset($_GET["error_$id"])) { ?>
+		<td class="error">
+	<?php } else { ?>
+		<td>
 	<?php } ?>
-	
-	</tr>
+
+	<input type="text"
+		name="<?php echo htmlentities($id) ?>"
+		id="<?php echo htmlentities($id) ?>"
+		value="<?php echo print_html($options['value']) ?>"
+		<?php echo $classes_html ?>
+	/>
 <?php
 }
 

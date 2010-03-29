@@ -5,18 +5,17 @@
 	$submit_location = 'abstract-submit.php';
 	
 	// Load the saved values from the DAO, if any
-	if (isset($_GET['id'])) {
-		$dao = new AbstractDAO($_GET['id']);
-		$values = $dao->getFields();
-		$values['auth_key'] = $_GET['auth_key']; // Pass along the auth key
-	} else if (isset($_COOKIE['id'])) {
-		$dao = new AbstractDAO($_COOKIE['id']);
-		$values = $dao->getFields();
-		$values['auth_key'] = $_GET['auth_key']; // Pass along the auth key
-	} else {
-		// Set the default abstract values if they are not already set
-		$values = array('author_1_affiliation' => '1');
-	}
+	// Set the default abstract values if they are not already set
+	$abstract = new AbstractDAO();
+	try {
+		if (isset($_GET['id'])) {
+			$abstract = new AbstractDAO($_GET['id']);
+			$abstract->setField('auth_key', $_GET['auth_key']); // Pass along the auth key
+		} else if (isset($_COOKIE['id'])) {
+			$abstract = new AbstractDAO($_COOKIE['id']);
+			$abstract->setField('auth_key', $_COOKIE['auth_key']); // Pass along the auth key
+		}
+	} catch (AbstractAuthException $e) { }
 	
 	printHeader(array('title' => 'Conference 2010 | Abstract Submission', 'scripts' => array($Config['URLPath'] . '/js/jquery.validate.js', $Config['URLPath'] . '/js/jquery.alphanumeric.js', 'js/abstract.js',), 'page_nav_id' => 'abstract'));
 ?>
@@ -34,8 +33,8 @@
 <p>Please fill out the form below and submit it <strong>no later than June 25th, 2010</strong>. <em>You will be informed whether your abstract has been accepted by July 9th, 2010.</em></p>
 
 <?php
-	if (isset($values['id'])) {
-		$data_auth_query_string = "?id=" . $values['id'] . "&auth_key=" . $values['auth_key'];
+	if (!is_null($abstract->getField('id'))) {
+		$data_auth_query_string = "?id=" . $abstract->getField('id') . "&auth_key=" . $abstract->getField('auth_key');
 	} else {
 		$data_auth_query_string = '';
 	}
@@ -49,23 +48,23 @@
 			print_text_field('firstname', array(
 				'label' => 'First Name',
 				'required' => true,
-				'value' => $values,
+				'value' => $abstract->getField('firstname'),
 			));
 			print_text_field('middlename', array(
 				'label' => 'Middle Initial',
 				'required' => false,
-				'value' => $values,
+				'value' => $abstract->getField('middlename'),
 			));
 			print_text_field('lastname', array(
 				'label' => 'Last Name',
 				'required' => true,
-				'value' => $values,
+				'value' => $abstract->getField('lastname'),
 			));
 			print_text_field('degree', array(
 				'label' => 'Degree',
 				'required' => true,
 				'instructions' => '(BS, MD, PhD, etc.)',
-				'value' => $values,
+				'value' => $abstract->getField('degree'),
 			));
 			print_select_field('author_status', array(
 				'label' => 'Author Status',
@@ -78,70 +77,70 @@
 					'undergrad_student' => 'Undergraduate Student',
 					'other' => 'Other',
 				),
-				'value' => $values,
+				'value' => $abstract->getField('author_status'),
 			));
 			print_text_field('author_status_other', array(
 				'label' => 'Other Author Status',
 				'required' => false, // only required if author_status is other -- see validation function in js/abstract.js
 				'instructions' => '(if other)',
-				'value' => $values,
+				'value' => $abstract->getField('author_status_other'),
 			));
 			print_text_field('degree_year', array(
 				'label' => 'Degree Year',
 				'required' => false, // only required if author_status is postdoc -- see validation function in js/abstract.js
 				'instructions' => '(if postdoc)',
-				'value' => $values,
+				'value' => $abstract->getField('degree_year'),
 			));
 			print_text_field('department', array(
 				'label' => 'Department',
 				'required' => false,
-				'value' => $values,
+				'value' => $abstract->getField('department'),
 			));
 			print_text_field('institution', array(
 				'label' => 'Institution',
 				'required' => true,
-				'value' => $values,
+				'value' => $abstract->getField('institution'),
 			));
 			print_text_field('street_address', array(
 				'label' => 'Street Address',
 				'required' => true,
-				'value' => $values,
+				'value' => $abstract->getField('street_address'),
 			));
 			print_text_field('city', array(
 				'label' => 'City',
 				'required' => true,
-				'value' => $values,
+				'value' => $abstract->getField('city'),
 			));
 			print_text_field('state_province', array(
 				'label' => 'State/Province',
 				'required' => false,
-				'value' => $values,
+				'value' => $abstract->getField('state_province'),
 			));
 			print_text_field('zip_postal_code', array(
 				'label' => 'Zip/Postal Code',
 				'required' => true,
-				'value' => $values,
+				'value' => $abstract->getField('zip_postal_code'),
 			));
 			print_text_field('country', array(
 				'label' => 'Country',
 				'required' => true,
-				'value' => $values,
+				'value' => $abstract->getField('country'),
 			));
 			print_text_field('email', array(
 				'label' => 'Email',
 				'required' => true,
 				'class' => array('email'),
-				'value' => $values,
+				'value' => $abstract->getField('email'),
 			));
 			print_text_field('phone', array(
 				'label' => 'Phone Number',
 				'required' => true,
-				'value' => $values,
+				'value' => $abstract->getField('phone'),
 			));
 			print_text_field('fax', array(
 				'label' => 'Fax Number',
 				'required' => false,
-				'value' => $values,
+				'value' => $abstract->getField('fax'),
 			));
 		?>
 		<?php
@@ -149,7 +148,7 @@
 				'label' => 'Picture',
 				'required' => true,
 				'instructions' => '(max 1 MB)',
-				'value' => $values,
+				'value' => $abstract->getField('picture'),
 			));
 		?>
 	</table>
@@ -158,22 +157,26 @@
 	
 	<p>Enter all affiliations associated with the authors, one per line, in the following format: Department, Institution, City, State/Province, Country.<br />
 	<em>Example:</em> Department of Neurology, Univ. of Washington, Seattle, WA, USA</p>
-	<table>
+	<table id="affiliations">
 		<?php
-			for ($i = 1; $i <= 8; $i++) {
+			$affiliations = $abstract->getAffiliations();
+			$numFilled = count($affiliations);
+			$numFields = $numFilled + 1;
+			for ($i = 1; $i <= $numFields; $i++) {
 				print_text_field("affiliation_$i", array(
 					'label' => "Affiliation #$i",
 					'required' => ($i == 1),
-					'value' => $values,
+					'value' => ($i <= $numFilled) ? $affiliations[$i - 1]->getField('affiliation') : '',
 				));
 			}
 		?>
 	</table>
+	<input type="button" id="affiliation_more" class="addmore" value="Add More" />
 	
 	<p>Enter the information for all authors.<br />
 	The person listed as the first author <strong>must</strong> be presenting the abstract.
 	Please use the affiliation numbers above, separated by commas, to indicate each author's affiliation(s).</p>
-	<table class="multitext">
+	<table class="multitext" id="authors">
 		<tr>
 			<th></th>
 			<th>First Name (<span class="required_indicator">*</span>)</th>
@@ -183,23 +186,40 @@
 		</tr>
 		
 		<?php
-			for ($i = 1; $i <= 8; $i++) {
-				print_multi_text_field("author_$i", array(
-					"_firstname" => ($i == 1),
-					"_middlename" => false,
-					"_lastname" => ($i == 1),
-					"_affiliation" => ($i == 1),
-				),
-				array(
-					'label' => "Author #$i",
-					'class' => array(
-						'_affiliation' => array('affiliation_reference'),
-					),
-					'value' => $values,
+			$authors = $abstract->getAuthors();
+			$numFilled = count($authors);
+			$numFields = $numFilled + 1;
+			for ($i = 1; $i <= $numFields; $i++) {
+				?>
+				<tr id="author_<?php echo $i ?>">
+					<th class="label">
+						Author #<?php echo $i ?>
+					</th>
+				<?php
+				
+				print_multi_text_field("author_{$i}_firstname", array(
+					'required' => ($i == 1),
+					'value' => ($i <= $numFilled) ? $authors[$i - 1]->getField('firstname') : '',
 				));
+				print_multi_text_field("author_{$i}_middlename", array(
+					'required' => false,
+					'value' => ($i <= $numFilled) ? $authors[$i - 1]->getField('middlename') : '',
+				));
+				print_multi_text_field("author_{$i}_lastname", array(
+					'required' => ($i == 1),
+					'value' => ($i <= $numFilled) ? $authors[$i - 1]->getField('lastname') : '',
+				));
+				print_multi_text_field("author_{$i}_affiliation", array(
+					'required' => ($i == 1),
+					'class' => array('affiliation_reference'),
+					'value' => ($i <= $numFilled) ? $authors[$i - 1]->getField('affiliation') : '',
+				));
+
+				?></tr><?php
 			}
 		?>
 	</table>
+	<input type="button" id="author_more" class="addmore" value="Add More" />
 	
 	<h3>Abstract Information</h3>
 	
@@ -221,14 +241,14 @@
 					'mechanisms_of_pathology' => 'Mechanisms of pathology',
 					'other' => 'Other',
 				),
-				'value' => $values,
+				'value' => $abstract->getField('abstract_category'),
 			));
 			
 			print_text_field('abstract_category_other', array(
 				'label' => 'Other abstract category',
 				'required' => false, // only required if abstract_category is other -- see validation function in js/abstract.js
 				'instructions' => '(if other)',
-				'value' => $values,
+				'value' => $abstract->getField('abstract_category_other'),
 			));
 		?>
 	</table>
@@ -245,7 +265,7 @@
 					'oral' => 'Oral',
 					'poster' => 'Poster',
 				),
-				'value' => $values,
+				'value' => $abstract->getField('presentation_type'),
 			));
 		?>
 	</table>
@@ -262,7 +282,7 @@
 			print_text_field('abstract_title', array(
 				'label' => 'Abstract Title',
 				'required' => true,
-				'value' => $values,
+				'value' => $abstract->getField('abstract_title'),
 			));
 		?>
 	</table>
@@ -274,7 +294,7 @@
 		print_textarea_field('abstract_body', array(
 			'label' => 'Abstract',
 			'required' => true,
-			'value' => $values
+			'value' => $abstract->getField('abstract_body'),
 		));
 	?>
 
@@ -286,7 +306,7 @@
 		print_textarea_field('comments', array(
 			'label' => 'Comments',
 			'required' => false,
-			'value' => $values,
+			'value' => $abstract->getField('comments'),
 		));
 	?>
 	
