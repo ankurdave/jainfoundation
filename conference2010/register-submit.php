@@ -48,4 +48,21 @@
 	
 	// Show a thank-you page
 	header("Location: $thankyou_location?$data_auth_query_string");
+
+	// Send an email
+	include 'Mail.php';
+	$registrantID = urlencode($data_auth['id']);
+	$submitterName = print_html($_POST['firstname']) . ' ' . print_html($_POST['lastname']);
+	$mail = Mail::factory('smtp', $Config['ConferenceNotificationEmail']);
+	$headers = array(
+		'From' => $Config['ConferenceNotificationEmail']['from'],
+		'To' => $Config['ConferenceNotificationEmail']['to'],
+		'Subject' => "Registration #$registrantID submitted by $submitterName",
+	);
+	$body = <<<EOT
+Registration list: {$Config['FullURL']}/conference2010/register-list.php#registrant$registrantID
+
+Registration export: {$Config['FullURL']}/conference2010/register-export.php
+EOT;
+	$mail->send($Config['ConferenceNotificationEmail']['to'], $headers, $body);
 ?>
