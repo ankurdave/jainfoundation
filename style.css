@@ -438,3 +438,6 @@ table.db_list_entry {
 .db_list_entry tr.row_even {
 	background-color: #EEE;
 }
+.db_list_entry .action {
+	text-align: right;
+}

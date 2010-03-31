@@ -25,6 +25,15 @@
 			<tr class="<?php echo $i % 2 == 0 ? 'row_even' : 'row_odd' ?>">
 				<th><?php echo print_html($key) ?></th>
 				<td><?php echo print_html($val) ?></td>
+				<td class="action">
+					<?php
+						if ($key == 'id') {
+							?>
+							(<a href="register-delete.php?id=<?php echo urlencode($data['id']) ?>">delete</a>)
+							<?php
+						}
+					?>
+				</td>
 			</tr>
 <?php
 			$i++;

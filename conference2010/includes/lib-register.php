@@ -127,6 +127,20 @@ class RegistrantDAO {
 	}
 
 	/**
+	 * Deletes the registrant from the database. Throws an exception if id is invalid.
+	 */
+	function delete() {
+		$query = $this->db->prepare("DELETE FROM registrant WHERE id=?");
+		$query->bind_param('i', $this->data['id']);
+		$query->execute();
+		$query->store_result();
+
+		if ($query->affected_rows != 1) {
+			throw new DAOAuthException("Invalid ID");
+		}
+	}
+
+	/**
 	 * Checks whether or not the given fields are valid. Returns an array of invalid fields. This array will be empty if all fields are valid.
 	 */
 	function validate() {

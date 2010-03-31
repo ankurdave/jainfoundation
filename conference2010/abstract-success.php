@@ -10,7 +10,7 @@
 		exit;
 	}
 	
-	printHeader(array('title' => 'Submit an Abstract'));
+	printHeader(array('title' => 'Conference 2010 | Abstract Submission'));
 ?>
 
 <?php include 'includes/conference-title.inc.php' ?>
