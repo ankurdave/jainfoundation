@@ -153,6 +153,24 @@ class AbstractDAO {
 		// Run it
 		$query->execute();
 	}
+
+	/**
+	 * Deletes the abstract from the database. Throws an exception if id is invalid.
+	 */
+	function delete() {
+		$query = $this->db->prepare("DELETE FROM abstract WHERE id=?");
+		$query->bind_param('i', $this->data['id']);
+		$query->execute();
+		$query->store_result();
+
+		if ($query->affected_rows != 1) {
+			throw new DAOAuthException("Invalid ID");
+		}
+
+		// Delete the authors and affiliations from the database
+		AbstractAuthorDAO::deleteAssociated($this->db, $this->data['id']);
+		AbstractAffiliationDAO::deleteAssociated($this->db, $this->data['id']);
+	}
 	
 	/**
 	 * Checks whether or not the given fields are valid. Returns an array of invalid fields. This array will be empty if all fields are valid.
@@ -248,7 +266,7 @@ class AbstractAuthorDAO {
 		// Run it
 		$query->execute();
 	}
-	
+
 	/**
 	 * Ensures a valid id. If it is null, creates a new id.
 	 */
@@ -303,6 +321,15 @@ class AbstractAuthorDAO {
 		}
 		
 		return $associated;
+	}
+
+	/**
+	 * Deletes all the authors associated with the given abstract ID.
+	 */
+	static function deleteAssociated($db, $abstractId) {
+		$query = $db->prepare("DELETE FROM abstract_author WHERE abstract_id=?");
+		$query->bind_param('i', $abstractId);
+		$query->execute();
 	}
 }
 
@@ -391,6 +418,15 @@ class AbstractAffiliationDAO {
 		}
 		
 		return $associated;
+	}
+
+	/**
+	 * Deletes all the affiliations associated with the given abstract ID.
+	 */
+	static function deleteAssociated($db, $abstractId) {
+		$query = $db->prepare("DELETE FROM abstract_affiliation WHERE abstract_id=?");
+		$query->bind_param('i', $abstractId);
+		$query->execute();
 	}
 }
 
