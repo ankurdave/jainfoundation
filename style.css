@@ -233,6 +233,10 @@ a:visited {
 	color: #336;
 }
 
+a img {
+	border: none;
+}
+
 h1 {
 	font-size: 1.5em;
 	color: #3D7610;
