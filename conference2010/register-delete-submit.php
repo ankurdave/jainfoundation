@@ -2,11 +2,10 @@
 
 require 'includes/lib.php';
 
-$listLocation = 'register-list.php';
-$successLocation = 'register-delete-success.php';
+$successLocation = 'register-list.php';
 
 function showList() {
-	header("Location: $listLocation");
+	header("Location: register-list.php");
 	exit;
 }
 
@@ -29,6 +28,6 @@ try {
 	showList();
 }
 
-header("Location: $successLocation?$queryString");
+header("Location: $successLocation");
 
 ?>
