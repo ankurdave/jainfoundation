@@ -192,7 +192,7 @@ class RegistrantDAO {
 
 		// Determine which fee class to use based on the position (unless the promo code is valid)
 		$base_fee = 0;
-		if (!checkPromoCode($this->data['promo_code'])) {
+		if (!RegistrantDAO::checkPromoCode($this->data['promo_code'])) {
 			switch ($this->data['position']) {
 				case "postdoc":
 				case "grad_student":
@@ -217,7 +217,7 @@ class RegistrantDAO {
 	/**
 	 * Checks if the given promotional code is valid. Not case sensitive.
 	 */
-	private function checkPromoCode($code) {
+	public static function checkPromoCode($code) {
 		return strtoupper($code) == 'JF2010AS';
 	}
 }
