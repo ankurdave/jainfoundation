@@ -928,7 +928,7 @@ onMouseOut="window.document.sq16.src='images/button_links2.gif'"><img src="image
 
                   <tr>
 
-                    <td background="images/box_bgMain.gif" valign="top"><p class="left">
+                    <td background="images/box_bgMain-old.gif" valign="top"><p class="left">
 
                         <? include 'includes/resources.php'; ?>
 

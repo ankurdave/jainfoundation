@@ -100,7 +100,7 @@ onMouseOut="window.document.sq16.src='../../images/button_links2.gif'"><img src=
                     <td width="168"><img src="../../images/header_researchers.gif" width="168" height="26"></td>
                   </tr>
                   <tr>
-                    <td background="../../images/box_bgMain.gif" valign="top"><p class="left">
+                    <td background="../../images/box_bgMain-old.gif" valign="top"><p class="left">
 					
 					<font color="#006600"><br>
 

@@ -192,7 +192,7 @@ onMouseOut="window.document.sq8.src='images/button_faq.gif'"><img src="images/bu
 
                   <tr>
 
-                    <td background="images/box_bgMain.gif" valign="top"><p class="left">
+                    <td background="images/box_bgMain-old.gif" valign="top"><p class="left">
 
                         <? include 'includes/resources.php'; ?>
 

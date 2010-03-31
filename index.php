@@ -369,7 +369,7 @@ onMouseOut="window.document.sq16.src='images/button_links2.gif'"><img src="image
 
                     <tr>
 
-                      <td background="images/box_bgMain.gif">
+                      <td background="images/box_bgMain-old.gif">
 					  
 					
 					  <p class="right">The Third Annual Dysferlin Conference was held June 2-5 2009 in Boston.<span class="style1"><br>
@@ -410,7 +410,7 @@ onMouseOut="window.document.sq16.src='images/button_links2.gif'"><img src="image
 
                       <tr>
 
-                        <td background="images/box_bgMain.gif"><p class="right"><strong>1</strong> Rare
+                        <td background="images/box_bgMain-old.gif"><p class="right"><strong>1</strong> Rare
 
                             form of muscular <br>
 
