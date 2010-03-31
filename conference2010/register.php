@@ -20,7 +20,7 @@
 		}
 	} catch (DAOAuthException $e) { }
 	
-	printHeader(array('title' => 'Conference 2010 | Registration', 'scripts' => array('js/jquery.validate.js', 'js/register.js',), 'page_nav_id' => 'register'));
+	printHeader(array('title' => 'Conference 2010 | Registration', 'scripts' => array($Config['URLPath'] . '/js/jquery.validate.js', 'js/register.js',), 'page_nav_id' => 'register'));
 ?>
 
 <?php include 'includes/conference-title.inc.php' ?>
