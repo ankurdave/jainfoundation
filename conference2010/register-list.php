@@ -16,12 +16,9 @@
 	while ($data = $result->fetch_assoc()) {
 		$i++;
 		
-		// Escape all data fields before printing
-		$data_raw = $data;
-		$data = array_map('print_html', $data);
 		unset($data['auth_key']); // don't print the auth_key, for security reasons
 ?>
-		<table>
+		<table class="db_list_entry" id="registrant<?php print_html($data['id']) ?>">
 <?php		
 		foreach ($data as $key => $val) { ?>
 			<tr>
