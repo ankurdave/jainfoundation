@@ -113,7 +113,7 @@ class RegistrantDAO {
 		}
 
 		// Calculate the total fee
-		$this->data['total_fee'] = calculateTotalPrice();
+		$this->data['total_fee'] = $this->calculateTotalPrice();
 
 		// Build the query
 		$query = new InsertUpdateQuery($this->db);

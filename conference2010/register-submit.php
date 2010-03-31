@@ -8,13 +8,13 @@
 
 	// Load or create the DAO with id and auth_key
 	if (isset($_GET['id']) && isset($_GET['auth_key'])) {
-		$registrant = new RegistrantDAO($_GET['id']);
+		$registrant = new RegistrantDAO($db, $_GET['id']);
 		$registrant->setField('auth_key', $_GET['auth_key']);
-	} else if (isset($_COOKIE['id']) && isset($_COOKIE['auth_key'])) {
-		$registrant = new RegistrantDAO($_COOKIE['id']);
-		$registrant->setField('auth_key', $_COOKIE['auth_key']);
+	} else if (isset($_COOKIE['register_id']) && isset($_COOKIE['register_auth_key'])) {
+		$registrant = new RegistrantDAO($db, $_COOKIE['register_id']);
+		$registrant->setField('auth_key', $_COOKIE['register_auth_key']);
 	} else {
-		$registrant = new RegistrantDAO();
+		$registrant = new RegistrantDAO($db);
 	}
 
 	// Send the rest of the fields to the DAO
@@ -22,6 +22,11 @@
 		// If any field in $_POST is not a valid abstract field, setField will ignore it
 		$registrant->setField($field, $val);
 	}
+
+	// Set cookies and GET string with id and auth_key so that if the user clicks the back button, he won't lose his data
+	setcookie('register_id', $registrant->getField('id'));
+	setcookie('register_auth_key', $registrant->getField('auth_key'));
+	$data_auth_query_string = "id=" . urlencode($registrant->getField('id')) . "&auth_key=" . urlencode($registrant->getField('auth_key'));
 
 	// Save the DAO
 	// This is before validation so that if there's an error, the user won't lose the data
@@ -31,11 +36,6 @@
 		header("Location: $form_location?error_auth");
 		exit;
 	}
-
-	// Set cookies and GET string with id and auth_key so that if the user clicks the back button, he won't lose his data
-	setcookie('register_id', $registrant->getField('id'));
-	setcookie('register_auth_key', $registrant->getField('auth_key'));
-	$data_auth_query_string = "id=" . urlencode($registrant->getField('id')) . "&auth_key=" . urlencode($registrant->getField('auth_key'));
 
 	// Validate the data and redirect to the form if it's wrong
 	$invalidFields = $registrant->validate();
@@ -59,8 +59,8 @@
 	
 	// Send an email
 	include 'Mail.php';
-	$registrantID = urlencode($data_auth['id']);
-	$submitterName = print_html($_POST['firstname']) . ' ' . print_html($_POST['lastname']);
+	$registrantID = urlencode($registrant->getField('id'));
+	$submitterName = print_html($registrant->getField('firstname')) . ' ' . print_html($registrant->getField('lastname'));
 	$mail = Mail::factory('smtp', $Config['ConferenceNotificationEmail']);
 	$headers = array(
 		'From' => $Config['ConferenceNotificationEmail']['from'],

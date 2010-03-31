@@ -495,12 +495,12 @@
 			));
 		?>
 		</table>
-	</div>
 	<div id="promo_code_valid" style="display:none">
 		Promotional code is valid.
 	</div>
 	<div id="promo_code_invalid" style="display:none">
 		Promotional code is not valid.
+	</div>
 	</div>
 	<div id="no_promo_code">
 	<?php

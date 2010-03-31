@@ -70,6 +70,11 @@
 		$abstract->setField('picture_mimetype', $_FILES['picture']['type']);
 	}
 	
+	// Set cookies and GET string with id and auth_key so that if the user clicks the back button, he won't lose his data
+	setcookie('id', $abstract->getField('id'));
+	setcookie('auth_key', $abstract->getField('auth_key'));
+	$data_auth_query_string = "id=" . urlencode($abstract->getField('id')) . "&auth_key=" . urlencode($abstract->getField('auth_key'));
+
 	// Save the DAO
 	// This is before validation so that if there's an error, the user won't lose the data
 	try {
@@ -78,11 +83,6 @@
 		header("Location: $form_location?error_auth");
 		exit;
 	}
-	
-	// Set cookies and GET string with id and auth_key so that if the user clicks the back button, he won't lose his data
-	setcookie('id', $abstract->getField('id'));
-	setcookie('auth_key', $abstract->getField('auth_key'));
-	$data_auth_query_string = "id=" . urlencode($abstract->getField('id')) . "&auth_key=" . urlencode($abstract->getField('auth_key'));
 	
 	// Validate the data and redirect to the form if it's wrong
 	$invalidFields = $abstract->validate();
