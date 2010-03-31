@@ -7,7 +7,7 @@
 	$result = $db->query('SELECT id, firstname, middlename, lastname, degree, department, institution, street_address, city, state_province, zip_postal_code, country, phone, fax, email, author_status, degree_year, abstract_category, abstract_category_other, presentation_type, abstract_title, comments FROM abstract');
 ?>
 
-<h1>Registrants</h1>
+<h1>List of Abstracts</h1>
 
 <?php include 'includes/menu.inc.php' ?>
 
