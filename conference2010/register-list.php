@@ -24,7 +24,7 @@
 		foreach ($data as $key => $val) { ?>
 			<tr class="<?php echo $i % 2 == 0 ? 'row_even' : 'row_odd' ?>">
 				<th><?php echo print_html($key) ?></th>
-				<td><?php echo $val ?></td>
+				<td><?php echo print_html($val) ?></td>
 			</tr>
 <?php
 			$i++;
