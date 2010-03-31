@@ -74,7 +74,7 @@
 	// This is before validation so that if there's an error, the user won't lose the data
 	try {
 		$abstract->save($_POST['action'] == 'Submit');
-	} catch (AbstractAuthException $e) {
+	} catch (DAOAuthException $e) {
 		header("Location: $form_location?error_auth");
 		exit;
 	}

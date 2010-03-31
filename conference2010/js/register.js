@@ -264,7 +264,7 @@ $(document).ready(function() {
 		// Calculate the Gala guest fee
 		var gala_dinner_guest_fee = 0;
 		if (!isNaN(parseInt($("#meals_gala_dinner_numguests").val()))) {
-			gala_dinner_guest_fee = 50 * parseInt($("#meals_gala_dinner_numguests").val());
+			gala_dinner_guest_fee = 70 * parseInt($("#meals_gala_dinner_numguests").val());
 		}
 
 		// Total it up and display it

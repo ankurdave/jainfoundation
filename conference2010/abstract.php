@@ -6,7 +6,7 @@
 	
 	$submit_location = 'abstract-submit.php';
 	
-	// Set the default abstract values if they are not already set
+	// Set the default abstract values
 	$abstract = new AbstractDAO();
 	$author1 = new AbstractAuthorDAO($db);
 	$author1->setField('affiliations', '1');
@@ -21,7 +21,7 @@
 			$abstract = new AbstractDAO($_COOKIE['id']);
 			$abstract->setField('auth_key', $_COOKIE['auth_key']); // Pass along the auth key
 		}
-	} catch (AbstractAuthException $e) { }
+	} catch (DAOAuthException $e) { }
 	
 	printHeader(array('title' => 'Conference 2010 | Abstract Submission', 'scripts' => array($Config['URLPath'] . '/js/jquery.validate.js', $Config['URLPath'] . '/js/jquery.alphanumeric.js', 'js/abstract.js',), 'page_nav_id' => 'abstract'));
 ?>

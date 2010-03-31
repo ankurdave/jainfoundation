@@ -6,7 +6,6 @@
 class AbstractDAO {
 	private $db;
 	private $data;
-	// TODO: add default of author_1_affiliation to "1"
 	private static $columnTypes = array(
 		'id' => array('i', false),
 		'auth_key' => array('s', false),
@@ -50,7 +49,7 @@ class AbstractDAO {
 			$id_escaped = $this->db->real_escape_string($id);
 			$result = $this->db->query("SELECT * FROM abstract WHERE id='$id_escaped'");
 			if ($result->num_rows == 0) {
-				throw new AbstractAuthException("No such abstract");
+				throw new DAOAuthException("No such abstract");
 			}
 			
 			$row = $result->fetch_assoc();
@@ -118,10 +117,10 @@ class AbstractDAO {
 	function save($finalize = false) {
 		// Check the preconditions
 		if (!$this->checkIdAuthKey()) {
-			throw new AbstractAuthException('Invalid ID or auth key');
+			throw new DAOAuthException('Invalid ID or auth key');
 		}
 		if ($this->checkFinal()) {
-			throw new AbstractAuthException('Abstract is marked as final');
+			throw new DAOAuthException('Abstract is marked as final');
 		}
 		
 		// Clear and reinsert the authors and affiliations
@@ -215,8 +214,6 @@ class AbstractDAO {
 		return !is_null($this->data['id']) && ($this->data['final'] == 1);
 	}
 }
-
-class AbstractAuthException extends Exception { }
 
 class AbstractAuthorDAO {
 	private $db;

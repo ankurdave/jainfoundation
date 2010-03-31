@@ -1,18 +1,24 @@
 <?php
 //	error_reporting(E_ALL);
 	require 'includes/lib.php';
+
+	$db = connectToDB();
 	
 	$submit_location = 'register-submit.php';
 	
-	// Default values
-	$values = array();
+	// Set the default values
+	$registrant = new RegistrantDAO($db);
 	
-	// Populate the fields with the saved values
-	if (isset($_GET['id']) && isset($_GET['auth_key'])) {
-		$values = getRegistrant($_GET['id'], $_GET['auth_key']);
-	} else if (isset($_COOKIE['register_id']) && isset($_COOKIE['register_auth_key'])) {
-		$values = getRegistrant($_COOKIE['register_id'], $_COOKIE['register_auth_key']);
-	}
+	// Load the saved values from the DAO, if any
+	try {
+		if (isset($_GET['id'])) {
+			$registrant = new RegistrantDAO($db, $_GET['id']);
+			$registrant->setField('auth_key', $_GET['auth_key']);
+		} else if (isset($_COOKIE['register_id'])) {
+			$registrant = new RegistrantDAO($db, $_COOKIE['register_id']);
+			$registrant->setField('auth_key', $_COOKIE['register_auth_key']);
+		}
+	} catch (DAOAuthException $e) { }
 	
 	printHeader(array('title' => 'Conference 2010 | Registration', 'scripts' => array('js/jquery.validate.js', 'js/register.js',), 'page_nav_id' => 'register'));
 ?>
@@ -27,11 +33,9 @@
 
 <p>The Fourth Annual Dysferlin Conference is a scientific meeting for researchers and clinicians working on dysferlin.  Attendance is limited.  Therefore, all registrations must be approved by the Jain Foundation. You will be notified within a week of your registration whether you have been approved.  Preference will be given to those who are giving oral or poster presentations. If you are not approved your registration fee will be refunded to you.</p>
 
-
-
 <?php
-	if (isset($values['id'])) {
-		$data_auth_query_string = "?id=" . $values['id'] . "&auth_key=" . $values['auth_key'];
+	if (!is_null($registrant->getField('id'))) {
+		$data_auth_query_string = "?id=" . $registrant->getField('id') . "&auth_key=" . $registrant->getField('auth_key');
 	} else {
 		$data_auth_query_string = '';
 	}
@@ -43,12 +47,12 @@
 			print_text_field('firstname', array(
 				'label' => 'First Name',
 				'required' => true,
-				'value' => $values,
+				'value' => $registrant->getField('firstname'),
 			));
 			print_text_field('lastname', array(
 				'label' => 'Last Name',
 				'required' => true,
-				'value' => $values,
+				'value' => $registrant->getField('lastname'),
 			));
 			print_select_field('degree', array(
 				'label' => 'Degree',
@@ -61,12 +65,12 @@
 					'bs' => 'BS',
 					'other' => 'Other',
 				),
-				'value' => $values,
+				'value' => $registrant->getField('degree'),
 			));
 			print_text_field('degree_other', array(
 				'label' => 'Other Degree',
 				'required' => false, // only required if degree is other
-				'value' => $values,
+				'value' => $registrant->getField('degree_other'),
 			));
 			print_select_field('position', array(
 				'label' => 'Position Title',
@@ -79,22 +83,22 @@
 					'undergrad_student' => 'Undergraduate Student',
 					'other' => 'Other',
 				),
-				'value' => $values,
+				'value' => $registrant->getField('position'),
 			));
 			print_text_field('position_other', array(
 				'label' => 'Other Position Title',
 				'required' => false, // only required if position is other
-				'value' => $values,
+				'value' => $registrant->getField('position_other'),
 			));
 			print_text_field('department', array(
 				'label' => 'Department',
 				'required' => false,
-				'value' => $values,
+				'value' => $registrant->getField('department'),
 			));
 			print_text_field('institution', array(
 				'label' => 'Institution',
 				'required' => true,
-				'value' => $values,
+				'value' => $registrant->getField('institution'),
 			));
 			print_select_field('institution_profile', array(
 				'label' => 'Institution Profile',
@@ -106,53 +110,53 @@
 					'government' => 'Government',
 					'other' => 'Other',
 				),
-				'value' => $values,
+				'value' => $registrant->getField('institution_profile'),
 			));
 			print_text_field('institution_profile_other', array(
 				'label' => 'Other Institution Profile',
 				'required' => false, // only required if institution_profile is other
-				'value' => $values,
+				'value' => $registrant->getField('institution_profile_other'),
 			));
 			print_text_field('street_address', array(
 				'label' => 'Street Address',
 				'required' => true,
-				'value' => $values,
+				'value' => $registrant->getField('street_address'),
 			));
 			print_text_field('city', array(
 				'label' => 'City',
 				'required' => true,
-				'value' => $values,
+				'value' => $registrant->getField('city'),
 			));
 			print_text_field('state_province', array(
 				'label' => 'State/Province',
 				'required' => false,
-				'value' => $values,
+				'value' => $registrant->getField('state_province'),
 			));
 			print_text_field('zip_postal_code', array(
 				'label' => 'Zip/Postal Code',
 				'required' => true,
-				'value' => $values,
+				'value' => $registrant->getField('zip_postal_code'),
 			));
 			print_text_field('country', array(
 				'label' => 'Country',
 				'required' => true,
-				'value' => $values,
+				'value' => $registrant->getField('country'),
 			));
 			print_text_field('email', array(
 				'label' => 'Email',
 				'required' => true,
 				'class' => array('email'),
-				'value' => $values,
+				'value' => $registrant->getField('email'),
 			));
 			print_text_field('phone', array(
 				'label' => 'Phone Number',
 				'required' => true,
-				'value' => $values,
+				'value' => $registrant->getField('phone'),
 			));
 			print_text_field('fax', array(
 				'label' => 'Fax',
 				'required' => false,
-				'value' => $values,
+				'value' => $registrant->getField('fax'),
 			));
 		?>
 	</table>
@@ -166,7 +170,7 @@
 					'yes' => 'Yes',
 					'no' => 'No',
 				),
-				'value' => $values,
+				'value' => $registrant->getField('submitting_abstract'),
 			));
 		?>
 	</table>
@@ -177,7 +181,7 @@
 				print_text_field('abstract_title', array(
 					'label' => 'Abstract Title',
 					'required' => false,
-					'value' => $values,
+					'value' => $registrant->getField('abstract_title'),
 				));
 			?>
 		</table>
@@ -194,7 +198,7 @@
 					'yes' => 'Yes',
 					'no' => 'No',
 				),
-				'value' => $values,
+				'value' => $registrant->getField('local_attendee'),
 			));
 		?>
 	</table>
@@ -208,7 +212,7 @@
 					'yes' => 'Yes',
 					'no' => 'No',
 				),
-				'value' => $values,
+				'value' => $registrant->getField('hotel_parking'),
 			));
 		?>
 	</table>
@@ -222,7 +226,7 @@
 					'yes' => 'Yes',
 					'no' => 'No',
 				),
-				'value' => $values,
+				'value' => $registrant->getField('attendance_day1'),
 			));
 			print_radio_field('attendance_day2', array(
 				'label' => 'Sunday, Sept 12',
@@ -231,7 +235,7 @@
 					'yes' => 'Yes',
 					'no' => 'No',
 				),
-				'value' => $values,
+				'value' => $registrant->getField('attendance_day2'),
 			));
 			print_radio_field('attendance_day3', array(
 				'label' => 'Monday, Sept 13',
@@ -240,7 +244,7 @@
 					'yes' => 'Yes',
 					'no' => 'No',
 				),
-				'value' => $values,
+				'value' => $registrant->getField('attendance_day3'),
 			));
 			print_radio_field('attendance_day4', array(
 				'label' => 'Tuesday, Sept 14',
@@ -249,7 +253,7 @@
 					'yes' => 'Yes',
 					'no' => 'No',
 				),
-				'value' => $values,
+				'value' => $registrant->getField('attendance_day4'),
 			));
 		?>
 	</table>
@@ -263,7 +267,7 @@
 					'yes' => 'Yes',
 					'no' => 'No',
 				),
-				'value' => $values,
+				'value' => $registrant->getField('meals_day2_breakfast'),
 			));
 			print_radio_field('meals_day2_lunch', array(
 				'label' => 'Sunday, Sept 12 &ndash; Lunch',
@@ -272,7 +276,7 @@
 					'yes' => 'Yes',
 					'no' => 'No',
 				),
-				'value' => $values,
+				'value' => $registrant->getField('meals_day2_lunch'),
 			));
 			print_radio_field('meals_day2_lunch_entree', array(
 				'label' => 'Sunday, Sept 12 &ndash; Lunch &ndash; Entree',
@@ -282,7 +286,7 @@
 					'fish' => 'Fish',
 					'vegetarian' => 'Vegetarian',
 				),
-				'value' => $values,
+				'value' => $registrant->getField('meals_day2_lunch_entree'),
 			));
 			print_radio_field('meals_day3_breakfast', array(
 				'label' => 'Monday, Sept 13 &ndash; Breakfast',
@@ -291,7 +295,7 @@
 					'yes' => 'Yes',
 					'no' => 'No',
 				),
-				'value' => $values,
+				'value' => $registrant->getField('meals_day3_breakfast'),
 			));
 			print_radio_field('meals_day3_lunch', array(
 				'label' => 'Monday, Sept 13 &ndash; Lunch',
@@ -300,7 +304,7 @@
 					'yes' => 'Yes',
 					'no' => 'No',
 				),
-				'value' => $values,
+				'value' => $registrant->getField('meals_day3_lunch'),
 			));
 			print_radio_field('meals_day3_lunch_entree', array(
 				'label' => 'Monday, Sept 13 &ndash; Lunch &ndash; Entree',
@@ -310,7 +314,7 @@
 					'fish' => 'Fish',
 					'vegetarian' => 'Vegetarian',
 				),
-				'value' => $values,
+				'value' => $registrant->getField('meals_day3_lunch_entree'),
 			));
 			print_radio_field('meals_day4_breakfast', array(
 				'label' => 'Tuesday, Sept 14 &ndash; Breakfast',
@@ -319,7 +323,7 @@
 					'yes' => 'Yes',
 					'no' => 'No',
 				),
-				'value' => $values,
+				'value' => $registrant->getField('meals_day4_breakfast'),
 			));
 			print_radio_field('meals_day4_lunch', array(
 				'label' => 'Tuesday, Sept 14 &ndash; Lunch',
@@ -328,7 +332,7 @@
 					'yes' => 'Yes',
 					'no' => 'No',
 				),
-				'value' => $values,
+				'value' => $registrant->getField('meals_day4_lunch'),
 			));
 			print_radio_field('meals_day4_lunch_entree', array(
 				'label' => 'Tuesday, Sept 14 &ndash; Lunch &ndash; Entree',
@@ -337,7 +341,7 @@
 					'chicken' => 'Chicken',
 					'vegetarian' => 'Vegetarian',
 				),
-				'value' => $values,
+				'value' => $registrant->getField('meals_day4_lunch_entree'),
 			));
 			print_radio_field('meals_gala_dinner', array(
 				'label' => 'Evening of Tuesday, Sept 13 &ndash; Gala Dinner',
@@ -346,7 +350,7 @@
 					'yes' => 'Yes',
 					'no' => 'No',
 				),
-				'value' => $values,
+				'value' => $registrant->getField('meals_gala_dinner'),
 			));
 		?>
 	</table>
@@ -361,7 +365,7 @@
 								   'yes' => 'Yes',
 								   'no' => 'No',
 				),
-				'value' => $values,
+				'value' => $registrant->getField('meals_gala_dinner_vegetarian'),
 			));
 		?>
 		</table>
@@ -379,7 +383,7 @@
 					'yes' => 'Yes',
 					'no' => 'No',
 				),
-				'value' => $values,
+				'value' => $registrant->getField('meals_gala_dinner_guests'),
 			));
 		?>
 	</table>
@@ -389,7 +393,7 @@
 				print_text_field('meals_gala_dinner_numguests', array(
 					'label' => 'Gala Dinner &ndash; Number of Guests',
 					'required' => false,
-					'value' => $values,
+					'value' => $registrant->getField('meals_gala_dinner_numguests'),
 				));
 			?>
 		</table>
@@ -409,7 +413,7 @@
 					'yes' => 'Yes',
 					'no' => 'No',
 				),
-				'value' => $values,
+				'value' => $registrant->getField('share_room'),
 			));
 		?>
 	</table>
@@ -424,7 +428,7 @@
 						'male' => 'Male',
 						'female' => 'Female',
 					),
-					'value' => $values,
+					'value' => $registrant->getField('gender'),
 				));
 				print_select_field('arrival_date', array(
 					'label' => 'Arrival Date',
@@ -437,7 +441,7 @@
 						'2010-09-11' => 'Saturday, Sept 11',
 						'2010-09-12' => 'Sunday, Sept 12',
 					),
-					'value' => $values,
+					'value' => $registrant->getField('arrival_date'),
 				));
 				print_select_field('departure_date', array(
 					'label' => 'Departure Date',
@@ -450,7 +454,7 @@
 						'2010-09-15' => 'Wednesday, Sept 15',
 						'2010-09-16' => 'Thursday, Sept 16',
 					),
-					'value' => $values,
+					'value' => $registrant->getField('departure_date'),
 				));
 			?>
 		</table>
@@ -473,7 +477,7 @@
 				'yes' => 'Yes',
 				'no' => 'No',
 			),
-			'value' => $values,
+			'value' => $registrant->getField('have_promo_code'),
 		));
 	?>
 	</table>
@@ -487,7 +491,7 @@
 				'label' => 'Promotional Code',
 				'instructions' => '<input type="button" id="check_promo" value="Check Promotional Code" />',
 				'required' => false,
-				'value' => $values,
+				'value' => $registrant->getField('promo_code'),
 			));
 		?>
 		</table>
@@ -553,7 +557,7 @@
 					'check' => 'Check',
 					'credit_card' => 'Credit Card',
 				),
-				'value' => $values,
+				'value' => $registrant->getField('payment_type'),
 			));
 		?>
 	</table>
@@ -592,7 +596,7 @@
 		print_textarea_field('comments', array(
 			'label' => 'Comments',
 			'required' => false,
-			'value' => $values,
+			'value' => $registrant->getField('comments'),
 		));
 	?>
 	
