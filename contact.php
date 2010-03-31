@@ -41,8 +41,8 @@ onMouseOut="window.document.sq2.src='images/button_about.gif'"><img src="images/
 	
     <table width="780" border="0" cellspacing="0" cellpadding="0">
       <tr height="97">
-        <td><a href="index.php"><img src="images/logo_jain.gif" width="260" height="97" border="0"></a></td>
-        <td><img src="images/logo_jain2.gif" width="520" height="97"></td>
+        <td><a href="index.php"><img src="images/logo_jain-old.gif" width="260" height="97" border="0"></a></td>
+        <td><img src="images/logo_jain2-old.gif" width="520" height="97"></td>
       </tr>
     </table>
 

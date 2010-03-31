@@ -197,9 +197,9 @@ onMouseOut="window.document.sq3.src='images/button_contact.gif'"><img src="image
 
       <tr height="97">
 
-        <td><a href="index.php"><img src="images/logo_jain.gif" width="260" height="97" border="0"></a></td>
+        <td><a href="index.php"><img src="images/logo_jain-old.gif" width="260" height="97" border="0"></a></td>
 
-        <td><img src="images/logo_jain2.gif" width="520" height="97"></td>
+        <td><img src="images/logo_jain2-old.gif" width="520" height="97"></td>
 
       </tr>
 
