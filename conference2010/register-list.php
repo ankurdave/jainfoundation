@@ -19,13 +19,15 @@
 		unset($data['auth_key']); // don't print the auth_key, for security reasons
 ?>
 		<table class="db_list_entry" id="registrant<?php print_html($data['id']) ?>">
-<?php		
+<?php
+		$i = 0;
 		foreach ($data as $key => $val) { ?>
-			<tr>
+			<tr class="<?php echo $i % 2 == 0 ? 'row_even' : 'row_odd' ?>">
 				<th><?php echo print_html($key) ?></th>
 				<td><?php echo $val ?></td>
 			</tr>
 <?php
+			$i++;
 		} ?>
 		</table>
 <?php

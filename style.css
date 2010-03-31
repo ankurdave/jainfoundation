@@ -421,12 +421,20 @@ h3.time {
 table.db_list_entry {
 	border: 1px solid gray;
 	margin: 0.5em 0;
+	border-spacing: 0; /* to make the row background colors look good */
 }
 .db_list_entry th {
 	text-align: right;
-	padding-right: 0.25em;
+	padding: 0 0.5em;
 }
 .db_list_entry td {
 	text-align: left;
-	padding-left: 0.25em;
+	padding: 0 0.5em;
+	width: 100%;
+}
+.db_list_entry tr.row_even {
+	background-color: #FFF;
+}
+.db_list_entry tr.row_even {
+	background-color: #EEE;
 }
