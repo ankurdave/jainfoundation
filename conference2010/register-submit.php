@@ -23,11 +23,6 @@
 		$registrant->setField($field, $val);
 	}
 
-	// Set cookies and GET string with id and auth_key so that if the user clicks the back button, he won't lose his data
-	setcookie('register_id', $registrant->getField('id'));
-	setcookie('register_auth_key', $registrant->getField('auth_key'));
-	$data_auth_query_string = "id=" . urlencode($registrant->getField('id')) . "&auth_key=" . urlencode($registrant->getField('auth_key'));
-
 	// Save the DAO
 	// This is before validation so that if there's an error, the user won't lose the data
 	try {
@@ -36,6 +31,11 @@
 		header("Location: $form_location?error_auth");
 		exit;
 	}
+
+	// Set cookies and GET string with id and auth_key so that if the user clicks the back button, he won't lose his data
+	setcookie('register_id', $registrant->getField('id'));
+	setcookie('register_auth_key', $registrant->getField('auth_key'));
+	$data_auth_query_string = "id=" . urlencode($registrant->getField('id')) . "&auth_key=" . urlencode($registrant->getField('auth_key'));
 
 	// Validate the data and redirect to the form if it's wrong
 	$invalidFields = $registrant->validate();
