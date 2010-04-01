@@ -172,6 +172,11 @@ $(document).ready(function() {
 	});
 });
 
+// Validate the abstract body immediately, so that the word count is continuously calculated
+$(document).ready(function() {
+	$("#abstract_body").valid();
+});
+
 // Set up the Fill Sample Values button
 function fillSampleValues() {
 	$("#firstname").val("Ankur").change();
