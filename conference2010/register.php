@@ -513,7 +513,12 @@
 		Promotional code is not valid.
 	</div>
 	</div>
-	
+
+	<div id="promo_code_valid_and_no_guests" style="display:none">
+		<strong>No payment is required.</strong>
+	</div>
+
+	<div id="payment_info">
 	<div id="no_promo_code">
 	<p>Registration fees (covers costs of all meeting sessions, breakfasts, breaks, and lunches):</p>
 	<ul>
@@ -604,6 +609,7 @@
 				<br />Suite B101
 				<br />Bellevue, WA 98005
 			</li>
+	</div>
 	</div>
 	
 	<h3>Comments</h3>

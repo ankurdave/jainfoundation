@@ -295,8 +295,15 @@ $(document).ready(function() {
 			$("#promo_code_valid").css("display", data.valid ? "" : "none");
 			$("#promo_code_invalid").css("display", data.valid ? "none" : "");
 			$("#no_promo_code").css("display", data.valid ? "none" : "");
+
+			var noGuests = !($("#meals_gala_dinner_numguests").val()) || parseInt($("#meals_gala_dinner_numguests").val()) == 0;
+			$("#promo_code_valid_and_no_guests").css("display", data.valid && noGuests ? "" : "none");
+			$("#payment_info").css("display", data.valid && noGuests ? "none" : "");
 			
 			promo_code_valid = data.valid;
+
+			// Calculate the price for the user
+			$("#calculate_fee").click();
 		});
 	});
 });
