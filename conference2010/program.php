@@ -10,7 +10,7 @@
 
 <h2>Scientific Program</h2>
 
-<p>This year's meeting is going to be different from past dysferlin conferences.  We plan to limit the number of talks and present more information using posters.  The sessions will focus on a few of the most pressing questions in dysferlin and will include a significant time for discussion.</p>
+<p>This year's meeting is going to be different from past dysferlin conferences.  We plan to limit the number of talks and present more information using posters.  The oral sessions will focus on a few of the most pressing questions in dysferlin and will include a significant time for discussion.</p>
 
 <p>Below is the tentative meeting schedule for the Fourth Annual Dysferlin Conference.   This page will be updated as soon as more details are available.</p>
 
