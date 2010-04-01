@@ -19,7 +19,7 @@
 
 <h2>Abstract Submission</h2>
 
-<p>Your abstract was successfully submitted (<a href="abstract-show.php?id=<?php echo urlencode($id) ?>">permalink</a>). Please print a copy of this page for your records.</p>
+<p>Your abstract was successfully submitted. <a href="abstract-show.php?id=<?php echo urlencode($id) ?>">Please click here to view and save a copy of your submitted abstract.</a> Please print a copy of this page for your records.</p>
 
 <p>We will let you know if your abstract has been accepted by July 9th, 2010. Please follow the <a href="register.php">registration link</a> to begin registering for the Fourth Annual Dysferlin Conference.</p>
 

@@ -30,11 +30,11 @@
 
 <?php include 'includes/menu.inc.php' ?>
 
-<p><em>For questions and concerns please contact Angela Salerno at <a href="mailto:asalerno@jain-foundation.org">asalerno@jain-foundation.org</a>.</em></p>
-
 <h2>Abstract Submission</h2>
 
-<p>This year's meeting is going to be different from past dysferlin conferences.  We plan to limit the number of talks and present more information using posters.  The sessions will focus on a few of the most pressing questions in dysferlin and will include a significant time for discussion.</p>
+<p><em>For questions and concerns please contact Angela Salerno at <a href="mailto:asalerno@jain-foundation.org">asalerno@jain-foundation.org</a>.</em></p>
+
+<p>This year's meeting is going to be different from past dysferlin conferences.  We plan to limit the number of talks and present more information using posters.  The oral sessions will focus on a few of the most pressing questions in dysferlin and will include a significant time for discussion.</p>
 
 <p>Please fill out the form below and submit it <strong>no later than June 25th, 2010</strong>. <em>You will be informed whether your abstract has been accepted by July 9th, 2010.</em></p>
 
@@ -48,7 +48,7 @@
 <form action="<?php echo $submit_location . $data_auth_query_string ?>" method="post" id="abstract-form" enctype="multipart/form-data" encoding="multipart/form-data">
 	<p><input type="hidden" name="MAX_FILE_SIZE" value="1000000" /></p>
 	
-	<h3>Presenting/First Author</h3>
+	<h3>Presenting Author</h3>
 	<table>
 		<?php
 			print_text_field('firstname', array(
