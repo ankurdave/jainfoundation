@@ -27,6 +27,39 @@
 }
 .style4 {color: #FF0000}
 
+.announcement a {
+	display:block;
+	width: 100%;
+	text-align:center;
+	text-decoration:none;
+}
+.announcement a:hover {
+	color: #026;
+}
+.announcement img {
+	float:left;
+	width: 33%;
+	margin-right:1em;
+	margin-bottom:1em;
+	border:none;
+}
+.announcement .title {
+	display:block;
+	font-size:140%;
+	font-weight:bold;
+	margin-bottom:1em;
+}
+.announcement .info {
+	display:block;
+	font-size:100%;
+	margin-bottom:1.5em;
+}
+.announcement .clickhere {
+	display:block;
+	font-size:100%;
+	font-weight:bold;
+}
+
 -->
 
 </style>
@@ -261,13 +294,27 @@ onMouseOut="window.document.sq16.src='images/button_links2.gif'"><img src="image
 
               <tr>
 
-                <td valign="top"><p class="home"><br><strong>The Jain Foundation</strong> was
+                <td valign="top"><p class="home">
+
+				<div class="announcement">
+				<a href="conference2010/">
+					<img src="images/conference2010-spaceneedle.jpg" />
+					<span style="display:block; padding-top:1em">
+						<span class="title">The Fourth Annual <br />Dysferlin Conference</span>
+						<span class="info">
+							September 11&ndash;14, 2010
+							<br />Seattle, WA
+						</span>
+						<span class="clickhere">Please click here for more <br />information</span>
+					</span>
+				</a>
+				</div>
+				
+                <p style="clear:both"><strong>The Jain Foundation</strong> was
 
                     established by an endowment from the Jain family on September
 
-                    1, 2005. <br>
-
-                          <br>
+                    1, 2005.</p>
 
         Our goal is to hasten EVERY avenue that may lead us towards the cure for
 
