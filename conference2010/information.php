@@ -14,7 +14,7 @@
 
 <h3>Location</h3>
 
-<p>The conference will be held at the <a href="http://bellevue.hyatt.com/hyatt/hotels/index.jsp">Hyatt Regency Bellevue</a>.</p>
+<p>The conference will be held at the <a href="http://bellevue.hyatt.com/hyatt/hotels/index.jsp" target="_blank">Hyatt Regency Bellevue</a>.</p>
 
 <p>The hotel address is:</p>
 
@@ -32,13 +32,13 @@
 <ul>
 	<li>Early Registration &ndash; <strong>on or before June 4, 2010</strong>:
 		<ul>
-			<li>Postdoctoral student &ndash; $150 USD</li>
+			<li>Post-doc/student &ndash; $150 USD</li>
 			<li>Researcher/Other &ndash; $250 USD</li>
 		</ul>
 	</li>
 	<li>Late Registration &ndash; <strong>between June 5, 2010 &ndash; July 23rd, 2010</strong>:
 		<ul>
-			<li>Postdoctoral student &ndash; $250 USD</li>
+			<li>Post-doc/student &ndash; $250 USD</li>
 			<li>Researcher/Other &ndash; $350 USD</li>
 		</ul>
 	</li>
@@ -48,7 +48,7 @@
 
 <h3><a href="abstract.php" target="_blank">Abstract Submission</a></h3>
 
-<p>This year's meeting is going to be different from past dysferlin conferences.  We plan to limit the number of talks and present more information using posters.  The sessions will focus on a few of the most pressing questions in dysferlin and will include a significant time for discussion.</p>
+<p>This year's meeting is going to be different from past dysferlin conferences.  We plan to limit the number of talks and present more information using posters.  The oral sessions will focus on a few of the most pressing questions in dysferlin and will include a significant time for discussion.</p>
 
 <p>Abstracts must be submitted <strong>no later than June 25, 2010</strong>.  You will be informed by July 9, 2010 whether your abstract has been accepted.  You may select whether you prefer an oral or poster presentation.  However, the decision regarding the type of presentation is at the complete discretion of the Jain Foundation.</p>
 
@@ -56,7 +56,7 @@
 
 <p>Conference attendees should plan to fly into Seattle via Seattle-Tacoma International Airport (SEA).  Transportation to and from the airport is available by taxi, airport shuttle, or bus (see below).  Rental cars are available at the airport and can be arranged by the attendee at his/her own expense.  Please note that the overnight parking fee at the Hyatt Bellevue Regency is $14/night.</p>
 
-<p><a href="http://shuttleexpress.com/seatac-airport/hotel-transfers/featured-hotels.aspx">Shuttle Express</a> (425-981-7000) &ndash; $19/one-way</p>
+<p><a href="http://shuttleexpress.com/seatac-airport/hotel-transfers/featured-hotels.aspx" target="_blank">Shuttle Express</a> (425-981-7000) &ndash; $19/one-way</p>
 
 <p>How to reserve the Shuttle service:</p>
 <ol>
@@ -67,7 +67,7 @@
 	<li>Note: If you fill in the address of the hotel rather than choose the hotel from the list, the shuttle will be more than $19.</li>
 </ol>
 
-<p><a href="http://www.soundtransit.org/prebuilt/tpplanner.asp">Sound Transit Bus</a> &ndash; $4.50/one way &ndash; Take the ST 540 to Bellevue Transit Center. Then, transfer to the MT 230. By bus, the commute from the airport is approximately one hour.</p>
+<p><a href="http://www.soundtransit.org/prebuilt/tpplanner.asp" target="_blank">Sound Transit Bus</a> &ndash; $4.50/one way &ndash; Take the ST 540 to Bellevue Transit Center. Then, transfer to the MT 230. By bus, the commute from the airport is approximately one hour.</p>
 
 <h3>Parking</h3>
 
@@ -75,7 +75,7 @@
 
 <h3>Hotel Charges</h3>
 
-<p>The Jain Foundation has reserved a guaranteed block of rooms for the conference for the nights of September 11, 12, and 13, 2010. In addition, if you need lodging outside of these 3 nights, the conference rate is available for 3 days pre and post the conference (September 8-17) based on room availability. The conference room rate for a basic King or Double is $142 USD/night + 14.4% tax for single or double occupancy. A third or fourth person in the room is $25 per night extra for each additional person.</p>
+<p>The Jain Foundation has reserved a guaranteed block of rooms for the conference for the nights of September 11, 12, and 13, 2010. In addition, if you need lodging outside of these 3 nights, the conference rate is available for 4 days pre (nights of September 7, 8, 9, and 10) and 3 days post the conference (nights of September 14, 15, and 16) based on room availability. The conference room rate for a basic King or Double is $142 USD/night + 14.4% tax for single or double occupancy. A third or fourth person in the room is $25 per night extra for each additional person.</p>
 
 <p><strong>Please note: Attendees who will be sharing a room with a roommate assigned by the Jain Foundation should not book their hotel reservations directly. Instead, please contact Ms. Angela Salerno (<a href="mailto:asalerno@jain-foundation.org">asalerno@jain-foundation.org</a>) at the Jain Foundation with your arrival and departure dates and she will pair you with a roommate, make your reservation and send you a confirmation.</strong></p>
 
@@ -85,7 +85,7 @@
 
 <h3>Internet Access</h3>
 
-<p>Complimentary high speed internet will be available in all hotel lobby areas. In addition, complimentary wired internet has been arranged by the Jain Foundation for all guestrooms. You should receive an internet password at check-in. If you do not, please request one.</p>
+<p>Complimentary high speed internet will be available in all hotel lobby areas. In addition, complimentary wired internet has been arranged by the Jain Foundation for all guestrooms. To obtain the in-room wired internet, sign-up for the internet following the instructions in your room.  The internet charges will be removed from your bill prior to check-out.  If you notice any internet charges on your bill please notify the Jain Foundation immediately and we will have these charges removed.</p>
 
 <h3>Meals</h3>
 
@@ -94,16 +94,16 @@
 <ul>
 	<li>Breakfast (September 12-14)</li>
 	<li>Lunch (September 12-14)</li>
-	<li>Dinner &ndash; One Gala dinner sponsored by the Jain Foundation (advanced registration required; see <a href="register.php">registration page</a> for details)</li>
+	<li>Dinner &ndash; One Gala dinner sponsored by the Jain Foundation (advanced registration required; see <a href="register.php" target="_blank">registration page</a> for details)</li>
 </ul>
 
-<p>Please note: Breakfast and lunch is open to conference attendees only. Guests may be brought to the Gala dinner for $70 per person (advanced registration required; see <a href="register.php">registration page</a> for details).</p>
+<p>Please note: Breakfast and lunch is open to conference attendees only. Guests may be brought to the Gala dinner for $70 per person (advanced registration required; see <a href="register.php" target="_blank">registration page</a> for details).</p>
 
 <h3>Free Time</h3>
 
 <p>As per feedback from attendees of previous conferences, no Jain Foundation sponsored dinners have been scheduled for the evenings of Saturday and Sunday in order to facilitate the requested interactions among attendees. There are numerous restaurants and shops within walking distance of the Hyatt. Please explore the below link for more information.</p>
 
-<p><a href="http://www.bellevuesquare.com">http://www.bellevuesquare.com</a></p>
+<p><a href="http://www.bellevuesquare.com" target="_blank">http://www.bellevuesquare.com</a></p>
 
 <h3>Reimbursement</h3>
 
