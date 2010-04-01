@@ -258,11 +258,11 @@
 		?>
 	</table>
 	<p>Please indicate which meals you will be attending.</p>
-	<table>
+	<table id="attendance_day2_yes">
 		<?php
 			print_radio_field('meals_day2_breakfast', array(
 				'label' => 'Sunday, Sept 12 &ndash; Breakfast',
-				'required' => true,
+				'required' => false,
 				'options' => array(
 					'yes' => 'Yes',
 					'no' => 'No',
@@ -271,7 +271,7 @@
 			));
 			print_radio_field('meals_day2_lunch', array(
 				'label' => 'Sunday, Sept 12 &ndash; Lunch',
-				'required' => true,
+				'required' => false,
 				'options' => array(
 					'yes' => 'Yes',
 					'no' => 'No',
@@ -288,9 +288,13 @@
 				),
 				'value' => $registrant->getField('meals_day2_lunch_entree'),
 			));
+		?>
+	</table>
+	<table id="attendance_day3_yes">
+		<?php
 			print_radio_field('meals_day3_breakfast', array(
 				'label' => 'Monday, Sept 13 &ndash; Breakfast',
-				'required' => true,
+				'required' => false,
 				'options' => array(
 					'yes' => 'Yes',
 					'no' => 'No',
@@ -299,7 +303,7 @@
 			));
 			print_radio_field('meals_day3_lunch', array(
 				'label' => 'Monday, Sept 13 &ndash; Lunch',
-				'required' => true,
+				'required' => false,
 				'options' => array(
 					'yes' => 'Yes',
 					'no' => 'No',
@@ -316,9 +320,13 @@
 				),
 				'value' => $registrant->getField('meals_day3_lunch_entree'),
 			));
+		?>
+	</table>
+	<table id="attendance_day4_yes">
+		<?php
 			print_radio_field('meals_day4_breakfast', array(
 				'label' => 'Tuesday, Sept 14 &ndash; Breakfast',
-				'required' => true,
+				'required' => false,
 				'options' => array(
 					'yes' => 'Yes',
 					'no' => 'No',
@@ -327,7 +335,7 @@
 			));
 			print_radio_field('meals_day4_lunch', array(
 				'label' => 'Tuesday, Sept 14 &ndash; Lunch',
-				'required' => true,
+				'required' => false,
 				'options' => array(
 					'yes' => 'Yes',
 					'no' => 'No',
@@ -343,6 +351,10 @@
 				),
 				'value' => $registrant->getField('meals_day4_lunch_entree'),
 			));
+		?>
+	</table>
+	<table>
+		<?php
 			print_radio_field('meals_gala_dinner', array(
 				'label' => 'Evening of Monday, Sept 13 &ndash; Gala Dinner',
 				'required' => true,

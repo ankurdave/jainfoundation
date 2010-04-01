@@ -195,6 +195,13 @@ hideElementWhenRadioChecked("#meals_gala_dinner input[type=radio][value='no']", 
 showElementWhenRadioChecked("#have_promo_code input[type=radio][value='yes']", "#have_promo_code_yes");
 hideElementWhenRadioChecked("#have_promo_code input[type=radio][value='no']", "#have_promo_code_yes");
 
+// #attendance_day{2,3,4}
+showElementWhenRadioChecked("#attendance_day2 input[type=radio][value='yes']", "#attendance_day2_yes");
+hideElementWhenRadioChecked("#attendance_day2 input[type=radio][value='no']", "#attendance_day2_yes");
+showElementWhenRadioChecked("#attendance_day3 input[type=radio][value='yes']", "#attendance_day3_yes");
+hideElementWhenRadioChecked("#attendance_day3 input[type=radio][value='no']", "#attendance_day3_yes");
+showElementWhenRadioChecked("#attendance_day4 input[type=radio][value='yes']", "#attendance_day4_yes");
+hideElementWhenRadioChecked("#attendance_day4 input[type=radio][value='no']", "#attendance_day4_yes");
 
 // === OTHER ===================================================================
 
