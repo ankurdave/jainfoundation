@@ -8,9 +8,11 @@
 
 <?php include 'includes/menu.inc.php' ?>
 
-<h2>Location</h2>
+<h2>General Information</h2>
 
 <p class="intext right" style="width:15em"><img src="images/space-needle.jpg" alt="Space Needle" /></p>
+
+<h3>Location</h3>
 
 <p>The conference will be held at the <a href="http://bellevue.hyatt.com/hyatt/hotels/index.jsp">Hyatt Regency Bellevue</a>.</p>
 
@@ -23,7 +25,7 @@
 	Phone: (425) 462-1234
 </p>
 
-<h2><a href="register.php" target="_blank">Conference Registration Dates and Fees</a></h2>
+<h3><a href="register.php" target="_blank">Conference Registration Dates and Fees</a></h3>
 
 <p>Meeting Registration Fees:</p>
 
@@ -44,13 +46,13 @@
 
 <p><strong>No registrations will be accepted after July 23rd, 2010.</strong></p>
 
-<h2><a href="abstract.php" target="_blank">Abstract Submission</a></h2>
+<h3><a href="abstract.php" target="_blank">Abstract Submission</a></h3>
 
 <p>This year's meeting is going to be different from past dysferlin conferences.  We plan to limit the number of talks and present more information using posters.  The sessions will focus on a few of the most pressing questions in dysferlin and will include a significant time for discussion.</p>
 
 <p>Abstracts must be submitted <strong>no later than June 25, 2010</strong>.  You will be informed by July 9, 2010 whether your abstract has been accepted.  You may select whether you prefer an oral or poster presentation.  However, the decision regarding the type of presentation is at the complete discretion of the Jain Foundation.</p>
 
-<h2>Arrival</h2>
+<h3>Arrival</h3>
 
 <p>Conference attendees should plan to fly into Seattle via Seattle-Tacoma International Airport (SEA).  Transportation to and from the airport is available by taxi, airport shuttle, or bus (see below).  Rental cars are available at the airport and can be arranged by the attendee at his/her own expense.  Please note that the overnight parking fee at the Hyatt Bellevue Regency is $14/night.</p>
 
@@ -67,11 +69,11 @@
 
 <p><a href="http://www.soundtransit.org/prebuilt/tpplanner.asp">Sound Transit Bus</a> &ndash; $4.50/one way &ndash; Take the ST 540 to Bellevue Transit Center. Then, transfer to the MT 230. By bus, the commute from the airport is approximately one hour.</p>
 
-<h2>Parking</h2>
+<h3>Parking</h3>
 
 <p>For local attendees, we have negotiated a full day of parking (7-10 hours) for the self-park rate of $7/day with the first three hours complimentary. To receive this rate, please use the self-park and bring your parking ticket to the conference. We will stamp the ticket so that at exit, the special rate will be honored.</p>
 
-<h2>Hotel Charges</h2>
+<h3>Hotel Charges</h3>
 
 <p>The Jain Foundation has reserved a guaranteed block of rooms for the conference for the nights of September 11, 12, and 13, 2010. In addition, if you need lodging outside of these 3 nights, the conference rate is available for 3 days pre and post the conference (September 8-17) based on room availability. The conference room rate for a basic King or Double is $142 USD/night + 14.4% tax for single or double occupancy. A third or fourth person in the room is $25 per night extra for each additional person.</p>
 
@@ -81,11 +83,11 @@
 
 <p>Please click on the following <a href="location.php" target="_blank">hotel reservation link</a> for instructions about how to book your room.</p>
 
-<h2>Internet Access</h2>
+<h3>Internet Access</h3>
 
 <p>Complimentary high speed internet will be available in all hotel lobby areas. In addition, complimentary wired internet has been arranged by the Jain Foundation for all guestrooms. You should receive an internet password at check-in. If you do not, please request one.</p>
 
-<h2>Meals</h2>
+<h3>Meals</h3>
 
 <p>The following meals will be provided for all attendees during the conference:</p>
 
@@ -97,13 +99,13 @@
 
 <p>Please note: Breakfast and lunch is open to conference attendees only. Guests may be brought to the Gala dinner for $70 per person (advanced registration required; see <a href="register.php">registration page</a> for details).</p>
 
-<h2>Free Time</h2>
+<h3>Free Time</h3>
 
 <p>As per feedback from attendees of previous conferences, no Jain Foundation sponsored dinners have been scheduled for the evenings of Saturday and Sunday in order to facilitate the requested interactions among attendees. There are numerous restaurants and shops within walking distance of the Hyatt. Please explore the below link for more information.</p>
 
 <p><a href="http://www.bellevuesquare.com">http://www.bellevuesquare.com</a></p>
 
-<h2>Reimbursement</h2>
+<h3>Reimbursement</h3>
 
 <p>(Not applicable for attendees whose travel is covered by a Jain Foundation grant)</p>
 
