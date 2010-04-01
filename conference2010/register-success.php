@@ -1,5 +1,15 @@
 <?php
 	include 'includes/lib.php';
+
+	$form_location = 'register.php';
+
+	$db = connectToDB();
+	if (isset($_GET['id'])) {
+		$registrant = new RegistrantDAO($db, $_GET['id']);
+	} else {
+		header("Location: $form_location");
+		exit;
+	}
 	
 	printHeader(array('title' => 'Conference 2010 | Registration', 'page_nav_id' => 'register'));
 ?>
@@ -14,7 +24,7 @@
 
 <p>The Jain Foundation will let you know if your registration has been approved within the next week.  If you do not hear from us within a week or have any questions please contact Angela Salerno at <a href="mailto:asalerno@jain-foundation.org">asalerno@jain-foundation.org</a>. Your registration fee will be reimbursed if your registration is not approved.</p>
 
-<p>Your registration fee is ???.  The registration fees cover the costs of all meeting sessions, breakfasts, breaks, and lunches.</p>
+<p>Your registration fee is <strong>$<?php echo print_html($registrant->getField('total_fee')) ?></strong>.  The registration fees cover the costs of all meeting sessions, breakfasts, breaks, and lunches.</p>
 
 <p>If paying by check, the check must be received within 20 days of registration or applicant will be unregistered. Please make out the check to the "Jain Foundation, Inc" and send to the Jain Foundation at the following address:</p>
 
