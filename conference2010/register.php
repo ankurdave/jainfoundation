@@ -344,7 +344,7 @@
 				'value' => $registrant->getField('meals_day4_lunch_entree'),
 			));
 			print_radio_field('meals_gala_dinner', array(
-				'label' => 'Evening of Tuesday, Sept 13 &ndash; Gala Dinner',
+				'label' => 'Evening of Monday, Sept 13 &ndash; Gala Dinner',
 				'required' => true,
 				'options' => array(
 					'yes' => 'Yes',
@@ -355,11 +355,10 @@
 		?>
 	</table>
 	<div id="meals_gala_dinner_yes">
-		<p>Do you require a Vegetarian option for the Gala Dinner?</p>
 		<table>
 		<?php
 			print_radio_field('meals_gala_dinner_vegetarian', array(
-				'label' => 'Evening of Tuesday, Sept 13 &ndash; Gala Dinner &ndash; Vegetarian',
+				'label' => 'Do you require a Vegetarian option for the Gala Dinner?',
 				'required' => false,
 				'options' => array(
 								   'yes' => 'Yes',
@@ -460,12 +459,12 @@
 		</table>
 	</div>
 	<div id="share_room_no">
-		<p>If no, <a href="location.php" target="_blank">book your hotel room here</a>.</p>
+		<p>If you will not be sharing a room, please <a href="location.php" target="_blank">book your hotel room by clicking here</a>.</p>
 	</div>
 	</div>
 	
 	<h3>Payment</h3>
-	<p>For questions and concerns regarding payment please contact Angela Salerno at <a href="mailto:asalerno@jain-foundation.org">asalerno@jain-foundation.org</a>.  If your registration is not approved your registration fee will be refunded.</p>
+	<p>The registration fee covers the costs of all meeting sessions, breakfasts, breaks, and lunches. For questions and concerns regarding payment please contact Angela Salerno at <a href="mailto:asalerno@jain-foundation.org">asalerno@jain-foundation.org</a>.  If your registration is not approved your registration fee will be refunded.</p>
 	
 	<p>Do you have a promotional code?</p>
 	<table>
@@ -502,42 +501,47 @@
 		Promotional code is not valid.
 	</div>
 	</div>
+	
 	<div id="no_promo_code">
-	<?php
-		$now = time();
-	?>
-	<p>
-		The date is <?php echo date('F j, Y', $now) ?>.
-		<?php if ($now <= strtotime('June 4, 2010')) { ?>
-			Early registration is open.
-	</p>
+	<p>Registration fees (covers costs of all meeting sessions, breakfasts, breaks, and lunches):</p>
+	<ul>
+		<li>Early registration &ndash; <strong>on or before June 4, 2010</strong>:
 			<ul>
 				<li id="cost_postdoc">Post-doc/student: $150 USD</li>
 				<li id="cost_other">Other: $250 USD</li>
 			</ul>
-			
+		</li>
+		<li>Late registration &ndash; <strong>between June 5, 2010 &ndash; July 23, 2010</strong>:
+			<ul>
+				<li id="cost_postdoc">Post-doc/student: $250 USD</li>
+				<li id="cost_other">Other: $350 USD</li>
+			</ul>
+		</li>
+	</ul>
+	</div>
+
+	<p>
+		<?php
+			$now = time();
+		?>
+		The date is <?php echo date('F j, Y', $now) ?>.
+		<?php if ($now <= strtotime('June 4, 2010')) { ?>
+			Early registration is open.
 			<script type="text/javascript">
 				var postdoc_fee = 150;
 				var other_fee = 250;
 			</script>
 		<?php } else if ($now <= strtotime('July 23, 2010')) { ?>
 			Early registration is closed. Late registration is open.
-	</p>
-			<ul>
-				<li id="cost_postdoc">Post-doc/student: $250 USD</li>
-				<li id="cost_other">Other: $350 USD</li>
-			</ul>
-			
 			<script type="text/javascript">
 				var postdoc_fee = 250;
 				var other_fee = 350;
 			</script>
 		<?php } else { ?>
 			Registration is closed. No late or onsite registration is available.
-	</p>
 		<?php } ?>
-	</div>
-	
+	</p>
+
 	<p>
 		<input type="button" id="calculate_fee" value="Calculate Price" />
 	</p>
@@ -562,7 +566,7 @@
 		?>
 	</table>
 	<div id="payment_type_check">
-		<p>Please mail a check made out to the "Jain Foundation Inc" to the following address:</p>
+		<p>If paying by check, please mail a check made out to the "Jain Foundation Inc" to the following address:</p>
 		
 		<p>
 			Jain Foundation<br />
@@ -574,7 +578,7 @@
 		<p>The check must be <strong>received</strong> within 20 days of registration or applicant will be unregistered.</p>
 	</div>
 	<div id="payment_type_credit_card">
-		<p>Please <a href="#">pay through PayPal</a>.</p>
+		<p>If paying by credit card, please <a href="http://paypal.com" target="_blank">pay through PayPal</a>.</p>
 		
 		<p>The PayPal receipt must be received within 20 days of registration or applicant will be unregistered. The receipt can be sent by one of the following methods:</p>
 		
