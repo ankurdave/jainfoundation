@@ -18,7 +18,7 @@
 		
 		unset($data['auth_key']); // don't print the auth_key, for security reasons
 ?>
-		<table class="db_list_entry" id="registrant<?php print_html($data['id']) ?>">
+		<table class="db_list_entry" id="registrant<?php echo print_html($data['id']) ?>">
 <?php
 		$i = 0;
 		foreach ($data as $key => $val) { ?>

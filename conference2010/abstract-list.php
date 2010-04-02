@@ -16,7 +16,7 @@
 	while ($data = $result->fetch_assoc()) {
 		$i++;
 ?>
-		<table class="db_list_entry" id="abstract<?php print_html($data['id']) ?>">
+		<table class="db_list_entry" id="abstract<?php echo print_html($data['id']) ?>">
 <?php
 		$i = 0;
 		foreach ($data as $key => $val) { ?>
