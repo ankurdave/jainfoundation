@@ -10,11 +10,11 @@
 
 <h2>Hotel Reservations</h2>
 
-<p>The Jain Foundation is excited that you will be able to attend.  If you have any questions about the reservation process, please don't hesitate to contact Angela Salerno at the Jain Foundation (<a href="mailto:asalerno@jain-foundation.org">asalerno@jain-foundation.org</a> or 425-882-1492).</p>
+<p>The Jain Foundation is excited that you will be able to attend the Fourth Annual Dysferlin Conference.  If you have any questions about the reservation process, please don't hesitate to contact Angela Salerno at the Jain Foundation (<a href="mailto:asalerno@jain-foundation.org">asalerno@jain-foundation.org</a> or 425-882-1492).</p>
 
 <p class="intext"><img src="images/hotel-reservation.jpg" /></p>
 
-<p>This year's conference is being held at the <a href="http://bellevue.hyatt.com/hyatt/hotels/index.jsp" target="_blank">Hyatt Regency Bellevue</a> in Bellevue, WA from September 11&ndash;14, 2010.  The Hyatt Regency Bellevue hotel is only 5&ndash;10 minutes from the Jain Foundation, Inc. office. If you would like to visit the office while you are in Seattle, please contact Angela Salerno at <a href="mailto:asalerno@jain-foundation.org">asalerno@jain-foundation.org</a>.</p>
+<p>This year's conference is being held at the Hyatt Regency Bellevue in Bellevue, WA from September 11&ndash;14, 2010.  The Hyatt Regency Bellevue hotel is only 5&ndash;10 minutes from the Jain Foundation, Inc. office. If you would like to visit the office while you are in Seattle, please contact Angela Salerno at <a href="mailto:asalerno@jain-foundation.org">asalerno@jain-foundation.org</a>.</p>
 
 <p>A guaranteed block of rooms has been reserved for our conference for the nights of September 11, 12, and 13, 2010.  <strong>Reservations must be made no later than August 20th in order to be eligible for the special Jain Foundation conference rate.  The conference rate is $142/night + tax for single/double occupancy for a basic King or Double.</strong>   A third or fourth person in the room is $25 per night extra for each additional person.  Please feel free to upgrade your room at your own cost. </p>
 
