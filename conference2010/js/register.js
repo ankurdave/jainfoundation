@@ -78,9 +78,7 @@ $(document).ready(function() {
 
 			// meals_gala_dinner_vegetarian is required if meals_gala_dinner is checked.
 			meals_gala_dinner_vegetarian: {
-				required: function(element) {
-					return $("#meals_gala_dinner input[type=radio][value='yes']").attr('checked');
-				}
+				requiredIfFieldChecked: "#meals_gala_dinner input[type=radio][value='yes']"
 			}
 		},
 		errorPlacement: function(error, element) {
@@ -125,6 +123,13 @@ $.validator.addMethod("fieldEq", function(value, element, params) {
 // fieldChecked: Field is required if another field {0} has a nonempty attribute "checked"
 $.validator.addMethod("fieldChecked", function(value, element, param) {
 	return $(param).attr('checked') ? value : true;
+}, $.validator.messages.required);
+
+// requiredIfFieldChecked: Field is required if another field {0} has a nonempty attribute "checked"
+$.validator.addMethod("requiredIfFieldChecked", function(value, element, param) {
+	return $.validator.methods.required.call(this, value, element, function(element) {
+		return $(param).attr("checked");
+	});
 }, $.validator.messages.required);
 
 // maxWords: Field can have at most {0} words
