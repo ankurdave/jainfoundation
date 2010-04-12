@@ -318,9 +318,11 @@ input.error, .error input, select.error, .error select, textarea.error {
 div.error label {
 	border-top: 2px solid red;
 	border-bottom: 2px solid red;
+	padding: 4px 0;
 }
 div.error label:first-child {
 	border-left: 2px solid red;
+	padding-left: 4px;
 }
 div.error label:last-child {
 	border-right: 2px solid red;
