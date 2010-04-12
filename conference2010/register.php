@@ -31,7 +31,7 @@
 
 <p>For questions and concerns please contact Angela Salerno at <a href="mailto:asalerno@jain-foundation.org">asalerno@jain-foundation.org.</a></p>
 
-<p>The Fourth Annual Dysferlin Conference is a scientific meeting for researchers and clinicians working on dysferlin.  Attendance is limited.  Therefore, all registrations must be approved by the Jain Foundation. You will be notified within a week of your registration whether you have been approved.  Preference will be given to those who are giving oral or poster presentations. If you are not approved your registration fee will be refunded to you.</p>
+<p>The Fourth Annual Dysferlin Conference is a scientific meeting for researchers and clinicians working on dysferlin. <strong>Pre-registration is required no later than July 23, 2010 as NO late or onsite registrations will be accepted.</strong> Attendance is limited.  Therefore, all registrations must be approved by the Jain Foundation. You will be notified within a week of your registration whether you have been approved.  Preference will be given to those who are giving oral or poster presentations. If you are not approved your registration fee will be refunded to you.</p>
 
 <?php
 	if (!is_null($registrant->getField('id'))) {
@@ -121,6 +121,11 @@
 				'label' => 'Street Address',
 				'required' => true,
 				'value' => $registrant->getField('street_address'),
+			));
+			print_text_field('street_address_2', array(
+				'label' => 'Street Address 2',
+				'required' => false,
+				'value' => $registrant->getField('street_address_2'),
 			));
 			print_text_field('city', array(
 				'label' => 'City',

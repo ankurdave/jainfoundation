@@ -20,6 +20,7 @@ class RegistrantDAO {
 		'institution_profile' => array('s', true),
 		'institution_profile_other' => array('s', false),
 		'street_address' => array('s', true),
+		'street_address_2' => array('s', false),
 		'city' => array('s', true),
 		'state_province' => array('s', false),
 		'zip_postal_code' => array('s', true),
