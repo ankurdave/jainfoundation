@@ -3,77 +3,58 @@ $(document).ready(function() {
 	$("#register-form").validate({
 		rules: {
 			degree_other: {
-				fieldEq: [ "degree", "other" ]
+				requiredIfFieldEq: [ "degree", "other" ]
 			},
 
 			position_other: {
-				fieldEq: [ "position", "other" ]
+				requiredIfFieldEq: [ "position", "other" ]
 			},
 
 			institution_profile_other: {
-				fieldEq: [ "institution_profile", "other" ]
+				requiredIfFieldEq: [ "institution_profile", "other" ]
 			},
 
 			arrival_date: {
-				fieldChecked: "#share_room input[type=radio][value='yes']"
+				requiredIfFieldChecked: "#share_room input[type=radio][value='yes']"
 			},
 
 			departure_date: {
-				fieldChecked: "#share_room input[type=radio][value='yes']"
+				requiredIfFieldChecked: "#share_room input[type=radio][value='yes']"
 			},
 
 			// meals_day2_* are required if attendance_day2 is checked. meals_day2_lunch_entree additionally requires that meals_day2_lunch is checked.
 			meals_day2_breakfast: {
-				required: function(element) {
-					return $("#attendance_day2 input[type=radio][value='yes']").attr('checked');
-				}
+				requiredIfFieldChecked: "#attendance_day2 input[type=radio][value='yes']"
 			},
 			meals_day2_lunch: {
-				required: function(element) {
-					return $("#attendance_day2 input[type=radio][value='yes']").attr('checked');
-				}
+				requiredIfFieldChecked: "#attendance_day2 input[type=radio][value='yes']"
 			},
 			meals_day2_lunch_entree: {
-				required: function(element) {
-					return $("#attendance_day2 input[type=radio][value='yes']").attr('checked')
-							&& $("#meals_day2_lunch input[type=radio][value='yes']").attr('checked');
-				}
+				requiredIfFieldChecked: "#attendance_day2 input[type=radio][value='yes']",
+				requiredIfFieldChecked: "#meals_day2_lunch input[type=radio][value='yes']"
 			},
 			
 			// meals_day3_* are required if attendance_day3 is checked. meals_day3_lunch_entree additionally requires that meals_day3_lunch is checked.
 			meals_day3_breakfast: {
-				required: function(element) {
-					return $("#attendance_day3 input[type=radio][value='yes']").attr('checked');
-				}
+				requiredIfFieldChecked: "#attendance_day3 input[type=radio][value='yes']"
 			},
 			meals_day3_lunch: {
-				required: function(element) {
-					return $("#attendance_day3 input[type=radio][value='yes']").attr('checked');
-				}
+				requiredIfFieldChecked: "#attendance_day3 input[type=radio][value='yes']"
 			},
 			meals_day3_lunch_entree: {
-				required: function(element) {
-					return $("#attendance_day3 input[type=radio][value='yes']").attr('checked')
-							&& $("#meals_day3_lunch input[type=radio][value='yes']").attr('checked');
-				}
+				requiredIfFieldChecked: "#attendance_day3 input[type=radio][value='yes']",
+				requiredIfFieldChecked: "#meals_day3_lunch input[type=radio][value='yes']"
 			},
 
 			// meals_day4_* are required if attendance_day4 is checked. meals_day4_lunch_entree additionally requires that meals_day4_lunch is checked.
 			meals_day4_breakfast: {
-				required: function(element) {
-					return $("#attendance_day4 input[type=radio][value='yes']").attr('checked');
-				}
+				requiredIfFieldChecked: "#attendance_day4 input[type=radio][value='yes']"
 			},
 			meals_day4_lunch: {
-				required: function(element) {
-					return $("#attendance_day4 input[type=radio][value='yes']").attr('checked');
-				}
+				requiredIfFieldChecked: "#attendance_day4 input[type=radio][value='yes']"
 			},
 			meals_day4_lunch_entree: {
-				required: function(element) {
-					return $("#attendance_day4 input[type=radio][value='yes']").attr('checked')
-							&& $("#meals_day4_lunch input[type=radio][value='yes']").attr('checked');
-				}
+				requiredIfFieldChecked: "#attendance_day4 input[type=radio][value='yes']"
 			},
 
 			// meals_gala_dinner_vegetarian is required if meals_gala_dinner is checked.
@@ -125,17 +106,10 @@ function wordCount(element) {
 
 // === FORM VALIDATION METHODS =================================================
 // fieldEq: Field is required if another field with id {0} is equal to a value {1}
-$.validator.addMethod("fieldEq", function(value, element, params) {
-	if ($("#" + params[0]).val() == params[1]) {
-		return value;
-	} else {
-		return true;
-	}
-}, $.validator.messages.required);
-
-// fieldChecked: Field is required if another field {0} has a nonempty attribute "checked"
-$.validator.addMethod("fieldChecked", function(value, element, param) {
-	return $(param).attr('checked') ? value : true;
+$.validator.addMethod("requiredIfFieldEq", function(value, element, params) {
+	return $.validator.methods.required.call(this, value, element, function(element) {
+		return $("#" + params[0]).val() == params[1];
+	});
 }, $.validator.messages.required);
 
 // requiredIfFieldChecked: Field is required if another field {0} has a nonempty attribute "checked"
