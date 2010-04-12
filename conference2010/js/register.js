@@ -90,6 +90,11 @@ $(document).ready(function() {
 			} else {
 				error.insertAfter(element);
 			}
+
+			// If the element is a radio button, also add a "class='error'" to div#ELEMENT_NAME
+			if (element.attr("type") == "radio") {
+				$("div#" + element.attr("name")).addClass("error");
+			}
 		}
 	});
 });
