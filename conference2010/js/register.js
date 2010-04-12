@@ -21,21 +21,66 @@ $(document).ready(function() {
 			departure_date: {
 				fieldChecked: "#share_room input[type=radio][value='yes']"
 			},
-			
+
+			// meals_day2_* are required if attendance_day2 is checked. meals_day2_lunch_entree additionally requires that meals_day2_lunch is checked.
+			meals_day2_breakfast: {
+				required: function(element) {
+					return $("#attendance_day2 input[type=radio][value='yes']").attr('checked');
+				}
+			},
+			meals_day2_lunch: {
+				required: function(element) {
+					return $("#attendance_day2 input[type=radio][value='yes']").attr('checked');
+				}
+			},
 			meals_day2_lunch_entree: {
-				fieldChecked: "#meals_day2_lunch input[type=radio][value='yes']"
+				required: function(element) {
+					return $("#attendance_day2 input[type=radio][value='yes']").attr('checked')
+							&& $("#meals_day2_lunch input[type=radio][value='yes']").attr('checked');
+				}
 			},
 			
+			// meals_day3_* are required if attendance_day3 is checked. meals_day3_lunch_entree additionally requires that meals_day3_lunch is checked.
+			meals_day3_breakfast: {
+				required: function(element) {
+					return $("#attendance_day3 input[type=radio][value='yes']").attr('checked');
+				}
+			},
+			meals_day3_lunch: {
+				required: function(element) {
+					return $("#attendance_day3 input[type=radio][value='yes']").attr('checked');
+				}
+			},
 			meals_day3_lunch_entree: {
-				fieldChecked: "#meals_day3_lunch input[type=radio][value='yes']"
+				required: function(element) {
+					return $("#attendance_day3 input[type=radio][value='yes']").attr('checked')
+							&& $("#meals_day3_lunch input[type=radio][value='yes']").attr('checked');
+				}
 			},
-			
+
+			// meals_day4_* are required if attendance_day4 is checked. meals_day4_lunch_entree additionally requires that meals_day4_lunch is checked.
+			meals_day4_breakfast: {
+				required: function(element) {
+					return $("#attendance_day4 input[type=radio][value='yes']").attr('checked');
+				}
+			},
+			meals_day4_lunch: {
+				required: function(element) {
+					return $("#attendance_day4 input[type=radio][value='yes']").attr('checked');
+				}
+			},
 			meals_day4_lunch_entree: {
-				fieldChecked: "#meals_day4_lunch input[type=radio][value='yes']"
+				required: function(element) {
+					return $("#attendance_day4 input[type=radio][value='yes']").attr('checked')
+							&& $("#meals_day4_lunch input[type=radio][value='yes']").attr('checked');
+				}
 			},
-			
+
+			// meals_gala_dinner_vegetarian is required if meals_gala_dinner is checked.
 			meals_gala_dinner_vegetarian: {
-				fieldChecked: "#meals_gala_dinner input[type=radio][value='yes']"
+				required: function(element) {
+					return $("#meals_gala_dinner input[type=radio][value='yes']").attr('checked');
+				}
 			}
 		},
 		errorPlacement: function(error, element) {
