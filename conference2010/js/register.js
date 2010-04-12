@@ -233,6 +233,29 @@ hideElementWhenRadioChecked("#meals_day4_lunch input[type=radio][value='no']", "
 showElementWhenRadioChecked("#meals_gala_dinner input[type=radio][value='yes']", "#meals_gala_dinner_yes");
 hideElementWhenRadioChecked("#meals_gala_dinner input[type=radio][value='no']", "#meals_gala_dinner_yes");
 
+// #meals_gala_dinner_numguests -- create the appropriate number of guest vegetarian options
+$(document).ready(function() {
+	$("#meals_gala_dinner_numguests").change(function() {
+		// Figure out how many guests they are bringing
+		var numGuests = 0;
+		if (!isNaN(parseInt($("#meals_gala_dinner_numguests").val()))) {
+			numGuests = parseInt($("#meals_gala_dinner_numguests").val());
+		}
+
+		// Clear the existing guest list
+		// TODO: If the user has already made selections, they will be cleared
+		$("#meals_gala_dinner_guests_vegetarian tbody").empty();
+
+		// Show/hide the guest list section based on the number of guests
+		$("#meals_gala_dinner_guests_nonzero").css("display", numGuests > 0 ? "" : "none");
+
+		// Add the appropriate number of guest input fields to the guest list section
+		for (var i = 1; i <= numGuests; i++) {
+			$("#meals_gala_dinner_guests_vegetarian tbody").append('<tr><td></td><td><label for="meals_gala_dinner_guest_' + i + '_vegetarian">Guest #' + i + ' &ndash; Vegetarian</label></td><td class="input"><div id="meals_gala_dinner_guest_' + i + '_vegetarian" class="required"><label><input type="radio" name="meals_gala_dinner_guest_' + i + '_vegetarian" value="yes" class="required">Yes</label><label><input type="radio" name="meals_gala_dinner_guest_' + i + '_vegetarian" value="no" class="required">No</label></td><td></td></tr>');
+		}
+	});
+});
+
 // #have_promo_code
 showElementWhenRadioChecked("#have_promo_code input[type=radio][value='yes']", "#have_promo_code_yes");
 hideElementWhenRadioChecked("#have_promo_code input[type=radio][value='no']", "#have_promo_code_yes");
