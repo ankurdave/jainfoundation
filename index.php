@@ -27,6 +27,12 @@
 }
 .style4 {color: #FF0000}
 
+.announcement {
+	height: 156px;
+	border: 1px solid black;
+	padding: 5px;
+	margin: 5px;
+}
 .announcement a {
 	display:block;
 	width: 100%;
@@ -38,7 +44,7 @@
 }
 .announcement img {
 	float:left;
-	width: 33%;
+	height: 100%;
 	margin-right:1em;
 	margin-bottom:1em;
 	border:none;
@@ -48,6 +54,7 @@
 	font-size:140%;
 	font-weight:bold;
 	margin-bottom:1em;
+	color: #8f1404;
 }
 .announcement .info {
 	display:block;
