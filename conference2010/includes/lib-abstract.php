@@ -83,6 +83,7 @@ class AbstractDAO {
 		if (array_key_exists($fieldName, self::$columnTypes)) {
 			$this->data[$fieldName] = $fieldValue;
 		}
+		// TODO: warn using syslog if field does not exist
 	}
 	
 	function addAuthor($author) {
@@ -124,17 +125,13 @@ class AbstractDAO {
 		}
 		
 		// Clear and reinsert the authors and affiliations
-		$query = $this->db->prepare('DELETE FROM abstract_author WHERE abstract_id=?');
-		$query->bind_param('i', $this->data['id']);
-		$query->execute();
-		$query = $this->db->prepare('DELETE FROM abstract_affiliation WHERE abstract_id=?');
-		$query->bind_param('i', $this->data['id']);
-		$query->execute();
-		
+		AbstractAuthorDAO::deleteAssociated($this->db, $this->data['id']);
 		foreach ($this->authors as $author) {
 			$author->setField('abstract_id', $this->data['id']);
 			$author->save();
 		}
+
+		AbstractAffiliationDAO::deleteAssociated($this->db, $this->data['id']);
 		foreach ($this->affiliations as $affiliation) {
 			$affiliation->setField('abstract_id', $this->data['id']);
 			$affiliation->save();
@@ -301,6 +298,7 @@ class AbstractAuthorDAO {
 		if (array_key_exists($fieldName, self::$columnTypes)) {
 			$this->data[$fieldName] = $fieldValue;
 		}
+		// TODO: warn using syslog if field does not exist
 	}
 	
 	/**
@@ -398,6 +396,7 @@ class AbstractAffiliationDAO {
 		if (array_key_exists($fieldName, self::$columnTypes)) {
 			$this->data[$fieldName] = $fieldValue;
 		}
+		// TODO: warn using syslog if field does not exist
 	}
 	
 	/**

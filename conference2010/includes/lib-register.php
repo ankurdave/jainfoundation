@@ -59,6 +59,7 @@ class RegistrantDAO {
 		'payment_type' => array('s', true),
 		'comments' => array('s', false),
 	);
+	private $galaGuests = array();
 
 	/**
 	 * Loads the existing registrant with the given ID. If $id is null, creates a new empty registrant.
@@ -83,6 +84,9 @@ class RegistrantDAO {
 			unset($row['auth_key']);
 
 			$this->data = $row;
+
+			// Load the associated information
+			$this->galaGuests = RegistrantGalaGuestDAO::loadAssociated($this->db, $this->data['id']);
 		}
 	}
 
@@ -100,6 +104,19 @@ class RegistrantDAO {
 		if (array_key_exists($fieldName, self::$columnTypes)) {
 			$this->data[$fieldName] = $fieldValue;
 		}
+		// TODO: warn using syslog if field does not exist
+	}
+
+	function addGalaGuest($galaGuest) {
+		$this->galaGuests[] = $galaGuest;
+	}
+
+	function getGalaGuests() {
+		return $this->galaGuests;
+	}
+
+	function clearGalaGuests() {
+		$this->galaGuests = array();
 	}
 
 	/**
@@ -115,6 +132,13 @@ class RegistrantDAO {
 
 		// Calculate the total fee
 		$this->data['total_fee'] = $this->calculateTotalPrice();
+
+		// Clear and reinsert the associated data
+		RegistrantGalaGuestDAO::deleteAssociated($this->db, $this->data['id']);
+		foreach ($this->galaGuests as $galaGuest) {
+			$galaGuest->setField('registrant_id', $this->data['id']);
+			$galaGuest->save();
+		}
 
 		// Build the query
 		$query = new InsertUpdateQuery($this->db);
@@ -139,6 +163,9 @@ class RegistrantDAO {
 		if ($query->affected_rows != 1) {
 			throw new DAOAuthException("Invalid ID");
 		}
+
+		// Delete the associated data
+		RegistrantGalaGuestDAO::deleteAssociated($this->db, $this->data['id']);
 	}
 
 	/**
@@ -156,6 +183,8 @@ class RegistrantDAO {
 				}
 			}
 		}
+
+		// TODO: also check the associated objects
 
 		return $invalidFields;
 	}
@@ -234,5 +263,103 @@ class RegistrantDAO {
 	 */
 	public static function checkPromoCode($code) {
 		return strtoupper($code) == 'JF2010AS';
+	}
+}
+
+class RegistrantGalaGuestDAO {
+	private $db;
+	private $data;
+	private static $columnTypes = array(
+		'id' => array('i', false),
+		'registrant_id' => array('i', true),
+		'vegetarian' => array('s', true),
+	);
+
+	function __construct($db) {
+		$this->db = $db;
+	}
+
+	/**
+	 * Saves the gala guest to the database. Creates a new gala guest if id is set, otherwise updates the existing gala guest with the given id.
+	 */
+	function save() {
+		// Check the preconditions
+		$this->checkId();
+
+		// Build the query
+		$query = new InsertUpdateQuery($this->db);
+		$query->setTable('registrant_gala_guest');
+		foreach ($this->data as $col => $val) {
+			$query->setColumn($col, $val, self::$columnTypes[$col][0]);
+		}
+
+		// Run it
+		$query->execute();
+	}
+
+	/**
+	 * Ensures a valid id. If it is null, creates a new id.
+	 */
+	private function checkId() {
+		if (is_null($this->data['id'])) {
+			// Create a new id
+			$result = $this->db->query("SELECT MAX(id) FROM registrant_gala_guest");
+			list($prevId) = $result->fetch_array();
+			$this->data['id'] = $prevId + 1;
+			$result->free();
+		}
+	}
+
+	/**
+	 * Returns an associative array of the fields in the abstract.
+	 */
+	function getFields() {
+		return $this->data;
+	}
+
+	/**
+	 * Gets the current value of the field with the given name.
+	 */
+	function getField($fieldName) {
+		return $this->data[$fieldName];
+	}
+
+	/**
+	 * Sets the value of the field with the given name. If the field is not a valid column, does nothing.
+	 */
+	function setField($fieldName, $fieldValue) {
+		if (array_key_exists($fieldName, self::$columnTypes)) {
+			$this->data[$fieldName] = $fieldValue;
+		}
+		// TODO: warn using syslog if field does not exist
+	}
+
+	/**
+	 * Returns an array of RegistrantGalaGuestDAO that are associated with the given registrant.
+	 */
+	static function loadAssociated($db, $registrantId) {
+		$registrantIdEscaped = $db->real_escape_string($registrantId);
+		$result = $db->query("SELECT * FROM registrant_gala_guest WHERE registrant_id=$registrantIdEscaped ORDER BY id");
+
+		$associated = array();
+		while ($row = $result->fetch_assoc()) {
+			$dao = new RegistrantGalaGuestDAO($db);
+			foreach ($row as $key => $val) {
+				$dao->setField($key, $val);
+			}
+
+			$associated[] = $dao;
+		}
+
+		return $associated;
+	}
+
+	/**
+	 * Deletes all the gala guests associated with the given registrant ID.
+	 */
+	static function deleteAssociated($db, $registrantId) {
+		$query = $db->prepare("DELETE FROM registrant_gala_guest WHERE registrant_id=?");
+		$query->bind_param('i', $registrantId);
+		$query->execute();
 	}
 }
