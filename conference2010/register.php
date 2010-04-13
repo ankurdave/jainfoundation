@@ -417,10 +417,25 @@
 
 	<p>(Note there is a $70/guest charge for the gala dinner that is required at time of registration.  This charge is non-refundable if not canceled by July 30th, 2010)</p>
 
-	<div id="meals_gala_dinner_guests_nonzero" style="display:none">
+	<div id="meals_gala_dinner_guests_nonzero">
 		<p>Will your guests require a vegetarian option?</p>
 		<table id="meals_gala_dinner_guests_vegetarian">
-			<tbody></tbody>
+			<?php
+				$galaGuests = $registrant->getGalaGuests();
+				$numFilled = count($galaGuests);
+				$numFields = $numFilled + 1;
+				for ($i = 1; $i <= $numFields; $i++) {
+					print_radio_field("meals_gala_dinner_guest_{$i}_vegetarian", array(
+						'label' => "Guest #$i &ndash; Vegetarian",
+						'required' => ($i <= $numFilled),
+						'options' => array(
+							'yes' => 'Yes',
+							'no' => 'No',
+						),
+						'value' => ($i <= $numFilled) ? $galaGuests[$i - 1]->getField('vegetarian') : '',
+					));
+				}
+			?>
 		</table>
 	</div>
 

@@ -199,13 +199,13 @@ EOD;
  */
 function convertOptionToHTMLRadio($id_esc, $option_value, $option_label, $classes_html, $selected = false) {
 	if ($selected) {
-		$selected_html = 'selected="selected"';
+		$selected_html = 'checked="checked"';
 	} else {
 		$selected_html = '';
 	}
 	return <<<EOD
 <label>
-	<input type="radio" name="$id_esc" value="$option_value" $classes_html $selected />
+	<input type="radio" name="$id_esc" value="$option_value" $classes_html $selected_html />
 	$option_label
 </label>
 EOD;
