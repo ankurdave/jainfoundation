@@ -290,6 +290,19 @@ p.intext.right {
 	margin: 1em 0em 1em 1em;
 }
 
+table#price {
+	margin: 2em 0;
+	border-collapse: collapse;
+}
+#price th {
+	font-weight: normal;
+	padding-right: 0.5em;
+}
+#price .total td, #price .total th {
+	font-weight: bold;
+	border-top: 1px solid black;
+}
+
 /* Forms */
 .required_indicator {
 	color: red;

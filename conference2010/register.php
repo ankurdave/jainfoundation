@@ -589,13 +589,13 @@
 	</p>
 
 	<p>
-		<input type="button" id="calculate_fee" value="Calculate Price" />
+		<input type="button" id="calculate_fee" value="Calculate Registration Fee" />
 	</p>
-	<p id="price" style="display:none">
-		Base fee: $<span id="base_fee">0</span> USD<br />
-		Gala dinner guest charge: $<span id="gala_dinner_guest_fee">0</span> USD<br />
-		<strong>Total price: $<span id="total_fee">0</span> USD</strong>
-	</p>
+	<table id="price" style="display:none">
+		<tr><th>Base fee</th><td>$<span id="base_fee">0</span> USD</td></tr>
+		<tr><th>Gala dinner guest charge</th><td>$<span id="gala_dinner_guest_fee">0</span> USD</td></tr>
+		<tr class="total"><th>Total registration fee</th><td>$<span id="total_fee">0</span> USD</td></tr>
+	</table>
 	
 	<p>Will you be paying by check or credit card?</p>
 	<table>
