@@ -6,7 +6,7 @@
 class RegistrantDAO {
 	private $db;
 	private $data;
-	private static $columnTypes = array(
+	public static $columnTypes = array(
 		'id' => array('i', false),
 		'auth_key' => array('s', false),
 		'firstname' => array('s', true),
@@ -263,6 +263,18 @@ class RegistrantDAO {
 	 */
 	public static function checkPromoCode($code) {
 		return strtoupper($code) == 'JF2010AS';
+	}
+
+	public static function getAll($db) {
+		$result = $db->query("SELECT id FROM registrant ORDER BY id");
+
+		$all = array();
+		while ($row = $result->fetch_assoc()) {
+			$dao = new RegistrantDAO($db, $row['id']);
+			$all[] = $dao;
+		}
+
+		return $all;
 	}
 }
 

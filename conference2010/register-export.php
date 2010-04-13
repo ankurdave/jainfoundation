@@ -1,8 +1,9 @@
 <?php
 	require 'includes/lib.php';
-	
-	$db = connectToDB();
-	$result = $db->query('SELECT * FROM registrant');
+
+	function notAuthKey($key) {
+		return $key != 'auth_key';
+	}
 	
 	header("Content-Type: text/csv");
 	header("Content-Disposition: attachment; filename=registrants.csv");
@@ -10,19 +11,17 @@
 	header('Pragma:');
 
 	print xlsBegin();
-	
-	$fields = $result->fetch_fields();
-	$field_names = array();
-	foreach ($fields as $field) {
-		if ($field->name != 'auth_key') {
-			$field_names[] = $field->name;
-		}
-	}
-	print xlsWriteRow($field_names);
-	
-	while ($data = $result->fetch_assoc()) {
-		unset($data['auth_key']); // don't print auth_key for security
-		print xlsWriteRow(array_values($data));
+
+	// Print the column headers
+	$fieldNames = array_filter(array_keys($RegistrantDAO::columnTypes), 'notAuthKey');
+	print xlsWriteRow($fieldNames);
+
+	// Print the registrant info
+	$registrants = RegistrantDAO::getAll(connectToDB());
+	foreach ($registrants as $registrant) {
+		$fields = $registrants->getFields();
+		unset($fields['auth_key']);
+		print xlsWriteRow(array_values($fields));
 	}
 
 	$result->free();
