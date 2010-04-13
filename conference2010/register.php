@@ -423,7 +423,7 @@
 			<?php
 				$galaGuests = $registrant->getGalaGuests();
 				$numFilled = count($galaGuests);
-				$numFields = $numFilled + 1;
+				$numFields = $numFilled + 0;
 				for ($i = 1; $i <= $numFields; $i++) {
 					print_radio_field("meals_gala_dinner_guest_{$i}_vegetarian", array(
 						'label' => "Guest #$i &ndash; Vegetarian",
