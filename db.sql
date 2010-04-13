@@ -230,6 +230,7 @@ CREATE TABLE `registrant` (
   `institution_profile_other` varchar(255) DEFAULT NULL,
   `department` varchar(255) DEFAULT NULL,
   `street_address` varchar(255) DEFAULT NULL,
+  `street_address_2` varchar(255) DEFAULT NULL,
   `city` varchar(255) DEFAULT NULL,
   `state_province` varchar(255) DEFAULT NULL,
   `zip_postal_code` varchar(255) DEFAULT NULL,
@@ -283,7 +284,7 @@ CREATE TABLE `registrant_gala_guest` (
   `registrant_id` int(11) DEFAULT NULL,
   `vegetarian` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -295,4 +296,4 @@ CREATE TABLE `registrant_gala_guest` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2010-04-12 21:41:47
+-- Dump completed on 2010-04-12 21:48:29
