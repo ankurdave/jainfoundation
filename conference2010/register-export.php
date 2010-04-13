@@ -12,17 +12,29 @@
 
 	print xlsBegin();
 
-	// Print the column headers
-	$fieldNames = array_filter(array_keys($RegistrantDAO::columnTypes), 'notAuthKey');
-	print xlsWriteRow($fieldNames);
-
 	// Print the registrant info
+	$first = true;
 	$registrants = RegistrantDAO::getAll(connectToDB());
 	foreach ($registrants as $registrant) {
-		$fields = $registrants->getFields();
+		$fields = $registrant->getFields();
 		unset($fields['auth_key']);
+
+		// Add the gala guest info
+		$i = 1;
+		$galaGuestInfo = array();
+		foreach ($registrant->getGalaGuests() as $galaGuest) {
+			$galaGuestInfo[] = "Guest $i: " . $galaGuest->getField('vegetarian');
+			$i++;
+		}
+		$fields["Gala Guest Vegetarian Options"] = join(", ", $galaGuestInfo);
+
+		// Print the header the first time around
+		if ($first) {
+			print xlsWriteRow(array_keys($fields));
+			$first = false;
+		}
+
+		// Print the row
 		print xlsWriteRow(array_values($fields));
 	}
-
-	$result->free();
 ?>
