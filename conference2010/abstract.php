@@ -36,7 +36,7 @@
 
 <p>This year's meeting is going to be different from past dysferlin conferences.  We plan to limit the number of talks and present more information using posters.  The oral sessions will focus on a few of the most pressing questions in dysferlin and will include a significant time for discussion.</p>
 
-<p>Please fill out the form below and submit it <strong>no later than June 25th, 2010</strong>. <em>You will be informed whether your abstract has been accepted by July 9th, 2010.</em></p>
+<p>Please fill out the form below and submit it <strong>no later than June 25th, 2010</strong>. Please fill out the form in the way you wish it to appear in the Dysferlin Conference Booklet as the Jain Foundation will not be responsible for any errors in content, spelling, or look. <em>You will be informed whether your abstract has been accepted by July 9th, 2010.</em></p>
 
 <?php
 	if (!is_null($abstract->getField('id'))) {
