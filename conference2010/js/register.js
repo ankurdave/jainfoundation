@@ -352,7 +352,7 @@ $(document).ready(function() {
 
 // Set up the Check Promotional Code button
 $(document).ready(function() {
-	$("#check_promo").click(function() {
+	var verifyPromoCode = function() {
 		// Do an Ajax request to the server to check the promo code, and show/hide elements and set variables based on the result
 		$.getJSON("check-promo.php", {
 			promoCode: $("#promo_code").val()
@@ -364,11 +364,14 @@ $(document).ready(function() {
 			var noGuests = !($("#meals_gala_dinner_numguests").val()) || parseInt($("#meals_gala_dinner_numguests").val()) == 0;
 			$("#promo_code_valid_and_no_guests").css("display", data.valid && noGuests ? "" : "none");
 			$("#payment_info").css("display", data.valid && noGuests ? "none" : "");
-			
+
 			promo_code_valid = data.valid;
 
 			// Calculate the price for the user
 			$("#calculate_fee").click();
 		});
-	});
+	};
+
+	$("#check_promo").click(verifyPromoCode);
+	$("#promo_code").change(verifyPromoCode);
 });
