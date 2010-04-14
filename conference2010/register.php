@@ -589,6 +589,9 @@
 	</p>
 
 	<p>
+		Please click the Calculate Registration Fee button to detemine what you owe.
+	</p>
+	<p>
 		<input type="button" id="calculate_fee" value="Calculate Registration Fee" />
 	</p>
 	<table id="price" style="display:none">
