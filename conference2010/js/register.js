@@ -244,14 +244,14 @@ $(document).ready(function() {
 
 		// Clear the existing guest list
 		// TODO: If the user has already made selections, they will be cleared
-		$("#meals_gala_dinner_guests_vegetarian tbody").empty();
+		$("#meals_gala_dinner_guests_vegetarian").empty();
 
 		// Show/hide the guest list section based on the number of guests
 		$("#meals_gala_dinner_guests_nonzero").css("display", numGuests > 0 ? "" : "none");
 
 		// Add the appropriate number of guest input fields to the guest list section
 		for (var i = 1; i <= numGuests; i++) {
-			$("#meals_gala_dinner_guests_vegetarian tbody").append('<tr><td></td><td><label for="meals_gala_dinner_guest_' + i + '_vegetarian">Guest #' + i + ' &ndash; Vegetarian</label></td><td class="input"><div id="meals_gala_dinner_guest_' + i + '_vegetarian" class="required"><label><input type="radio" name="meals_gala_dinner_guest_' + i + '_vegetarian" value="yes" class="required">Yes</label><label><input type="radio" name="meals_gala_dinner_guest_' + i + '_vegetarian" value="no" class="required">No</label></td><td></td></tr>');
+			$("#meals_gala_dinner_guests_vegetarian").append('<tr><td></td><td><label for="meals_gala_dinner_guest_' + i + '_vegetarian">Guest #' + i + ' &ndash; Vegetarian</label></td><td class="input"><div id="meals_gala_dinner_guest_' + i + '_vegetarian" class="required"><label><input type="radio" name="meals_gala_dinner_guest_' + i + '_vegetarian" value="yes" class="required">Yes</label><label><input type="radio" name="meals_gala_dinner_guest_' + i + '_vegetarian" value="no" class="required">No</label></td><td></td></tr>');
 		}
 	});
 });
