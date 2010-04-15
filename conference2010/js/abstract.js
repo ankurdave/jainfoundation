@@ -36,7 +36,7 @@ $(document).ready(function() {
 // Affiliation references are required if any of the other fields in the row are filled
 $.validator.addClassRules("affiliation", {
 	required: function(element) {
-		return element.closest("tr").children("input").filter(function(index) {
+		return $(element).closest("tr").find("input").filter(function(index) {
 			return $(this).val();
 		}).length > 0;
 	}
