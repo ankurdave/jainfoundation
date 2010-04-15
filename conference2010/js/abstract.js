@@ -76,7 +76,7 @@ $.validator.addMethod("affiliation_reference", function(value, element) {
 	}
 	
 	var affiliations = value.split(/,/);
-	for (var i in affiliations) {
+	for (var i = 0; i < affiliations.length; i++) {
 		if (!$("#affiliation_" + affiliations[i]).val()) {
 			return false;
 		}
