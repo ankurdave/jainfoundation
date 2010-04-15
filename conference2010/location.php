@@ -25,7 +25,7 @@
 <p>There are several ways you can make your reservation:</p>
 
 <ul>
-	<li>For online reservations click here: <a class="btn" href="https://resweb.passkey.com/Resweb.do?mode=welcome_ei_new&amp;eventID=2503720&amp;fromResdesk=true"><span><span>Online Reservations</span></span></a></li>
+	<li>For online reservations click here: <a class="btn" href="https://resweb.passkey.com/Resweb.do?mode=welcome_ei_new&amp;eventID=2503720"><span><span>Online Reservations</span></span></a></li>
 	<li>For phone reservations call the Passkey's Toll Free Number (888-421-1442) and indicate that you are making a reservation for the Jain Foundation Dysferlin Conference.</li>
 </ul>
 
