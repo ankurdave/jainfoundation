@@ -119,7 +119,9 @@
 		$body = <<<EOT
 Abstract: {$Config['FullURL']}/conference2010/abstract-show.php?id=$abstractID
 
-Submission info: {$Config['FullURL']}/conference2010/abstract-export.php
+Submission info list: {$Config['FullURL']}/conference2010/abstract-list.php#abstract$abstractID
+
+Submission info export: {$Config['FullURL']}/conference2010/abstract-export.php
 EOT;
 		$mail->send($Config['ConferenceNotificationEmail']['to'], $headers, $body);
 	} else {
