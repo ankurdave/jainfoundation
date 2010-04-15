@@ -30,8 +30,7 @@
 .announcement {
 	height: 156px;
 	border: 1px solid black;
-	padding: 5px;
-	margin: 5px;
+	width: 352.087px;
 }
 .announcement a {
 	display:block;
@@ -46,7 +45,6 @@
 	float:left;
 	height: 100%;
 	margin-right:1em;
-	margin-bottom:1em;
 	border:none;
 }
 .announcement .title {
