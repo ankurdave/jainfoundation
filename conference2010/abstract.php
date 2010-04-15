@@ -217,7 +217,7 @@
 				));
 				print_multi_text_field("author_{$i}_affiliations", array(
 					'required' => ($i == 1),
-					'class' => array('affiliation_reference'),
+					'class' => array('affiliation_reference', 'affiliation'),
 					'value' => ($i <= $numFilled) ? $authors[$i - 1]->getField('affiliations') : '',
 				));
 

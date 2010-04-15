@@ -33,6 +33,15 @@ $(document).ready(function() {
 	});
 });
 
+// Affiliation references are required if any of the other fields in the row are filled
+$.validator.addClassRules("affiliation", {
+	required: function(element) {
+		return element.closest("tr").children("input").filter(function(index) {
+			return $(this).val();
+		}).length > 0;
+	}
+});
+
 // Set the custom validator messages
 $.extend($.validator.messages, {
 	required: "required",
@@ -168,7 +177,7 @@ $(document).ready(function() {
 		}
 
 		// Add an element with that number
-		$("#authors tbody").append('<tr id="author_' + n + '"><th class="label">Author #' + n + '</th><td><input type="text" id="author_' + n + '_firstname" name="author_' + n + '_firstname"></td><td><input type="text" id="author_' + n + '_middlename" name="author_' + n + '_middlename"></td><td><input type="text" id="author_' + n + '_lastname" name="author_' + n + '_lastname"></td><td><input type="text" class="affiliation_reference" id="author_' + n + '_affiliation" name="author_' + n + '_affiliation"></td></tr>');
+		$("#authors tbody").append('<tr id="author_' + n + '"><th class="label">Author #' + n + '</th><td><input type="text" id="author_' + n + '_firstname" name="author_' + n + '_firstname"></td><td><input type="text" id="author_' + n + '_middlename" name="author_' + n + '_middlename"></td><td><input type="text" id="author_' + n + '_lastname" name="author_' + n + '_lastname"></td><td><input type="text" class="affiliation_reference affiliation" id="author_' + n + '_affiliation" name="author_' + n + '_affiliation"></td></tr>');
 	});
 });
 
