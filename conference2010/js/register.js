@@ -357,8 +357,13 @@ $(document).ready(function() {
 		$.getJSON("check-promo.php", {
 			promoCode: $("#promo_code").val()
 		}, function(data) {
-			$("#promo_code_valid").css("display", data.valid ? "" : "none");
-			$("#promo_code_invalid").css("display", data.valid ? "none" : "");
+			$("#promo_code").closest("td").next("td").empty();
+			if (data.valid) {
+				$("#promo_code").closest("td").next("td").append('<label for="promo_code" class="valid">valid promotional code</label>');
+			} else {
+				$("#promo_code").closest("td").next("td").append('<label for="promo_code" class="invalid">invalid promotional code</label>');
+			}
+			
 			$("#no_promo_code").css("display", data.valid ? "none" : "");
 
 			var noGuests = !($("#meals_gala_dinner_numguests").val()) || parseInt($("#meals_gala_dinner_numguests").val()) == 0;

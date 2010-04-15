@@ -346,7 +346,7 @@ tr.error {
 	color: red;
 }
 
-label.error, .hoveringLabel {
+label.error, label.valid, label.invalid, .hoveringLabel {
 	float: right;
 	margin: 0 10px 0 5px;
 	padding: 2px 4px;
@@ -357,6 +357,13 @@ label.error, .hoveringLabel {
 	-webkit-border-radius: 5px;
 	-moz-box-shadow: black 2px 2px 5px;
 	-webkit-box-shadow: black 2px 2px 5px;
+}
+
+label.valid {
+	background-color: #3D7610;
+}
+label.invalid {
+	background-color: #900;
 }
 
 form textarea {

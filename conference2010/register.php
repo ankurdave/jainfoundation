@@ -529,18 +529,12 @@
 		<?php
 			print_text_field('promo_code', array(
 				'label' => 'Promotional Code',
-				'instructions' => '<input type="button" id="check_promo" value="Check Promotional Code" />',
 				'required' => false,
 				'value' => $registrant->getField('promo_code'),
 			));
 		?>
 		</table>
-	<div id="promo_code_valid" style="display:none">
-		Promotional code is valid.
-	</div>
-	<div id="promo_code_invalid" style="display:none">
-		Promotional code is not valid.
-	</div>
+		<p><input type="button" id="check_promo" value="Check Promotional Code" /></p>
 	</div>
 
 	<div id="promo_code_valid_and_no_guests" style="display:none">
