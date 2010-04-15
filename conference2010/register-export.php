@@ -26,7 +26,8 @@
 			$galaGuestInfo[] = "Guest $i: " . $galaGuest->getField('vegetarian');
 			$i++;
 		}
-		$fields["Gala Guest Vegetarian Options"] = join(", ", $galaGuestInfo);
+		// Insert it into the appropriate place in the field list
+		$fields = array_insert_after($fields, 'meals_gala_dinner_numguests', array('Gala Guest Vegetarian Options' => join(", ", $galaGuestInfo)));
 
 		// Print the header the first time around
 		if ($first) {

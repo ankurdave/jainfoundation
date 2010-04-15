@@ -27,4 +27,20 @@ function print_html($string) {
 	}
 }
 
+/**
+ * Inserts one or more key/value pairs $pairs after the given key $key in an associative array $array, returning the new array.
+*/
+function array_insert_after($array, $key, $pairs) {
+	$array_new = array();
+	foreach ($array as $k => $v) {
+		$array_new[$k] = $v;
+		if ($k === $key) {
+			foreach ($pairs as $k2 => $v2) {
+				$array_new[$k2] = $v2;
+			}
+		}
+	}
+	return $array_new;
+}
+
 ?>
