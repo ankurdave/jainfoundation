@@ -43,7 +43,7 @@
 }
 .announcement img {
 	float:left;
-	height: 100%;
+	height: 156px;
 	margin-right:1em;
 	border:none;
 }
