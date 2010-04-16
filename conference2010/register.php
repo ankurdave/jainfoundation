@@ -385,10 +385,6 @@
 			));
 		?>
 		</table>
-	<table>
-		<?php
-		?>
-	</table>
 	<p>Will you be bringing guests to the Gala?</p>
 	<table>
 		<?php
