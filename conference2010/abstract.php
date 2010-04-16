@@ -177,7 +177,7 @@
 			}
 		?>
 	</table>
-	<input type="button" id="affiliation_more" class="addmore" value="Add More" />
+	<p><input type="button" id="affiliation_more" class="addmore" value="Add More" /></p>
 	
 	<p>Enter the information for all authors.<br />
 	The person listed as the first author <strong>must</strong> be presenting the abstract.
@@ -225,7 +225,7 @@
 			}
 		?>
 	</table>
-	<input type="button" id="author_more" class="addmore" value="Add More" />
+	<p><input type="button" id="author_more" class="addmore" value="Add More" /></p>
 	
 	<h3>Abstract Information</h3>
 	
