@@ -1,5 +1,8 @@
 // === FORM VALIDATION RULES ===================================================
 $(document).ready(function() {
+	$("#register-form").submit(function(event) {
+		$("#calculate_fee").click();
+	});
 	$("#register-form").validate({
 		rules: {
 			degree_other: {
