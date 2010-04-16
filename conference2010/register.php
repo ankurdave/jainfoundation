@@ -625,7 +625,7 @@
 
 		<ol>
 			<li>Please press the "Calculate Registration Fee" button above. Your "Total Registration Fee" will appear.</li>
-			<li>Follow the <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=5SR6XJUWHXNLY">PayPal link</a>.</li>
+			<li>Follow the <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=5SR6XJUWHXNLY">PayPal link</a>.</li>
 			<li>Enter your "Total Registration Fee" determined in step 1 in the "Unit Price" box and press the "Update Totals" button.</li>
 			<li>If you do <strong>not</strong> have a PayPal account, please follow the "continue" link on the bottom left-hand side of the screen and proceed as prompted.</li>
 			<li>If you <strong>do</strong> have a PayPal account, please log in and proceed as prompted.</li>
