@@ -547,14 +547,14 @@
 	<ul>
 		<li>Early registration &ndash; <strong>on or before June 4, 2010</strong>:
 			<ul>
-				<li id="cost_postdoc">Post-doc/student: $150 USD</li>
-				<li id="cost_other">Other: $250 USD</li>
+				<li>Post-doc/student: $150 USD</li>
+				<li>Other: $250 USD</li>
 			</ul>
 		</li>
 		<li>Late registration &ndash; <strong>between June 5, 2010 &ndash; July 23, 2010</strong>:
 			<ul>
-				<li id="cost_postdoc">Post-doc/student: $250 USD</li>
-				<li id="cost_other">Other: $350 USD</li>
+				<li>Post-doc/student: $250 USD</li>
+				<li>Other: $350 USD</li>
 			</ul>
 		</li>
 	</ul>
