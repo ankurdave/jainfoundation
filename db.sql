@@ -36,6 +36,7 @@ CREATE TABLE `abstract` (
   `department` varchar(255) DEFAULT NULL,
   `institution` varchar(255) DEFAULT NULL,
   `street_address` varchar(255) DEFAULT NULL,
+  `street_address_2` varchar(255) DEFAULT NULL,
   `city` varchar(255) DEFAULT NULL,
   `state_province` varchar(255) DEFAULT NULL,
   `zip_postal_code` varchar(255) DEFAULT NULL,

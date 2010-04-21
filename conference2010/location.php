@@ -18,14 +18,14 @@
 
 <p>A guaranteed block of rooms has been reserved for our conference for the nights of September 11, 12, and 13, 2010.  <strong>Reservations must be made no later than August 20th in order to be eligible for the special Jain Foundation conference rate.  The conference rate is $142/night + tax for single/double occupancy for a basic King or Double.</strong>   A third or fourth person in the room is $25 per night extra for each additional person.  Please feel free to upgrade your room at your own cost. </p>
 
-<p>In addition, the conference rate ($142/night + tax) is available for four days pre (nights of September 7, 8, 9, and 10) and four days post the conference (nights of September 14, 15, and 16). However, these rooms are provided based on availability so book your room early.  </p>
+<p>In addition, the conference rate ($142/night + tax) is available for four days pre (nights of September 7, 8, 9, and 10) and three days post the conference (nights of September 14, 15, and 16). However, these rooms are provided based on availability so book your room early.  </p>
 
 <p><strong>Please note:  Attendees who will be sharing a room with a roommate assigned by the Jain Foundation should not book their hotel reservations directly.  Please contact Angela Salerno (<a href="mailto:asalerno@jain-foundation.org">asalerno@jain-foundation.org</a>) at the Jain Foundation with your arrival and departure dates and she will make your reservations and send you a confirmation. </strong></p>
 
 <p>There are several ways you can make your reservation:</p>
 
 <ul>
-	<li>For online reservations click here: <a class="btn" href="https://resweb.passkey.com/Resweb.do?mode=welcome_ei_new&amp;eventID=2503720"><span><span>Online Reservations</span></span></a></li>
+	<li>For online reservations click here: <a class="btn" href="https://resweb.passkey.com/Resweb.do?mode=welcome_ei_new&amp;eventID=2503720" target="_blank"><span><span>Online Reservations</span></span></a></li>
 	<li>For phone reservations call the Passkey's Toll Free Number (888-421-1442) and indicate that you are making a reservation for the Jain Foundation Dysferlin Conference.</li>
 </ul>
 

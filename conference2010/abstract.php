@@ -112,6 +112,11 @@
 				'required' => true,
 				'value' => $abstract->getField('street_address'),
 			));
+			print_text_field('street_address_2', array(
+				'label' => 'Street Address 2',
+				'required' => false,
+				'value' => $abstract->getField('street_address_2'),
+			));
 			print_text_field('city', array(
 				'label' => 'City',
 				'required' => true,

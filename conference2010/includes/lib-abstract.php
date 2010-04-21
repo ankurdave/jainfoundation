@@ -18,6 +18,7 @@ class AbstractDAO {
 		'department' => array('s', false),
 		'institution' => array('s', true),
 		'street_address' => array('s', true),
+		'street_address_2' => array('s', false),
 		'city' => array('s', true),
 		'state_province' => array('s', false),
 		'zip_postal_code' => array('s', true),

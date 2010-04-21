@@ -4,7 +4,7 @@
 	printHeader(array('title' => 'Conference 2010 | List of Abstracts'));
 
 	$db = connectToDB();
-	$result = $db->query('SELECT id, firstname, middlename, lastname, degree, department, institution, street_address, city, state_province, zip_postal_code, country, phone, fax, email, author_status, degree_year, abstract_category, abstract_category_other, presentation_type, abstract_title, comments FROM abstract');
+	$result = $db->query('SELECT id, firstname, middlename, lastname, degree, department, institution, street_address, street_address_2, city, state_province, zip_postal_code, country, phone, fax, email, author_status, degree_year, abstract_category, abstract_category_other, presentation_type, abstract_title, comments FROM abstract');
 ?>
 
 <h1>List of Abstracts</h1>

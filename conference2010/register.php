@@ -20,14 +20,14 @@
 		}
 	} catch (DAOAuthException $e) { }
 	
-	printHeader(array('title' => 'Conference 2010 | Registration', 'scripts' => array($Config['URLPath'] . '/js/jquery.validate.js', 'js/register.js',), 'page_nav_id' => 'register'));
+	printHeader(array('title' => 'Conference 2010 | Meeting Registration', 'scripts' => array($Config['URLPath'] . '/js/jquery.validate.js', 'js/register.js',), 'page_nav_id' => 'register'));
 ?>
 
 <?php include 'includes/conference-title.inc.php' ?>
 
 <?php include 'includes/menu.inc.php' ?>
 
-<h2>Registration</h2>
+<h2>Meeting Registration</h2>
 
 <p>For questions and concerns please contact Angela Salerno at <a href="mailto:asalerno@jain-foundation.org">asalerno@jain-foundation.org.</a></p>
 
@@ -489,6 +489,7 @@
 						'2010-09-14' => 'Tuesday, Sept 14',
 						'2010-09-15' => 'Wednesday, Sept 15',
 						'2010-09-16' => 'Thursday, Sept 16',
+						'2010-09-17' => 'Friday, Sept 12',
 					),
 					'value' => $registrant->getField('departure_date'),
 				));
@@ -621,7 +622,7 @@
 
 		<ol>
 			<li>Please press the "Calculate Registration Fee" button above. Your "Total Registration Fee" will appear.</li>
-			<li>Follow the <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=5SR6XJUWHXNLY">PayPal link</a>.</li>
+			<li>Follow the <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=5SR6XJUWHXNLY" target="_blank">PayPal link</a>.</li>
 			<li>Enter your "Total Registration Fee" determined in step 1 in the "Unit Price" box and press the "Update Totals" button.</li>
 			<li>If you do <strong>not</strong> have a PayPal account, please follow the "continue" link on the bottom left-hand side of the screen and proceed as prompted.</li>
 			<li>If you <strong>do</strong> have a PayPal account, please log in and proceed as prompted.</li>

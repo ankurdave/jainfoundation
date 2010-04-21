@@ -10,14 +10,14 @@
 		exit;
 	}
 	
-	printHeader(array('title' => 'Conference 2010 | Abstract Submission'));
+	printHeader(array('title' => 'Conference 2010 | Abstract Submission Thank You'));
 ?>
 
 <?php include 'includes/conference-title.inc.php' ?>
 
 <?php include 'includes/menu.inc.php' ?>
 
-<h2>Abstract Submission</h2>
+<h2>Abstract Submission Thank You</h2>
 
 <p>Your abstract was successfully submitted. <a href="abstract-show.php?id=<?php echo urlencode($id) ?>">Please click here to view and save a copy of your submitted abstract.</a> Please print a copy of this page for your records.</p>
 

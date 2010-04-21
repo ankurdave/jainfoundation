@@ -241,7 +241,7 @@ onMouseOut="window.document.sq16.src='images/button_links2.gif'"><img src="image
                         Fourth Annual Dysferlin Conference</span></strong><br>
 
                       <em>Organized and sponsored by the Jain Foundation Inc. </em><br>
-					2010 Conference Details Coming Soon</a><p class="home"><strong>
+					<a href="conference2010/">2010 Conference Details Coming Soon</a><p class="home"><strong>
 <span class="style2">June 2-5, 2009<br>
 
                         Third Annual Dysferlin Conference</span></strong><br>
