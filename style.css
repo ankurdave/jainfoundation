@@ -419,11 +419,26 @@ table.multitext label.error:hover {
 #page_nav li {
 	display: block;
 	float: left;
-	width: 100px; /* 5 will fit in 560px (assuming 5px margins, 0px padding, and 1px border) */
 	height: 100%;
 	border: 1px solid #CCC;
 	margin: 0 5px;
 	padding: 0px;
+}
+
+#page_nav li.onefifth, #page_nav li {
+	width: 100px; /* 5 will fit in 560px (assuming 5px margins, 0px padding, and 1px border) */
+}
+#page_nav li.onefourth {
+	width: 128px; /* 4 will fit in 558px */
+}
+#page_nav li.onethird {
+	width: 174px; /* 3 will fit in 558px */
+}
+#page_nav li.oneninth {
+	width: 50px;
+}
+#page_nav li.twoninths {
+	width: 112px;
 }
 
 #page_nav li a {
