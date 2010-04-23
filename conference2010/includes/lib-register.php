@@ -7,57 +7,261 @@ class RegistrantDAO {
 	private $db;
 	private $data;
 	public static $columnTypes = array(
-		'id' => array('i', false),
-		'auth_key' => array('s', false),
-		'firstname' => array('s', true),
-		'lastname' => array('s', true),
-		'degree' => array('s', true),
-		'degree_other' => array('s', false),
-		'position' => array('s', true),
-		'position_other' => array('s', false),
-		'department' => array('s', false),
-		'institution' => array('s', true),
-		'institution_profile' => array('s', true),
-		'institution_profile_other' => array('s', false),
-		'street_address' => array('s', true),
-		'street_address_2' => array('s', false),
-		'city' => array('s', true),
-		'state_province' => array('s', false),
-		'zip_postal_code' => array('s', true),
-		'country' => array('s', true),
-		'email' => array('s', true),
-		'phone' => array('s', true),
-		'fax' => array('s', false),
-		'submitting_abstract' => array('s', true),
-		'abstract_title' => array('s', false),
-		'local_attendee' => array('s', true),
-		'hotel_parking' => array('s', true),
-		'attendance_day1' => array('s', true),
-		'attendance_day2' => array('s', true),
-		'attendance_day3' => array('s', true),
-		'attendance_day4' => array('s', true),
-		'meals_day2_breakfast' => array('s', false),
-		'meals_day2_lunch' => array('s', false),
-		'meals_day2_lunch_entree' => array('s', false),
-		'meals_day3_breakfast' => array('s', false),
-		'meals_day3_lunch' => array('s', false),
-		'meals_day3_lunch_entree' => array('s', false),
-		'meals_day4_breakfast' => array('s', false),
-		'meals_day4_lunch' => array('s', false),
-		'meals_day4_lunch_entree' => array('s', false),
-		'meals_gala_dinner' => array('s', true),
-		'meals_gala_dinner_vegetarian' => array('s', false),
-		'meals_gala_dinner_guests' => array('s', false),
-		'meals_gala_dinner_numguests' => array('s', false),
-		'share_room' => array('s', false),
-		'gender' => array('s', false),
-		'arrival_date' => array('s', false),
-		'departure_date' => array('s', false),
-		'have_promo_code' => array('s', true),
-		'promo_code' => array('s', false),
-		'total_fee' => array('i', false),
-		'payment_type' => array('s', true),
-		'comments' => array('s', false),
+		'id' => array(
+			'type' => 'i',
+			'form' => 1,
+			'required' => false
+		),
+		'auth_key' => array(
+			'type' => 's',
+			'form' => 1,
+			'required' => false
+		),
+		'firstname' => array(
+			'type' => 's',
+			'form' => 1,
+			'required' => true
+		),
+		'lastname' => array(
+			'type' => 's',
+			'form' => 1,
+			'required' => true
+		),
+		'degree' => array(
+			'type' => 's',
+			'form' => 1,
+			'required' => true
+		),
+		'degree_other' => array(
+			'type' => 's',
+			'form' => 1,
+			'required' => false
+		),
+		'position' => array(
+			'type' => 's',
+			'form' => 1,
+			'required' => true
+		),
+		'position_other' => array(
+			'type' => 's',
+			'form' => 1,
+			'required' => false
+		),
+		'department' => array(
+			'type' => 's',
+			'form' => 1,
+			'required' => false
+		),
+		'institution' => array(
+			'type' => 's',
+			'form' => 1,
+			'required' => true
+		),
+		'institution_profile' => array(
+			'type' => 's',
+			'form' => 1,
+			'required' => true
+		),
+		'institution_profile_other' => array(
+			'type' => 's',
+			'form' => 1,
+			'required' => false
+		),
+		'street_address' => array(
+			'type' => 's',
+			'form' => 1,
+			'required' => true
+		),
+		'street_address_2' => array(
+			'type' => 's',
+			'form' => 1,
+			'required' => false
+		),
+		'city' => array(
+			'type' => 's',
+			'form' => 1,
+			'required' => true
+		),
+		'state_province' => array(
+			'type' => 's',
+			'form' => 1,
+			'required' => false
+		),
+		'zip_postal_code' => array(
+			'type' => 's',
+			'form' => 1,
+			'required' => true
+		),
+		'country' => array(
+			'type' => 's',
+			'form' => 1,
+			'required' => true
+		),
+		'email' => array(
+			'type' => 's',
+			'form' => 1,
+			'required' => true
+		),
+		'phone' => array(
+			'type' => 's',
+			'form' => 1,
+			'required' => true
+		),
+		'fax' => array(
+			'type' => 's',
+			'form' => 1,
+			'required' => false
+		),
+		'submitting_abstract' => array(
+			'type' => 's',
+			'form' => 1,
+			'required' => true
+		),
+		'abstract_title' => array(
+			'type' => 's',
+			'form' => 1,
+			'required' => false
+		),
+		'local_attendee' => array(
+			'type' => 's',
+			'form' => 1,
+			'required' => true
+		),
+		'hotel_parking' => array(
+			'type' => 's',
+			'form' => 1,
+			'required' => true
+		),
+		'attendance_day1' => array(
+			'type' => 's',
+			'form' => 1,
+			'required' => true
+		),
+		'attendance_day2' => array(
+			'type' => 's',
+			'form' => 1,
+			'required' => true
+		),
+		'attendance_day3' => array(
+			'type' => 's',
+			'form' => 1,
+			'required' => true
+		),
+		'attendance_day4' => array(
+			'type' => 's',
+			'form' => 1,
+			'required' => true
+		),
+		'meals_day2_breakfast' => array(
+			'type' => 's',
+			'form' => 1,
+			'required' => false
+		),
+		'meals_day2_lunch' => array(
+			'type' => 's',
+			'form' => 1,
+			'required' => false
+		),
+		'meals_day2_lunch_entree' => array(
+			'type' => 's',
+			'form' => 1,
+			'required' => false
+		),
+		'meals_day3_breakfast' => array(
+			'type' => 's',
+			'form' => 1,
+			'required' => false
+		),
+		'meals_day3_lunch' => array(
+			'type' => 's',
+			'form' => 1,
+			'required' => false
+		),
+		'meals_day3_lunch_entree' => array(
+			'type' => 's',
+			'form' => 1,
+			'required' => false
+		),
+		'meals_day4_breakfast' => array(
+			'type' => 's',
+			'form' => 1,
+			'required' => false
+		),
+		'meals_day4_lunch' => array(
+			'type' => 's',
+			'form' => 1,
+			'required' => false
+		),
+		'meals_day4_lunch_entree' => array(
+			'type' => 's',
+			'form' => 1,
+			'required' => false
+		),
+		'meals_gala_dinner' => array(
+			'type' => 's',
+			'form' => 1,
+			'required' => true
+		),
+		'meals_gala_dinner_vegetarian' => array(
+			'type' => 's',
+			'form' => 1,
+			'required' => false
+		),
+		'meals_gala_dinner_guests' => array(
+			'type' => 's',
+			'form' => 1,
+			'required' => false
+		),
+		'meals_gala_dinner_numguests' => array(
+			'type' => 's',
+			'form' => 1,
+			'required' => false
+		),
+		'share_room' => array(
+			'type' => 's',
+			'form' => 1,
+			'required' => false
+		),
+		'gender' => array(
+			'type' => 's',
+			'form' => 1,
+			'required' => false
+		),
+		'arrival_date' => array(
+			'type' => 's',
+			'form' => 1,
+			'required' => false
+		),
+		'departure_date' => array(
+			'type' => 's',
+			'form' => 1,
+			'required' => false
+		),
+		'have_promo_code' => array(
+			'type' => 's',
+			'form' => 1,
+			'required' => true
+		),
+		'promo_code' => array(
+			'type' => 's',
+			'form' => 1,
+			'required' => false
+		),
+		'total_fee' => array(
+			'type' => 'i',
+			'form' => 1,
+			'required' => false
+		),
+		'payment_type' => array(
+			'type' => 's',
+			'form' => 1,
+			'required' => true
+		),
+		'comments' => array(
+			'type' => 's',
+			'form' => 1,
+			'required' => false
+		),
 	);
 	private $galaGuests = array();
 
@@ -107,16 +311,16 @@ class RegistrantDAO {
 		// TODO: warn using syslog if field does not exist
 	}
 
-	function addGalaGuest($galaGuest) {
-		$this->galaGuests[] = $galaGuest;
-	}
-
-	function getGalaGuests() {
-		return $this->galaGuests;
+	function getGalaGuest($index) {
+		return $this->galaGuests[$index];
 	}
 
 	function clearGalaGuests() {
 		$this->galaGuests = array();
+	}
+
+	function getAbstract() {
+		return $this->abstract;
 	}
 
 	/**
@@ -133,18 +337,24 @@ class RegistrantDAO {
 		// Calculate the total fee
 		$this->data['total_fee'] = $this->calculateTotalPrice();
 
-		// Clear and reinsert the associated data
+		// Clear and reinsert the lists
 		RegistrantGalaGuestDAO::deleteAssociated($this->db, $this->data['id']);
 		foreach ($this->galaGuests as $galaGuest) {
 			$galaGuest->setField('registrant_id', $this->data['id']);
 			$galaGuest->save();
 		}
 
+		// Save the abstract if it's been written to
+		if ($this->abstract->dirty()) {
+			$this->abstract->setField('registrant_id', $this->data['id']);
+			$this->abstract->save();
+		}
+
 		// Build the query
 		$query = new InsertUpdateQuery($this->db);
 		$query->setTable('registrant');
 		foreach ($this->data as $col => $val) {
-			$query->setColumn($col, $val, self::$columnTypes[$col][0]);
+			$query->setColumn($col, $val, self::$columnTypes[$col]['type']);
 		}
 
 		// Run it
@@ -169,15 +379,15 @@ class RegistrantDAO {
 	}
 
 	/**
-	 * Checks whether or not the given fields are valid. Returns an array of invalid fields. This array will be empty if all fields are valid.
+	 * Checks whether or not the given fields are valid. Returns an array of invalid fields. This array will be empty if all fields are valid. If $formNumber is set, only checks the fields from that form
 	 */
-	function validate() {
+	function validate($formNumber = null) {
 		$invalidFields = array();
 
 		// Check if all required fields are present
 		foreach (self::$columnTypes as $colName => $colInfo) {
 			// If the column is required, make sure it's non-empty in $this->data
-			if ($colInfo[1]) {
+			if ($colInfo['required'] && ($formNumber === null || $formNumber == $colInfo['formNumber']) {
 				if (empty($this->data[$colName])) {
 					$invalidFields[] = $colName;
 				}
@@ -282,9 +492,21 @@ class RegistrantGalaGuestDAO {
 	private $db;
 	private $data;
 	private static $columnTypes = array(
-		'id' => array('i', false),
-		'registrant_id' => array('i', true),
-		'vegetarian' => array('s', true),
+		'id' => array(
+			'type' => 'i',
+			'form' => 1,
+			'required' => false
+		),
+		'registrant_id' => array(
+			'type' => 'i',
+			'form' => 1,
+			'required' => true
+		),
+		'vegetarian' => array(
+			'type' => 's',
+			'form' => 1,
+			'required' => true
+		),
 	);
 
 	function __construct($db) {
@@ -302,7 +524,7 @@ class RegistrantGalaGuestDAO {
 		$query = new InsertUpdateQuery($this->db);
 		$query->setTable('registrant_gala_guest');
 		foreach ($this->data as $col => $val) {
-			$query->setColumn($col, $val, self::$columnTypes[$col][0]);
+			$query->setColumn($col, $val, self::$columnTypes[$col]['type']);
 		}
 
 		// Run it
