@@ -403,6 +403,10 @@ table.multitext label.error:hover {
 	float: right;
 }
 
+.jump {
+	margin-top: 2em;
+}
+
 /* Page nav */
 #page_nav_wrapper {
 	width: 100%;
