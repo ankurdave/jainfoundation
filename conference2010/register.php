@@ -489,7 +489,7 @@
 						'2010-09-14' => 'Tuesday, Sept 14',
 						'2010-09-15' => 'Wednesday, Sept 15',
 						'2010-09-16' => 'Thursday, Sept 16',
-						'2010-09-17' => 'Friday, Sept 12',
+						'2010-09-17' => 'Friday, Sept 17',
 					),
 					'value' => $registrant->getField('departure_date'),
 				));
