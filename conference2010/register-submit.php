@@ -25,11 +25,19 @@ $forms = array(
 );
 
 $formNumber = $_POST['form_number'];
-$previewingAbstract = $_POST['action'] == 'Preview Abstract';
+
 $form_location = $forms[$formNumber];
-$next_location = ($previewingAbstract)
-	? 'abstract-show.php?id=' . urlencode($registrant->getField('id'))
-	: $forms[$formNumber + 1];
+if ($_POST['action'] == 'Preview Abstract') {
+	$next_location = 'abstract-show.php?id=' . urlencode($registrant->getField('id'));
+} else if (isset($_POST['jump1'])) {
+	$next_location = $forms[1];
+} else if (isset($_POST['jump2'])) {
+	$next_location = $forms[2];
+} else if (isset($_POST['jump3'])) {
+	$next_location = $forms[3];
+} else {
+	$next_location = $forms[$formNumber + 1];
+}
 
 if (!isset($form_location) || !isset($next_location)) {
 	header("Location: register.php");
