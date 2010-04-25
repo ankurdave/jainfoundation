@@ -498,10 +498,6 @@
 		));
 	?>
 
-	<p>
-		<input type="submit" name="action" value="Submit Registration" />
-	</p>
-
 	<?php echo registerMenu(3); ?>
 </form>
 

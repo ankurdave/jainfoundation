@@ -404,8 +404,17 @@ table.multitext label.error:hover {
 }
 
 .jump {
-	margin-top: 2em;
+    margin-top: 1em;
+	float: right;
 }
+.jump .prev, .jump .next, .jump .extra {
+    display: inline;
+}
+.jump .next input {
+    margin-left: 0.5em;
+    color: #3D7610;
+}
+
 
 /* Page nav */
 #page_nav_wrapper {

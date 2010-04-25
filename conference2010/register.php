@@ -182,10 +182,6 @@
 		?>
 	</table>
 
-	<p>
-		<input type="submit" name="action" value="Save and Continue Registering" />
-	</p>
-
 	<?php echo registerMenu(1); ?>
 </form>
 

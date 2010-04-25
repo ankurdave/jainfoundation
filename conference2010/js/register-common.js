@@ -97,7 +97,7 @@ function showElementWhenRadioChecked(sourceField, element) {
 	$(document).ready(function() {
 		$(sourceField).change(function() {
 			$(element).css("display", $(this).attr('checked') ? "" : "none");
-		});
+		}).change();
 	});
 }
 
@@ -105,12 +105,12 @@ function hideElementWhenRadioChecked(sourceField, element) {
 	$(document).ready(function() {
 		$(sourceField).change(function() {
 			$(element).css("display", $(this).attr('checked') ? "none" : "");
-		});
+		}).change();
 	});
 }
 
 function syncValueOneWay(sourceField, targetField) {
 	$(sourceField).change(function() {
 		$(targetField).val($(sourceField)).val();
-	});
+	}).change();
 }

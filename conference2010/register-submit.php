@@ -27,14 +27,10 @@ $forms = array(
 $formNumber = $_POST['form_number'];
 
 $form_location = $forms[$formNumber];
-if ($_POST['action'] == 'Preview Abstract') {
+if (isset($_POST['preview_abstract'])) {
 	$next_location = 'abstract-show.php?id=' . urlencode($registrant->getField('id'));
-} else if (isset($_POST['jump1'])) {
-	$next_location = $forms[1];
-} else if (isset($_POST['jump2'])) {
-	$next_location = $forms[2];
-} else if (isset($_POST['jump3'])) {
-	$next_location = $forms[3];
+} else if (isset($_POST['jump_prev'])) {
+	$next_location = $forms[$formNumber - 1];
 } else {
 	$next_location = $forms[$formNumber + 1];
 }

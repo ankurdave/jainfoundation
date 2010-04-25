@@ -253,11 +253,6 @@
 		</div>
 	</div>
 
-	<p>
-		<input type="submit" name="action" value="Preview Abstract" />
-		<input type="submit" name="action" value="Submit Abstract and Continue Registering" />
-	</p>
-
 	<?php echo registerMenu(2); ?>
 </form>
 
