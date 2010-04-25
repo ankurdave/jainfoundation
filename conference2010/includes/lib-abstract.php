@@ -21,13 +21,15 @@ class AbstractDAO {
 	);
 	private $authors = array();
 	private $affiliations = array();
+	private $registrant;
 	
 	/**
-	 * Loads the existing abstract with the given ID. If $id is null, creates a new empty abstract.
+	 * Loads the existing abstract with the given ID. If $id is null, creates a new empty abstract. If $registrant is null, loads the associated registrant.
 	 */
-	function __construct($db, $id = null) {
+	function __construct($db, $id = null, $registrant = null) {
 		$this->db = $db;
 
+		// If given an ID, load the pre-existing abstract from the DB
 		if ($id !== null) {
 			$id_escaped = $this->db->real_escape_string($id);
 			$result = $this->db->query("SELECT * FROM abstract WHERE id='$id_escaped'");
@@ -47,6 +49,13 @@ class AbstractDAO {
 			$this->authors = AbstractAuthorDAO::loadAssociated($this->db, $this->data['id']);
 			$this->affiliations = AbstractAffiliationDAO::loadAssociated($this->db, $this->data['id']);
 		}
+
+		// Load the associated registrant
+		if ($registrant === null) {
+			$this->registrant = new RegistrantDAO($this->db, $this->data['registrant_id']);
+		} else {
+			$this->registrant = $registrant;
+		}
 	}
 	
 	/**
@@ -64,6 +73,10 @@ class AbstractDAO {
 			$this->data[$fieldName] = $fieldValue;
 		}
 		// TODO: warn using syslog if field does not exist
+	}
+
+	function getRegistrant() {
+		return $this->registrant;
 	}
 	
 	/**

@@ -299,7 +299,7 @@ class RegistrantDAO {
 			// Load the associated information
 			$this->galaGuests = RegistrantGalaGuestDAO::loadAssociated($this->db, $this->data['id']);
 
-			$this->abstract = AbstractDAO::loadAssociated($this->db, $this->data['id']);
+			$this->abstract = AbstractDAO::loadAssociated($this->db, $this->data['id'], $this);
 		}
 	}
 
