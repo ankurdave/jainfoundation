@@ -6,35 +6,17 @@
 class AbstractDAO {
 	private $db;
 	private $data;
-	private static $columnTypes = array(
+	public static $columnTypes = array(
 		'id' => array('i', false),
-		'auth_key' => array('s', false),
+		'registrant_id' => array('i', false),
 		'picture_mimetype' => array('s', false),
 		'picture_data' => array('file', false),
-		'firstname' => array('s', true),
-		'middlename' => array('s', false),
-		'lastname' => array('s', true),
-		'degree' => array('s', true),
-		'department' => array('s', false),
-		'institution' => array('s', true),
-		'street_address' => array('s', true),
-		'street_address_2' => array('s', false),
-		'city' => array('s', true),
-		'state_province' => array('s', false),
-		'zip_postal_code' => array('s', true),
-		'country' => array('s', true),
-		'phone' => array('s', true),
-		'fax' => array('s', false),
-		'email' => array('s', true),
-		'author_status' => array('s', true),
-		'degree_year' => array('s', false),
 		'abstract_category' => array('s', true),
 		'abstract_category_other' => array('s', false),
 		'presentation_type' => array('s', true),
 		'abstract_title' => array('s', true),
 		'abstract_body' => array('s', true),
 		'final' => array('i', false),
-		'author_status_other' => array('s', false),
 		'comments' => array('s', false),
 	);
 	private $authors = array();
@@ -43,9 +25,9 @@ class AbstractDAO {
 	/**
 	 * Loads the existing abstract with the given ID. If $id is null, creates a new empty abstract.
 	 */
-	function __construct($id = null) {
-		$this->db = connectToDB();
-		
+	function __construct($db, $id = null) {
+		$this->db = $db;
+
 		if ($id !== null) {
 			$id_escaped = $this->db->real_escape_string($id);
 			$result = $this->db->query("SELECT * FROM abstract WHERE id='$id_escaped'");
@@ -55,14 +37,11 @@ class AbstractDAO {
 			
 			$row = $result->fetch_assoc();
 			
-			// Do not store auth_key for security
-			// This prevents the following scenario:
-			// $abstract = new AbstractDAO(100); // Loads abstract from DB, including auth_key
-			// $abstract->setField('abstract_title', 'bogus');
-			// $abstract->save(); // Checks auth_key, which will always be correct, since it was just loaded from the DB. Data has been modified without proper authentication!
-			unset($row['auth_key']);
-			
-			$this->data = $row;
+			// Copy the row data into the abstract fields
+			// Use foreach and setField instead of a straight array copy because setField checks whether each column is a valid abstract entry. This drops any columns that are in the database but not valid for the DAO.
+			foreach ($row as $key => $val) {
+				$this->setField($key, $val);
+			}
 			
 			// Load the associated authors and affiliations
 			$this->authors = AbstractAuthorDAO::loadAssociated($this->db, $this->data['id']);
@@ -87,10 +66,19 @@ class AbstractDAO {
 		// TODO: warn using syslog if field does not exist
 	}
 	
-	function addAuthor($author) {
-		$this->authors[] = $author;
+	/**
+	 * Returns the author at the given index. If it doesn't exist, creates a new one automatically.
+	 */
+	function getAuthor($index) {
+		if (!isset($this->authors[$index])) {
+			$this->authors[$index] = new AbstractAuthorDAO($this->db);
+		}
+		return $this->authors[$index];
 	}
-	
+
+	/**
+	 * Returns all authors.
+	 */
 	function getAuthors() {
 		return $this->authors;
 	}
@@ -99,14 +87,23 @@ class AbstractDAO {
 		$this->authors = array();
 	}
 	
-	function addAffiliation($aff) {
-		$this->affiliations[] = $aff;
+	/**
+	 * Returns the affiliation at the given index. If it doesn't exist, creates a new one automatically.
+	 */
+	function getAffiliation($index) {
+		if (!isset($this->affiliations[$index])) {
+			$this->affiliations[$index] = new AbstractAffiliationDAO($this->db);
+		}
+		return $this->affiliations[$index];
 	}
-	
+
+	/**
+	 * Returns all affiliations.
+	 */
 	function getAffiliations() {
 		return $this->affiliations;
 	}
-	
+
 	function clearAffiliations() {
 		$this->affiliations = array();
 	}
@@ -118,8 +115,8 @@ class AbstractDAO {
 	 */
 	function save($finalize = false) {
 		// Check the preconditions
-		if (!$this->checkIdAuthKey()) {
-			throw new DAOAuthException('Invalid ID or auth key');
+		if (!$this->checkId()) {
+			throw new DAOAuthException('Invalid ID');
 		}
 		if ($this->checkFinal()) {
 			throw new DAOAuthException('Abstract is marked as final');
@@ -199,14 +196,14 @@ class AbstractDAO {
 	}
 
 	/**
-	 * Ensures a valid id and auth_key. If they are null, creates a new id and auth_key, and returns true. If they are set, checks if they are valid (whether or not they exist in the database). If valid, returns true; otherwise returns false.
+	 * Ensures a valid id. If it is null, creates a new id. If is is set, checks if it is valid (whether or not it exists in the database). If valid, returns true; otherwise returns false.
 	 */
-	private function checkIdAuthKey() {
+	private function checkId() {
 		$update = !is_null($this->data['id']);
 		if ($update) {
 			// Check if the id and auth key are actually valid
-			$query = $this->db->prepare("SELECT id FROM abstract WHERE id=? AND auth_key=?");
-			$query->bind_param('is', $this->data['id'], $this->data['auth_key']);
+			$query = $this->db->prepare("SELECT id FROM abstract WHERE id=?");
+			$query->bind_param('i', $this->data['id']);
 			$query->execute();
 			$query->store_result();
 
@@ -218,7 +215,6 @@ class AbstractDAO {
 			$this->data['id'] = $prevId + 1;
 			$result->free();
 		
-			$this->data['auth_key'] = uniqid('', true); // TODO: use a real uuid for more security
 			return true;
 		}
 	}
@@ -228,6 +224,21 @@ class AbstractDAO {
 	 */
 	private function checkFinal() {
 		return !is_null($this->data['id']) && ($this->data['final'] == 1);
+	}
+
+	/**
+	 * Returns the abstract associated with the given registrant ID.
+	 */
+	static function loadAssociated($db, $registrantId) {
+		$registrantIdEscaped = $db->real_escape_string($registrantId);
+		$result = $db->query("SELECT id FROM abstract WHERE registrant_id=$registrantIdEscaped");
+		if ($result->num_rows > 0) {
+			$row = $result->fetch_assoc();
+			$dao = new AbstractDAO($db, $row['id']);
+			return $dao;
+		} else {
+			return null;
+		}
 	}
 }
 

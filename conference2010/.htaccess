@@ -1,6 +1,4 @@
 # Allow file uploads for the author image in the abstract submission form
-<Files abstract-submit.php>
 	php_value file_uploads On
 	php_value upload_max_filesize 1M
 	php_value post_max_size 2M
-</Files>

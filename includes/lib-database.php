@@ -59,9 +59,8 @@ class InsertUpdateQuery {
 			$paramTypes .= ($col->type == 'file') ? 'b' : $col->type;
 			$colVals[] = $col->value;
 		}
-		
+
 		call_user_func_array(array(&$query, 'bind_param'), array_merge(array($paramTypes), $colVals));
-		
 		// Send the long column data
 		$colNum = 0;
 		foreach ($this->columns as $colName => $col) {

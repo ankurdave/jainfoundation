@@ -9,12 +9,12 @@ class RegistrantDAO {
 	public static $columnTypes = array(
 		'id' => array(
 			'type' => 'i',
-			'form' => 1,
+			'form' => null,
 			'required' => false
 		),
 		'auth_key' => array(
 			'type' => 's',
-			'form' => 1,
+			'form' => null,
 			'required' => false
 		),
 		'firstname' => array(
@@ -112,157 +112,160 @@ class RegistrantDAO {
 			'form' => 1,
 			'required' => false
 		),
+
 		'submitting_abstract' => array(
 			'type' => 's',
-			'form' => 1,
+			'form' => 2,
 			'required' => true
 		),
-		'abstract_title' => array(
+		'presenting_author' => array(
 			'type' => 's',
-			'form' => 1,
+			'form' => 2,
 			'required' => false
 		),
+
 		'local_attendee' => array(
 			'type' => 's',
-			'form' => 1,
+			'form' => 3,
 			'required' => true
 		),
 		'hotel_parking' => array(
 			'type' => 's',
-			'form' => 1,
+			'form' => 3,
 			'required' => true
 		),
 		'attendance_day1' => array(
 			'type' => 's',
-			'form' => 1,
+			'form' => 3,
 			'required' => true
 		),
 		'attendance_day2' => array(
 			'type' => 's',
-			'form' => 1,
+			'form' => 3,
 			'required' => true
 		),
 		'attendance_day3' => array(
 			'type' => 's',
-			'form' => 1,
+			'form' => 3,
 			'required' => true
 		),
 		'attendance_day4' => array(
 			'type' => 's',
-			'form' => 1,
+			'form' => 3,
 			'required' => true
 		),
 		'meals_day2_breakfast' => array(
 			'type' => 's',
-			'form' => 1,
+			'form' => 3,
 			'required' => false
 		),
 		'meals_day2_lunch' => array(
 			'type' => 's',
-			'form' => 1,
+			'form' => 3,
 			'required' => false
 		),
 		'meals_day2_lunch_entree' => array(
 			'type' => 's',
-			'form' => 1,
+			'form' => 3,
 			'required' => false
 		),
 		'meals_day3_breakfast' => array(
 			'type' => 's',
-			'form' => 1,
+			'form' => 3,
 			'required' => false
 		),
 		'meals_day3_lunch' => array(
 			'type' => 's',
-			'form' => 1,
+			'form' => 3,
 			'required' => false
 		),
 		'meals_day3_lunch_entree' => array(
 			'type' => 's',
-			'form' => 1,
+			'form' => 3,
 			'required' => false
 		),
 		'meals_day4_breakfast' => array(
 			'type' => 's',
-			'form' => 1,
+			'form' => 3,
 			'required' => false
 		),
 		'meals_day4_lunch' => array(
 			'type' => 's',
-			'form' => 1,
+			'form' => 3,
 			'required' => false
 		),
 		'meals_day4_lunch_entree' => array(
 			'type' => 's',
-			'form' => 1,
+			'form' => 3,
 			'required' => false
 		),
 		'meals_gala_dinner' => array(
 			'type' => 's',
-			'form' => 1,
+			'form' => 3,
 			'required' => true
 		),
 		'meals_gala_dinner_vegetarian' => array(
 			'type' => 's',
-			'form' => 1,
+			'form' => 3,
 			'required' => false
 		),
 		'meals_gala_dinner_guests' => array(
 			'type' => 's',
-			'form' => 1,
+			'form' => 3,
 			'required' => false
 		),
 		'meals_gala_dinner_numguests' => array(
 			'type' => 's',
-			'form' => 1,
+			'form' => 3,
 			'required' => false
 		),
 		'share_room' => array(
 			'type' => 's',
-			'form' => 1,
+			'form' => 3,
 			'required' => false
 		),
 		'gender' => array(
 			'type' => 's',
-			'form' => 1,
+			'form' => 3,
 			'required' => false
 		),
 		'arrival_date' => array(
 			'type' => 's',
-			'form' => 1,
+			'form' => 3,
 			'required' => false
 		),
 		'departure_date' => array(
 			'type' => 's',
-			'form' => 1,
+			'form' => 3,
 			'required' => false
 		),
 		'have_promo_code' => array(
 			'type' => 's',
-			'form' => 1,
+			'form' => 3,
 			'required' => true
 		),
 		'promo_code' => array(
 			'type' => 's',
-			'form' => 1,
+			'form' => 3,
 			'required' => false
 		),
 		'total_fee' => array(
 			'type' => 'i',
-			'form' => 1,
+			'form' => null,
 			'required' => false
 		),
 		'payment_type' => array(
 			'type' => 's',
-			'form' => 1,
+			'form' => 3,
 			'required' => true
 		),
 		'comments' => array(
 			'type' => 's',
-			'form' => 1,
+			'form' => 3,
 			'required' => false
 		),
 	);
+	private $abstract;
 	private $galaGuests = array();
 
 	/**
@@ -287,10 +290,16 @@ class RegistrantDAO {
 			// $abstract->save(); // Checks auth_key, which will always be correct, since it was just loaded from the DB. Data has been modified without proper authentication!
 			unset($row['auth_key']);
 
-			$this->data = $row;
+			// Copy the row data into the abstract fields
+			// Use foreach and setField instead of a straight array copy because setField checks whether each column is a valid abstract entry. This drops any columns that are in the database but not valid for the DAO.
+			foreach ($row as $key => $val) {
+				$this->setField($key, $val);
+			}
 
 			// Load the associated information
 			$this->galaGuests = RegistrantGalaGuestDAO::loadAssociated($this->db, $this->data['id']);
+
+			$this->abstract = AbstractDAO::loadAssociated($this->db, $this->data['id']);
 		}
 	}
 
@@ -311,15 +320,41 @@ class RegistrantDAO {
 		// TODO: warn using syslog if field does not exist
 	}
 
+	/**
+	 * Returns the gala guest at the given index. If it doesn't exist, creates a new one automatically.
+	 */
 	function getGalaGuest($index) {
+		if (!isset($this->galaGuests[$index])) {
+			$this->galaGuests[$index] = new RegistrantGalaGuestDAO($this->db);
+		}
 		return $this->galaGuests[$index];
+	}
+
+	/**
+	 * Returns all gala guests.
+	 */
+	function getGalaGuests() {
+		return $this->galaGuests;
 	}
 
 	function clearGalaGuests() {
 		$this->galaGuests = array();
 	}
 
+	/**
+	 * Returns the associated abstract, or null if it doesn't exist.
+	 */
 	function getAbstract() {
+		return $this->abstract;
+	}
+
+	/**
+	 * Returns the associated abstract, initializing it if necessary.
+	 */
+	function getAbstractInit() {
+		if (!isset($this->abstract)) {
+			$this->abstract = new AbstractDAO($this->db);
+		}
 		return $this->abstract;
 	}
 
@@ -327,8 +362,10 @@ class RegistrantDAO {
 	 * Saves the registrant to the database. Creates a new registrant if id and auth_key are set, otherwise updates the existing registrant with the given id.
 	 *
 	 * Throws an exception if id and auth_key are set but invalid (do not exist in the database).
+	 * 
+	 * @param boolean $finalize whether or not to mark the abstract as "final," meaning it cannot be edited anymore. Set to false when only previewing the abstract.
 	 */
-	function save() {
+	function save($finalize = true) {
 		// Check the preconditions
 		if (!$this->checkIdAuthKey()) {
 			throw new DAOAuthException('Invalid ID or auth key');
@@ -344,8 +381,8 @@ class RegistrantDAO {
 			$galaGuest->save();
 		}
 
-		// Save the abstract if it's been written to
-		if ($this->abstract->dirty()) {
+		// Save the abstract
+		if (isset($this->abstract)) {
 			$this->abstract->setField('registrant_id', $this->data['id']);
 			$this->abstract->save();
 		}
@@ -386,8 +423,12 @@ class RegistrantDAO {
 
 		// Check if all required fields are present
 		foreach (self::$columnTypes as $colName => $colInfo) {
-			// If the column is required, make sure it's non-empty in $this->data
-			if ($colInfo['required'] && ($formNumber === null || $formNumber == $colInfo['formNumber']) {
+			// If the column is required for this form number, make sure it's non-empty in $this->data
+			if ($colInfo['required']
+			    && isset($formNumber)
+			    && isset($colInfo[$formNumber])
+			    && $formNumber == $colInfo['formNumber']
+			) {
 				if (empty($this->data[$colName])) {
 					$invalidFields[] = $colName;
 				}
@@ -494,17 +535,17 @@ class RegistrantGalaGuestDAO {
 	private static $columnTypes = array(
 		'id' => array(
 			'type' => 'i',
-			'form' => 1,
+			'form' => null,
 			'required' => false
 		),
 		'registrant_id' => array(
 			'type' => 'i',
-			'form' => 1,
-			'required' => true
+			'form' => null,
+			'required' => false
 		),
 		'vegetarian' => array(
 			'type' => 's',
-			'form' => 1,
+			'form' => 3,
 			'required' => true
 		),
 	);

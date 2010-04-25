@@ -20,7 +20,15 @@
 		}
 	} catch (DAOAuthException $e) { }
 	
-	printHeader(array('title' => 'Conference 2010 | Meeting Registration', 'scripts' => array($Config['URLPath'] . '/js/jquery.validate.js', 'js/register.js',), 'page_nav_id' => 'register'));
+	printHeader(array(
+		'title' => 'Conference 2010 | Meeting Registration',
+		'scripts' => array(
+			$Config['URLPath'] . '/js/jquery.validate.js',
+			'js/register-common.js',
+			'js/register.js',
+		),
+		'page_nav_id' => 'register'
+	));
 ?>
 
 <?php include 'includes/conference-title.inc.php' ?>
@@ -43,6 +51,7 @@
 	}
 ?>
 <form action="<?php echo $submit_location . $data_auth_query_string ?>" method="post" id="register-form">
+	<input type="hidden" name="form_number" value="1">
 	<h3>Personal Information</h3>
 	<table>
 		<?php

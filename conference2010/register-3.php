@@ -9,11 +9,6 @@
 	// Set the default values
 	$registrant = new RegistrantDAO($db);
 
-	$abstract = new AbstractDAO();
-	$author1 = new AbstractAuthorDAO($db);
-	$author1->setField('affiliations', '1');
-	$abstract->addAuthor($author1);
-
 	// Load the saved values from the DAO, if any
 	try {
 		if (isset($_GET['id'])) {
@@ -23,19 +18,14 @@
 			$registrant = new RegistrantDAO($db, $_COOKIE['register_id']);
 			$registrant->setField('auth_key', $_COOKIE['register_auth_key']);
 		}
-
-		if (defined($registrant->getField('abstract_id'))) {
-			$abstract = new AbstractDAO($registrant->getField('abstract_id'));
-		}
 	} catch (DAOAuthException $e) { }
 
 	printHeader(array(
 		'title' => 'Conference 2010 | Meeting Registration',
 		'scripts' => array(
 			$Config['URLPath'] . '/js/jquery.validate.js',
-			$Config['URLPath'] . '/js/jquery.alphanumeric.js',
-			'js/register.js',
-			'js/abstract.js',
+			'js/register-common.js',
+			'js/register-3.js',
 		),
 		'page_nav_id' => 'register',
 	));
@@ -57,6 +47,7 @@
 	}
 ?>
 <form action="<?php echo $submit_location . $data_auth_query_string ?>" method="post" id="register-form">
+	<input type="hidden" name="form_number" value="3">
 	<h3>Registration Information</h3>
 	<p>Are you a local attendee?</p>
 	<table>
@@ -243,8 +234,8 @@
 				'label' => 'Do you require a Vegetarian option for the Gala Dinner?',
 				'required' => false,
 				'options' => array(
-								   'yes' => 'Yes',
-								   'no' => 'No',
+					'yes' => 'Yes',
+					'no' => 'No',
 				),
 				'value' => $registrant->getField('meals_gala_dinner_vegetarian'),
 			));

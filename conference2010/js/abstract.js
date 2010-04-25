@@ -5,19 +5,19 @@ $(document).ready(function() {
 			degree_year: {
 				fieldEq: [ "author_status", "postdoc" ]
 			},
-			
+
 			author_status_other: {
 				fieldEq: [ "author_status", "other" ]
 			},
-			
+
 			picture: {
 				accept: "png,jpe?g"
 			},
-			
+
 			abstract_category_other: {
 				fieldEq: [ "abstract_category", "other" ]
 			},
-			
+
 			abstract_body: {
 				maxWords: 275
 			}
@@ -73,7 +73,7 @@ $.validator.addMethod("maxWords", function(value, element, wordLimit) {
 	// This is an ugly optimization -- it should be in its own function, bound separately to each field that requires it, but that would mean we count the words twice. An unfortunate side effect of this optimization is that maxWords can only be used on one element.
 	$("#word_count_text").css('display', 'block');
 	$("#word_count").html(count);
-	
+
 	// Check if the count is within limits
 	return count <= wordLimit;
 }, $.validator.format("word limit: {0} words"));
@@ -83,7 +83,7 @@ $.validator.addMethod("affiliation_reference", function(value, element) {
 	if (!value) {
 		return true;
 	}
-	
+
 	var affiliations = value.split(/,/);
 	for (var i = 0; i < affiliations.length; i++) {
 		if (!$("#affiliation_" + affiliations[i]).val()) {
