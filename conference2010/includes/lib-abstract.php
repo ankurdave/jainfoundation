@@ -241,13 +241,15 @@ class AbstractDAO {
 
 	/**
 	 * Returns the abstract associated with the given registrant ID.
+	 * 
+	 * @param RegistrantDAO $registrant a reference to the RegistrantDAO to associate with the abstract. If null, the abstract will load a new copy of the appropriate RegistrantDAO from the database.
 	 */
-	static function loadAssociated($db, $registrantId) {
+	static function loadAssociated($db, $registrantId, $registrant = null) {
 		$registrantIdEscaped = $db->real_escape_string($registrantId);
 		$result = $db->query("SELECT id FROM abstract WHERE registrant_id=$registrantIdEscaped");
 		if ($result->num_rows > 0) {
 			$row = $result->fetch_assoc();
-			$dao = new AbstractDAO($db, $row['id']);
+			$dao = new AbstractDAO($db, $row['id'], $registrant);
 			return $dao;
 		} else {
 			return null;

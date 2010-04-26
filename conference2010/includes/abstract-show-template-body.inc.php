@@ -1,12 +1,28 @@
 <div class="abstract">
 
-<h1 class="author"><?php f('firstname') ?> <?php f('middlename') ?> <?php f('lastname') ?>, <?php f('degree') ?></h1>
+	 <h1 class="author"><?php
+		fReg('firstname');
+		print " ";
+		fReg('middlename');
+		print " ";
+		fReg('lastname');
+
+		$degree = $abstract->getRegistrant()->getField('degree');
+		if ($degree != 'none') {
+	 		print ", ";
+	 		if ($degree == 'other') {
+				fReg('degree_other');
+	 		} else {
+	 			fReg('degree');
+	 		}
+		}
+	?></h1>
 
 <p style="margin:0in">
 	<span class="affiliation_1"><?php
 		echo print_html($affiliations[0]->getField('affiliation'));
 	?></span><br>
-	<span class="email"><a href="mailto:<?php f('email') ?>"><?php f('email') ?></a></span>
+	<span class="email"><a href="mailto:<?php fReg('email') ?>"><?php fReg('email') ?></a></span>
 </p>
 
 <h2 class="abstract_title"><?php f('abstract_title') ?></h2>

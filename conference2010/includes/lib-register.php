@@ -269,11 +269,12 @@ class RegistrantDAO {
 	private $galaGuests = array();
 
 	/**
-	 * Loads the existing registrant with the given ID. If $id is null, creates a new empty registrant.
+	 * Loads the existing registrant with the given ID. If $id is null, creates a new empty registrant. If $abstract is null, loads the associated abstract.
 	 */
-	function __construct($db, $id = null) {
+	function __construct($db, $id = null, $abstract = null) {
 		$this->db = $db;
 
+		// If given an ID, load the pre-existing registrant from the DB
 		if ($id !== null) {
 			$id_escaped = $this->db->real_escape_string($id);
 			$result = $this->db->query("SELECT * FROM registrant WHERE id='$id_escaped'");
@@ -299,7 +300,12 @@ class RegistrantDAO {
 			// Load the associated information
 			$this->galaGuests = RegistrantGalaGuestDAO::loadAssociated($this->db, $this->data['id']);
 
-			$this->abstract = AbstractDAO::loadAssociated($this->db, $this->data['id'], $this);
+			// Load the associated registrant if necessary
+			if ($abstract === null) {
+				$this->abstract = AbstractDAO::loadAssociated($this->db, $this->data['id'], $this);
+			} else {
+				$this->abstract = $abstract;
+			}
 		}
 	}
 

@@ -1,11 +1,19 @@
 <?php
 
 /**
-* Prints the specified abstract field, HTML-encoded.
-*/
+ * Prints the specified abstract field, HTML-encoded.
+ */
 function f($field) {
 	global $abstract;
 	echo print_html($abstract->getField($field));
+}
+
+/**
+ * Prints the specified registrant field, HTML-encoded.
+ */
+function fReg($field) {
+	global $abstract;
+	echo print_html($abstract->getRegistrant()->getField($field));
 }
 
 function printAbstractHead() {

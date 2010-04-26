@@ -15,39 +15,39 @@ if (isset($_GET['id']) && isset($_GET['auth_key'])) {
 	$registrant = new RegistrantDAO($db);
 }
 
-// Figure out what form we came from and what form we're going to
-// Also handle abstract previewing
+// List of forms
 $forms = array(
 	1 => 'register.php',
 	2 => 'register-2.php',
 	3 => 'register-3.php',
 	4 => 'register-success.php',
+	'preview_abstract' => 'abstract-show.php',
 );
 
-$formNumber = $_POST['form_number'];
-
-$form_location = $forms[$formNumber];
+// Figure out the indices (into $forms) for the form we came from and the form we're going to.
+$formIndex = $_POST['form_number'];
 if (isset($_POST['preview_abstract'])) {
-	$next_location = 'abstract-show.php?id=' . urlencode($registrant->getField('id'));
+	$nextIndex = 'preview_abstract';
 } else if (isset($_POST['jump_prev'])) {
-	$next_location = $forms[$formNumber - 1];
+	$nextIndex = $formIndex - 1;
 } else {
-	$next_location = $forms[$formNumber + 1];
+	$nextIndex = $formIndex + 1;
 }
 
-if (!isset($form_location) || !isset($next_location)) {
+// Make sure the calculated form and next locations are valid (defined in the $forms table)
+if (!isset($forms[$formIndex]) || !isset($forms[$nextIndex])) {
 	header("Location: register.php");
 	exit();
 }
 
 // Clear the lists if necessary
-if ($formNumber == 2) {
+if ($formIndex == 2) {
 	if (!is_null($registrant->getAbstract())) {
 		$registrant->getAbstract()->clearAuthors();
 		$registrant->getAbstract()->clearAffiliations();
 	}
 }
-if ($formNumber == 3) {
+if ($formIndex == 3) {
 	$registrant->clearGalaGuests();
 }
 // Send the relevant fields to the DAOs
@@ -92,9 +92,9 @@ if (is_uploaded_file($_FILES['picture']['tmp_name']) && $_FILES['picture']['size
 // Save the DAO
 // This is before validation so that if there's an error, the user won't lose the data
 try {
-	$registrant->save($next_location == $forms[4]); // Mark the submission as final if the next page is the thank-you page
+	$registrant->save($nextIndex == 4); // Mark the submission as final if the next page is the thank-you page
 } catch (DAOAuthException $e) {
-	header("Location: $form_location?error_auth");
+	header("Location: {$forms[$formIndex]}?error_auth");
 	exit;
 }
 
@@ -112,19 +112,25 @@ if (count($invalidFields) > 0) {
 
 	$invalidFieldsQueryString = join('&', array_map('makeFieldErrorString', $invalidFields));
 
-	header("Location: $form_location?$data_auth_query_string&$invalidFieldsQueryString#" . urlencode($invalidFields[0]));
+	header("Location: {$forms[$formIndex]}?$data_auth_query_string&$invalidFieldsQueryString#" . urlencode($invalidFields[0]));
 	exit();
 }
 
 // If submitting, clear the cookies
-setcookie('register_id', '', time() - 3600);
-setcookie('register_auth_key', '', time() - 3600);
+if ($nextIndex == 4) {
+	setcookie('register_id', '', time() - 3600);
+	setcookie('register_auth_key', '', time() - 3600);
+}
 
 // Go to the next page
-header("Location: $next_location?$data_auth_query_string");
+if ($nextIndex == 'preview_abstract') {
+	header("Location: {$forms[$nextIndex]}?id=" . urlencode($registrant->getAbstract()->getField('id')));
+} else {
+	header("Location: {$forms[$nextIndex]}?$data_auth_query_string");
+}
 
 // If submitting, send an email
-if ($next_location == $forms[4]) {
+if ($nextIndex == 4) {
 	// Check whether or not a abstract email should be sent
 	$sendAbstractEmail = !is_null($registrant->getAbstract());
 	
