@@ -1,6 +1,8 @@
 <?php
 	require 'includes/lib.php';
 
+	$db = connectToDB();
+
 	$submitLocation = 'abstract-delete-submit.php';
 
 	function showList() {
@@ -10,8 +12,9 @@
 
 	if (isset($_GET['id'])) {
 		try {
-			$abstract = new AbstractDAO($_GET['id']);
+			$abstract = new AbstractDAO($db, $_GET['id']);
 		} catch (DAOAuthException $e) {
+			print_r($e);
 			showList();
 		}
 	} else {
@@ -26,7 +29,7 @@
 
 <form action="<?php echo $submitLocation . '?' . $queryString ?>" method="POST">
 
-<p>Are you sure you want to delete <strong>abstract #<?php echo print_html($abstract->getField('id')) ?> ("<?php echo print_html($abstract->getField('abstract_title')) ?>" by <?php echo print_html($abstract->getField('firstname') . ' ' . $abstract->getField('lastname')) ?>)</strong>?</p>
+<p>Are you sure you want to delete <strong>abstract #<?php echo print_html($abstract->getField('id')) ?> ("<?php echo print_html($abstract->getField('abstract_title')) ?>" by <?php echo print_html($abstract->getRegistrant()->getField('firstname') . ' ' . $abstract->getRegistrant()->getField('lastname')) ?>)</strong>?</p>
 
 <p><input type="submit" value="Delete" /></p>
 

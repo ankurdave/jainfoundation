@@ -2,6 +2,8 @@
 
 require 'includes/lib.php';
 
+$db = connectToDB();
+
 $successLocation = 'abstract-list.php';
 
 function showList() {
@@ -11,7 +13,7 @@ function showList() {
 
 if (isset($_GET['id'])) {
 	try {
-		$abstract = new AbstractDAO($_GET['id']);
+		$abstract = new AbstractDAO($db, $_GET['id']);
 	} catch (DAOAuthException $e) {
 		showList();
 	}
