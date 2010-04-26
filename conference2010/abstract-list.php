@@ -1,46 +1,48 @@
 <?php
-	require 'includes/lib.php';
 
-	printHeader(array('title' => 'Conference 2010 | List of Abstracts'));
+require 'includes/lib.php';
 
-	$db = connectToDB();
-	$result = $db->query('SELECT id, firstname, middlename, lastname, degree, department, institution, street_address, street_address_2, city, state_province, zip_postal_code, country, phone, fax, email, author_status, degree_year, abstract_category, abstract_category_other, presentation_type, abstract_title, comments FROM abstract');
+printHeader(array('title' => 'Conference 2010 | List of Abstracts'));
+
 ?>
-
 <h1>List of Abstracts</h1>
+<?php
 
-<?php include 'includes/menu.inc.php' ?>
+include 'includes/menu.inc.php';
 
+$db = connectToDB();
+$abstracts = AbstractDAO::loadAll($db);
+
+include 'includes/abstract-export-fields.php';
+
+foreach ($abstracts as $abstract) {
+?>
+	<table class="db_list_entry" id="abstract<?php echo print_html($abstract->getField('id')) ?>">
 <?php
 	$i = 0;
-	while ($data = $result->fetch_assoc()) {
-		$i++;
+	foreach ($fields as $fieldName => $inRegistrant) {
 ?>
-		<table class="db_list_entry" id="abstract<?php echo print_html($data['id']) ?>">
+		<tr class="<?php echo $i % 2 == 0 ? 'row_even' : 'row_odd' ?>">
+			<th><?php echo print_html($fieldName) ?></th>
+			<td><?php echo print_html($inRegistrant ? $abstract->getRegistrant()->getField($fieldName) : $abstract->getField($fieldName)) ?></td>
+			<td class="action">
 <?php
-		$i = 0;
-		foreach ($data as $key => $val) { ?>
-			<tr class="<?php echo $i % 2 == 0 ? 'row_even' : 'row_odd' ?>">
-				<th><?php echo print_html($key) ?></th>
-				<td><?php echo print_html($val) ?></td>
-				<td class="action">
-					<?php
-						if ($key == 'id') {
-							?>
-							(<a href="abstract-delete.php?id=<?php echo urlencode($data['id']) ?>">delete</a>)
-							<?php
-						}
-					?>
-				</td>
-			</tr>
+			if ($key == 'id') {
+?>
+				(<a href="abstract-delete.php?id=<?php echo urlencode($data['id']) ?>">delete</a>)
 <?php
-			$i++;
-		} ?>
-		</table>
+			}
+?>
+			</td>
+		</tr>
 <?php
+		$i++;
 	}
+?>
+	</table>
+<?php
+}
 
-	$result->free();
+printFooter();
 
-	printFooter();
 ?>
