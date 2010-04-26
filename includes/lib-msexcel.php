@@ -16,6 +16,27 @@ function xlsWriteRow($row) {
 }
 
 /**
+ * Returns the Excel-formatted version of the given cell. Alternative to xlsWriteRow
+ */
+function xlsWriteCell($cell) {
+	return mb_convert_encoding(remove_linebreaks($cell), 'UTF-16LE', 'UTF-8');
+}
+
+/**
+ * Returns the Excel cell separator. Alternative to xlsWriteRow
+ */
+function xlsWriteCellSeparator() {
+	return "\t";
+}
+
+/**
+ * Returns the Excel row terminator. Alternative to xlsWriteRow
+ */
+function xlsWriteRowTerminator() {
+	return "\r\n";
+}
+
+/**
  * Removes the linebreaks (CR and LF) from a string so it can be written as a CSV field.
  */
 function remove_linebreaks($text) {

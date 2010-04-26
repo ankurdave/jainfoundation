@@ -255,6 +255,22 @@ class AbstractDAO {
 			return null;
 		}
 	}
+
+	/**
+	 * Returns an array of all the abstracts in the DB.
+	 */
+	static function loadAll($db) {
+		$abstracts = array();
+
+		// Get a list of all the IDs and load it with each abstract
+		// TODO: this does O(n) queries (O(1) per abstract), so it won't scale well
+		$result = $db->query("SELECT id FROM abstract ORDER BY id");
+		while ($row = $result->fetch_assoc()) {
+			$abstracts[] = new AbstractDAO($db, $row['id']);
+		}
+
+		return $abstracts;
+	}
 }
 
 class AbstractAuthorDAO {
