@@ -19,6 +19,7 @@ class AbstractDAO {
 		'final' => array('i', false),
 		'comments' => array('s', false),
 	);
+	private $dirty = array();
 	private $authors = array();
 	private $affiliations = array();
 	private $registrant;
@@ -42,7 +43,7 @@ class AbstractDAO {
 			// Copy the row data into the abstract fields
 			// Use foreach and setField instead of a straight array copy because setField checks whether each column is a valid abstract entry. This drops any columns that are in the database but not valid for the DAO.
 			foreach ($row as $key => $val) {
-				$this->setField($key, $val);
+				$this->setField($key, $val, true);
 			}
 			
 			// Load the associated authors and affiliations
@@ -67,10 +68,17 @@ class AbstractDAO {
 	
 	/**
 	 * Sets the value of the field with the given name. If the field is not a valid column, does nothing.
+	 * 
+	 * @param boolean $skipDirty whether to skip setting the dirty flag for this field. Useful when loading all the field values for the first time.
 	 */
-	function setField($fieldName, $fieldValue) {
+	function setField($fieldName, $fieldValue, $skipDirty = false) {
 		if (array_key_exists($fieldName, self::$columnTypes)) {
 			$this->data[$fieldName] = $fieldValue;
+			
+			if (!$skipDirty) {
+				// Set the dirty flag so save() knows to save this change to the DB
+				$this->dirty[$fieldName] = true;
+			}
 		}
 		// TODO: warn using syslog if field does not exist
 	}
@@ -150,12 +158,17 @@ class AbstractDAO {
 
 		// Set the 'final' field
 		$this->data['final'] = $finalize;
+		$this->dirty['final'] = true;
 		
 		// Build the query
 		$query = new InsertUpdateQuery($this->db);
 		$query->setTable('abstract');
 		foreach ($this->data as $col => $val) {
-			$query->setColumn($col, $val, self::$columnTypes[$col][0]);
+			// Only update the column if it's been modified, or it's the ID column (which is necessary for updating)
+			if ($this->dirty[$col] || $col == 'id') {
+				$query->setColumn($col, $val, self::$columnTypes[$col][0]);
+				$this->dirty[$col] = false;
+			}
 		}
 		
 		// Run it
@@ -226,6 +239,7 @@ class AbstractDAO {
 			$result = $this->db->query("SELECT MAX(id) FROM abstract");
 			list($prevId) = $result->fetch_array();
 			$this->data['id'] = $prevId + 1;
+			$this->dirty['id'] = true;
 			$result->free();
 		
 			return true;

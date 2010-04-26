@@ -76,9 +76,9 @@
 				'options' => array(
 					'' => '',
 					'none' => 'None',
-					'md' => 'MD',
-					'phd' => 'PhD',
-					'bs' => 'BS',
+					'MD' => 'MD',
+					'PhD' => 'PhD',
+					'BS' => 'BS',
 					'other' => 'Other',
 				),
 				'value' => $registrant->getField('degree'),
