@@ -284,6 +284,7 @@ class RegistrantDAO {
 			}
 
 			$row = $result->fetch_assoc();
+			$result->free();
 
 			// Do not store auth_key for security
 			// This prevents the following scenario:
@@ -546,6 +547,7 @@ class RegistrantDAO {
 			$dao = new RegistrantDAO($db, $row['id']);
 			$all[] = $dao;
 		}
+		$result->free();
 
 		return $all;
 	}
@@ -647,6 +649,7 @@ class RegistrantGalaGuestDAO {
 
 			$associated[] = $dao;
 		}
+		$result->free();
 
 		return $associated;
 	}

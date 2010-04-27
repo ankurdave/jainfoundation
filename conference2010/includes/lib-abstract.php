@@ -39,6 +39,7 @@ class AbstractDAO {
 			}
 			
 			$row = $result->fetch_assoc();
+			$result->free();
 			
 			// Copy the row data into the abstract fields
 			// Use foreach and setField instead of a straight array copy because setField checks whether each column is a valid abstract entry. This drops any columns that are in the database but not valid for the DAO.
@@ -263,9 +264,11 @@ class AbstractDAO {
 		$result = $db->query("SELECT id FROM abstract WHERE registrant_id=$registrantIdEscaped");
 		if ($result->num_rows > 0) {
 			$row = $result->fetch_assoc();
+			$result->free();
 			$dao = new AbstractDAO($db, $row['id'], $registrant);
 			return $dao;
 		} else {
+			$result->free();
 			return null;
 		}
 	}
@@ -282,6 +285,7 @@ class AbstractDAO {
 		while ($row = $result->fetch_assoc()) {
 			$abstracts[] = new AbstractDAO($db, $row['id']);
 		}
+		$result->free();
 
 		return $abstracts;
 	}
@@ -374,6 +378,7 @@ class AbstractAuthorDAO {
 			
 			$associated[] = $dao;
 		}
+		$result->free();
 		
 		return $associated;
 	}
@@ -472,6 +477,7 @@ class AbstractAffiliationDAO {
 			
 			$associated[] = $dao;
 		}
+		$result->free();
 		
 		return $associated;
 	}
