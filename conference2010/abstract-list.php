@@ -27,7 +27,7 @@ foreach ($abstracts as $abstract) {
 			<td><?php echo print_html($inRegistrant ? $abstract->getRegistrant()->getField($fieldName) : $abstract->getField($fieldName)) ?></td>
 			<td class="action">
 <?php
-			if ($key == 'id') {
+			if ($fieldName == 'id') {
 ?>
 				(<a href="abstract-delete.php?id=<?php echo urlencode($data['id']) ?>">delete</a>)
 <?php
