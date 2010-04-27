@@ -263,6 +263,10 @@ h2, h3 {
 	margin: 1em 0 0.7em 0;
 }
 
+.note {
+    font-style: italic;
+}
+
 .subtitle {
 	color: #3D7610;
 	font-size: 1.3em;

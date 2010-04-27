@@ -14,7 +14,7 @@
 
 <h3>Location</h3>
 
-<p>The conference will be held at the <a href="http://bellevue.hyatt.com/hyatt/hotels/index.jsp" target="_blank">Hyatt Regency Bellevue</a>.</p>
+<p>The conference will be held at the <a href="http://bellevue.hyatt.com/hyatt/hotels/index.jsp" target="_blank">Hyatt Regency Bellevue</a>.</p>
 
 <p>The hotel address is:</p>
 
@@ -26,6 +26,8 @@
 </p>
 
 <h3><a href="register.php" target="_blank">Conference Registration Dates and Fees</a></h3>
+
+<p class="note">(NOTE: Registrants submitting abstracts should have their abstract ready for submission upon registration.)</p>
 
 <p>Meeting Registration Fees:</p>
 
@@ -46,11 +48,13 @@
 
 <p><strong>No registrations will be accepted after July 23rd, 2010.</strong></p>
 
-<h3><a href="abstract.php" target="_blank">Abstract Submission</a></h3>
+<h3>Abstract Submission</h3>
 
-<p>This year's meeting is going to be different from past dysferlin conferences.  We plan to limit the number of talks and present more information using posters.  The oral sessions will focus on a few of the most pressing questions in dysferlin and will include a significant time for discussion.</p>
+<p>Abstract submission is embedded within the registration page. You CANNOT submit an abstract without registering. To begin the submission of your abstract and registration, please click on the following <a href="register.php" target="_blank">Meeting Registration and Abstract Submission link</a>.</p>
 
-<p>Abstracts must be submitted <strong>no later than June 25, 2010</strong>.  You will be informed by July 9, 2010 whether your abstract has been accepted.  You may select whether you prefer an oral or poster presentation.  However, the decision regarding the type of presentation is at the complete discretion of the Jain Foundation.</p>
+<p>This year's meeting is going to be different from past dysferlin conferences.  We plan to limit the number of talks and present more information using posters.  The oral sessions will focus on a few of the most pressing questions in dysferlin and will include a significant time for discussion. You may select whether you prefer an oral or poster presentation. However, the decision regarding the type of presentation is at the complete discretion of the Jain Foundation.</p>
+
+<p>Abstracts must be submitted <strong>no later than June 25, 2010</strong>.  The Jain Foundation will let you know if your abstract has been accepted as soon as possible, but no later than July 9th, 2010.</p>
 
 <h3>Arrival</h3>
 
