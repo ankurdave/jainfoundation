@@ -29,7 +29,7 @@ foreach ($abstracts as $abstract) {
 <?php
 			if ($fieldName == 'id') {
 ?>
-				(<a href="abstract-delete.php?id=<?php echo urlencode($data['id']) ?>">delete</a>)
+				(<a href="abstract-delete.php?id=<?php echo urlencode($abstract->getField('id')) ?>">delete</a>)
 <?php
 			}
 ?>
