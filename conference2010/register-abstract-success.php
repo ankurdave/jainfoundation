@@ -24,11 +24,17 @@ include 'includes/conference-title.inc.php';
 include 'includes/menu.inc.php';
 
 ?>
-<h2>Registration Thank You</h2>
+<h2>Registration and Abstract Submission Thank You</h2>
 
-<p>Thank you for registering for the Fourth Annual Dysferlin Conference. Please print this page for your records.</p>
+<p>Thank you for registering and submitting your abstract for the Fourth Annual Dysferlin Conference. Your abstract and registration were successfully submitted. Please print this page for your records.</p>
 
-<p>The Jain Foundation will let you know if your registration has been approved as soon as possible, but no later than July 27, 2010. If you have any questions please contact Angela Salerno at <a href="mailto:asalerno@jain-foundation.org">asalerno@jain-foundation.org</a>. Your registration fee will be reimbursed if your registration is not approved.</p>
+<p><a href="abstract-show.php?id=<?php echo urlencode($registrant->getAbstract()->getField('id')) ?>">Please click here to view and save a copy of your submitted abstract.</a> The Jain Foundation will let you know if your abstract has been accepted as soon as possible, but no later than July 9th, 2010.</p>
+
+<p>We will also let you know if your registration has been approved as soon as possible, but no later than July 27th, 2010. Your registration fee will be reimbursed if your registration is not approved.</p>
+
+<p>If you have any questions regarding your registration or abstract submission please contact Angela Salerno at <a href="mailto:asalerno@jain-foundation.org">asalerno@jain-foundation.org</a>.</p>
+
+<h3>Payment Details</h3>
 
 <p>Your Total Registration Fee is <strong>$<?php echo print_html($registrant->getField('total_fee')) ?></strong>.  The registration fees cover the costs of all meeting sessions, breakfasts, breaks, lunches, one gala dinner, and the gala dinner for any guests (if applicable).</p>
 
@@ -58,3 +64,4 @@ include 'includes/menu.inc.php';
 printFooter();
 
 ?>
+

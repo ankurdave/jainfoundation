@@ -21,6 +21,7 @@ $forms = array(
 	2 => 'register-2.php',
 	3 => 'register-3.php',
 	4 => 'register-success.php',
+	'thankyou_abstract' => 'register-abstract-success.php',
 	'preview_abstract' => 'abstract-show.php',
 );
 
@@ -32,6 +33,13 @@ if (isset($_POST['preview_abstract'])) {
 	$nextIndex = $formIndex - 1;
 } else {
 	$nextIndex = $formIndex + 1;
+}
+
+$submitting = ($nextIndex == 4); // Must come before the checking which thank-you page step, because that modifies $nextIndex if submitting an abstract
+
+// Check which thank you page we're going to
+if ($nextIndex == 4 && !is_null($registrant->getAbstract())) {
+	$nextIndex = 'thankyou_abstract';
 }
 
 // Make sure the calculated form and next locations are valid (defined in the $forms table)
@@ -92,7 +100,7 @@ if (is_uploaded_file($_FILES['picture']['tmp_name']) && $_FILES['picture']['size
 // Save the DAO
 // This is before validation so that if there's an error, the user won't lose the data
 try {
-	$registrant->save($nextIndex == 4); // Mark the submission as final if the next page is the thank-you page
+	$registrant->save($submitting); // Mark the submission as final if the next page is the thank-you page
 } catch (DAOAuthException $e) {
 	header("Location: {$forms[$formIndex]}?error_auth");
 	exit;
@@ -117,7 +125,7 @@ if (count($invalidFields) > 0) {
 }
 
 // If submitting, clear the cookies
-if ($nextIndex == 4) {
+if ($submitting) {
 	setcookie('register_id', '', time() - 3600);
 	setcookie('register_auth_key', '', time() - 3600);
 }
@@ -130,7 +138,7 @@ if ($nextIndex == 'preview_abstract') {
 }
 
 // If submitting, send an email
-if ($nextIndex == 4) {
+if ($submitting) {
 	// Check whether or not a abstract email should be sent
 	$sendAbstractEmail = !is_null($registrant->getAbstract());
 	
