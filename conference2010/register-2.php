@@ -108,6 +108,7 @@
 					));
 				?>
 			</table>
+			<p class="note">Please note:  The submitted picture should be of the presenting author for both oral and poster presentations whether they are the first author or not.</p>
 
 			<h4>All Authors</h4>
 

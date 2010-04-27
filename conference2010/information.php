@@ -124,6 +124,8 @@
 
 <p>Please note: The Jain Foundation will not reimburse for any hotel incidentals, travel to/from attendee’s home airport, or meals other than those provided during the conference.</p>
 
+<p class="adminlink"><a href="../admin/conferences.php">Meeting admin pages</a></p>
+
 <?php
 	printFooter();
 ?>

@@ -267,6 +267,10 @@ h2, h3 {
     font-style: italic;
 }
 
+.adminlink {
+    font-size: 80%;
+}
+
 .subtitle {
 	color: #3D7610;
 	font-size: 1.3em;
