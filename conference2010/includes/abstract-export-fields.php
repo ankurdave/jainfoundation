@@ -24,7 +24,7 @@ $fields = array(
 	'abstract_category_other' => false,
 	'presentation_type' => false,
 	'abstract_title' => false,
-	'comments' => false,
+	'abstract_comments' => false,
 );
 
 ?>

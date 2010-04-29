@@ -247,10 +247,10 @@
 			<h4>Comments</h4>
 			<p>Please use this box to indicate anything that you need to convey to the Jain Foundation regarding your abstract submission.</p>
 			<?php
-				print_textarea_field('comments', array(
-					'label' => 'Comments',
+				print_textarea_field('abstract_comments', array(
+					'label' => 'Abstract Comments',
 					'required' => false,
-					'value' => $registrant->getAbstractInit()->getField('comments'),
+					'value' => $registrant->getAbstractInit()->getField('abstract_comments'),
 				));
 			?>
 		</div>

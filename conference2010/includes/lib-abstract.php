@@ -17,7 +17,7 @@ class AbstractDAO {
 		'abstract_title' => array('s', true),
 		'abstract_body' => array('s', true),
 		'final' => array('i', false),
-		'comments' => array('s', false),
+		'abstract_comments' => array('s', false),
 	);
 	private $dirty = array();
 	private $authors = array();

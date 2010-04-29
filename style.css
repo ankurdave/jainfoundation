@@ -380,7 +380,7 @@ form textarea {
 	height: 25em;
 }
 
-form textarea#comments {
+form textarea#comments, form textarea#abstract_comments {
 	height: 5em;
 }
 

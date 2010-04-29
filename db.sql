@@ -33,7 +33,7 @@ CREATE TABLE `abstract` (
   `presentation_type` varchar(255) DEFAULT NULL,
   `abstract_title` varchar(255) DEFAULT NULL,
   `abstract_body` text,
-  `comments` text,
+  `abstract_comments` text,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=35 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
