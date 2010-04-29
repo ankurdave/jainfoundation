@@ -21,7 +21,7 @@
 	} catch (DAOAuthException $e) { }
 
 	printHeader(array(
-		'title' => 'Conference 2010 | Meeting Registration',
+		'title' => 'Conference 2010 | Meeting Registration and Abstract Submission',
 		'scripts' => array(
 			$Config['URLPath'] . '/js/jquery.validate.js',
 			'js/register-common.js',
@@ -35,7 +35,7 @@
 
 <?php include 'includes/menu.inc.php' ?>
 
-<h2>Meeting Registration</h2>
+<h2>Meeting Registration and Abstract Submission</h2>
 
 <p>For questions and concerns please contact Angela Salerno at <a href="mailto:asalerno@jain-foundation.org">asalerno@jain-foundation.org.</a></p>
 

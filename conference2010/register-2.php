@@ -21,7 +21,7 @@
 	} catch (DAOAuthException $e) { }
 
 	printHeader(array(
-		'title' => 'Conference 2010 | Meeting Registration',
+		'title' => 'Conference 2010 | Meeting Registration and Abstract Submission',
 		'scripts' => array(
 			$Config['URLPath'] . '/js/jquery.validate.js',
 			$Config['URLPath'] . '/js/jquery.alphanumeric.js',
@@ -36,7 +36,7 @@
 
 <?php include 'includes/menu.inc.php' ?>
 
-<h2>Meeting Registration</h2>
+<h2>Meeting Registration and Abstract Submission</h2>
 
 <p>For questions and concerns please contact Angela Salerno at <a href="mailto:asalerno@jain-foundation.org">asalerno@jain-foundation.org.</a></p>
 
@@ -49,7 +49,6 @@
 ?>
 <form action="<?php echo $submit_location . $data_auth_query_string ?>" method="post" id="register-form" enctype="multipart/form-data" encoding="multipart/form-data">
 	<input type="hidden" name="form_number" value="2">
-	<h3>Abstract Submission</h3>
 	<p>Are you planning to submit an abstract for oral or poster presentation?</p>
 	<table>
 		<?php
@@ -80,7 +79,7 @@
 			?>
 		</table>
 
-			<h4>Presenting Author</h4>
+			<h3>Presenting Author</h3>
 
 			<table>
 				<?php
@@ -94,7 +93,7 @@
 			</table>
 			<p class="note">Please note:  The submitted picture should be of the presenting author for both oral and poster presentations whether they are the first author or not.</p>
 
-			<h4>All Authors</h4>
+			<h3>All Authors</h3>
 
 			<p>Enter all affiliations associated with the authors, one per line, in the following format: Department, Institution, City, State/Province, Country.<br />
 			<em>Example:</em> Department of Neurology, Univ. of Washington, Seattle, WA, USA</p>
@@ -162,7 +161,7 @@
 			</table>
 			<p><input type="button" id="author_more" class="addmore" value="Add More" /></p>
 
-			<h4>Abstract Information</h4>
+			<h3>Abstract Information</h3>
 
 			<p>Select the best category for the topic of your abstract.  If your abstract is outside one of the listed categories, choose "other" and list an alternative category.</p>
 
@@ -211,7 +210,7 @@
 				?>
 			</table>
 
-			<h4>Abstract</h4>
+			<h3>Abstract</h3>
 
 			<p><em>Notice:</em> It is the author's sole responsibility to abide by standard regulations for animal care and use, as well as to use of human subjects. All named authors share this responsibility and agree with the submitted text.</p>
 
@@ -228,7 +227,7 @@
 
 			<div id="word_count_text" class="hoveringLabel" style="display:none">word count: <span id="word_count">0</span> words</div>
 
-			<h4>Comments</h4>
+			<h3>Comments</h3>
 			<p>Please use this box to indicate anything that you need to convey to the Jain Foundation regarding your abstract submission.</p>
 			<?php
 				print_textarea_field('abstract_comments', array(
