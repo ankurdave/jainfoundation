@@ -52,7 +52,6 @@ EOS;
 	// Wrap the buttons in a div and return it
 	return <<<EOS
 <div class="jump">
-	$prevHtml
 	$extraHtml
 	$nextHtml
 </div>
