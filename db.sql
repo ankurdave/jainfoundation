@@ -222,7 +222,6 @@ CREATE TABLE `registrant` (
   `phone` varchar(255) DEFAULT NULL,
   `fax` varchar(255) DEFAULT NULL,
   `submitting_abstract` varchar(255) DEFAULT NULL,
-  `presenting_author` varchar(255) DEFAULT NULL,
   `local_attendee` varchar(255) DEFAULT NULL,
   `hotel_parking` varchar(255) DEFAULT NULL,
   `attendance_day1` varchar(255) DEFAULT NULL,

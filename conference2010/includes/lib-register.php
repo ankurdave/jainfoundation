@@ -118,11 +118,6 @@ class RegistrantDAO {
 			'form' => 2,
 			'required' => true
 		),
-		'presenting_author' => array(
-			'type' => 's',
-			'form' => 2,
-			'required' => false
-		),
 
 		'local_attendee' => array(
 			'type' => 's',

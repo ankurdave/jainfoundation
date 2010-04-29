@@ -47,8 +47,6 @@ $(document).ready(function() {
 // #submitting_abstract
 showElementWhenRadioChecked("#submitting_abstract input[type=radio][value='yes']", "#submitting_abstract_yes");
 hideElementWhenRadioChecked("#submitting_abstract input[type=radio][value='no']", "#submitting_abstract_yes");
-showElementWhenRadioChecked("#presenting_author input[type=radio][value='yes']", "#presenting_author_yes");
-hideElementWhenRadioChecked("#presenting_author input[type=radio][value='no']", "#presenting_author_yes");
 showFieldWhenFieldEq("#author_status", "postdoc", "#degree_year");
 showFieldWhenFieldEq("#author_status", "other", "#author_status_other");
 showFieldWhenFieldEq("#abstract_category", "other", "#abstract_category_other");
@@ -106,7 +104,6 @@ function selectRadio(element_id, value) {
 function fillSampleValues() {
 	selectRadio("#submitting_abstract", "yes");
 	$("#abstract_title").val("Optimizing Boggle Boards");
-	selectRadio("#presenting_author", "yes");
 	$("#affiliation_1").val("EECS Department, UC Berkeley, Berkeley, CA, USA");
 	$("#affiliation_more").click();
 	$("#affiliation_2").val("CSE Department, Univ. of Washington, Seattle, WA, USA");

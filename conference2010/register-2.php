@@ -80,22 +80,6 @@
 			?>
 		</table>
 
-		<p>Are you the abstract presenting author?</p>
-		<table>
-			<?php
-				print_radio_field('presenting_author', array(
-					'label' => 'Presenting Author',
-					'required' => false,
-					'options' => array(
-						'yes' => 'Yes',
-						'no' => 'No',
-					),
-					'value' => $registrant->getField('presenting_author'),
-				));
-			?>
-		</table>
-
-		<div id="presenting_author_yes">
 			<h4>Presenting Author</h4>
 
 			<table>
@@ -253,7 +237,6 @@
 					'value' => $registrant->getAbstractInit()->getField('abstract_comments'),
 				));
 			?>
-		</div>
 	</div>
 
 	<?php echo registerMenu(2); ?>
