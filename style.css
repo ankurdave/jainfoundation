@@ -312,12 +312,9 @@ table#price {
 }
 
 /* Forms */
-.required .required_indicator {
+.required_indicator {
 	color: red;
 	font-weight: bold;
-}
-.required .required_indicator:before {
-    content: "*";
 }
 
 table td.input {
