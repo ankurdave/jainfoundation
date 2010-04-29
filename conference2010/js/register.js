@@ -49,3 +49,21 @@ showFieldWhenFieldEq("#position", "other", "#position_other");
 showFieldWhenFieldEq("#institution_profile", "other", "#institution_profile_other");
 
 // === OTHER ===================================================================
+
+function fillSampleValues() {
+	$("#firstname").val("Ankur");
+	$("#middlename").val("");
+	$("#lastname").val("Dave");
+	$("#degree").val("BS");
+	$("#position").val("undergrad_student");
+	$("#department").val("Electrical Engineering and Computer Science Department");
+	$("#institution").val("University of California, Berkeley");
+	$("#institution_profile").val("academic");
+	$("#street_address").val("1234 Example Ln.");
+	$("#city").val("Bellevue");
+	$("#state_province").val("WA");
+	$("#zip_postal_code").val("98001").val();
+	$("#country").val("USA");
+	$("#email").val("ankurdave@gmail.com");
+	$("#phone").val("(425) 123-4567");
+}

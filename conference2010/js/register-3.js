@@ -221,3 +221,22 @@ $(document).ready(function() {
 	$("#check_promo").click(verifyPromoCode);
 	$("#promo_code").change(verifyPromoCode);
 });
+
+function selectRadio(element_id, value) {
+	return $(element_id + " input:radio[value='" + value + "']").attr('checked', 'checked').change();
+}
+
+function fillSampleValues() {
+	$("#meals_gala_dinner_numguests").val("2").change();
+	$("#arrival_date").val("2010-09-08");
+	$("#departure_date").val("2010-09-17");
+	$("#promo_code").val("jf2010as").change();
+	selectRadio("#payment_type", "check");
+
+	selectRadio("", "yes");
+	selectRadio("", "fish");
+	selectRadio("", "male");
+
+	selectRadio("#local_attendee", "no");
+	selectRadio("#attendance_day4", "no");
+}
