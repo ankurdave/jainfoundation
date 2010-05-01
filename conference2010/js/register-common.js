@@ -52,6 +52,18 @@ $.validator.addMethod("requiredIfFieldChecked", function(value, element, param) 
 	});
 }, $.validator.messages.required);
 
+// requiredIfAllFieldsChecked: Field is required if all of the given fields {0} have a nonempty attribute "checked"
+$.validator.addMethod("requiredIfAllFieldsChecked", function(value, element, param) {
+	var required = true;
+	$(param).each(function(index, elem) {
+		required = required && $(elem).attr("checked");
+	});
+	requiredHighlight(element, required);
+	return $.validator.methods.required.call(this, value, element, function(element) {
+		return $(param).attr("checked");
+	});
+}, $.validator.messages.required);
+
 // maxWords: Field can have at most {0} words
 $.validator.addMethod("maxWords", function(value, element, wordLimit) {
 	var count = wordCount($(element));

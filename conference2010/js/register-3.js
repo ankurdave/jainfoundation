@@ -27,9 +27,7 @@ $(document).ready(function() {
 			},
 
 			meals_gala_dinner_numguests: {
-				requiredIfFieldChecked: "#meals_gala_dinner_guests input[type=radio][value='yes']",
-				requiredIfFieldChecked: "#meals_gala_dinner input[value='yes']"
-
+				requiredIfAllFieldsChecked: "#meals_gala_dinner_guests input[type=radio][value='yes'], #meals_gala_dinner input[value='yes']"
 			}
 		},
 
