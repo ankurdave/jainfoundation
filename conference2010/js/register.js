@@ -2,17 +2,9 @@
 $(document).ready(function() {
 	$("#register-form").validate({
 		rules: {
-			degree_other: {
-				requiredIfFieldEq: [ "degree", "other" ]
-			},
-
-			position_other: {
-				requiredIfFieldEq: [ "position", "other" ]
-			},
-
-			institution_profile_other: {
-				requiredIfFieldEq: [ "institution_profile", "other" ]
-			}
+			degree_other: { requiredIfFieldEq: [ "degree", "other" ] },
+			position_other: { requiredIfFieldEq: [ "position", "other" ] },
+			institution_profile_other: { requiredIfFieldEq: [ "institution_profile", "other" ] }
 		},
 
 		errorPlacement: function(error, element) {

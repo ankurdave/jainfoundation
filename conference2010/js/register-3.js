@@ -6,29 +6,28 @@ $(document).ready(function() {
 
 	$("#register-form").validate({
 		rules: {
-			arrival_date: {
-				requiredIfFieldChecked: "#share_room input[type=radio][value='yes']"
-			},
+			meals_day2_breakfast: { requiredIfFieldChecked: "#attendance_day2 input[value='yes']" },
+			meals_day2_lunch: { requiredIfFieldChecked: "#attendance_day2 input[value='yes']" },
+			meals_day2_lunch_entree: { requiredIfAllFieldsChecked: "#attendance_day2 input[value='yes'], #meals_day2_lunch input[value='yes']" },
 
-			departure_date: {
-				requiredIfFieldChecked: "#share_room input[type=radio][value='yes']"
-			},
+			meals_day3_breakfast: { requiredIfFieldChecked: "#attendance_day3 input[value='yes']" },
+			meals_day3_lunch: { requiredIfFieldChecked: "#attendance_day3 input[value='yes']" },
+			meals_day3_lunch_entree: { requiredIfAllFieldsChecked: "#attendance_day3 input[value='yes'], #meals_day3_lunch input[value='yes']" },
 
-			meals_day2_lunch_entree: {
-				requiredIfFieldChecked: "#meals_day2_lunch input[type=radio][value='yes']"
-			},
+			meals_day4_breakfast: { requiredIfFieldChecked: "#attendance_day4 input[value='yes']" },
+			meals_day4_lunch: { requiredIfFieldChecked: "#attendance_day4 input[value='yes']" },
+			meals_day4_lunch_entree: { requiredIfAllFieldsChecked: "#attendance_day4 input[value='yes'], #meals_day4_lunch input[value='yes']" },
 
-			meals_day3_lunch_entree: {
-				requiredIfFieldChecked: "#meals_day3_lunch input[type=radio][value='yes']"
-			},
+			meals_gala_dinner_vegetarian: { requiredIfFieldChecked: "#meals_gala_dinner input[value='yes']" },
+			meals_gala_dinner_guests: { requiredIfFieldChecked: "#meals_gala_dinner input[value='yes']" },
+			meals_gala_dinner_numguests: { requiredIfAllFieldsChecked: "#meals_gala_dinner input[value='yes'], #meals_gala_dinner_guests input[type=radio][value='yes']" },
 
-			meals_day4_lunch_entree: {
-				requiredIfFieldChecked: "#meals_day4_lunch input[type=radio][value='yes']"
-			},
+			share_room: { requiredIfFieldChecked: "#local_attendee input[value='no']" },
+			gender: { requiredIfFieldChecked: "#local_attendee input[value='no']" },
+			arrival_date: { requiredIfAllFieldsChecked: "#local_attendee input[value='no'], #share_room input[type=radio][value='yes']" },
+			departure_date: { requiredIfAllFieldsChecked: "#local_attendee input[value='no'], #share_room input[type=radio][value='yes']" },
 
-			meals_gala_dinner_numguests: {
-				requiredIfAllFieldsChecked: "#meals_gala_dinner_guests input[type=radio][value='yes'], #meals_gala_dinner input[value='yes']"
-			}
+			promo_code: { requiredIfFieldChecked: "#have_promo_code input[value='yes']" }
 		},
 
 		errorPlacement: function(error, element) {
@@ -57,29 +56,6 @@ $(document).ready(function() {
 			}
 		}
 	});
-
-	// Add more rules programmatically to save typing
-	$("#attendance_day2_yes").find("input, select, textarea").each(function(index) {
-		$(this).rules("add", {
-			requiredIfFieldChecked: "#attendance_day2 input[value='yes']"
-		});
-	});
-	$("#attendance_day3_yes").find("input, select, textarea").each(function(index) {
-		$(this).rules("add", {
-			requiredIfFieldChecked: "#attendance_day3 input[value='yes']"
-		});
-	});
-	$("#attendance_day4_yes").find("input, select, textarea").each(function(index) {
-		$(this).rules("add", {
-			requiredIfFieldChecked: "#attendance_day4 input[value='yes']"
-		});
-	});
-
-/*	$("#meals_gala_dinner_vegetarian, #meals_gala_dinner_guests").find("input, select, textarea").each(function(index) {
-		$(this).rules("add", {
-			requiredIfFieldChecked: "#meals_gala_dinner input[value='yes']"
-		});
-	});*/
 });
 
 // === FORM FIELD LINKAGES =====================================================
@@ -137,7 +113,7 @@ $(document).ready(function() {
 
 		// Add the appropriate number of guest input fields to the guest list section
 		for (var i = 1; i <= numGuests; i++) {
-			$("#meals_gala_dinner_guests_vegetarian").append('<tr><td></td><td><label for="meals_gala_dinner_guest_' + i + '_vegetarian">Guest #' + i + ' &ndash; Vegetarian</label></td><td class="input"><div id="meals_gala_dinner_guest_' + i + '_vegetarian" class="required"><label><input type="radio" name="meals_gala_dinner_guest_' + i + '_vegetarian" value="yes" class="required">Yes</label><label><input type="radio" name="meals_gala_dinner_guest_' + i + '_vegetarian" value="no" class="required">No</label></td><td></td></tr>');
+			$("#meals_gala_dinner_guests_vegetarian").append('<tr><td></td><td><label for="meals_gala_dinner_guest_' + i + '_vegetarian">Guest #' + i + ' &ndash; Vegetarian</label></td><td class="input"><div id="meals_gala_dinner_guest_' + i + '_vegetarian"><label><input type="radio" name="meals_gala_dinner_guest_' + i + '_vegetarian" value="yes">Yes</label><label><input type="radio" name="meals_gala_dinner_guest_' + i + '_vegetarian" value="no">No</label></td><td></td></tr>');
 		}
 	});
 

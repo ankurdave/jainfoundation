@@ -96,7 +96,7 @@ $.validator.addMethod("affiliation_reference", function(value, element) {
 function showElementWhenFieldMeetsCondition(field, condition, element) {
 	$(field).change(function() {
 		// Show or hide the element
-//		$(element).css("display", condition.call(field, field) ? "" : "none");
+		$(element).css("display", condition.call(field, field) ? "" : "none");
 
 		// Check if any fields in the element are required and update the visual style accordingly
 		// Do this by having jQuery validate the fields (and therefore check if they're required), and then removing the error messages, leaving only the required symbol

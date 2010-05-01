@@ -2,15 +2,22 @@
 $(document).ready(function() {
 	$("#register-form").validate({
 		rules: {
+			abstract_title: { requiredIfFieldChecked: "#submitting_abstract input[value='yes']" },
 			picture: {
+				requiredIfFieldChecked: "#submitting_abstract input[value='yes']",
 				accept: "png,jpe?g"
 			},
-
+			affiliation_1: { requiredIfFieldChecked: "#submitting_abstract input[value='yes']" },
+			author_1_firstname: { requiredIfFieldChecked: "#submitting_abstract input[value='yes']" },
+			author_1_lastname: { requiredIfFieldChecked: "#submitting_abstract input[value='yes']" },
+			abstract_category: { requiredIfFieldChecked: "#submitting_abstract input[value='yes']" },
 			abstract_category_other: {
+				requiredIfFieldChecked: "#submitting_abstract input[value='yes']",
 				requiredIfFieldEq: [ "abstract_category", "other" ]
 			},
-
+			presentation_type: { requiredIfFieldChecked: "#submitting_abstract input[value='yes']" },
 			abstract_body: {
+				requiredIfFieldChecked: "#submitting_abstract input[value='yes']",
 				maxWords: 275
 			}
 		},
@@ -40,13 +47,6 @@ $(document).ready(function() {
 				$.validator.defaults.unhighlight.call(this, "div#" + $(element).attr("name"), errorClass, validClass);
 			}
 		}
-	});
-
-	// Add more rules programmatically to save typing
-	$("#abstract_title, #picture, #affiliation_1, #author_1_firstname, #author_1_lastname, #abstract_category, #presentation_type, #abstract_body").each(function(index) {
-		$(this).rules("add", {
-			requiredIfFieldChecked: "#submitting_abstract input[value='yes']"
-		});
 	});
 });
 
