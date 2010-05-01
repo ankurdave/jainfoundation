@@ -187,7 +187,6 @@
 					print_text_field('abstract_category_other', array(
 						'label' => 'Other abstract category',
 						'required' => false, // only required if abstract_category is other -- see validation function in js/abstract.js
-						'instructions' => '(if other)',
 						'value' => $registrant->getAbstractInit()->getField('abstract_category_other'),
 					));
 				?>

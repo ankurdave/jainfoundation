@@ -41,15 +41,21 @@ $(document).ready(function() {
 			}
 		}
 	});
+
+	// Add more rules programmatically to save typing
+	$("#abstract_title, #picture, #affiliation_1, #author_1_firstname, #author_1_lastname, #abstract_category, #presentation_type, #abstract_body").each(function(index) {
+		$(this).rules("add", {
+			requiredIfFieldChecked: "#submitting_abstract input[value='yes']"
+		});
+	});
 });
 
 // === FORM FIELD LINKAGES =====================================================
-// #submitting_abstract
-showElementWhenRadioChecked("#submitting_abstract input[type=radio][value='yes']", "#submitting_abstract_yes");
-hideElementWhenRadioChecked("#submitting_abstract input[type=radio][value='no']", "#submitting_abstract_yes");
-showFieldWhenFieldEq("#author_status", "postdoc", "#degree_year");
-showFieldWhenFieldEq("#author_status", "other", "#author_status_other");
-showFieldWhenFieldEq("#abstract_category", "other", "#abstract_category_other");
+$(document).ready(function() {
+	showElementWhenRadioChecked("#submitting_abstract input[type=radio][value='yes']", "#submitting_abstract_yes");
+	hideElementWhenRadioChecked("#submitting_abstract input[type=radio][value='no']", "#submitting_abstract_yes");
+	showFieldWhenFieldEq("#abstract_category", "other", "#abstract_category_other");
+});
 
 // === OTHER ===================================================================
 

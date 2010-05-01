@@ -25,16 +25,28 @@ function wordCount(element) {
 	}).length;
 }
 
+function requiredHighlight(element, required) {
+	if (required) {
+		$(element).closest("tr").addClass("required");
+	} else {
+		$(element).closest("tr").removeClass("required");
+	}
+}
+
 // === FORM VALIDATION METHODS =================================================
 // requiredIfFieldEq: Field is required if another field with id {0} is equal to a value {1}
 $.validator.addMethod("requiredIfFieldEq", function(value, element, params) {
+	var required = $("#" + params[0]).val() == params[1];
+	requiredHighlight(element, required);
 	return $.validator.methods.required.call(this, value, element, function(element) {
-		return $("#" + params[0]).val() == params[1];
+		return required;
 	});
 }, $.validator.messages.required);
 
 // requiredIfFieldChecked: Field is required if another field {0} has a nonempty attribute "checked"
 $.validator.addMethod("requiredIfFieldChecked", function(value, element, param) {
+	var required = $(param).attr("checked");
+	requiredHighlight(element, required);
 	return $.validator.methods.required.call(this, value, element, function(element) {
 		return $(param).attr("checked");
 	});
@@ -69,44 +81,51 @@ $.validator.addMethod("affiliation_reference", function(value, element) {
 }, "a referenced affiliation is empty");
 
 // === FORM FIELD LINKAGES =====================================================
-function showFieldWhenFieldEq(sourceField, value, targetField) {
-	$(document).ready(function() {
-		$(sourceField).change(function () {
-			if ($(this).val() == value) {
-				$(targetField).closest("tr").css("display", "");
+function showElementWhenFieldMeetsCondition(field, condition, element) {
+	$(field).change(function() {
+		// Show or hide the element
+//		$(element).css("display", condition.call(field, field) ? "" : "none");
+
+		// Check if any fields in the element are required and update the visual style accordingly
+		// Do this by having jQuery validate the fields (and therefore check if they're required), and then removing the error messages, leaving only the required symbol
+		$(element).find("input, select, textarea").each(function(index, fieldElement) {
+			// Validate the fields
+			$(fieldElement).valid();
+
+			// Remove the error class
+			$.validator.defaults.unhighlight.call(this, fieldElement, "error", "valid");
+			// Remove the error label
+			// See errorPlacement in register-N.js -- this is the inverse of that
+			if ($(fieldElement).closest("table") && !$(fieldElement).closest("table").hasClass("multitext")) {
+				$(fieldElement).closest("td").next("td").find(".error").remove();
 			} else {
-				$(targetField).closest("tr").css("display", "none");
-			}
-		}).change();
-	});
+				$(fieldElement).siblings(".error").remove();													}
+		});
+	}).change();
+}
+
+function showFieldWhenFieldEq(sourceField, value, targetField) {
+	showElementWhenFieldMeetsCondition(sourceField, function(sourceField) {
+		return $(sourceField).val() == value;
+	}, $(targetField).closest("tr").get(0));
 }
 
 function showElementWhenFieldEq(sourceField, value, element) {
-	$(document).ready(function() {
-		$(sourceField).change(function () {
-			if ($(this).val() == value) {
-				$(element).css("display", "");
-			} else {
-				$(element).css("display", "none");
-			}
-		}).change();
-	});
+	showElementWhenFieldMeetsCondition(sourceField, function(sourceField) {
+		return $(sourceField).val() == value;
+	}, element);
 }
 
 function showElementWhenRadioChecked(sourceField, element) {
-	$(document).ready(function() {
-		$(sourceField).change(function() {
-			$(element).css("display", $(this).attr('checked') ? "" : "none");
-		}).change();
-	});
+	showElementWhenFieldMeetsCondition(sourceField, function(sourceField) {
+		return $(sourceField).attr('checked');
+	}, element);
 }
 
 function hideElementWhenRadioChecked(sourceField, element) {
-	$(document).ready(function() {
-		$(sourceField).change(function() {
-			$(element).css("display", $(this).attr('checked') ? "none" : "");
-		}).change();
-	});
+	showElementWhenFieldMeetsCondition(sourceField, function(sourceField) {
+		return !$(sourceField).attr('checked');
+	}, element);
 }
 
 function syncValueOneWay(sourceField, targetField) {

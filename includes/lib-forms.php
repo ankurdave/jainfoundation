@@ -29,32 +29,23 @@ function get_error_text($field, $text = "(required)") {
  * class -- array containing other classes to apply to the element
  */
 function print_field($id, $element_html, $options = array()) {
-?>
-	<?php if (isset($_GET["error_$id"])) { ?>
-		<tr id="<?php echo htmlentities($id) ?>_container" class="error">
-	<?php } else { ?>
-		<tr id="<?php echo htmlentities($id) ?>_container">
-	<?php } ?>
-	
-	<?php if ($options['required']) { ?>
-		<td class="required_indicator">*</td>
-	<?php } else { ?>
-		<td></td>
-	<?php } ?>
+	$classesHtml = build_class_attribute(
+		$options['required'],
+		isset($_GET["error_$id"])
+			? array('error')
+			: array()
+	);
 
-	<td><label for="<?php echo htmlentities($id) ?>"><?php echo $options['label'] ?></label></td>
-	
-	<td class="input">
-		<?php echo $element_html ?>
-	</td>
-	<td>
-		<label for="<?php echo htmlentities($id) ?>">
-			<?php echo $options['instructions'] ?>
-		</label>
-	</td>
-	
-	</tr>
-<?php
+	$idHtml = htmlentities($id);
+
+	print <<<EOS
+<tr id="{$idHtml}_container" $classesHtml>
+	<td class="required_indicator"></td>
+	<td><label for="$idHtml">$options[label]</label></td>
+	<td class="input">$element_html</td>
+	<td><label for="$idHtml">$options[instructions]</label></td>	
+</tr>
+EOS;
 }
 
 /**
@@ -223,20 +214,15 @@ EOD;
  * class -- array containing other classes to apply to the element
  */
 function print_textarea_field($id, $options = array()) {
+	if (isset($_GET["error_$id"])) {
+		array_push($options['class'], 'error');
+	}
 	$classes_html = build_class_attribute($options['required'], $options['class']);
 ?>
 	<table>
-	<?php if (isset($_GET["error_$id"])) { ?>
-		<tr class="error">
-	<?php } else { ?>
-		<tr>
-	<?php } ?>
+	<tr <?php echo $classes_html ?>>
 
-	<?php if ($options['required']) { ?>
-		<td class="required_indicator">*</td>
-	<?php } else { ?>
-		<td></td>
-	<?php } ?>
+	<td class="required_indicator"></td>
 
 	<td><label for="<?php echo htmlentities($id) ?>"><?php echo $options['label'] ?></label></td>
 	
@@ -261,20 +247,19 @@ function print_textarea_field($id, $options = array()) {
  * @param array $options an assoc array with the field options in print_field()
  */
 function print_multi_text_field($id, $options = array()) {
+	if (isset($_GET["error_$id"])) {
+		array_push($options['class'], 'error');
+	}
 	$classes_html = build_class_attribute($options['required'], $options['class']);
 ?>
-	<?php if (isset($_GET["error_$id"])) { ?>
-		<td class="error">
-	<?php } else { ?>
-		<td>
-	<?php } ?>
-
+	<td <?php echo $classes_html ?>>
 	<input type="text"
 		name="<?php echo htmlentities($id) ?>"
 		id="<?php echo htmlentities($id) ?>"
 		value="<?php echo print_html($options['value']) ?>"
 		<?php echo $classes_html ?>
 	/>
+	</td>
 <?php
 }
 

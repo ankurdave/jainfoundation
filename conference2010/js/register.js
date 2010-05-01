@@ -44,9 +44,13 @@ $(document).ready(function() {
 });
 
 // === FORM FIELD LINKAGES =====================================================
-showFieldWhenFieldEq("#degree", "other", "#degree_other");
-showFieldWhenFieldEq("#position", "other", "#position_other");
-showFieldWhenFieldEq("#institution_profile", "other", "#institution_profile_other");
+$(document).ready(function() {
+	showFieldWhenFieldEq("#degree", "other", "#degree_other");
+	showFieldWhenFieldEq("#position", "other", "#position_other");
+	showFieldWhenFieldEq("#institution_profile", "other", "#institution_profile_other");
+	showFieldWhenFieldEq("#author_status", "postdoc", "#degree_year");
+	showFieldWhenFieldEq("#author_status", "other", "#author_status_other");
+});
 
 // === OTHER ===================================================================
 
