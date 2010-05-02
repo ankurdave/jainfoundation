@@ -421,14 +421,32 @@
 		<?php if ($now <= strtotime('June 4, 2010')) { ?>
 			Early registration is open.
 			<script type="text/javascript">
-				var postdoc_fee = 150;
-				var other_fee = 250;
+				<?php
+				switch ($registrant->getField('position')) {
+					case 'postdoc':
+					case 'grad_student':
+					case 'undergrad_student':
+						echo 'var base_fee = 150;';
+						break;
+					default:
+						echo 'var base_fee = 250;';
+				}
+				?>
 			</script>
 		<?php } else if ($now <= strtotime('July 23, 2010')) { ?>
 			Early registration is closed. Late registration is open.
 			<script type="text/javascript">
-				var postdoc_fee = 250;
-				var other_fee = 350;
+				<?php
+				switch ($registrant->getField('position')) {
+					case 'postdoc':
+					case 'grad_student':
+					case 'undergrad_student':
+						echo 'var base_fee = 250;';
+						break;
+					default:
+						echo 'var base_fee = 350;';
+				}
+				?>
 			</script>
 		<?php } else { ?>
 			Registration is closed. No late or onsite registration is available.
@@ -436,7 +454,7 @@
 	</p>
 
 	<p>
-		Please click the Calculate Registration Fee button to detemine what you owe.
+		Please click the Calculate Registration Fee button to determine what you owe.
 	</p>
 	<p>
 		<input type="button" id="calculate_fee" value="Calculate Registration Fee" />

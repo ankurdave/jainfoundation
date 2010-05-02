@@ -135,27 +135,13 @@ $(document).ready(function() {
 // Set up the Calculate Price button
 $(document).ready(function() {
 	$("#calculate_fee").click(function() {
-		// Calculate the base fee
-		var base_fee = 0;
-		if (!promo_code_valid) {
-			switch ($("#position").val()) {
-				case "postdoc":
-				case "grad_student":
-				case "undergrad_student":
-					base_fee = postdoc_fee;
-					break;
-				default:
-					base_fee = other_fee;
-			}
-		}
-
 		// Calculate the Gala guest fee
 		var gala_dinner_guest_fee = 0;
 		if (!isNaN(parseInt($("#meals_gala_dinner_numguests").val()))) {
 			gala_dinner_guest_fee = 70 * parseInt($("#meals_gala_dinner_numguests").val());
 		}
 
-		// Total it up and display it
+		// Total it up (gala fee and base fee) and display it
 		var total_fee = base_fee + gala_dinner_guest_fee;
 
 		$("#base_fee").html(base_fee);
