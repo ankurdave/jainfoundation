@@ -60,14 +60,8 @@ class InsertUpdateQuery {
 			$colVals[] = $col->value;
 		}
 
-		// Consolidate them into an array of references for bind_param -- see http://stackoverflow.com/questions/2045875/pass-by-reference-problem-with-php-5-3-1
-		$paramValRefs = array();
-		foreach ($colVals as $key => $val) {
-			$paramValRefs[$key] = &$colVals[$key];
-		}
-
 		// Bind the parameters
-		call_user_func_array(array(&$query, 'bind_param'), array_merge(array($paramTypes), $paramValRefs));
+		call_user_func_array(array(&$query, 'bind_param'), array_merge(array($paramTypes), makeRefs($colVals)));
 
 		// Send the long column data
 		$colNum = 0;

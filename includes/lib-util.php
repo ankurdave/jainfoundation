@@ -43,4 +43,16 @@ function array_insert_after($array, $key, $pairs) {
 	return $array_new;
 }
 
+/**
+ * Returns an array of references to the original array.
+ * Useful for mysqli bind_param -- see http://stackoverflow.com/questions/2045875/pass-by-reference-problem-with-php-5-3-1
+ */
+function makeRefs($array) {
+	$refs = array();
+	foreach ($array as $key => $val) {
+		$refs[$key] = &$array[$key];
+	}
+	return $refs;
+}
+
 ?>

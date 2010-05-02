@@ -276,12 +276,25 @@ class AbstractDAO {
 	/**
 	 * Returns an array of all the abstracts in the DB.
 	 */
-	static function loadAll($db) {
-		$abstracts = array();
+	static function loadAll($db, $constraints) {
+		// Prepare the constraints into a queryable format
+		$whereClause = array();
+		foreach ($constraints as $col => $val) {
+			if (array_key_exists($col, self::$columnTypes)) {
+				$whereClause[] = $db->real_escape_string($col) . "='" . $db->real_escape_string($val) . "'";
+			}
+		}
+		if (count($whereClause) > 0) {
+			$whereClauseSql = 'WHERE ' . join(' AND ', $whereClause);
+		} else {
+			$whereClauseSql = '';
+		}
 
 		// Get a list of all the IDs and load it with each abstract
 		// TODO: this does O(n) queries (O(1) per abstract), so it won't scale well
-		$result = $db->query("SELECT id FROM abstract ORDER BY id");
+		// Prepare the query and bind the params
+		$result = $db->query("SELECT id FROM abstract $whereClauseSql ORDER BY id");
+		$abstracts = array();
 		while ($row = $result->fetch_assoc()) {
 			$abstracts[] = new AbstractDAO($db, $row['id']);
 		}

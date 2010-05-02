@@ -11,7 +11,7 @@ printHeader(array('title' => 'Conference 2010 | List of Abstracts'));
 include 'includes/menu.inc.php';
 
 $db = connectToDB();
-$abstracts = AbstractDAO::loadAll($db);
+$abstracts = AbstractDAO::loadAll($db, array('final' => 1));
 
 include 'includes/abstract-export-fields.php';
 
