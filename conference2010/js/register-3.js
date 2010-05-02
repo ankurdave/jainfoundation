@@ -135,6 +135,9 @@ $(document).ready(function() {
 // Set up the Calculate Price button
 $(document).ready(function() {
 	$("#calculate_fee").click(function() {
+		// Calculate the base fee, checking for promo code
+		var base_fee_promo = promo_code_valid ? 0 : base_fee;
+
 		// Calculate the Gala guest fee
 		var gala_dinner_guest_fee = 0;
 		if (!isNaN(parseInt($("#meals_gala_dinner_numguests").val()))) {
@@ -142,9 +145,9 @@ $(document).ready(function() {
 		}
 
 		// Total it up (gala fee and base fee) and display it
-		var total_fee = base_fee + gala_dinner_guest_fee;
+		var total_fee = base_fee_promo + gala_dinner_guest_fee;
 
-		$("#base_fee").html(base_fee);
+		$("#base_fee").html(base_fee_promo);
 		$("#gala_dinner_guest_fee").html(gala_dinner_guest_fee);
 		$("#total_fee").html(total_fee);
 
