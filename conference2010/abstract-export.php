@@ -10,7 +10,7 @@ header('Pragma:');
 print xlsBegin();
 
 $db = connectToDB();
-$abstracts = AbstractDAO::loadAll($db);
+$abstracts = AbstractDAO::loadAll($db, array('final' => 1));
 
 include 'includes/abstract-export-fields.php';
 
