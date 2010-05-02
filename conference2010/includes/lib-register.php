@@ -264,6 +264,11 @@ class RegistrantDAO {
 			'form' => 3,
 			'required' => false
 		),
+		'final' => array(
+			'type' => 'i',
+			'form' => null,
+			'required' => false
+		),
 	);
 	private $dirty = array();
 	private $abstract;
@@ -400,8 +405,12 @@ class RegistrantDAO {
 		// Save the abstract
 		if (isset($this->abstract)) {
 			$this->abstract->setField('registrant_id', $this->data['id']);
-			$this->abstract->save();
+			$this->abstract->save($finalize);
 		}
+
+		// Set the 'final' field
+		$this->data['final'] = $finalize;
+		$this->dirty['final'] = true;
 
 		// Build the query
 		$query = new InsertUpdateQuery($this->db);

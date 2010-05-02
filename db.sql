@@ -251,6 +251,7 @@ CREATE TABLE `registrant` (
   `have_promo_code` varchar(255) DEFAULT NULL,
   `promo_code` varchar(255) DEFAULT NULL,
   `comments` text,
+  `final` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
