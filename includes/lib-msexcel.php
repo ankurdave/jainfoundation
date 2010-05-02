@@ -12,28 +12,28 @@ function xlsBegin() {
  * @param array $row the cells to print
  */
 function xlsWriteRow($row) {
-    return mb_convert_encoding(join("\t", array_map('remove_linebreaks', $row)) . "\r\n", 'UTF-16LE', 'UTF-8');
+    return utf16_encode(join("\t", array_map('remove_linebreaks', $row)) . "\r\n");
 }
 
 /**
  * Returns the Excel-formatted version of the given cell. Alternative to xlsWriteRow
  */
 function xlsWriteCell($cell) {
-	return mb_convert_encoding(remove_linebreaks($cell), 'UTF-16LE', 'UTF-8');
+	return utf16_encode(remove_linebreaks($cell));
 }
 
 /**
  * Returns the Excel cell separator. Alternative to xlsWriteRow
  */
 function xlsWriteCellSeparator() {
-	return "\t";
+	return utf16_encode("\t");
 }
 
 /**
  * Returns the Excel row terminator. Alternative to xlsWriteRow
  */
 function xlsWriteRowTerminator() {
-	return "\r\n";
+	return utf16_encode("\r\n");
 }
 
 /**
@@ -50,6 +50,10 @@ function remove_linebreaks($text) {
  */
 function csv_encode($string) {
 	return '"' . str_replace('"', '""', $string) . '"';
+}
+
+function utf16_encode($string) {
+	return mb_convert_encoding($string, 'UTF-16LE', 'UTF-8');
 }
 
 ?>
