@@ -22,6 +22,11 @@ class RegistrantDAO {
 			'form' => 1,
 			'required' => true
 		),
+		'middlename' => array(
+			'type' => 's',
+			'form' => 1,
+			'required' => false
+		),
 		'lastname' => array(
 			'type' => 's',
 			'form' => 1,

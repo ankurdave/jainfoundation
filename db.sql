@@ -203,6 +203,7 @@ CREATE TABLE `registrant` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `auth_key` varchar(255) DEFAULT NULL,
   `firstname` varchar(255) DEFAULT NULL,
+  `middlename` varchar(255) DEFAULT NULL,
   `lastname` varchar(255) DEFAULT NULL,
   `degree` varchar(255) DEFAULT NULL,
   `degree_other` varchar(255) DEFAULT NULL,
