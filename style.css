@@ -312,14 +312,11 @@ table#price {
 }
 
 /* Forms */
-.required .required_indicator {
+.required-indicator {
 	color: red;
 	font-weight: bold;
 }
-table.multitext .required:before {
-    content: "*";
-}
-.required .required_indicator:before {
+.required .required-indicator:before {
     content: "*";
 }
 
@@ -398,9 +395,9 @@ table.multitext th {
 	white-space: nowrap;
 	font-weight: normal;
 }
-table.multitext input {
-	width: 97%;
 
+table.multitext td input {
+    width: 97%;
 }
 table.multitext label.error {
 	float: none;

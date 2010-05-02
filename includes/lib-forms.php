@@ -40,7 +40,7 @@ function print_field($id, $element_html, $options = array()) {
 
 	print <<<EOS
 <tr id="{$idHtml}_container" $classesHtml>
-	<td class="required_indicator"></td>
+	<td class="required-indicator"></td>
 	<td><label for="$idHtml">$options[label]</label></td>
 	<td class="input">$element_html</td>
 	<td><label for="$idHtml">$options[instructions]</label></td>	
@@ -222,7 +222,7 @@ function print_textarea_field($id, $options = array()) {
 	<table>
 	<tr <?php echo $classes_html ?>>
 
-	<td class="required_indicator"></td>
+	<td class="required-indicator"></td>
 
 	<td><label for="<?php echo htmlentities($id) ?>"><?php echo $options['label'] ?></label></td>
 	

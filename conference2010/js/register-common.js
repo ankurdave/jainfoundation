@@ -28,8 +28,12 @@ function wordCount(element) {
 function requiredHighlight(element, required) {
 	if (required) {
 		$(element).closest("tr").addClass("required");
+		$(element).closest("td").addClass("required");
+		$(element).addClass("required");
 	} else {
 		$(element).closest("tr").removeClass("required");
+		$(element).closest("td").removeClass("required");
+		$(element).removeClass("required");
 	}
 }
 
