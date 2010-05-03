@@ -55,4 +55,24 @@ function makeRefs($array) {
 	return $refs;
 }
 
+/**
+ * Converts a list of constraints $constraints and a list of valid fields $fields into a SQL where clause.
+ */
+function makeSqlWhere($constraints, $fields, $db) {
+		$whereClause = array();
+		foreach ($constraints as $col => $val) {
+			if (array_key_exists($col, $fields)) {
+				$whereClause[] = $db->real_escape_string($col) . "='" . $db->real_escape_string($val) . "'";
+			}
+		}
+
+		if (count($whereClause) > 0) {
+			$whereClauseSql = 'WHERE ' . join(' AND ', $whereClause);
+		} else {
+			$whereClauseSql = '';
+		}
+
+		return $whereClauseSql;
+}
+
 ?>

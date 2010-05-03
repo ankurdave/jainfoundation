@@ -12,7 +12,7 @@ printHeader(array('title' => 'Conference 2010 | List of Registrants'));
 
 <?php
 
-$registrants = RegistrantDAO::getAll(connectToDB());
+$registrants = RegistrantDAO::getAll(connectToDB(), array('final' => 1));
 foreach ($registrants as $registrant) {
 ?>
 	<table class="db_list_entry" id="registrant<?php echo print_html($registrant->getField('id')) ?>">

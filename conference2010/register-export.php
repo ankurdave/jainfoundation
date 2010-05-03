@@ -11,7 +11,7 @@ print xlsBegin();
 
 // Print the registrant info
 $first = true;
-$registrants = RegistrantDAO::getAll(connectToDB());
+$registrants = RegistrantDAO::getAll(connectToDB(), array('final' => 1));
 foreach ($registrants as $registrant) {
 	$fields = $registrant->getFields();
 	unset($fields['auth_key']);

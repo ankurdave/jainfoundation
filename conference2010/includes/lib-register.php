@@ -548,8 +548,9 @@ class RegistrantDAO {
 		return strtoupper($code) == 'JF2010AS';
 	}
 
-	public static function getAll($db) {
-		$result = $db->query("SELECT id FROM registrant ORDER BY id");
+	public static function getAll($db, $constraints = array()) {
+		$whereClauseSql = makeSqlWhere($constraints, self::$columnTypes, $db);
+		$result = $db->query("SELECT id FROM registrant $whereClauseSql ORDER BY id");
 
 		$all = array();
 		while ($row = $result->fetch_assoc()) {
