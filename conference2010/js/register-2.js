@@ -12,8 +12,10 @@ $(document).ready(function() {
 			author_1_lastname: { requiredIfFieldChecked: "#submitting_abstract input[value='yes']" },
 			abstract_category: { requiredIfFieldChecked: "#submitting_abstract input[value='yes']" },
 			abstract_category_other: {
-				requiredIfFieldChecked: "#submitting_abstract input[value='yes']",
-				requiredIfFieldEq: [ "abstract_category", "other" ]
+				satisfyAny: {
+					requiredIfFieldChecked: "#submitting_abstract input[value='yes']",
+					requiredIfFieldEq: [ "abstract_category", "other" ]
+				}
 			},
 			presentation_type: { requiredIfFieldChecked: "#submitting_abstract input[value='yes']" },
 			abstract_body: {
@@ -24,7 +26,7 @@ $(document).ready(function() {
 
 		errorPlacement: function(error, element) {
 			// If we're in a table, but not a multi-text one, then put the error in the next cell. Otherwise do the default action.
-			if (element.closest("table") && !element.closest("table").hasClass("multitext")) {
+			if (element.closest("table") && !element.closest("table").hasClass("multitext") && element.get(0).tagName.toLowerCase() != "textarea") {
 				error.appendTo(element.closest("td").next("td"));
 			} else {
 				error.insertAfter(element);

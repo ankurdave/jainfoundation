@@ -36,6 +36,16 @@ function requiredHighlight(element, required) {
 }
 
 // === FORM VALIDATION METHODS =================================================
+// satisfyAny: Field is invalid if all referenced validation methods return invalid
+$.validator.addMethod("satisfyAny", function(value, element, params) {
+	for (var validationMethod in params) {
+		if ($.validator.methods[validationMethod].call(this, value, element, params[validationMethod])) {
+			return true;
+		}
+	}
+	return false;
+}, $.validator.messages.required);
+
 // requiredIfFieldEq: Field is required if another field with id {0} is equal to a value {1}
 $.validator.addMethod("requiredIfFieldEq", function(value, element, params) {
 	var required = $("#" + params[0]).val() == params[1];
