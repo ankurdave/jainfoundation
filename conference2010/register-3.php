@@ -242,6 +242,7 @@
 		?>
 		</table>
 	<p>Will you be bringing guests to the Gala?</p>
+ 	<p>(Note there is a $70/guest charge for the gala dinner that is required at time of registration.  This charge is non-refundable if not canceled by July 30th, 2010)</p>
 	<table>
 		<?php
 			print_radio_field('meals_gala_dinner_guests', array(
@@ -265,10 +266,6 @@
 				));
 			?>
 		</table>
-	</div>
-
-	<p>(Note there is a $70/guest charge for the gala dinner that is required at time of registration.  This charge is non-refundable if not canceled by July 30th, 2010)</p>
-
 	<div id="meals_gala_dinner_guests_nonzero">
 		<p>Will your guests require a vegetarian option?</p>
 		<table id="meals_gala_dinner_guests_vegetarian">
@@ -284,13 +281,14 @@
 							'yes' => 'Yes',
 							'no' => 'No',
 						),
+						'classes' => array('gala-guest-vegetarian'),
 						'value' => ($i <= $numFilled) ? $galaGuests[$i - 1]->getField('vegetarian') : '',
 					));
 				}
 			?>
 		</table>
 	</div>
-
+	</div>
 	</div>
 
 	<div id="local_attendee_no">

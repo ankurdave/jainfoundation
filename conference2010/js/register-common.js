@@ -7,6 +7,12 @@ $.validator.addClassRules("affiliation", {
 	}
 });
 
+// Gala guest vegetarian options are required if visible
+$.validator.addClassRules("gala-guest-vegetarian", {
+	requiredIfAllFieldsChecked: "#meals_gala_dinner input[value='yes'], #meals_gala_dinner_guests input[type=radio][value='yes']"
+});
+
+
 // Set the custom validator messages
 $.extend($.validator.messages, {
 	required: "required",
