@@ -117,6 +117,8 @@ $(document).ready(function() {
 		for (var i = 1; i <= numGuests; i++) {
 			$("#meals_gala_dinner_guests_vegetarian").append('<tr><td class="required-indicator"></td><td><label for="meals_gala_dinner_guest_' + i + '_vegetarian">Guest #' + i + ' &ndash; Vegetarian</label></td><td class="input"><div id="meals_gala_dinner_guest_' + i + '_vegetarian"><label><input type="radio" name="meals_gala_dinner_guest_' + i + '_vegetarian" value="yes" class="gala-guest-vegetarian">Yes</label><label><input type="radio" name="meals_gala_dinner_guest_' + i + '_vegetarian" value="no" class="gala-guest-vegetarian">No</label></td><td></td></tr>');
 		}
+
+		highlightRequiredWithinElement("#meals_gala_dinner_guests_vegetarian");
 	});
 
 	// #have_promo_code
