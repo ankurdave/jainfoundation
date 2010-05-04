@@ -50,7 +50,7 @@ $.validator.addMethod("requiredIfFieldChecked", function(value, element, param) 
 	var required = $(param).attr("checked");
 	requiredHighlight(element, required);
 	return $.validator.methods.required.call(this, value, element, function(element) {
-		return $(param).attr("checked");
+		return required;
 	});
 }, $.validator.messages.required);
 
@@ -61,8 +61,9 @@ $.validator.addMethod("requiredIfAllFieldsChecked", function(value, element, par
 		required = required && $(elem).attr("checked");
 	});
 	requiredHighlight(element, required);
+
 	return $.validator.methods.required.call(this, value, element, function(element) {
-		return $(param).attr("checked");
+		return required;
 	});
 }, $.validator.messages.required);
 
@@ -110,10 +111,11 @@ function showElementWhenFieldMeetsCondition(field, condition, element) {
 			$.validator.defaults.unhighlight.call(this, fieldElement, "error", "valid");
 			// Remove the error label
 			// See errorPlacement in register-N.js -- this is the inverse of that
-			if ($(fieldElement).closest("table") && !$(fieldElement).closest("table").hasClass("multitext")) {
+			if ($(fieldElement).closest("table") && !$(fieldElement).closest("table").hasClass("multitext") && $(fieldElement).get(0).tagName != "textarea") {
 				$(fieldElement).closest("td").next("td").find(".error").remove();
 			} else {
-				$(fieldElement).siblings(".error").remove();													}
+				$(fieldElement).siblings(".error").remove();
+			}
 		});
 	}).change();
 }

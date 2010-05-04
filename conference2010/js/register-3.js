@@ -23,7 +23,7 @@ $(document).ready(function() {
 			meals_gala_dinner_numguests: { requiredIfAllFieldsChecked: "#meals_gala_dinner input[value='yes'], #meals_gala_dinner_guests input[type=radio][value='yes']" },
 
 			share_room: { requiredIfFieldChecked: "#local_attendee input[value='no']" },
-			gender: { requiredIfFieldChecked: "#local_attendee input[value='no']" },
+			gender: { requiredIfAllFieldsChecked: "#local_attendee input[value='no'], #share_room input[value='yes']" },
 			arrival_date: { requiredIfAllFieldsChecked: "#local_attendee input[value='no'], #share_room input[type=radio][value='yes']" },
 			departure_date: { requiredIfAllFieldsChecked: "#local_attendee input[value='no'], #share_room input[type=radio][value='yes']" },
 
