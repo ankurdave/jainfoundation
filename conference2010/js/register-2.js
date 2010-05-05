@@ -79,7 +79,7 @@ $(document).ready(function() {
 		}
 
 		// Add an element with that number
-		$("#affiliations tbody").append('<tr id="affiliation_' + n + '_container"><td class="required-indicator"></td><td><label for="affiliation_' + n + '">Affiliation #' + n + '</label></td><td class="input"><input type="text" id="affiliation_' + n + '" name="affiliation_' + n + '"></td><td></td></tr>');
+		$("#affiliations tbody").append($('<tr id="affiliation_' + n + '_container"><td class="required-indicator"></td><td><label for="affiliation_' + n + '">Affiliation #' + n + '</label></td><td class="input"><input type="text" id="affiliation_' + n + '" name="affiliation_' + n + '"></td><td></td></tr>').hide().fadeIn());
 	});
 });
 
@@ -96,7 +96,7 @@ $(document).ready(function() {
 		}
 
 		// Add an element with that number
-		$("#authors tbody").append('<tr id="author_' + n + '"><th class="label">Author #' + n + '</th><td><input type="text" id="author_' + n + '_firstname" name="author_' + n + '_firstname"></td><td><input type="text" id="author_' + n + '_middlename" name="author_' + n + '_middlename"></td><td><input type="text" id="author_' + n + '_lastname" name="author_' + n + '_lastname"></td><td><input type="text" class="affiliation_reference affiliation" id="author_' + n + '_affiliations" name="author_' + n + '_affiliations"></td></tr>');
+		$("#authors tbody").append($('<tr id="author_' + n + '"><th class="label">Author #' + n + '</th><td><input type="text" id="author_' + n + '_firstname" name="author_' + n + '_firstname"></td><td><input type="text" id="author_' + n + '_middlename" name="author_' + n + '_middlename"></td><td><input type="text" id="author_' + n + '_lastname" name="author_' + n + '_lastname"></td><td><input type="text" class="affiliation_reference affiliation" id="author_' + n + '_affiliations" name="author_' + n + '_affiliations"></td></tr>').hide().fadeIn());
 	});
 });
 

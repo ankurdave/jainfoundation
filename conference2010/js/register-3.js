@@ -79,8 +79,6 @@ $(document).ready(function() {
 	hideElementWhenRadioChecked("#payment_type input[type=radio][value='check']", "#payment_type_credit_card");
 	showElementWhenRadioChecked("#payment_type input[type=radio][value='credit_card']", "#payment_type_credit_card");
 	hideElementWhenRadioChecked("#payment_type input[type=radio][value='credit_card']", "#payment_type_check");
-	// Make sure both are visible initially
-	$("#payment_type_credit_card, #payment_type_check").css("display", "");
 
 	// #meals_day2_lunch
 	showElementWhenRadioChecked("#meals_day2_lunch input[type=radio][value='yes']", "#meals_day2_lunch_entree_container");
@@ -111,7 +109,11 @@ $(document).ready(function() {
 		$("#meals_gala_dinner_guests_vegetarian").empty();
 
 		// Show/hide the guest list section based on the number of guests
-		$("#meals_gala_dinner_guests_nonzero").css("display", numGuests > 0 ? "" : "none");
+		if (numGuests > 0) {
+			$("#meals_gala_dinner_guests_nonzero").show("normal");
+		} else {
+			$("#meals_gala_dinner_guests_nonzero").hide("normal");
+		}
 
 		// Add the appropriate number of guest input fields to the guest list section
 		for (var i = 1; i <= numGuests; i++) {
@@ -155,7 +157,7 @@ $(document).ready(function() {
 		$("#gala_dinner_guest_fee").html(gala_dinner_guest_fee);
 		$("#total_fee").html(total_fee);
 
-		$("#price").css("display", "");
+		$("#price").show("normal");
 	});
 });
 
@@ -169,15 +171,20 @@ $(document).ready(function() {
 			$("#promo_code").closest("td").next("td").empty();
 			if (data.valid) {
 				$("#promo_code").closest("td").next("td").append('<label for="promo_code" class="valid">valid promotional code</label>');
+				$("#no_promo_code").hide("normal");
 			} else {
 				$("#promo_code").closest("td").next("td").append('<label for="promo_code" class="invalid">invalid promotional code</label>');
+				$("#no_promo_code").show("normal");
 			}
 
-			$("#no_promo_code").css("display", data.valid ? "none" : "");
-
 			var noGuests = !($("#meals_gala_dinner_numguests").val()) || parseInt($("#meals_gala_dinner_numguests").val()) == 0;
-			$("#promo_code_valid_and_no_guests").css("display", data.valid && noGuests ? "" : "none");
-			$("#payment_info").css("display", data.valid && noGuests ? "none" : "");
+			if (data.valid && noGuests) {
+				$("#promo_code_valid_and_no_guests").show("normal");
+				$("#payment_info").hide("normal");
+			} else {
+				$("#promo_code_valid_and_no_guests").hide("normal");
+				$("#payment_info").show("normal");
+			}
 
 			promo_code_valid = data.valid;
 

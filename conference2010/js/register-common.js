@@ -101,7 +101,7 @@ $.validator.addMethod("maxWords", function(value, element, wordLimit) {
 
 	// Show the user the count
 	// This is an ugly optimization -- it should be in its own function, bound separately to each field that requires it, but that would mean we count the words twice. An unfortunate side effect of this optimization is that maxWords can only be used on one element.
-	$("#word_count_text").css('display', 'block');
+	$("#word_count_text").show("normal");
 	$("#word_count").html(count);
 
 	// Check if the count is within limits
@@ -126,11 +126,27 @@ $.validator.addMethod("affiliation_reference", function(value, element) {
 // === FORM FIELD LINKAGES =====================================================
 function showElementWhenFieldMeetsCondition(field, condition, element) {
 	$(field).change(function() {
-		// Show or hide the element
-		$(element).css("display", condition.call(field, field) ? "" : "none");
+		// Don't use show/hide on table rows, because it messes the layout up
+		var fallbackAnimation = $(element).is("tr, th, td");
 
-		highlightRequiredWithinElement(element);
-	}).change();
+		// Show or hide the element, and highlight or unhighlight newly required fields within the element.
+		// Do the (un)highlighting before showing, but after hiding
+		if (condition.call(field, field)) {
+			highlightRequiredWithinElement(element);
+			if (fallbackAnimation) {
+				$(element).fadeIn();
+			} else {
+				$(element).show("normal");
+			}
+		} else {
+			if (fallbackAnimation) {
+				$(element).fadeOut();
+			} else {
+				$(element).hide("normal");
+			}
+			highlightRequiredWithinElement(element);
+		}
+	});
 }
 
 function showFieldWhenFieldEq(sourceField, value, targetField) {
