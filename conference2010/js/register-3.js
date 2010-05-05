@@ -99,7 +99,7 @@ $(document).ready(function() {
 	hideElementWhenRadioChecked("#meals_gala_dinner input[type=radio][value='no']", "#meals_gala_dinner_yes");
 
 	// #meals_gala_dinner_numguests -- create the appropriate number of guest vegetarian options
-	$("#meals_gala_dinner_numguests").bind($.browser.msie ? 'propertychange' : 'change', function() {
+	$("#meals_gala_dinner_numguests").change(function() {
 		// Figure out how many guests they are bringing
 		var numGuests = 0;
 		if (!isNaN(parseInt($("#meals_gala_dinner_numguests").val()))) {
