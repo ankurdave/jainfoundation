@@ -2,6 +2,8 @@
 
 require 'includes/lib.php';
 
+passwordProtect('Conference pages', array('jainfoundation' => 'speed4jf'));
+
 printHeader(array('title' => 'Conference 2010 | List of Abstracts'));
 
 ?>

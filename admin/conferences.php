@@ -1,7 +1,9 @@
 <?php
-	include 'includes/lib.php';
+include 'includes/lib.php';
 
-	printHeader(array('title' => 'Admin'));
+passwordProtect('Conference pages', array('jainfoundation' => 'speed4jf'));
+
+printHeader(array('title' => 'Admin'));
 ?>
 
 <h1>Conference Admin</h1>
