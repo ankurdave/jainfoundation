@@ -43,19 +43,12 @@ function requiredHighlight(element, required) {
 
 function highlightRequiredWithinElement(element) {
 	// Check if any fields in the element are required and update the visual style accordingly
-	// Do this by having jQuery validate the fields (and therefore check if they're required), and then removing the error messages, leaving only the required symbol
+	// Do this by calling all of the validation functions in $(element).rules. They will highlight the element automatically.
 	$(element).find("input, select, textarea").each(function(index, fieldElement) {
-		// Validate the fields
-		$(fieldElement).valid();
-
-		// Remove the error class
-		$.validator.defaults.unhighlight.call(this, fieldElement, "error", "valid");
-		// Remove the error label
-		// See errorPlacement in register-N.js -- this is the inverse of that
-		if ($(fieldElement).closest("table") && !$(fieldElement).closest("table").hasClass("multitext") && $(fieldElement).get(0).tagName != "textarea") {
-			$(fieldElement).closest("td").next("td").find(".error").remove();
-		} else {
-			$(fieldElement).siblings(".error").remove();
+		// Call all of the validation functions in $(fieldElement).rules
+		var elementRules = $(fieldElement).rules();
+		for (var ruleName in elementRules) {
+			$.validator.methods[ruleName].call($.validator.prototype, $(fieldElement).val(), fieldElement, elementRules[ruleName]);
 		}
 	});
 }
