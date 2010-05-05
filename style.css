@@ -338,6 +338,9 @@ table.multitext label.error {
 input.error, .error input, select.error, .error select, textarea.error {
 	border: 2px solid red;
 }
+input[type=radio].error, .error input[type=radio] {
+    border: none;
+}
 
 div.error label {
 	border-top: 2px solid red;
