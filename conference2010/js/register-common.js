@@ -125,6 +125,16 @@ $.validator.addMethod("affiliation_reference", function(value, element) {
 
 // === FORM FIELD LINKAGES =====================================================
 function showElementWhenFieldMeetsCondition(field, condition, element) {
+	// Do the initial showing and hiding with no animation
+	if (condition.call(field, field)) {
+		highlightRequiredWithinElement(element);
+		$(element).show();
+	} else {
+		$(element).hide();
+		highlightRequiredWithinElement(element);
+	}
+
+	// Set up future changes to use animation
 	$(field).change(function() {
 		// Don't use show/hide on table rows, because it messes the layout up
 		var fallbackAnimation = $(element).is("tr, th, td");
