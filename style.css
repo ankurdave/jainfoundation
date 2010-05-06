@@ -315,9 +315,11 @@ table#price {
 .required-indicator {
 	color: red;
 	font-weight: bold;
+    visibility: hidden; /* start hidden by default */
 }
-.required .required-indicator:before {
-    content: "*";
+.required .required-indicator,
+.required-indicator.for-show {
+    visibility: visible;
 }
 
 table td.input {

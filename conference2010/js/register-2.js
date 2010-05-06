@@ -79,7 +79,7 @@ $(document).ready(function() {
 		}
 
 		// Add an element with that number
-		$("#affiliations tbody").append($('<tr id="affiliation_' + n + '_container"><td class="required-indicator"></td><td><label for="affiliation_' + n + '">Affiliation #' + n + '</label></td><td class="input"><input type="text" id="affiliation_' + n + '" name="affiliation_' + n + '"></td><td></td></tr>').hide().fadeIn());
+		$("#affiliations tbody").append($('<tr id="affiliation_' + n + '_container"><td class="required-indicator">*</td><td><label for="affiliation_' + n + '">Affiliation #' + n + '</label></td><td class="input"><input type="text" id="affiliation_' + n + '" name="affiliation_' + n + '"></td><td></td></tr>').hide().fadeIn());
 	});
 });
 

@@ -119,10 +119,10 @@
 			<table class="multitext" id="authors">
 				<tr>
 					<th></th>
-					<th>First Name (<span class="required-indicator">*</span>)</th>
+					<th>First Name (<span class="required-indicator for-show">*</span>)</th>
 					<th>Middle Initial</th>
-					<th>Last Name (<span class="required-indicator">*</span>)</th>
-					<th>Affiliations (<span class="required-indicator">*</span>)</th>
+					<th>Last Name (<span class="required-indicator for-show">*</span>)</th>
+					<th>Affiliations (<span class="required-indicator for-show">*</span>)</th>
 				</tr>
 
 				<?php
