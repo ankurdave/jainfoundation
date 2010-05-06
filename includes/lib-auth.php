@@ -21,7 +21,8 @@ function passwordProtect($realm, $users) {
 	$valid_response = md5($A1 . ':' . $data['nonce'] . ':' . $data['nc'] . ':' . $data['cnonce'] . ':' . $data['qop'] . ':' . $A2);
 
 	if ($data['response'] != $valid_response) {
-		die('Wrong username or password. <a href="">Try again.</a>');
+		//die('Wrong username or password. <a href="">Try again.</a>');
+		send401($realm);
 	}
 }
 

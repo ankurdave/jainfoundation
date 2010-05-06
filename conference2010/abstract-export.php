@@ -2,6 +2,8 @@
 
 require 'includes/lib.php';
 
+passwordProtect('Conference pages', array('jainfoundation' => 'speed4jf'));
+
 header("Content-Type: text/csv");
 header("Content-Disposition: attachment; filename=abstract-submission-info.csv");
 // IE has a bug that breaks downloads from SSL sites with the no-cache header set (see http://support.microsoft.com/kb/812935). So we must clear the caching header.
