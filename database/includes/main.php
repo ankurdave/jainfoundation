@@ -21,8 +21,8 @@ onMouseOut="window.document.sq14.src='../../images/button_contact2.gif'"><img sr
 	
     <table width="780" border="0" cellspacing="0" cellpadding="0">
       <tr height="97">
-        <td><a href="../../index.php"><img src="../../images/logo_jain-old.gif" width="260" height="97" border="0"></a></td>
-        <td><img src="../../images/logo_jain2-old.gif" width="520" height="97"></td>
+        <td><a href="../../index.php"><img src="../../images/logo_jain.gif" width="260" height="97" border="0"></a></td>
+        <td><img src="../../images/logo_jain2.gif" width="520" height="97"></td>
       </tr>
     </table>
 
@@ -100,7 +100,7 @@ onMouseOut="window.document.sq16.src='../../images/button_links2.gif'"><img src=
                     <td width="168"><img src="../../images/header_researchers.gif" width="168" height="26"></td>
                   </tr>
                   <tr>
-                    <td background="../../images/box_bgMain-old.gif" valign="top"><p class="left">
+                    <td background="../../images/box_bgMain.gif" valign="top"><p class="left">
 					
 					<font color="#006600"><br>
 
