@@ -79,6 +79,7 @@ $(document).ready(function() {
 	hideElementWhenRadioChecked("#payment_type input[type=radio][value='check']", "#payment_type_credit_card");
 	showElementWhenRadioChecked("#payment_type input[type=radio][value='credit_card']", "#payment_type_credit_card");
 	hideElementWhenRadioChecked("#payment_type input[type=radio][value='credit_card']", "#payment_type_check");
+	$("#payment_type_check, #payment_type_credit_card").show();
 
 	// #meals_day2_lunch
 	showElementWhenRadioChecked("#meals_day2_lunch input[type=radio][value='yes']", "#meals_day2_lunch_entree_container");
