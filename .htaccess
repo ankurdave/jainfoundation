@@ -4,3 +4,18 @@
 	Order allow,deny
 	Deny from all
 </Files>
+
+# Legacy redirect
+RewriteEngine on
+RewriteRule reg-demo(.*) conference2010$1
+
+# ankurdave.com/jainfoundation mirror redirects
+# Redirect everything except /admin, /conference2010, and supporting files to the main site
+RewriteRule admin(.*) - [L]
+RewriteRule conference2010(.*) - [L]
+RewriteRule style.css - [L]
+RewriteRule images(.*) - [L]
+RewriteRule js(.*) - [L]
+
+RewriteRule style-old.css http://jain-foundation.org/style.css [R=temporary,L]
+RewriteRule (.*) http://jain-foundation.org/$1 [R=temporary,L]
