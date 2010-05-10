@@ -349,7 +349,7 @@ onMouseOut="window.document.sq16.src='images/button_links2.gif'"><img src="image
                           <br>
                       
                           <br>
-                      Please view the terms of the <a href="http://www.jain-foundation.org/downloads/Funding Agreement - US.pdf" target="_blank" class="style4">Jain Foundation Funding Agreement</a>.<br>
+                      Please view the terms of the <a href="http://www.jain-foundation.org/downloads/Jain Foundation Funding Agreement -current.pdf" target="_blank" class="style4">Jain Foundation Funding Agreement</a>.<br>
                       This agreement is required to initiate any funding with us, and is designed with
                       
                       a single goal in mind: to expedite development of a treatment for LGMD2B/Miyoshi. <br>
