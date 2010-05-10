@@ -182,9 +182,11 @@ $(document).ready(function() {
 			if (data.valid && noGuests) {
 				$("#promo_code_valid_and_no_guests").show("normal");
 				$("#payment_info").hide("normal");
+				$("#payment_type_container").removeClass("required").find("*").removeClass("required");
 			} else {
 				$("#promo_code_valid_and_no_guests").hide("normal");
 				$("#payment_info").show("normal");
+				$("#payment_type_container").removeClass("required").find("*").addClass("required");
 			}
 
 			promo_code_valid = data.valid;
