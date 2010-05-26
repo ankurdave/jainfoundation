@@ -14,10 +14,10 @@ printHeader(array('title' => 'Conference 2010 | List of Registrants'));
 
 <?php
 
-$registrants = RegistrantDAO::getAll(connectToDB(), array('final' => 1));
+$registrants = RegistrantDAO::getAll(connectToDB());
 foreach ($registrants as $registrant) {
 ?>
-	<table class="db_list_entry" id="registrant<?php echo print_html($registrant->getField('id')) ?>">
+	<table class="db_list_entry <?php echo $registrant->getField('final') ? '' : 'unfinished' ?>" id="registrant<?php echo print_html($registrant->getField('id')) ?>">
 <?php
 	$i = 0;
 	foreach ($registrant->getFields() as $key => $val) {

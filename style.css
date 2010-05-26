@@ -508,6 +508,9 @@ table.db_list_entry {
 	margin: 0.5em 0;
 	border-spacing: 0; /* to make the row background colors look good */
 }
+table.db_list_entry.unfinished {
+    color: #666;
+}
 .db_list_entry th {
 	text-align: right;
 	padding: 0 0.5em;
