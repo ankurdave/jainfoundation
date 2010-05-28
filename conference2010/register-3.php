@@ -477,31 +477,8 @@
 			));
 		?>
 	</table>
-	<div id="payment_type_check">
-		<p>If paying by <strong>check</strong>, press the "Calculate Registration Fee" button above, and mail a check made out to the "Jain Foundation Inc" for the amount displayed as your "Total Registration Fee" to the following address:</p>
 
-		<p>
-			Jain Foundation Conference Registration<br />
-			2310 130th Ave NE<br />
-			Suite B101<br />
-			Bellevue, WA 98005
-		</p>
-
-		<p>The check must be <strong>received</strong> within 20 days of registration or applicant will be unregistered. You will receive a notification if your registration status has changed.</p>
-	</div>
-	<div id="payment_type_credit_card">
-		<p>If paying by <strong>credit card</strong>, please see the below instructions. Please note that you are <strong>not</strong> required to have a PayPal account to pay by credit card.</p>
-
-		<ol>
-			<li>Please press the "Calculate Registration Fee" button above. Your "Total Registration Fee" will appear.</li>
-			<li>Follow the <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=5SR6XJUWHXNLY" target="_blank">PayPal link</a>.</li>
-			<li>Enter your "Total Registration Fee" determined in step 1 in the "Unit Price" box and press the "Update Totals" button.</li>
-			<li>If you do <strong>not</strong> have a PayPal account, please follow the "continue" link on the bottom left-hand side of the screen and proceed as prompted.</li>
-			<li>If you <strong>do</strong> have a PayPal account, please log in and proceed as prompted.</li>
-		</ol>
-
-		<p>PayPal will automatically send the Jain Foundation a receipt of your payment.  If the Jain Foundation does not receive receipt of your payment within 24 hours of your registration you will be unregistered. You will receive a notification if your registration status has changed.</p>
-	</div>
+	<p>Click the "Submit Registration" button below for payment instructions.</p>
 	</div>
 
 	<h3>Comments</h3>

@@ -122,7 +122,7 @@
 					<th>First Name (<span class="required-indicator for-show">*</span>)</th>
 					<th>Middle Initial</th>
 					<th>Last Name (<span class="required-indicator for-show">*</span>)</th>
-					<th>Affiliations (<span class="required-indicator for-show">*</span>)</th>
+					<th>Affiliation number<br /> from above (<span class="required-indicator for-show">*</span>)</th>
 				</tr>
 
 				<?php
