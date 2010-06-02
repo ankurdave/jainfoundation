@@ -485,11 +485,11 @@ table.multitext label.error:hover {
 
 /* Schedule */
 
-h2.day {
+.day {
 	color: black;
 }
 
-h3.time {
+.time {
 	color: #008000;
 }
 
