@@ -50,7 +50,7 @@
 
 <h3>Abstract Submission</h3>
 
-<p>Abstract submission is embedded within the registration page. You CANNOT submit an abstract without registering. To begin the submission of your abstract and registration, please click on the following <a href="register.php" target="_blank">Meeting Registration and Abstract Submission link</a>.</p>
+<p>Abstract submission is embedded within the registration page. You CANNOT submit an abstract without registering. The abstract word limit is 275 words. To begin the submission of your abstract and registration, please click on the following <a href="register.php" target="_blank">Meeting Registration and Abstract Submission link</a>.</p>
 
 <p>This year's meeting is going to be different from past dysferlin conferences.  We plan to limit the number of talks and present more information using posters.  The oral sessions will focus on a few of the most pressing questions in dysferlin and will include a significant time for discussion. You may select whether you prefer an oral or poster presentation. However, the decision regarding the type of presentation is at the complete discretion of the Jain Foundation.</p>
 
