@@ -32,13 +32,13 @@
 <p>Meeting Registration Fees:</p>
 
 <ul>
-	<li>Early Registration &ndash; <strong>on or before June 4, 2010</strong>:
+	<li>Early Registration &ndash; <strong>on or before June 7, 2010</strong>:
 		<ul>
 			<li>Post-doc/student &ndash; $150 USD</li>
 			<li>Researcher/Other &ndash; $250 USD</li>
 		</ul>
 	</li>
-	<li>Late Registration &ndash; <strong>between June 5, 2010 &ndash; July 23rd, 2010</strong>:
+	<li>Late Registration &ndash; <strong>between June 8, 2010 &ndash; July 23rd, 2010</strong>:
 		<ul>
 			<li>Post-doc/student &ndash; $250 USD</li>
 			<li>Researcher/Other &ndash; $350 USD</li>

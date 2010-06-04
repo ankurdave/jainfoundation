@@ -508,7 +508,7 @@ class RegistrantDAO {
 	 */
 	private function calculateTotalPrice() {
 		// Determine the fee classes based on the date
-		if ($now <= strtotime('June 4, 2010')) {
+		if ($now < strtotime('June 8, 2010')) {
 			$postdoc_fee = 150;
 			$other_fee = 250;
 		} else {

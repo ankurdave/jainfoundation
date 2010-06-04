@@ -396,13 +396,13 @@
 	<div id="no_promo_code">
 	<p>Registration fees (covers costs of all meeting sessions, breakfasts, breaks, and lunches):</p>
 	<ul>
-		<li>Early registration &ndash; <strong>on or before June 4, 2010</strong>:
+		<li>Early registration &ndash; <strong>on or before June 7, 2010</strong>:
 			<ul>
 				<li>Post-doc/student: $150 USD</li>
 				<li>Other: $250 USD</li>
 			</ul>
 		</li>
-		<li>Late registration &ndash; <strong>between June 5, 2010 &ndash; July 23, 2010</strong>:
+		<li>Late registration &ndash; <strong>between June 8, 2010 &ndash; July 23, 2010</strong>:
 			<ul>
 				<li>Post-doc/student: $250 USD</li>
 				<li>Other: $350 USD</li>
@@ -416,7 +416,7 @@
 			$now = time();
 		?>
 		The date is <?php echo date('F j, Y', $now) ?>.
-		<?php if ($now <= strtotime('June 4, 2010')) { ?>
+		<?php if ($now < strtotime('June 8, 2010')) { ?>
 			Early registration is open.
 			<script type="text/javascript">
 				<?php
@@ -431,7 +431,7 @@
 				}
 				?>
 			</script>
-		<?php } else if ($now <= strtotime('July 23, 2010')) { ?>
+		<?php } else if ($now < strtotime('July 24, 2010')) { ?>
 			Early registration is closed. Late registration is open.
 			<script type="text/javascript">
 				<?php
