@@ -21,7 +21,7 @@ $.extend($.validator.messages, {
 });
 
 // Do not validate forms with error class
-$.validator.defaults.ignore = "form.editing *";
+$.validator.defaults.ignore = ".editing";
 
 // Returns the word count of a jQuery form element
 // Utility function for maxWords validation method below

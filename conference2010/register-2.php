@@ -48,7 +48,7 @@ printHeader(array(
 
 <p>For questions and concerns please contact Angela Salerno at <a href="mailto:asalerno@jain-foundation.org">asalerno@jain-foundation.org.</a></p>
 
-<form action="<?php echo $submit_location . $data_auth_query_string ?>" method="post" id="register-form" enctype="multipart/form-data" encoding="multipart/form-data" class="<?php echo empty($_GET['edit']) ? '' : 'editing' ?>">
+<form action="<?php echo $submit_location . $data_auth_query_string ?>" method="post" id="register-form" enctype="multipart/form-data" encoding="multipart/form-data">
 	<input type="hidden" name="form_number" value="2">
 	<p>Are you planning to submit an abstract for oral or poster presentation?</p>
 	<table>
@@ -88,6 +88,7 @@ printHeader(array(
 						'label' => 'Picture',
 						'required' => false,
 						'instructions' => '(max 1 MB)',
+						'class' => empty($_GET['edit']) ? array() : array('editing'),
 						'value' => $registrant->getAbstractInit()->getField('picture'),
 					));
 				?>
