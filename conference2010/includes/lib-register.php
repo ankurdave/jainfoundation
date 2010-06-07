@@ -410,7 +410,8 @@ class RegistrantDAO {
 		}
 
 		// Set the 'final' field
-		$this->data['final'] = $finalize;
+		// If it's already true, don't change that
+		$this->data['final'] = $finalize || $this->data['final'];
 		$this->dirty['final'] = true;
 
 		// Build the query
