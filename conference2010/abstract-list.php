@@ -13,13 +13,13 @@ printHeader(array('title' => 'Conference 2010 | List of Abstracts'));
 include 'includes/menu.inc.php';
 
 $db = connectToDB();
-$abstracts = AbstractDAO::loadAll($db, array('final' => 1));
+$abstracts = AbstractDAO::loadAll($db);
 
 include 'includes/abstract-export-fields.php';
 
 foreach ($abstracts as $abstract) {
 ?>
-	<table class="db_list_entry" id="abstract<?php echo print_html($abstract->getField('id')) ?>">
+	<table class="db_list_entry <?php echo $abstract->getField('final') ? '' : 'unfinished' ?>" id="abstract<?php echo print_html($abstract->getField('id')) ?>">
 <?php
 	$i = 0;
 	foreach ($fields as $fieldName => $inRegistrant) {
