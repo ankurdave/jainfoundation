@@ -51,7 +51,7 @@ class InsertUpdateQuery {
 		if (!$query) {
 			throw new Exception("Error preparing query: " . $this->getQuerySQL());
 		}
-		
+
 		// Gather together the parameter types and values
 		$paramTypes = '';
 		$colVals = array();

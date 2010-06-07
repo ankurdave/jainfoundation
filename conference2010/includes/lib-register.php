@@ -383,11 +383,12 @@ class RegistrantDAO {
 	 *
 	 * Throws an exception if id and auth_key are set but invalid (do not exist in the database).
 	 * 
-	 * @param boolean $finalize whether or not to mark the abstract as "final," meaning it cannot be edited anymore. Set to false when only previewing the abstract.
+	 * @param boolean $finalize whether or not to mark the registration as "final," meaning it cannot be edited anymore. Useful for adding the registration in multiple steps.
+	 * @param boolean $force if true, forces the save even if auth_key is false or final is true. Defaults to false.
 	 */
-	function save($finalize = true) {
+	function save($finalize = true, $force = false) {
 		// Check the preconditions
-		if (!$this->checkIdAuthKey()) {
+		if (!$force && !$this->checkIdAuthKey()) {
 			throw new DAOAuthException('Invalid ID or auth key');
 		}
 
@@ -405,7 +406,7 @@ class RegistrantDAO {
 		// Save the abstract
 		if (isset($this->abstract)) {
 			$this->abstract->setField('registrant_id', $this->data['id']);
-			$this->abstract->save($finalize);
+			$this->abstract->save($finalize, $force);
 		}
 
 		// Set the 'final' field

@@ -134,13 +134,15 @@ class AbstractDAO {
 	 * Saves the abstract to the database. Creates a new abstract if id and auth_key are set, otherwise updates the existing abstract with the given id.
 	 * 
 	 * Throws an exception if id and auth_key are set but invalid (do not exist in the database).
+	 * @param boolean $finalize whether or not to mark the abstract as "final," meaning it cannot be edited anymore.
+	 * @param boolean $force if true, forces the save even if auth_key is false or final is true. Defaults to false.
 	 */
-	function save($finalize = false) {
+	function save($finalize = false, $force = false) {
 		// Check the preconditions
 		if (!$this->checkId()) {
 			throw new DAOAuthException('Invalid ID');
 		}
-		if ($this->checkFinal()) {
+		if (!$force && $this->checkFinal()) {
 			throw new DAOAuthException('Abstract is marked as final');
 		}
 		

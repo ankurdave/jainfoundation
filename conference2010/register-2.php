@@ -1,35 +1,43 @@
 <?php
 //	error_reporting(E_ALL);
-	require 'includes/lib.php';
+require 'includes/lib.php';
 
-	$db = connectToDB();
+$db = connectToDB();
 
-	$submit_location = 'register-submit.php';
+$submit_location = 'register-submit.php';
 
-	// Set the default values
-	$registrant = new RegistrantDAO($db);
+// Set the default values
+$registrant = new RegistrantDAO($db);
 
-	// Load the saved values from the DAO, if any
-	try {
-		if (isset($_GET['id'])) {
-			$registrant = new RegistrantDAO($db, $_GET['id']);
-			$registrant->setField('auth_key', $_GET['auth_key']);
-		} else if (isset($_COOKIE['register_id'])) {
-			$registrant = new RegistrantDAO($db, $_COOKIE['register_id']);
-			$registrant->setField('auth_key', $_COOKIE['register_auth_key']);
-		}
-	} catch (DAOAuthException $e) { }
+// Load the saved values from the DAO, if any
+try {
+	if (isset($_GET['id'])) {
+		$registrant = new RegistrantDAO($db, $_GET['id']);
+		$registrant->setField('auth_key', $_GET['auth_key']);
+	} else if (isset($_COOKIE['register_id'])) {
+		$registrant = new RegistrantDAO($db, $_COOKIE['register_id']);
+		$registrant->setField('auth_key', $_COOKIE['register_auth_key']);
+	}
+} catch (DAOAuthException $e) { }
 
-	printHeader(array(
-		'title' => 'Conference 2010 | Meeting Registration and Abstract Submission',
-		'scripts' => array(
-			$Config['URLPath'] . '/js/jquery.validate.js',
-			$Config['URLPath'] . '/js/jquery.alphanumeric.js',
-			'js/register-common.js',
-			'js/register-2.js',
-		),
-		'page_nav_id' => 'register',
-	));
+// Build the query string
+$data_auth_query_string_elements = array(
+	'id' => $registrant->getField('id'),
+	'auth_key' => $registrant->getField('auth_key'),
+	'edit' => urlencode($_GET['edit']),
+);
+$data_auth_query_string = buildQueryString($data_auth_query_string_elements);
+
+printHeader(array(
+	'title' => 'Conference 2010 | Meeting Registration and Abstract Submission',
+	'scripts' => array(
+		$Config['URLPath'] . '/js/jquery.validate.js',
+		$Config['URLPath'] . '/js/jquery.alphanumeric.js',
+		'js/register-common.js',
+		'js/register-2.js',
+	),
+	'page_nav_id' => 'register',
+));
 ?>
 
 <?php include 'includes/conference-title.inc.php' ?>
@@ -40,14 +48,7 @@
 
 <p>For questions and concerns please contact Angela Salerno at <a href="mailto:asalerno@jain-foundation.org">asalerno@jain-foundation.org.</a></p>
 
-<?php
-	if (!is_null($registrant->getField('id'))) {
-		$data_auth_query_string = "?id=" . $registrant->getField('id') . "&auth_key=" . $registrant->getField('auth_key');
-	} else {
-		$data_auth_query_string = '';
-	}
-?>
-<form action="<?php echo $submit_location . $data_auth_query_string ?>" method="post" id="register-form" enctype="multipart/form-data" encoding="multipart/form-data">
+<form action="<?php echo $submit_location . $data_auth_query_string ?>" method="post" id="register-form" enctype="multipart/form-data" encoding="multipart/form-data" class="<?php echo empty($_GET['edit']) ? '' : 'editing' ?>">
 	<input type="hidden" name="form_number" value="2">
 	<p>Are you planning to submit an abstract for oral or poster presentation?</p>
 	<table>

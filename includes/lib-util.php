@@ -75,4 +75,17 @@ function makeSqlWhere($constraints, $fields, $db) {
 		return $whereClauseSql;
 }
 
+/**
+ * Falls through the values in the $values array, by returning the first non-empty one. If all are empty, returns null.
+ */
+function fallthrough($values) {
+	foreach ($values as $val) {
+		if (!empty($val)) {
+			return $val;
+		}
+	}
+
+	return null;
+}
+
 ?>

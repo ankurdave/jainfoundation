@@ -20,6 +20,9 @@ $.extend($.validator.messages, {
 	accept: "must be a PNG or JPEG image"
 });
 
+// Do not validate forms with error class
+$.validator.defaults.ignore = "form.editing *";
+
 // Returns the word count of a jQuery form element
 // Utility function for maxWords validation method below
 // This is slow, because each time there's a keystroke it goes through the entire string.

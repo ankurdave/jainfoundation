@@ -18,6 +18,28 @@ function get_error_text($field, $text = "(required)") {
 }
 
 /**
+ * Builds a query string of the form ?key1=val1&key2=val2 from the given assoc array $params. Does not do any escaping of the keys and values. Only includes a key/value pair if the value is not empty, as reported by the standard empty() function (http://php.net/manual/en/function.empty.php).
+ * 
+ * @param array $params an assoc array of the form array('key1' => 'val1', 'key2' => 'val2')
+ * @param boolean $htmlEncode whether or not to HTML-encode the ampersands that separate the key/value pairs. Defaults to false.
+ */
+function buildQueryString($params, $htmlEncode = false) {
+	// Convert the key-value pairs in $params into a flat array of pairs separated by equals signs
+	$paramsProcessed = array();
+	foreach ($params as $key => $val) {
+		if (!empty($val)) {
+			$paramsProcessed[] = "$key=$val";
+		}
+	}
+
+	// Join them up into a query string
+	$separator = $htmlEncode ? '&amp;' : '&';
+	$queryString = '?' . join($separator, $paramsProcessed);
+
+	return $queryString;
+}
+
+/**
  * Prints a generic form field in an HTML table row.
  * 
  * @param string $id the field id

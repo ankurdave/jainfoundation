@@ -527,7 +527,7 @@ table.db_list_entry.unfinished {
 	background-color: #EEE;
 }
 .db_list_entry .action {
-	text-align: right;
+	float: right;
 }
 
 /* Google-style CSS buttons */

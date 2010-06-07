@@ -4,15 +4,22 @@ require 'includes/lib.php';
 
 $db = connectToDB();
 
-// Load or create the DAO with id and auth_key
-if (isset($_GET['id']) && isset($_GET['auth_key'])) {
-	$registrant = new RegistrantDAO($db, $_GET['id']);
-	$registrant->setField('auth_key', $_GET['auth_key']);
-} else if (isset($_COOKIE['register_id']) && isset($_COOKIE['register_auth_key'])) {
-	$registrant = new RegistrantDAO($db, $_COOKIE['register_id']);
-	$registrant->setField('auth_key', $_COOKIE['register_auth_key']);
-} else {
-	$registrant = new RegistrantDAO($db);
+// Process the $_GET and $_COOKIE params and set appropriate variables
+$editing = !empty($_GET['edit']);
+$id = fallthrough(array($_GET['id'], $_COOKIE['register_id']));
+$auth_key = fallthrough(array($_GET['auth_key'], $_COOKIE['register_auth_key']));
+
+// Password-protect if editing
+if ($editing) {
+	passwordProtect('Conference pages', $Config['ConferenceAdmin']['auth']);
+}
+
+// Load or create the DAO
+$registrant = new RegistrantDAO($db, $id);
+// If the DAO is pre-existing and we're not editing, set the auth key
+// Otherwise, it isn't necessary
+if ($id != null && !$editing) {
+	$registrant->setField('auth_key', $auth_key);
 }
 
 // List of forms
@@ -38,8 +45,10 @@ if (isset($_POST['preview_abstract'])) {
 $submitting = ($nextIndex == 4); // Must come before the checking which thank-you page step, because that modifies $nextIndex if submitting an abstract
 
 // Check which thank you page we're going to
-if ($nextIndex == 4 && !is_null($registrant->getAbstract())) {
-	$nextIndex = 'thankyou_abstract';
+if ($nextIndex == 4) {
+	if (!is_null($registrant->getAbstract())) {
+		$nextIndex = 'thankyou_abstract';
+	}
 }
 
 // Make sure the calculated form and next locations are valid (defined in the $forms table)
@@ -100,7 +109,7 @@ if (is_uploaded_file($_FILES['picture']['tmp_name']) && $_FILES['picture']['size
 // Save the DAO
 // This is before validation so that if there's an error, the user won't lose the data
 try {
-	$registrant->save($submitting); // Mark the submission as final if the next page is the thank-you page
+	$registrant->save($submitting, $editing); // Mark the submission as final if the next page is the thank-you page
 } catch (DAOAuthException $e) {
 	header("Location: {$forms[$formIndex]}?error_auth");
 	exit;
@@ -109,7 +118,12 @@ try {
 // Set cookies and GET string with id and auth_key so that if the user clicks the back button, he won't lose his data
 setcookie('register_id', $registrant->getField('id'));
 setcookie('register_auth_key', $registrant->getField('auth_key'));
-$data_auth_query_string = "id=" . urlencode($registrant->getField('id')) . "&auth_key=" . urlencode($registrant->getField('auth_key'));
+$data_auth_query_string_elements = array(
+	'id' => $registrant->getField('id'),
+	'auth_key' => $registrant->getField('auth_key'),
+	'edit' => urlencode($_GET['edit']),
+);
+$data_auth_query_string = buildQueryString($data_auth_query_string_elements);
 
 // Validate the data and redirect to the form if it's wrong
 $invalidFields = $registrant->validate($_POST['form_number']);
@@ -120,7 +134,7 @@ if (count($invalidFields) > 0) {
 
 	$invalidFieldsQueryString = join('&', array_map('makeFieldErrorString', $invalidFields));
 
-	header("Location: {$forms[$formIndex]}?$data_auth_query_string&$invalidFieldsQueryString#" . urlencode($invalidFields[0]));
+	header("Location: {$forms[$formIndex]}$data_auth_query_string&$invalidFieldsQueryString#" . urlencode($invalidFields[0]));
 	exit();
 }
 
@@ -134,11 +148,11 @@ if ($submitting) {
 if ($nextIndex == 'preview_abstract') {
 	header("Location: {$forms[$nextIndex]}?id=" . urlencode($registrant->getAbstract()->getField('id')));
 } else {
-	header("Location: {$forms[$nextIndex]}?$data_auth_query_string");
+	header("Location: {$forms[$nextIndex]}$data_auth_query_string");
 }
 
 // If submitting, send an email
-if ($submitting) {
+if ($submitting && !$editing) {
 	// Check whether or not a abstract email should be sent
 	$sendAbstractEmail = !is_null($registrant->getAbstract());
 	

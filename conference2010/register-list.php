@@ -24,15 +24,18 @@ foreach ($registrants as $registrant) {
 ?>
 		<tr class="<?php echo $i % 2 == 0 ? 'row_even' : 'row_odd' ?>">
 			<th><?php echo print_html($key) ?></th>
-			<td><?php echo print_html($val) ?></td>
-			<td class="action">
+			<td>
+				<?php echo print_html($val) ?>
+				<span class="action">
 <?php
-				if ($key == 'id') {
+					if ($key == 'id') {
 ?>
-				(<a href="register-delete.php?id=<?php echo urlencode($registrant->getField('id')) ?>">delete</a>)
+						(<a href="register.php?id=<?php echo urlencode($registrant->getField('id')) ?>&amp;edit=true">edit</a>,
+						<a href="register-delete.php?id=<?php echo urlencode($registrant->getField('id')) ?>">delete</a>)
 <?php
-				}
+					}
 ?>
+				</span>
 			</td>
 		</tr>
 <?php
