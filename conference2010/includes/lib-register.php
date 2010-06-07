@@ -404,7 +404,7 @@ class RegistrantDAO {
 		}
 
 		// Save the abstract
-		if (isset($this->abstract)) {
+		if ($this->data['submitting_abstract'] == 'yes') {
 			$this->abstract->setField('registrant_id', $this->data['id']);
 			$this->abstract->save($finalize, $force);
 		}
