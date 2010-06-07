@@ -26,15 +26,18 @@ foreach ($abstracts as $abstract) {
 ?>
 		<tr class="<?php echo $i % 2 == 0 ? 'row_even' : 'row_odd' ?>">
 			<th><?php echo print_html($fieldName) ?></th>
-			<td><?php echo print_html($inRegistrant ? $abstract->getRegistrant()->getField($fieldName) : $abstract->getField($fieldName)) ?></td>
-			<td class="action">
+			<td>
+				<?php echo print_html($inRegistrant ? $abstract->getRegistrant()->getField($fieldName) : $abstract->getField($fieldName)) ?>
+				<span class="action">
 <?php
-			if ($fieldName == 'id') {
+					if ($fieldName == 'id') {
 ?>
-				(<a href="abstract-delete.php?id=<?php echo urlencode($abstract->getField('id')) ?>">delete</a>)
+						(<a href="register.php?id=<?php echo urlencode($abstract->getRegistrant()->getField('id')) ?>&amp;edit=true">edit</a>,
+						<a href="abstract-delete.php?id=<?php echo urlencode($abstract->getField('id')) ?>">delete</a>)
 <?php
-			}
+					}
 ?>
+				</span>
 			</td>
 		</tr>
 <?php
