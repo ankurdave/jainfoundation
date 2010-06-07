@@ -32,7 +32,7 @@ foreach ($abstracts as $abstract) {
 <?php
 					if ($fieldName == 'id') {
 ?>
-						(<a href="register-2.php?id=<?php echo urlencode($abstract->getRegistrant()->getField('id')) ?>&amp;edit=true">edit</a>,
+						(<a href="register-2.php?id=<?php echo urlencode($abstract->getRegistrant()->getField('id')) ?>&amp;edit=true" target="_blank">edit</a>,
 						<a href="abstract-delete.php?id=<?php echo urlencode($abstract->getField('id')) ?>">delete</a>)
 <?php
 					}

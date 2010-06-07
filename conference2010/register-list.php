@@ -30,7 +30,7 @@ foreach ($registrants as $registrant) {
 <?php
 					if ($key == 'id') {
 ?>
-						(<a href="register.php?id=<?php echo urlencode($registrant->getField('id')) ?>&amp;edit=true">edit</a>,
+						(<a href="register.php?id=<?php echo urlencode($registrant->getField('id')) ?>&amp;edit=true" target="_blank">edit</a>,
 						<a href="register-delete.php?id=<?php echo urlencode($registrant->getField('id')) ?>">delete</a>)
 <?php
 					}
