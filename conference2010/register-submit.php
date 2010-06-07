@@ -69,10 +69,6 @@ if ($formIndex == 3) {
 }
 // Send the relevant fields to the DAOs
 foreach ($_POST as $field => $val) {
-	if (is_null($val) || $val === "") {
-		continue;
-	}
-
 	// RegistrantDAO
 	if (isset(RegistrantDAO::$columnTypes[$field])) {
 		$registrant->setField($field, $val);
