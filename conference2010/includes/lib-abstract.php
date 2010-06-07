@@ -287,7 +287,11 @@ class AbstractDAO {
 		$result = $db->query("SELECT id FROM abstract $whereClauseSql ORDER BY id");
 		$abstracts = array();
 		while ($row = $result->fetch_assoc()) {
-			$abstracts[] = new AbstractDAO($db, $row['id']);
+			try {
+				$abstracts[] = new AbstractDAO($db, $row['id']);
+			} catch (DAOAuthException $e) {
+				error_log("Error loading abstract #" . $row['id']);
+			}
 		}
 		$result->free();
 
