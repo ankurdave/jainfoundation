@@ -58,12 +58,21 @@
 <li>Daniel Stockholm</li>
 <li>Noah Weisleder</li>
 <li>Martin Krahn</li>
+<li>Renzhi Han</li>
 <li>Steve Laval</li>
 <li>Joseph Roche</li>
 <li>Jordi Diaz-Manera</li>
 <li>Antoine de Morrée</li>
 <li>Maura Parker</li>
 <li>Marc Bartoli</li>
+<li>Peter Pytel</li>
+<li>François Monjaret</li>
+<li>Perrine Borel</li>
+<li>Bradley Hodges</li>
+<li>Tatiana Cohen</li>
+<li>Alexis Demonbreun</li>
+<li>Rinse Klooster</li>
+<li>Peter Sazani</li>
 </ul>
 
 <h3>Tentative Meeting Schedule</h3>
