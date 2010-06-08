@@ -35,6 +35,8 @@
 
 <ul>
 <li>Eric Hoffman</li>
+<li>Robert Brown</li>
+<li>Lee Sweeney</li>
 <li>Jeff Chamberlain</li>
 <li>Jeff Molkentin</li>
 <li>Terry Partridge</li>
