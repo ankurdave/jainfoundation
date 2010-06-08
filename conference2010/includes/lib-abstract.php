@@ -33,7 +33,7 @@ class AbstractDAO {
 		// If given an ID, load the pre-existing abstract from the DB
 		if ($id !== null) {
 			$id_escaped = $this->db->real_escape_string($id);
-			$result = $this->db->query("SELECT * FROM abstract WHERE id='$id_escaped'");
+			$result = $this->db->query("SELECT id, registrant_id, picture_mimetype, abstract_category, abstract_category_other, presentation_type, abstract_title, abstract_body, final, abstract_comments FROM abstract WHERE id='$id_escaped'"); // all but picture_data
 			if ($result->num_rows == 0) {
 				throw new DAOAuthException("No such abstract");
 			}
