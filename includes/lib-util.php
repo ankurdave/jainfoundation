@@ -1,10 +1,12 @@
 <?php
 
-// Looks up each key in $keys in the assoc array $array, then returns an array of the corresponding values in the same order as $keys.
+/**
+ * Looks up each key in $keys in the assoc array $array, then returns an array of the corresponding values in the same order as $keys. If an element in $keys does not exist in $array, uses null for that value.
+ */
 function assoc_array_slice($keys, $array) {
 	$values = array();
 	foreach ($keys as $key) {
-		$values[] = $array[$key];
+		$values[] = @$array[$key];
 	}
 	return $values;
 }
