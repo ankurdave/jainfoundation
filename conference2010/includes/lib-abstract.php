@@ -27,13 +27,13 @@ class AbstractDAO {
 	/**
 	 * Loads the existing abstract with the given ID. If $id is null, creates a new empty abstract. If $registrant is null, loads the associated registrant.
 	 */
-	function __construct($db, $id = null, $registrant = null) {
+	function __construct($db, $id = null, $registrant = null, $loadPicture = false) {
 		$this->db = $db;
 
 		// If given an ID, load the pre-existing abstract from the DB
 		if ($id !== null) {
 			$id_escaped = $this->db->real_escape_string($id);
-			$result = $this->db->query("SELECT id, registrant_id, picture_mimetype, abstract_category, abstract_category_other, presentation_type, abstract_title, abstract_body, final, abstract_comments FROM abstract WHERE id='$id_escaped'"); // all but picture_data
+			$result = $this->db->query("SELECT id, registrant_id, picture_mimetype, " . ($loadPicture ? 'picture_data, ' : '') . "abstract_category, abstract_category_other, presentation_type, abstract_title, abstract_body, final, abstract_comments FROM abstract WHERE id='$id_escaped'"); // all but picture_data
 			if ($result->num_rows == 0) {
 				throw new DAOAuthException("No such abstract");
 			}

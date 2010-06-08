@@ -9,7 +9,7 @@ $form_location = 'register.php';
 // Load the abstract using the DAO
 try {
 	if (isset($_GET['id'])) {
-		$abstract = new AbstractDAO($db, $_GET['id']);
+		$abstract = new AbstractDAO($db, $_GET['id'], null, true);
 	} else {
 		header("Location: $form_location");
 		exit;
