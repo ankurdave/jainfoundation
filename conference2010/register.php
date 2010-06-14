@@ -47,7 +47,7 @@ printHeader(array(
 
 <p>For questions and concerns please contact Angela Salerno at <a href="mailto:asalerno@jain-foundation.org">asalerno@jain-foundation.org.</a></p>
 
-<p><strong>PLEASE NOTE: If you are planning to submit an abstract you need to have it ready when you register because you will be required to submit it below. Abstracts for both oral and poster presentations are due NO LATER THAN June 25th, 2010.</strong></p>
+<p><strong>PLEASE NOTE: If you are planning to submit an abstract you need to have it ready when you register because you will be required to submit it below. Abstracts for both oral and poster presentations are due NO LATER THAN July 23rd, 2010.</strong></p>
 
 <p>The Fourth Annual Dysferlin Conference is a scientific meeting for researchers and clinicians working on dysferlin. <strong>Pre-registration is required no later than July 23, 2010 as NO late or onsite registrations will be accepted.</strong> Attendance is limited.  Therefore, all registrations must be approved by the Jain Foundation. The Jain Foundation will let you know if your registration has been approved as soon as possible, but no later than July 27th, 2010. Preference will be given to those who are giving oral or poster presentations. If you are not approved, your registration fee will be refunded to you.</p>
 

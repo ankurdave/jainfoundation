@@ -31,6 +31,7 @@
 	height: 156px;
 	border: 1px solid black;
 	width: 352.087px;
+    padding-right: 0.5em;
 }
 .announcement a {
 	display:block;
@@ -44,24 +45,31 @@
 .announcement img {
 	float:left;
 	height: 156px;
-	margin-right:1em;
+	margin-right:0.5em;
 	border:none;
 }
 .announcement .title {
 	display:block;
-	font-size:140%;
+	font-size:180%;
 	font-weight:bold;
-	margin-bottom:1em;
 	color: #8f1404;
+    font-family: "Monotype Corsiva", "Apple Chancery", "URW Chancery L", cursive;
+}
+.announcement .subtitle {
+    display: block;
+    font-size: 100%;
+    font-weight: bold;
+    margin-top: 0.5em;
+    margin-bottom: 1em;
 }
 .announcement .info {
 	display:block;
 	font-size:100%;
-	margin-bottom:1.5em;
+	margin-bottom:1em;
 }
 .announcement .clickhere {
 	display:block;
-	font-size:100%;
+	font-size:120%;
 	font-weight:bold;
 }
 
@@ -305,12 +313,16 @@ onMouseOut="window.document.sq16.src='images/button_links2.gif'"><img src="image
 				<a href="conference2010/">
 					<img src="images/conference2010-spaceneedle.jpg" />
 					<span style="display:block; padding-top:1em">
-						<span class="title">The Fourth Annual <br />Dysferlin Conference</span>
+						<span class="title">The Dysferlin Lab Meeting</span>
+				  		<span class="subtitle">Fourth Annual Dysferlin Conference</span>
 						<span class="info">
 							September 11&ndash;14, 2010
 							<br />Seattle, WA
 						</span>
-						<span class="clickhere">Please click here for more <br />information</span>
+						<span class="clickhere">
+				  			Please click here for<br />
+				  			more information
+				  		</span>
 					</span>
 				</a>
 				</div>

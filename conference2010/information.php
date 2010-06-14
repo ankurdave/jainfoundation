@@ -54,7 +54,7 @@
 
 <p>This year's meeting is going to be different from past dysferlin conferences.  We plan to limit the number of talks and present more information using posters.  The oral sessions will focus on a few of the most pressing questions in dysferlin and will include a significant time for discussion. You may select whether you prefer an oral or poster presentation. However, the decision regarding the type of presentation is at the complete discretion of the Jain Foundation.</p>
 
-<p>Abstracts must be submitted <strong>no later than June 25, 2010</strong>.  The Jain Foundation will let you know if your abstract has been accepted as soon as possible, but no later than July 9th, 2010.</p>
+<p>Abstracts must be submitted <strong>no later than July 23, 2010</strong>.  The Jain Foundation will let you know if your abstract has been accepted as soon as possible, but no later than August 13th, 2010.</p>
 
 <h3>Arrival</h3>
 
