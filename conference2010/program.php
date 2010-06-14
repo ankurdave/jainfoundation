@@ -1,7 +1,10 @@
 <?php
-	include 'includes/lib.php';
-	
-	printHeader(array('title' => 'Conference 2009 | Scientific Program', 'page_nav_id' => 'program'));
+include 'includes/lib.php';
+printHeader(array(
+	'title' => 'Conference 2009 | Scientific Program',
+	'page_nav_id' => 'program',
+	'css' => 'dt { font-weight: bold; margin: 0.7em 0 0.2em 0 }',
+));
 ?>
 
 <?php include 'includes/conference-title.inc.php' ?>
@@ -18,19 +21,47 @@
 
 <p class="note">Talks will be assigned to one or more of the following sessions.</p>
 
-<table>
-<tr><th>Session I:</th> <td>What does dysferlin look like?</td></tr>
-<tr><th>Session II:</th> 	 <td>Where is dysferlin localized?</td></tr>
-<tr><th>Session III:</th> 	 <td>How does dysferlin traffic?</td></tr>
-<tr><th>Session IV:</th> 	 <td>What does dysferlin do?</td></tr>
-<tr><th>Session V:</th> 	 <td>What do dysferlin’s partners do?</td></tr>
-<tr><th>Session VI:</th> 	 <td>What does dysferlin-deficient muscle look like?</td></tr>
-<tr><th>Session VII:</th>	 <td>What is the role of inflammation in dysferlinopathy?</td></tr>
-<tr><th>Session VIII:</th>   <td>Is there a regeneration defect in dysferlinopathy?</td></tr>
-<tr><th>Session IX:</th>     <td>How do we compensate for dysferlin’s absence?</td></tr>
-<tr><th>Session X:</th>      <td>How can we put dysferlin back?</td></tr>
-<tr><th>Session XI:</th>     <td>What tools are available for dysferlin research?</td></tr>
-</table>
+<dl>
+<dt>Session I: What does dysferlin look like? </dt>
+
+<dd>Examples: Dysferlin molecular structure by EM or crystallography; chemical modifications; domain structure; etc. </dd>
+
+<dt>Session II:  Where is dysferlin localized? </dt>
+
+<dd>Examples: Sub-cellular location (e.g. surface, vesicles, t-tubules); trafficking; changes in sub-cellular location in response to injury or other perturbations; kinetics of location changes; expression in different cell types; etc.  </dd>
+
+<dt>Session III:  What does dysferlin do? </dt>
+
+<dd>Examples: Dysferlin's role in membrane repair, vesicle fusion, secretion, exo/endocytosis, etc. </dd>
+
+<dt>Session IV:  What do dysferlin’s partners do? </dt>
+
+<dd>Examples: Identification of interacting proteins; conditions under which the interaction takes place; role of the interacting proteins; role of other ferlin proteins (e.g. myoferlin, otoferlin); etc.  </dd>
+
+<dt>Session V:  What does dysferlin-deficient muscle look like? </dt>
+
+<dd>Examples: Imaging of muscle sections; characterization of muscle membrane defects; comparison of number and location of intracellular vesicles; T-tubule structure; etc. </dd>
+
+<dt>Session VI:  What is the role of inflammation in dysferlinopathy? </dt>
+
+<dd>Examples: Characterization of the dysferlin-deficient inflammatory response; contribution of inflammation to pathology; role of dysferlin in immune cells; etc. </dd>
+
+<dt>Session VII:  Is there a regeneration defect in dysferlinopathy? </dt>
+
+<dd>Examples: Ex vivo characterization of myoblast fusion, proliferation; in vivo assays for myoblast fusion, stem cell turnover; role of dysferlin in regeneration (e.g. fusion, signaling); etc. </dd>
+
+<dt>Session VIII:  How can we compensate for dysferlin’s absence? </dt>
+
+<dd>Examples: Activation of other proteins; drug treatments; modulation of calcium pathways; myostatin inhibition; etc. </dd>
+
+<dt>Session IX:  How can we put dysferlin back into muscle? </dt>
+
+<dd>Examples: Gene therapy, viral or non-viral; gene editing; stem cell therapy; etc. </dd>
+
+<dt>Session X:  What tools are available for dysferlin research? </dt>
+
+<dd>Examples: Dysferlin-specific assays; cell lines; animal models; antibodies; databases; diagnostic tools; etc.</dd>
+</dl>
 
 <h3>Confirmed Attendees</h3>
 

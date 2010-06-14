@@ -42,6 +42,11 @@
 			background-color: white;
 		}
 	<?php } ?>
+	<?php
+		if (isset($args['css'])) {
+			echo $args['css'];
+		}
+	?>
 	</style>
 	
 	<title>Jain Foundation Inc | <?php echo $args['title'] ?></title>
