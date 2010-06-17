@@ -85,12 +85,12 @@ foreach ($_POST as $field => $val) {
 	}
 
 	// AbstractAffiliationDAO
-	if (preg_match('/^affiliation_(\d+)$/i', $field, $matches)) {
+	if (preg_match('/^affiliation_(\d+)$/i', $field, $matches) && !empty($val)) {
 		$registrant->getAbstractInit()->getAffiliation($matches[1])->setField('affiliation', $val);
 	}
 
 	// AbstractAuthorDAO
-	if (preg_match('/^author_(\d+)_(.*)$/i', $field, $matches)) {
+	if (preg_match('/^author_(\d+)_(.*)$/i', $field, $matches) && !empty($val)) {
 		$registrant->getAbstractInit()->getAuthor($matches[1])->setField($matches[2], $val);
 	}
 }
