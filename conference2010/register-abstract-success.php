@@ -28,7 +28,7 @@ include 'includes/menu.inc.php';
 
 <p>Thank you for registering and submitting your abstract for the Fourth Annual Dysferlin Conference. Your abstract and registration were successfully submitted. Please print this page for your records.</p>
 
-<p><a href="abstract-show.php?id=<?php echo urlencode($registrant->getAbstract()->getField('id')) ?>">Please click here to view and save a copy of your submitted abstract.</a> The Jain Foundation will let you know if your abstract has been accepted as soon as possible, but no later than July 9th, 2010.</p>
+<p><a href="abstract-show.php?id=<?php echo urlencode($registrant->getAbstract()->getField('id')) ?>">Please click here to view and save a copy of your submitted abstract.</a> The Jain Foundation will let you know what kind of presentation your abstract has been accepted for no later than August 3rd, 2010.</p>
 
 <p>We will also let you know if your registration has been approved as soon as possible, but no later than July 27th, 2010. Your registration fee will be reimbursed if your registration is not approved.</p>
 

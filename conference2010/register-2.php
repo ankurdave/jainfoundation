@@ -65,11 +65,15 @@ printHeader(array(
 		?>
 	</table>
 	<div id="submitting_abstract_yes">
-		<p>This year's meeting is going to be different from past dysferlin conferences. We plan to limit the number of talks and present more information using posters. The oral sessions will focus on a few of the most pressing questions in dysferlin and will include a significant time for discussion.</p>
-		<p>Please fill in the information below the way you wish it to appear in the Dysferlin Conference Booklet as the Jain Foundation will not be responsible for any errors in content, spelling, or look. <em>You will be informed whether your abstract has been accepted as soon as possible, but no later than July 9th, 2010.</em></p>
+	  	<p>This year we want to implement a novel presentation style for our meeting in Seattle to make it more like a <strong>LARGE LAB MEETING</strong>. The oral presentations will be organized under specific questions.  The potential session questions, along with a sample of the type of data that would be relevant, are listed under the <a href="http://ankurdave.com/jainfoundation/conference2010/program.php">Scientific Program tab</a>.  Posters will also be grouped according to these specific questions.  If your data does not directly address any of the session questions, it most likely will be assigned a poster presentation.</p>
+
+	  	<p>Please fill in the information below the way you wish it to appear in the Dysferlin Conference Booklet as the Jain Foundation will not be responsible for any errors in content, spelling, or look. You will be informed what kind of presentation your abstract has been accepted for no later than August 3rd, 2010.</p>
+
 		<p>What is the title of your abstract?</p>
+
 		<p>Enter the title of your abstract in initial caps, except for capitalized abbreviations (e.g., DNA) and simple words (e.g., "a," "to," "the").<br />
 		<em>Example:</em> "Role of Muscle Stem Cells in the Progression and Treatment of Dysferlinopathy"</p>
+
 		<table>
 			<?php
 				print_text_field('abstract_title', array(

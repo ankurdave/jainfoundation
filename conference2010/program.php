@@ -13,9 +13,9 @@ printHeader(array(
 
 <h2>Scientific Program</h2>
 
-<p>This year's meeting is going to be different from past dysferlin conferences.  We plan to limit the number of talks and present more information using posters.  The oral sessions will focus on a few of the most pressing questions in dysferlin and will include a significant time for discussion.</p>
+<p>This year we want to implement a novel presentation style for our meeting in Seattle to make it more like a <strong>LARGE LAB MEETING</strong>. The goal is to facilitate discussion on focused topics and clearly define what is known, what is not, and what the next steps ought to be.</p>
 
-<p>Below is the tentative meeting schedule for the Fourth Annual Dysferlin Conference.   This page will be updated as soon as more details are available.</p>
+<p>The oral presentations at this year's meeting will be organized under specific questions. The potential session questions, along with a sample of the type of data that would be relevant, are listed below.  All presentations in each session must make a clear contribution to answering that session's question.  For each oral session, we plan to have a mixture of short (5-10 minutes) and long (15-20 minutes) talks, depending on the amount of relevant data to be presented.  Posters will also be grouped according to these specific questions. </p>
 
 <h3>Session Topics</h3>
 

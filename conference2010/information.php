@@ -52,9 +52,11 @@
 
 <p>Abstract submission is embedded within the registration page. You CANNOT submit an abstract without registering. The abstract word limit is 275 words. To begin the submission of your abstract and registration, please click on the following <a href="register.php" target="_blank">Meeting Registration and Abstract Submission link</a>.</p>
 
-<p>This year's meeting is going to be different from past dysferlin conferences.  We plan to limit the number of talks and present more information using posters.  The oral sessions will focus on a few of the most pressing questions in dysferlin and will include a significant time for discussion. You may select whether you prefer an oral or poster presentation. However, the decision regarding the type of presentation is at the complete discretion of the Jain Foundation.</p>
+<p>This year we want to implement a novel presentation style for our meeting in Seattle to make it more like a <strong>LARGE LAB MEETING</strong>. The goal is to facilitate discussion on focused topics and clearly define what is known, what is not, and what the next steps ought to be.</p>
 
-<p>Abstracts must be submitted <strong>no later than July 23, 2010</strong>.  The Jain Foundation will let you know if your abstract has been accepted as soon as possible, but no later than August 13th, 2010.</p>
+<p>The oral presentations at this year's meeting will be organized under specific questions. The potential session questions, along with a sample of the type of data that would be relevant, are listed under the <a href="http://ankurdave.com/jainfoundation/conference2010/program.php">Scientific Program tab</a>. All presentations in each session must make a clear contribution to answering that session's question.  For each oral session, we plan to have a mixture of short (5-10 minutes) and long (15-20 minutes) talks, depending on the amount of relevant data to be presented.  Posters will also be grouped according to these specific questions.  You may indicate whether you would like a poster or oral presentation.  However, the decision regarding the type and length of presentation assigned is at the complete discretion of the Jain Foundation.  If your data does not directly address any of the session questions, it most likely will be assigned a poster presentation.</p>
+
+<p>Abstracts must be submitted <strong>no later than July 23, 2010</strong>. The Jain Foundation will let you know what kind of presentation your abstract has been accepted for no later than August 3rd, 2010.</p>
 
 <h3>Arrival</h3>
 
