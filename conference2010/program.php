@@ -94,7 +94,7 @@ printHeader(array(
 <tr><td>Martin Krahn</td> <td>Université de la Méditerranée-Marseille, France</td></tr>
 <tr><td>Steve Laval</td> <td>Newcastle University-Newcastle-upon-Tyne, Tyne and Wear  UK</td></tr>
 <tr><td>Angela Lek</td> <td>Institute for Neuroscience and Muscle Research- Westmead, NSW Australia</td></tr>
-<tr><td>Mokel Lek</td> <td>Institute for Neuroscience and Muscle Research- Westmead, NSW Australia</td></tr>
+<tr><td>Monkel Lek</td> <td>Institute for Neuroscience and Muscle Research- Westmead, NSW Australia</td></tr>
 <tr><td>Cleo Leung</td> <td>UBC James Hogg Research Centre, Providence Heart+Lung Institute- Vancouver, B.C.  Canada</td></tr>
 <tr><td>Nicolas Lévy </td> <td>INSERM-Marseille, France</td></tr>
 <tr><td>William Lostal</td> <td>GENETHON-Evry, France</td></tr>
