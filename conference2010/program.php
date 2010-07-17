@@ -67,60 +67,126 @@ printHeader(array(
 
 <table>
 <tr><th>Confirmed Attendee</th> <th>Institution</th></tr>
-<tr><td>Florian Barthelemy</td> <td>Universite de la Mediterranee-Marseille cedex 05, France</td></tr>
-<tr><td>Marc Bartoli </td> <td>Universite de la Mediterranee-Marseille cedex 05, France</td></tr>
-<tr><td>Rumaisa Bashir</td> <td>University of Durham-Durham, UK</td></tr>
-<tr><td>Pascal Bernatchez</td> <td>University of British Columbia/St. Paul's Hospital-Vancouver, B.C.  Canada</td></tr>
-<tr><td>Bob Bloch</td> <td>University of Maryland School of Medicine-Baltimore, MD</td></tr>
-<tr><td>Perrine Borel</td> <td>Genethon- Evry, France</td></tr>
-<tr><td>Bob Brown </td> <td>U MA Medical School-Worcester, MA </td></tr>
-<tr><td>Gillian Butler-Browne </td> <td>Institut de Myologie, Paris, France</td></tr>
-<tr><td>Michele Calos </td> <td>Stanford University School of Medicine-Stanford, CA </td></tr>
-<tr><td>Jeff Chamberlain</td> <td>University of Washington, Seattle, WA</td></tr>
-<tr><td>Tatiana Cohen </td> <td>Children's National Medical Center- Washington, D.C.</td></tr>
-<tr><td>Sandra Cooper</td> <td>The Children's Hospital at Westmead- Sydney, New South Wales, Australia</td></tr>
-<tr><td>Annamaria De Luca</td> <td>University of Bari-Bari, Italy</td></tr>
-<tr><td>Antoine de Morrée </td> <td>Leiden University Medical Center-Leiden, Netherlands</td></tr>
-<tr><td>Alexis Demonbreun </td> <td>University of Chicago-Chicago, IL</td></tr>
-<tr><td>Jordi Diaz-Manera</td> <td>Neurology Department. Hospital de la Santa Creu i Sant Pau-Barcelona, Spain</td></tr>
-<tr><td>Eduard Gallardo</td> <td>Neurology Department. Hospital de la Santa Creu i Sant Pau-Barcelona, Spain</td></tr>
-<tr><td>Miranda Grounds </td> <td>University of Western Australia-Crawley, WA, Australia</td></tr>
-<tr><td>Renzhi Han</td> <td>Loyola Univeristy Medical Center-Maywood, IL</td></tr>
-<tr><td>Matt Hirsch</td> <td>University of North Carolina-Chapel Hill, NC</td></tr>
-<tr><td>Bradley Hodges </td> <td>Prothelia Inc.- Milford, MA </td></tr>
-<tr><td>Eric Hoffman </td> <td>Children's National Medical Center- Washington, D.C.</td></tr>
-<tr><td>Akshay Jain</td> <td>Jain Foundation, Inc.-Seattle, WA</td></tr>
-<tr><td>Rinse Klooster </td> <td>Leiden University Medical Center-Leiden, Netherlands</td></tr>
-<tr><td>Martin Krahn</td> <td>Université de la Méditerranée-Marseille, France</td></tr>
-<tr><td>Steve Laval</td> <td>Newcastle University-Newcastle-upon-Tyne, Tyne and Wear  UK</td></tr>
-<tr><td>Angela Lek</td> <td>Institute for Neuroscience and Muscle Research- Westmead, NSW Australia</td></tr>
-<tr><td>Monkel Lek</td> <td>Institute for Neuroscience and Muscle Research- Westmead, NSW Australia</td></tr>
-<tr><td>Cleo Leung</td> <td>UBC James Hogg Research Centre, Providence Heart+Lung Institute- Vancouver, B.C.  Canada</td></tr>
-<tr><td>Nicolas Lévy </td> <td>INSERM-Marseille, France</td></tr>
-<tr><td>William Lostal</td> <td>GENETHON-Evry, France</td></tr>
-<tr><td>Jianje Ma </td> <td>TRIM-edicine- North Brunswick, NJ</td></tr>
-<tr><td>Elizabeth McNally</td> <td>University of Chicago- Chicago, IL</td></tr>
-<tr><td>Jeff Molkentin </td> <td>Cincinnati Children's Hospital Medical Center- Cincinnati, OH</td></tr>
-<tr><td>François Monjaret </td> <td>Genethon- Evry, France</td></tr>
-<tr><td>Vincent Mouly </td> <td>Institut de Myologie- Paris, France</td></tr>
-<tr><td>Maura Parker</td> <td>Fred Hutchinson Cancer Research Center-Seattle, WA</td></tr>
-<tr><td>Terry Partridge</td> <td>Children’s National Medical Center-Washington, D.C.</td></tr>
-<tr><td>Peter Pytel </td> <td>University of Chicago-Chicago, IL</td></tr>
-<tr><td>Wendy Resneck</td> <td>University of Maryland-Baltimore, MD</td></tr>
-<tr><td>Isabelle Richard </td> <td>Genethon- Evry, France</td></tr>
-<tr><td>Joseph Roche </td> <td>University of Maryland-Baltimore, MD</td></tr>
-<tr><td>Peter Sazani </td> <td>AVI BioPharma-Bothell, WA </td></tr>
-<tr><td>Kevin Sonnemann</td> <td>University of Wisconsin-Madison, WI</td></tr>
-<tr><td>Simone Spuler</td> <td>Charité Medical Faculty-Berlin, Deutschland</td></tr>
-<tr><td>Daniel Stockholm</td> <td>Genethon- Evry, France</td></tr>
-<tr><td>Bryan Sutton</td> <td>Texas Tech University Health Sciences Center-Lubbock, TX</td></tr>
-<tr><td>Lee Sweeney </td> <td>Univ. of Penn. School of Medicine, Philadelphia, PA </td></tr>
-<tr><td>Silvere van der Maarel</td> <td>Leiden University Medical Center-Leiden, Netherlands</td></tr>
-<tr><td>Steven Vogel </td> <td>NIAAA/NIH-Rockville, MD</td></tr>
-<tr><td>Barbara Wakimoto</td> <td>Univeristy of Washington- Seattle, WA </td></tr>
-<tr><td>Noah Weisleder</td> <td>TRIM-edicine- North Brunswick, NJ</td></tr>
-<tr><td>Zipora Yablonka-Reuveni</td> <td>University of Washington School of Medicine-Seattle, WA</td></tr>
-<tr><td>Joshua Zimmerberg</td> <td>NICHD, NIH-Bethesda, MD</td></tr>
+<tr><td>Florian Barthelemy</td>
+<td>Universite de la Mediterranee-Marseille cedex 05, France</td></tr>
+<tr><td>Marc Bartoli</td>
+<td>Universite de la Mediterranee-Marseille cedex 05, France</td></tr>
+<tr><td>Rumaisa Bashir</td>
+<td>University of Durham-Durham, UK</td></tr>
+<tr><td>Pascal Bernatchez</td>
+<td>University of British Columbia/St. Paul's Hospital-Vancouver, B.C.  Canada</td></tr>
+<tr><td>Bob Bloch</td>
+<td>University of Maryland School of Medicine-Baltimore, MD</td></tr>
+<tr><td>Perrine Borel</td>
+<td>Genethon- Evry, France</td></tr>
+<tr><td>Bob Brown</td>
+<td>U MA Medical School-Worcester, MA</td></tr>
+<tr><td>Gillian Butler-Browne</td>
+<td>Institut de Myologie, Paris, France</td></tr>
+<tr><td>Michele Calos</td>
+<td>Stanford University School of Medicine-Stanford, CA</td></tr>
+<tr><td>Jeff Chamberlain</td>
+<td>University of Washington, Seattle, WA</td></tr>
+<tr><td>Tatiana Cohen</td>
+<td>Children's National Medical Center- Washington, D.C.</td></tr>
+<tr><td>Sandra Cooper</td>
+<td>The Children's Hospital at Westmead- Sydney, New South Wales, Australia</td></tr>
+<tr><td>Annamaria De Luca</td>
+<td>University of Bari-Bari, Italy</td></tr>
+<tr><td>Antoine de Morrée</td>
+<td>Leiden University Medical Center-Leiden, Netherlands</td></tr>
+<tr><td>Alexis Demonbreun</td>
+<td>University of Chicago-Chicago, IL</td></tr>
+<tr><td>Jordi Diaz-Manera</td>
+<td>Neurology Department. Hospital de la Santa Creu i Sant Pau-Barcelona, Spain</td></tr>
+<tr><td>Kerry Fuson</td>
+<td>Texas Tech University Health Sciences Center-Lubbock, TX</td></tr>
+<tr><td>Eduard Gallardo</td>
+<td>Neurology Department. Hospital de la Santa Creu i Sant Pau-Barcelona, Spain</td></tr>
+<tr><td>Miranda Grounds</td>
+<td>University of Western Australia-Crawley, WA, Australia</td></tr>
+<tr><td>Renzhi Han</td>
+<td>Loyola Univeristy Medical Center-Maywood, IL</td></tr>
+<tr><td>Matt Hirsch</td>
+<td>University of North Carolina-Chapel Hill, NC</td></tr>
+<tr><td>Bradley Hodges</td>
+<td>Prothelia Inc.- Milford, MA</td></tr>
+<tr><td>Eric Hoffman</td>
+<td>Children's National Medical Center- Washington, D.C.</td></tr>
+<tr><td>Akshay Jain</td>
+<td>Jain Foundation, Inc.-Seattle, WA</td></tr>
+<tr><td>Tom Kirchhausen</td>
+<td>Harvard Medical School-Boston, MA</td></tr>
+<tr><td>Rinse Klooster</td>
+<td>Leiden University Medical Center-Leiden, Netherlands</td></tr>
+<tr><td>Martin Krahn</td>
+<td>Université de la Méditerranée-Marseille, France</td></tr>
+<tr><td>Pradeeo Gonugunta Kumar</td>
+<td>Nizam's Institute of Medical Sciences- Andhra Pradesh, India</td></tr>
+<tr><td>Steve Laval</td>
+<td>Newcastle University-Newcastle-upon-Tyne, Tyne and Wear  UK</td></tr>
+<tr><td>Angela Lek</td>
+<td>Institute for Neuroscience and Muscle Research- Westmead, NSW Australia</td></tr>
+<tr><td>Monkel Lek</td>
+<td>Institute for Neuroscience and Muscle Research- Westmead, NSW Australia</td></tr>
+<tr><td>Cleo Leung</td>
+<td>UBC James Hogg Research Centre, Providence Heart+Lung Institute- Vancouver, B.C.  Canada</td></tr>
+<tr><td>Nicolas Lévy</td>
+<td>INSERM-Marseille, France</td></tr>
+<tr><td>William Lostal</td>
+<td>GENETHON-Evry, France</td></tr>
+<tr><td>Jianje Ma</td>
+<td>TRIM-edicine- North Brunswick, NJ</td></tr>
+<tr><td>Ibrahim</td>
+<td>University of Oulu-Oulu, Finland</td></tr>
+<tr><td>Elizabeth McNally</td>
+<td>University of Chicago- Chicago, IL</td></tr>
+<tr><td>Jeff Molkentin</td>
+<td>Cincinnati Children's Hospital Medical Center- Cincinnati, OH</td></tr>
+<tr><td>François Monjaret</td>
+<td>Genethon- Evry, France</td></tr>
+<tr><td>Vincent Mouly</td>
+<td>Institut de Myologie- Paris, France</td></tr>
+<tr><td>Maura Parker</td>
+<td>Fred Hutchinson Cancer Research Center-Seattle, WA</td></tr>
+<tr><td>Terry Partridge</td>
+<td>Children's National Medical Center-Washington, D.C.</td></tr>
+<tr><td>Peter Pytel</td>
+<td>University of Chicago-Chicago, IL</td></tr>
+<tr><td>Usha Ramachandran</td>
+<td>University of Durham-Durham, UK</td></tr>
+<tr><td>Wendy Resneck</td>
+<td>University of Maryland-Baltimore, MD</td></tr>
+<tr><td>Isabelle Richard</td>
+<td>Genethon- Evry, France</td></tr>
+<tr><td>John Robinson</td>
+<td>Ohio State University- Columbus, OH</td></tr>
+<tr><td>Joseph Roche</td>
+<td>University of Maryland-Baltimore, MD</td></tr>
+<tr><td>Peter Sazani</td>
+<td>AVI BioPharma-Bothell, WA</td></tr>
+<tr><td>Kevin Sonnemann</td>
+<td>University of Wisconsin-Madison, WI</td></tr>
+<tr><td>Simone Spuler</td>
+<td>Charité Medical Faculty-Berlin, Deutschland</td></tr>
+<tr><td>Daniel Stockholm</td>
+<td>Genethon- Evry, France</td></tr>
+<tr><td>Bryan Sutton</td>
+<td>Texas Tech University Health Sciences Center-Lubbock, TX</td></tr>
+<tr><td>Lee Sweeney</td>
+<td>Univ. of Penn. School of Medicine, Philadelphia, PA</td></tr>
+<tr><td>Silvere van der Maarel</td>
+<td>Leiden University Medical Center-Leiden, Netherlands</td></tr>
+<tr><td>Steven Vogel</td>
+<td>NIAAA/NIH-Rockville, MD</td></tr>
+<tr><td>Barbara Wakimoto</td>
+<td>Univeristy of Washington- Seattle, WA</td></tr>
+<tr><td>Noah Weisleder</td>
+<td>TRIM-edicine- North Brunswick, NJ</td></tr>
+<tr><td>Zipora Yablonka-Reuveni</td>
+<td>University of Washington School of Medicine-Seattle, WA</td></tr>
+<tr><td>Joshua Zimmerberg</td>
+<td>NICHD, NIH-Bethesda, MD</td></tr>
 </table>
 
 <h3>Tentative Meeting Schedule</h3>
