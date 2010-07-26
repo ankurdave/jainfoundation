@@ -52,7 +52,9 @@
 	<title>Jain Foundation Inc | <?php echo $args['title'] ?></title>
 	<script type="text/javascript">
 		var _gaq = _gaq || [];
-		_gaq.push(['_setAccount', 'UA-17019099-2']);
+		_gaq.push(['_setAccount', 'UA-17019099-3']);
+		_gaq.push(['_setDomainName', 'none']);
+		_gaq.push(['_setAllowLinker', true]);
 		_gaq.push(['_trackPageview']);
 		
 		(function() {
