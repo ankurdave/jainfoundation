@@ -504,21 +504,43 @@ table.multitext label.error:hover {
 
 /* Schedule */
 
-.day {
+.schedule .day {
 	color: black;
+    font-weight: bold;
+    margin-top: 2em;
 }
 
-.time {
-	color: #008000;
+.schedule .name {
+    display: block;
+    font-weight: bold;
 }
 
-.talk .title {
-	display: block;
-	font-style: italic;
+.schedule .event,
+.schedule .session {
+    clear: both;
 }
 
-.talk .people {
-	display: block;
+.schedule .time {
+    display: block;
+    font-weight: bold;
+    float: right;
+}
+
+.schedule .event .name,
+.schedule .event .time {
+    color: #036;
+}
+
+.schedule .session .name,
+.schedule .session .time {
+    color: #396;
+}
+
+.schedule .event,
+.schedule .session {
+    margin-left: 2em;
+    margin-top: 1em;
+    margin-bottom: 1em;
 }
 
 /* Admin */

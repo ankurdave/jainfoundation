@@ -191,18 +191,172 @@ printHeader(array(
 
 <h3>Tentative Meeting Schedule</h3>
 
-<h4 class="day">Saturday, September 11th, 2010</h4>
-<h5 class="time">2 pm – 6 pm</h5>
+<div class="schedule">
+<h4 class="day">SATURDAY, Sept 11</h4>
 
-<h4 class="day">Sunday, September 12th, 2010</h4>
-<h5 class="time">8 am – 5 pm</h5>
+<p class="event">
+<span class="time">1:30 - 2:30 PM</span>
+<span class="name">Registration</span>
+</p>
 
-<h4 class="day">Monday, September 13th, 2010</h4>
-<h5 class="time">8 am – 5 pm</h5>
+<p class="event">
+<span class="time">2:00 - 2:30 PM</span>
+<span class="name">Introduction - Akshay Jain and Plavi Mittal</span>
+</p>
 
-<h4 class="day">Tuesday, September 14th, 2010</h4>
-<h5 class="time">8 am – 12 pm</h5>
+<p class="session">
+<span class="time">2:30 - 3:40 PM</span>
+<span class="name">Session I: What does dysferlin look like?</span>
+<span class="desc">Examples: Dysferlin molecular structure by EM or crystallography; 
+chemical modifications; domain structure; etc.</span>
+</p>
 
+<p class="session">
+<span class="time">3:40 - 4:40 PM</span>
+<span class="name">Session II: Where is dysferlin localized?</span>
+<span class="desc">Examples: Sub-cellular location (e.g. surface, vesicles, t-tubules); trafficking; 
+changes in sub-cellular location in response to injury or other perturbations; 
+kinetics of location changes; expression in different cell types; etc.</span>
+</p>
+
+<p class="event">
+<span class="time">4:40 - 4:50 PM</span>
+<span class="name">Break</span>
+</p>
+
+<p class="session">
+<span class="time">4:50 - 6:00 PM</span>
+<span class="name">Session III: What happens when dysferlin is missing?</span>
+<span class="desc">Examples: Imaging of muscle sections; characterization of muscle membrane defects; 
+comparison of number and location of intracellular vesicles; T-tubule structure; etc.</span>
+</p>
+
+<p class="event">
+<span class="time">6:00 - 6:45 PM</span>
+<span class="name">Patient Perspectives</span>
+</p>
+
+
+<h4 class="day">SUNDAY, Sept 12</h4>
+
+<p class="event">
+<span class="time">7:00 - 8:00 AM</span>
+<span class="name">Breakfast</span>
+</p>
+
+<p class="session">
+<span class="time">8:00 - 10:10 AM</span>
+<span class="name">Session IV: What does dysferlin do?</span>
+<span class="desc">Examples: Dysferlin's role in membrane repair, vesicle fusion, secretion, 
+exo/endocytosis, etc.         </span>
+</p>
+
+<p class="event">
+<span class="time">10:10 - 10:20 AM</span>
+<span class="name">Break</span>
+</p>
+
+<p class="session">
+<span class="time">10:20 - 11:40 AM</span>
+<span class="name">Session V: What do dysferlin partners do?</span>
+<span class="desc">Examples: Identification of interacting proteins; conditions under which 
+the interaction takes place; role of the interacting proteins; 
+role of other ferlin proteins (e.g. myoferlin, otoferlin); etc.</span>
+</p>
+
+<p class="event">
+<span class="time">11:40 - 12:00 PM</span>
+<span class="name">Jain Foundation Initiatives</span>
+</p>
+
+<p class="event">
+<span class="time">12:00 - 1:00 PM</span>
+<span class="name">Lunch</span>
+</p>
+
+<p class="session">
+<span class="time">1:00 - 3:40 PM</span>
+<span class="name">Session VI: What is the role of inflammation in dysferlinopathy?</span>
+<span class="desc">Examples: Characterization of the dysferlin-deficient inflammatory response; 
+contribution of inflammation to pathology; role of dysferlin in immune cells; etc.</span>
+</p>
+
+<p class="event">
+<span class="time">3:40 - 6:00 PM</span>
+<span class="name">Poster Session I</span>
+</p>
+
+<h4 class="day">MONDAY, Sept 13</h4>
+
+<p class="event">
+<span class="time">7:00 - 8:00 AM</span>
+<span class="name">Breakfast</span>
+</p>
+
+<p class="session">
+<span class="time">8:00 - 9:30 AM</span>
+<span class="name">Session VII: Is there a regeneration defect in dysferlinopathy?</span>
+<span class="desc">Examples: Ex vivo characterization of myoblast fusion, proliferation; 
+in vivo assays for myoblast fusion, stem cell turnover; role of dysferlin 
+in regeneration (e.g. fusion, signaling); etc.</span>
+</p>
+
+<p class="event">
+<span class="time">9:30 - 9:40 AM</span>
+<span class="name">Break</span>
+</p>
+
+<p class="session">
+<span class="time">9:40 - 11:50 AM</span>
+<span class="name">Session VIII: How do we put dysferlin back?</span>
+<span class="desc">Examples: Gene therapy, viral or non-viral; gene editing; 
+stem cell therapy; etc.</span>
+</p>
+
+<p class="event">
+<span class="time">11:50 - 12:50 PM</span>
+<span class="name">Lunch</span>
+</p>
+
+<p class="session">
+<span class="time">12:50 - 4:00 PM</span>
+<span class="name">Session IX: How do we compensate for dysferlin's absence?</span>
+<span class="desc">Examples: Activation of other proteins; drug treatments; 
+modulation of calcium pathways; myostatin inhibition; etc.</span>
+</p>
+
+<p class="event">
+<span class="time">4:00 - 6:00 PM</span>
+<span class="name">Poster Session II</span>
+</p>
+
+<p class="event">
+<span class="time">7:00 - 10:00 PM</span>
+<span class="name">Gala Dinner</span>
+</p>
+
+<h4 class="day">TUESDAY, Sept 14</h4>
+
+<p class="event">
+<span class="time">7:00 - 8:00 AM</span>
+<span class="name">Breakfast</span>
+</p>
+
+<p class="session">
+<span class="time">8:00 - 11:00 AM</span>
+<span class="name">Session X: What's new in diagnostic tools for dysferlinopathy?</span>
+<span class="desc">Examples: clinical presentation, new diagnostic assays, etc.</span>
+</p>
+
+<p class="event">
+<span class="name">Closing Remarks . Jain Foundation</span>
+</p>
+
+<p class="event">
+<span class="time">11:00 - 12:00 PM</span>
+<span class="name">Lunch - (Boxed)</span>
+</p>
+</div>
 
 <?php
 	printFooter();
