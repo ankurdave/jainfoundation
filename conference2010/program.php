@@ -63,34 +63,31 @@ printHeader(array(
 <dd>Examples: Dysferlin-specific assays; cell lines; animal models; antibodies; databases; diagnostic tools; etc.</dd>
 </dl>-->
 
-<h3>Tentative Meeting Schedule</h3>
+<h3>Meeting Schedule</h3>
 
 <div class="schedule">
 <h4 class="day">SATURDAY, Sept 11</h4>
 
 <p class="event">
-<span class="time">1:30 - 2:30 PM</span>
-<span class="name">Registration</span>
+<span class="time">1:00 - 2:00 PM</span>
+<span class="name">Registration - the Regency Ballroom</span>
 </p>
 
 <p class="event">
 <span class="time">2:00 - 2:30 PM</span>
-<span class="name">Introduction - Akshay Jain and Plavi Mittal</span>
+<span class="name">Welcome to the 4th annual Jain Foundation Conference on Dysferlinopathy<br>Akshay Jain and Plavi Mittal</span>
 </p>
 
 <p class="session">
-<span class="time">2:30 - 3:40 PM</span>
+<span class="time">2:30 - 3:30 PM</span>
 <span class="name">Session I: What does dysferlin look like?</span>
-<span class="desc">Examples: Dysferlin molecular structure by EM or crystallography; 
-chemical modifications; domain structure; etc.</span>
+<span class="desc">Intro: Garg, <span class="speakers">Speakers: Sutton, Cooper</span><br>Discussion I</span>
 </p>
 
 <p class="session">
-<span class="time">3:40 - 4:40 PM</span>
+<span class="time">3:30 - 4:40 PM</span>
 <span class="name">Session II: Where is dysferlin localized?</span>
-<span class="desc">Examples: Sub-cellular location (e.g. surface, vesicles, t-tubules); trafficking; 
-changes in sub-cellular location in response to injury or other perturbations; 
-kinetics of location changes; expression in different cell types; etc.</span>
+<span class="desc">Intro: Williams, <span class="speakers">Speakers: Bloch, Laval, Cooper, Butler-Browne</span><br>Discussion II</span>
 </p>
 
 <p class="event">
@@ -99,30 +96,32 @@ kinetics of location changes; expression in different cell types; etc.</span>
 </p>
 
 <p class="session">
-<span class="time">4:50 - 6:00 PM</span>
+<span class="time">4:50 - 6:15 PM</span>
 <span class="name">Session III: What happens when dysferlin is missing?</span>
-<span class="desc">Examples: Imaging of muscle sections; characterization of muscle membrane defects; 
-comparison of number and location of intracellular vesicles; T-tubule structure; etc.</span>
+<span class="desc">Intro: Monnier, <span class="speakers">Speakers: Grounds, Williams, Bloch, Maguire, Spuler</span><br>Discussion III</span>
 </p>
 
 <p class="event">
-<span class="time">6:00 - 6:45 PM</span>
+<span class="time">6:15 - 7:00 PM</span>
 <span class="name">Patient Perspectives</span>
 </p>
 
+<p class="event">
+<span class="time">7:30 - 11:00 PM</span>
+<span class="name">Reception - Maggiano's Little Italy</span>
+</p>
 
 <h4 class="day">SUNDAY, Sept 12</h4>
 
 <p class="event">
 <span class="time">7:00 - 8:00 AM</span>
-<span class="name">Breakfast</span>
+<span class="name">Breakfast - Regency Ballroom</span>
 </p>
 
 <p class="session">
 <span class="time">8:00 - 10:10 AM</span>
 <span class="name">Session IV: What does dysferlin do?</span>
-<span class="desc">Examples: Dysferlin's role in membrane repair, vesicle fusion, secretion, 
-exo/endocytosis, etc.         </span>
+<span class="desc">Intro: Albrecht, <span class="speakers">Speakers: Bloch, Barton, Cooper, Spuler, Richard, Vogel, Blank, McNally</span><br>Discussion IV</span>
 </p>
 
 <p class="event">
@@ -133,9 +132,7 @@ exo/endocytosis, etc.         </span>
 <p class="session">
 <span class="time">10:20 - 11:40 AM</span>
 <span class="name">Session V: What do dysferlin partners do?</span>
-<span class="desc">Examples: Identification of interacting proteins; conditions under which 
-the interaction takes place; role of the interacting proteins; 
-role of other ferlin proteins (e.g. myoferlin, otoferlin); etc.</span>
+<span class="desc">Intro: Rufibach, <span class="speakers">Speakers: van der Maarel, Bloch, Bashir</span><br>Discussion V</span>
 </p>
 
 <p class="event">
@@ -145,34 +142,31 @@ role of other ferlin proteins (e.g. myoferlin, otoferlin); etc.</span>
 
 <p class="event">
 <span class="time">12:00 - 1:00 PM</span>
-<span class="name">Lunch</span>
+<span class="name">Lunch - Regency Ballroom</span>
 </p>
 
 <p class="session">
-<span class="time">1:00 - 3:40 PM</span>
+<span class="time">1:00 - 3:20 PM</span>
 <span class="name">Session VI: What is the role of inflammation in dysferlinopathy?</span>
-<span class="desc">Examples: Characterization of the dysferlin-deficient inflammatory response; 
-contribution of inflammation to pathology; role of dysferlin in immune cells; etc.</span>
+<span class="desc">Intro: Garg, <span class="speakers">Speakers: Hoffman, Roche, Gallardo, Laval, Spuler, Han</span><br>Discussion VI</span>
 </p>
 
 <p class="event">
-<span class="time">3:40 - 6:00 PM</span>
-<span class="name">Poster Session I</span>
+<span class="time">3:20 - 6:00 PM</span>
+<span class="name">Poster Session I - Regency Ballroom</span>
 </p>
 
 <h4 class="day">MONDAY, Sept 13</h4>
 
 <p class="event">
 <span class="time">7:00 - 8:00 AM</span>
-<span class="name">Breakfast</span>
+<span class="name">Breakfast - Regency Ballroom</span>
 </p>
 
 <p class="session">
 <span class="time">8:00 - 9:30 AM</span>
 <span class="name">Session VII: Is there a regeneration defect in dysferlinopathy?</span>
-<span class="desc">Examples: Ex vivo characterization of myoblast fusion, proliferation; 
-in vivo assays for myoblast fusion, stem cell turnover; role of dysferlin 
-in regeneration (e.g. fusion, signaling); etc.</span>
+<span class="desc">Intro: Albrecht, <span class="speakers">Speakers: Cohen, Laval, Bloch, Richard</span><br>Discussion VII</span>
 </p>
 
 <p class="event">
@@ -183,52 +177,51 @@ in regeneration (e.g. fusion, signaling); etc.</span>
 <p class="session">
 <span class="time">9:40 - 11:50 AM</span>
 <span class="name">Session VIII: How do we put dysferlin back?</span>
-<span class="desc">Examples: Gene therapy, viral or non-viral; gene editing; 
-stem cell therapy; etc.</span>
+<span class="desc">Intro: Mittal, <span class="speakers">Speakers: Levy, Bartoli, Richard, Hirsch, Diaz-Mannera, Calos</span><br>Discussion VIII</span>
 </p>
 
 <p class="event">
 <span class="time">11:50 - 12:50 PM</span>
-<span class="name">Lunch</span>
+<span class="name">Lunch - Regency Ballroom</span>
 </p>
 
 <p class="session">
 <span class="time">12:50 - 4:00 PM</span>
 <span class="name">Session IX: How do we compensate for dysferlin's absence?</span>
-<span class="desc">Examples: Activation of other proteins; drug treatments; 
-modulation of calcium pathways; myostatin inhibition; etc.</span>
+<span class="desc">Intro: Albrecht, <span class="speakers">Speakers: Molkentin, Hoffman, Weisleder, Zimmerberg, Sweeney, Serafini, Sonneman, Duong, Authier</span><br>Discussion IX</span>
 </p>
 
 <p class="event">
 <span class="time">4:00 - 6:00 PM</span>
-<span class="name">Poster Session II</span>
+<span class="name">Poster Session II - Regency Ballroom</span>
 </p>
 
 <p class="event">
-<span class="time">7:00 - 10:00 PM</span>
-<span class="name">Gala Dinner</span>
+<span class="time">6:30 - 10:30 PM</span>
+<span class="name">Gala Dinner - Meet in lobby at 6:15 for Bus to the Space Needle</span>
 </p>
 
 <h4 class="day">TUESDAY, Sept 14</h4>
 
 <p class="event">
 <span class="time">7:00 - 8:00 AM</span>
-<span class="name">Breakfast</span>
+<span class="name">Breakfast - Regency Ballroom</span>
 </p>
 
 <p class="session">
-<span class="time">8:00 - 11:00 AM</span>
+<span class="time">8:00 - 9:20 AM</span>
 <span class="name">Session X: What's new in diagnostic tools for dysferlinopathy?</span>
-<span class="desc">Examples: clinical presentation, new diagnostic assays, etc.</span>
+<span class="desc">Intro: Rufibach, <span class="speakers">Gallardo, Krahn, Mahjneh</span><br>Discussion X</span>
 </p>
 
 <p class="event">
+<span class="time">9:20 - 10:00 AM</span>
 <span class="name">Closing Remarks . Jain Foundation</span>
 </p>
 
 <p class="event">
 <span class="time">11:00 - 12:00 PM</span>
-<span class="name">Lunch - (Boxed)</span>
+<span class="name">Lunch - (Boxed) - Regency Ballroom</span>
 </p>
 </div>
 

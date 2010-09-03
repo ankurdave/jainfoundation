@@ -515,6 +515,10 @@ table.multitext label.error:hover {
     font-weight: bold;
 }
 
+.schedule .speakers {
+    color: #E36C0A;
+}
+
 .schedule .event,
 .schedule .session {
     clear: both;
