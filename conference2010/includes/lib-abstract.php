@@ -297,6 +297,18 @@ class AbstractDAO {
 
 		return $abstracts;
 	}
+
+	static function loadWithIDs($db, $abstractIDs) {
+		$abstracts = array();
+		foreach ($abstractIDs as $id) {
+			try {
+				$abstracts[] = new AbstractDAO($db, $id);
+			} catch (DAOAuthException $e) {
+				error_log("Error loading abstract #" . $row['id']);
+			}
+		}
+		return $abstracts;
+	}
 }
 
 class AbstractAuthorDAO {
